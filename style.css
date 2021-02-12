@@ -1,0 +1,40 @@
+/*Nav bar is a list of links, so make sure to only style nav-based links like this*/
+nav ul {
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+nav li{
+    float: left;
+}
+
+nav li a{
+    display: block;
+    color: white;
+    text-align: center;    
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav li a:hover{
+    background-color: #4a4a4a;
+    text-decoration: none;
+}
+
+/*This really is only used for the nav-bar, kind of ugly to dedicate an entire class to this*/
+.active{
+    background-color: #3899ff;
+}
+
+/*Generic link styling*/
+a{
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+}
