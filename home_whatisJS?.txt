@@ -1,0 +1,14 @@
+<TITEL> What is JavaScript?
+This website gives you a short introduction to JavaScript.
+The term will be explained and put in its context, both from a historical perspective and an engeneering perspective.
+The following topics will be covered.
+<<IN BLOCKS DE ONDERWERPEN WEERGEVEN>>
+
+<KOPJE> but first: what is JS?
+JavaScript (JS) is a high-level programming language that is often just-in-time compiled and multi-paradigm.
+It is the driver behind the interaction that happens on web pages, and therefore at the core of the World Wide Web (WWW).
+Since JS is the dominant client-side language of the web, most other languages that are used for web development transpile to JavaScript before execution.
+<<>>
+<KOPJE> Client-side vs server-side.
+In the domain of web, there is client-side scripting and server-side scripting. JS can do both, however it is most common in client-side.
+<<INDENT>> TWO SECTIONS (side-by-side), CLIENT-SIDE/SERVER-SIDE MET UITLEG
