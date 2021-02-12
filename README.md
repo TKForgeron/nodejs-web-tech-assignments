@@ -12,7 +12,7 @@
 - use CSS for formatting, including at least:
     - several different styles for text
     - several different styles for links
-    - styles for table elements 
+    - styles for table elements
     - cascading styles through selector specificity
     - style inheritance
 
