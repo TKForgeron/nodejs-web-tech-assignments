@@ -1,3 +1,8 @@
+:root{
+    --themecolor:#D6BE00;
+    --themetintlighter: #efe599;
+}
+
 /*Nav bar is a list of links, so make sure to only style nav-based links like this*/
 nav ul {
     width: 100%;
@@ -5,7 +10,7 @@ nav ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: var(--themecolor);
 }
 
 nav li{
@@ -21,13 +26,15 @@ nav li a{
 }
 
 nav li a:hover{
-    background-color: #4a4a4a;
+    background-color: var(--themetintlighter);
+    color: black;
     text-decoration: none;
 }
 
 /*This really is only used for the nav-bar, kind of ugly to dedicate an entire class to this*/
 .active{
-    background-color: #3899ff;
+    background-color: white;
+    color: black;
 }
 
 /*Generic link styling*/
@@ -45,11 +52,26 @@ table {
 }
   
 td, th {
-    border: 1px solid #bcbcbc;
+    border: 1px solid black;
     text-align: left;
     padding: 8px;
 }
   
 tr:nth-child(even) {
-    background-color: #bcbcbc;
+    background-color: var(--themetintlighter);
+}
+
+footer {
+    background-color: var(--themecolor);
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 5em;
+    text-align: center;
+    color: white;
+}
+
+header{
+    text-align: center;
 }
