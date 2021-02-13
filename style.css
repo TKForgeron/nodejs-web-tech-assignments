@@ -5,7 +5,9 @@
 main{
     min-height: 70vh;
 }
-
+body{
+    font-family: 'Courier New', Courier, monospace;
+}
 #jslogo{
     float: left;
 }
@@ -36,6 +38,12 @@ nav li a{
     text-decoration: none;
 }
 
+nav li a:visited{
+    text-decoration: none;
+    color: white;
+    text-decoration: none;
+}
+
 nav li a:hover{
     background-color: var(--themelighter);
     color: black;
@@ -46,11 +54,27 @@ nav li a:hover{
 .active{
     background-color: white;
     color: black;
+    text-decoration: none;
 }
 
+.active:visited{
+    background-color: white;
+    color: black;
+    text-decoration: none;
+}
+
+.active:hover{
+    background-color: var(--themelighter);
+    color: black;
+    text-decoration: none;
+}
 /*Generic link styling*/
 a{
     text-decoration: none;
+}
+
+a:visited{
+    color: green;
 }
 
 a:hover{
@@ -87,8 +111,18 @@ footer {
 header{
     text-align: center;
     height: 7em;
-    background: url(images/javascriptlogo.png) left top no-repeat,
-    url(images/uulogo.png) right top no-repeat;                     /*These images have no alt tags...*/
-    background-size: 7.5em 7.5em;
     padding-top: 1em;
+}
+
+.img--right{
+    float: right;
+    width: 7.5em;
+    height: 7.5em;
+    
+}
+
+.img--left{
+    float: left; 
+    width: 7.5em;
+    height: 7.5em;
 }
