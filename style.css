@@ -8,13 +8,6 @@ main{
 body{
     font-family: 'Courier New', Courier, monospace;
 }
-#jslogo{
-    float: left;
-}
-
-#uulogo{
-    float: right;
-}
 
 /*Nav bar is a list of links, so make sure to only style nav-based links like this*/
 nav ul {
