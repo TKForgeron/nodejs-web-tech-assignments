@@ -2,6 +2,9 @@
     --themecolor:#D6BE00;
     --themetintlighter: #efe599;
 }
+main{
+    min-height: 70vh;
+}
 
 #jslogo{
     float: left;
@@ -75,11 +78,16 @@ footer {
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 5em;
+    height: 4em;
     text-align: center;
     color: white;
+    padding-top: 4em;
 }
 
 header{
     text-align: center;
+    height: 7em;
+    background: url(images/javascriptlogo.png) left top no-repeat,
+    url(images/uulogo.png) right top no-repeat;                     /*These images have no alt tags...*/
+    background-size: 6em 6em;
 }
