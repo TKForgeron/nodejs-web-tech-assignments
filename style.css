@@ -102,20 +102,28 @@ footer {
 }
 
 header{
-    text-align: center;
+    text-align: center;    
     height: 7em;
     padding-top: 1em;
 }
 
+h1{
+    display:inline-block;
+}
+
 .img--right{
     float: right;
-    width: 7.5em;
-    height: 7.5em;
+    width: 100%;
+    height: auto;
+    max-width: 7.5em;
+    max-height: 7.5em;
     
 }
 
 .img--left{
-    float: left; 
-    width: 7.5em;
-    height: 7.5em;
+    float: left;
+    width: 100%;
+    height: auto;
+    max-width: 7.5em;
+    max-height: 7.5em;
 }
