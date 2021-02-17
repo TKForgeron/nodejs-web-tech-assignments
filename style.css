@@ -127,21 +127,21 @@ h1{
     display:inline-block;
 }
 
-.img--right{
+.img--right{       /* volgens mij moet dit img__right zijn volgens BEM, maar ben niet 100% zeker */
     float: right;
     width: 100%;
     height: auto;
     max-width: 7.5em;    
 }
 
-.img--left{
+.img--left{       /* volgens mij moet dit img__left zijn volgens BEM, maar ben niet 100% zeker */
     float: left;
     width: 100%;
     height: auto;
     max-width: 7.5em;
 }
 
-.img--center{
+.img--center{       /* volgens mij moet dit img__center zijn volgens BEM, maar ben niet 100% zeker */
     float: left;
     width: 100%;
     height: auto;
@@ -159,11 +159,11 @@ h1{
         font-size: 150%;
     }
 
-    .img--right{     
+    .img--right{       /* volgens mij moet dit img__right zijn volgens BEM, maar ben niet 100% zeker */
         display: none;
     }
     
-    .img--left{
+    .img--left{       /* volgens mij moet dit img__right zijn volgens BEM, maar ben niet 100% zeker */
         display: none;
     }
   }
