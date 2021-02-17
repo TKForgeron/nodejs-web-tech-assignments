@@ -8,6 +8,10 @@ main{
 body{
     font-family: 'Courier New', Courier, monospace;
 }
+article{
+    margin-left: 1em;
+    margin-right: 1em;
+}
 
 .nav{
 
@@ -127,9 +131,7 @@ h1{
     float: right;
     width: 100%;
     height: auto;
-    max-width: 7.5em;
-    max-height: 7.5em;
-    
+    max-width: 7.5em;    
 }
 
 .img--left{
@@ -137,7 +139,13 @@ h1{
     width: 100%;
     height: auto;
     max-width: 7.5em;
-    max-height: 7.5em;
+}
+
+.img--center{
+    float: left;
+    width: 100%;
+    height: auto;
+    max-width: 25em;
 }
 
 /*
@@ -157,3 +165,7 @@ h1{
         display: none;
     }
   }
+
+.reference__link{
+    text-decoration: underline;
+}
