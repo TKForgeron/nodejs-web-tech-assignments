@@ -8,6 +8,10 @@ main{
 body{
     font-family: 'Courier New', Courier, monospace;
 }
+article{
+    margin-left: 1em;
+    margin-right: 1em;
+}
 
 /*Nav bar is a list of links, so make sure to only style nav-based links like this*/
 nav ul {
