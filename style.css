@@ -1,6 +1,6 @@
 :root{
-    --themecolor:#D6BE00;
-    --themelighter: #efe599;
+    --themeColor:#D6BE00;
+    --themeLighter: #efe599;
 }
 main{
     min-height: 70vh;
@@ -13,41 +13,50 @@ article{
     margin-right: 1em;
 }
 
-/*Nav bar is a list of links, so make sure to only style nav-based links like this*/
-nav ul {
+.nav{
+
+}
+
+/*
+    Nav bar is a list of links, so make sure
+    to only style nav-based links like this
+*/
+.nav__bar{
     width: 100%;
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: var(--themecolor);
+    background-color: var(--themeColor);
 }
 
-nav li{
+.nav__item{
     float: left;
 }
 
-nav li a{
+.nav__link{
     display: block;
     color: white;
-    text-align: center;    
+    text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
 
-nav li a:visited{
+.nav__link:visited{
     text-decoration: none;
     color: white;
-    text-decoration: none;
 }
 
-nav li a:hover{
-    background-color: var(--themelighter);
+.nav__link:hover{
+    background-color: var(--themeLighter);
     color: black;
     text-decoration: none;
 }
 
-/*This really is only used for the nav-bar, kind of ugly to dedicate an entire class to this*/
+/*
+    This really is only used for the nav-bar,
+    kind of ugly to dedicate an entire class to this
+*/
 .active{
     background-color: white;
     color: black;
@@ -61,11 +70,14 @@ nav li a:hover{
 }
 
 .active:hover{
-    background-color: var(--themelighter);
+    background-color: var(--themeLighter);
     color: black;
     text-decoration: none;
 }
-/*Generic link styling*/
+
+/*
+    Generic link styling
+*/
 a{
     text-decoration: none;
 }
@@ -90,11 +102,11 @@ td, th {
 }
   
 tr:nth-child(even) {
-    background-color: var(--themelighter);
+    background-color: var(--themeLighter);
 }
 
 footer {
-    background-color: var(--themecolor);
+    background-color: var(--themeColor);
     position: relative;
     left: 0;
     bottom: 0;
