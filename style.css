@@ -1,3 +1,12 @@
+/*
+    BEM goes as follows
+
+    Block: block
+    Element: block__element
+    Modifier: block--modifier (block-level modifications)
+              block__element--modifier (element-level modifications)
+*/
+
 :root{
     --themeColor:#D6BE00;
     --themeLighter: #efe599;
@@ -96,7 +105,7 @@ table {
 }
   
 td, th {
-    border: 1px solid black;
+    border: 1px hidden black;
     text-align: left;
     padding: 8px;
 }
@@ -108,13 +117,10 @@ tr:nth-child(even) {
 footer {
     background-color: var(--themeColor);
     position: relative;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 4em;
     text-align: center;
     color: white;
-    padding-top: 4em;
+    margin: 1em 0 0 0;
+    padding: 10vh;
 }
 
 header{
@@ -127,26 +133,20 @@ h1{
     display:inline-block;
 }
 
-.img--right{       /* volgens mij moet dit img__right zijn volgens BEM, maar ben niet 100% zeker */
-    float: right;
+.header__img{
     width: 100%;
     height: auto;
     max-width: 7.5em;    
 }
 
-.img--left{       /* volgens mij moet dit img__left zijn volgens BEM, maar ben niet 100% zeker */
+.img--left{
     float: left;
-    width: 100%;
-    height: auto;
-    max-width: 7.5em;
 }
 
-.img--center{       /* volgens mij moet dit img__center zijn volgens BEM, maar ben niet 100% zeker */
-    float: left;
-    width: 100%;
-    height: auto;
-    max-width: 25em;
+.img--right{
+    float: right;
 }
+
 
 /*
     If the screen size is 600px wide or less,
@@ -157,15 +157,15 @@ h1{
         font-size: 150%;
     }
 
-    .img--right{       /* volgens mij moet dit img__right zijn volgens BEM, maar ben niet 100% zeker */
-        display: none;
-    }
-    
-    .img--left{       /* volgens mij moet dit img__right zijn volgens BEM, maar ben niet 100% zeker */
+    .header__img{
         display: none;
     }
   }
 
-.reference__link{
+.references__item{
+    margin: 1em;
+}
+
+.references__link{
     text-decoration: underline;
 }
