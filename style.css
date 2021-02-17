@@ -170,3 +170,8 @@ h1{
 .references__link{
     text-decoration: underline;
 }
+
+.table__caption{
+    caption-side: bottom;
+
+}
