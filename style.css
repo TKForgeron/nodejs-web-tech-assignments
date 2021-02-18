@@ -116,6 +116,7 @@ tr:nth-child(even) {
 }
 
 footer {
+    clear: both;
     margin: 1em 0 0 0;
     padding: 10vh;
     background-color: var(--themeColor);
@@ -148,6 +149,12 @@ h1{
     float: right;
 }
 
+.img__body{
+     float: left;
+     width: 100%;
+     height: auto;
+     max-width: 25em;
+ }
 
 /*
     If the screen size is 600px wide or less,
