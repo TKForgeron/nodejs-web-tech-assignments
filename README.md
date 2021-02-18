@@ -10,7 +10,7 @@
 - ~~use consistent layout and colour scheme~~
 - use CSS for formatting, including at least:
     - ~~several different styles for text~~
-    - several different styles for links
+    - ~~several different styles for links~~
     - ~~styles for table elements~~
     - ~~cascading styles through selector specificity~~
     - ~~style inheritance~~
