@@ -8,8 +8,14 @@
 */
 
 :root{
-    --themeColor:#D6BE00;
-    --themeLighter: #efe599;
+    --themeColor--l3:#fff189;
+    --themeColor--l2:#ffea4e;
+    --themeColor--l1:#ffe312;
+    --themeColor:#d6be00;
+    --themeColor--d1:#c1aa00;
+    --themeColor--d2:#ab9700;
+    --themeColor--d3:#968400;
+    --themeLighter: #b39b00;
 }
 main{
     min-height: 70vh;
@@ -184,6 +190,7 @@ h1{
 }
 
 .list__nobullets {
+    /*dit moet dus zo: .list--nobullets*/
     list-style-type: none;
     margin: 0;
     padding: 0;
