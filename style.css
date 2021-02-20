@@ -22,16 +22,24 @@
 
     --themeLighter: #b39b00;
 }
+
 main{
     min-height: 70vh;
 }
+
 body{
     font-family: 'Courier New', Courier, monospace;
     margin: 0;
 }
+
 article{
-    margin-left: 1em;
-    margin-right: 1em;
+    margin-left:auto;
+    margin-right:auto;
+    max-width:980px;
+}
+
+.article__section{
+    padding-left: 1em;
 }
 
 .nav{
@@ -181,6 +189,10 @@ h1{
     }
   }
 
+.references__header:hover{
+    cursor: pointer;
+}
+
 .references__item{
     margin: 1em;
 }
@@ -199,4 +211,25 @@ h1{
     list-style-type: none;
     margin: 0;
     padding: 0;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.grid__item{
+    display: inline-grid;
+}
+
+.card{
+    margin: 2em;
+    max-width: 20em;
+    padding: 2em;
+    box-shadow: 0 1em 2em -1em rgba(0,0,0,.45);
+}
+
+.card__image{
+    max-width: 75%;
+    margin: auto;
 }

@@ -1,5 +1,10 @@
 # WebTech_Assignment_1
 
+##Examples to cheat from
+- https://webspace.science.uu.nl/~6527906/
+- https://webspace.science.uu.nl/~6527906/IUW/
+- https://webspace.science.uu.nl/~6527906/UEUX
+
 ##Requirements
 - ~~have at least 5 pages with meaningful content~~
 - ~~use HTML5 semantic attributes for formatting (e.g. see here)~~
