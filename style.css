@@ -96,12 +96,12 @@ ul{
 
 h1{
     display:inline-block;
+    font-size: 150%
 }
 
-@media screen and (max-width: 600px) {
-    /* Dit is eigenlijk niet mobile first */
+@media screen and (min-width: 601px) {    
     h1{
-        font-size: 150%;
+        font-size: 200%;
     }
 }
 
