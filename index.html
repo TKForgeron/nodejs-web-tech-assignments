@@ -15,7 +15,7 @@
         <a href="https://www.uu.nl/" target="_blank" title="Click here to go to uu.nl"><img src="images/uulogo.png" alt="Utrecht Univesity logo" class="header__img img--right"></a>
     </header>
     <nav class="nav">
-        <ul class="nav__bar">
+        <ul class="nav__bar list--noBullets">
             <li class="nav__item"><a class="nav__link--active" href="index.html">Home</a></li>
             <li class="nav__item"><a class="nav__link" href="page_1.html">History</a></li>
             <li class="nav__item"><a class="nav__link" href="page_2.html">Versions &#38; frameworks</a></li>
@@ -24,27 +24,39 @@
         </ul>
     </nav>
     <main>
-        <section class="row">
-            <div class="container flexBlock">
-                <img class="flexBlock__image" src="images/javascriptlogo.png" alt="JavaScript Logo">
-                <h2 class="card__title">JavaScript</h2>
-                <p class="card__body">horses</p>
-            </div>
-            <div class="container flexBlock">
-                <img class="flexBlock__image" src="images/javascriptlogo.png" alt="JavaScript Logo">
-                <h2 class="card__title">JavaScript</h2>
-                <p class="card__body">horses</p>
-            </div>
-            <div class="container flexBlock">
-                <img class="flexBlock__image" src="images/javascriptlogo.png" alt="JavaScript Logo">
-                <h2 class="card__title">JavaScript</h2>
-                <p class="card__body">horses</p>
-            </div>
-        </section>
+        <div class="flexBlockCanvas">
+            <section class="row">
+                <div class="flexBlock flexBlock--left">
+                    <img class="flexBlock__image" src="images/clientSide.svg" alt="Icon of Server">
+                    <h2 class="flexBlock__title">Client-side</h2>
+                    <p class="flexBlock__body"><a href="#clientSide">als;kdfjadl;fhuei</a></p>
+                </div>
+                <div class="flexBlock flexBlock--center" style="float: right">
+                    <img class="flexBlock__image" src="images/questionMark.svg" alt="Icon of Question Mark">
+                    <h2 class="flexBlock__title">What is JavaScript?</h2>
+                    <p class="flexBlock__body">This question will be answered both from a <a href="page_1.html">historical</a> and a <a href="#whatIsJS">engeneering</a> perspective. However, only the surface will be scratched, do not expect a holistic academic answer.</p>
+                </div>
+                <div class="flexBlock flexBlock--right">
+                    <img class="flexBlock__image" src="images/serverSide.svg" alt="Icon of Server">
+                    <h2 class="flexBlock__title">Server-side</h2>
+                    <p class="flexBlock__body"><a href="#serverSide">horse</a></p>
+                </div>
+            </section>
+        </div>
         <article>
-            <section class="article__section">
-                <h3>header</h3>
-                <p>tekst</p>
+            <section id="whatIsJS" class="article__section">
+                <h3>What is JavaScript?</h3>
+                <p>JavaScript (JS) is a high-level programming language that is often just-in-time compiled and multi-paradigm.
+                    It is the driver behind the interaction that happens on web pages, and therefore at the core of the World Wide Web (WWW).
+                    Since JS is the dominant client-side language of the web, most other languages that are used for web development transpile or compile to JavaScript before execution.</p>
+            </section>
+            <section id="clientSide" class="article__section">
+                <h3>Client-Side Scripting</h3>
+                <p>In deze toepassing wordt JavaScript vooral gebruikt in interactieve webpagina's. De JavaScript wordt door middel van speciale voorzieningen in HTML (met name het script-element) in de pagina opgenomen, als onderdeel van de pagina geladen door de webbrowser, en vervolgens hierin uitgevoerd. De code kan de pagina op allerlei manieren aanpassen en zelfs, met behulp van AJAX, nieuwe pagina-inhoud of scriptcode laden en weergeven. </p>
+            </section>
+            <section id="serverSide" class="article__section">
+                <h3>Server-Side Scripting</h3>
+                <p>JavaScript kan ook gebruikt worden voor server-side scripting. De webservers van Netscape waren de eerste die deze ondersteuning boden. Maar ook de webserver van Microsoft, IIS, ondersteunt JavaScript in Active Server Pages en ASP.NET. De laatste jaren maakt node.js een grote opgang.</p>
             </section>
         </article>
     </main>

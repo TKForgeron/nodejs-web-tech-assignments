@@ -11,7 +11,7 @@
 - ~~use images~~
 - ~~have links between pages, within pages, and to external page(s)~~
 - ~~have at least one table~~
-- be optimised for search engines
+- ~~be optimised for search engines~~
 - ~~use consistent layout and colour scheme~~
 - use CSS for formatting, including at least:
     - ~~several different styles for text~~
@@ -24,11 +24,11 @@
 - be compliant with the HTML5 rules of W3C Markup Validation Service and the CSS3 rules of W3C CSS Validation Service
 
 - ~~to put it in other words: do not use any of the deprecated HTML elements or attributes (see for example here)~~
-- render correctly in the current versions of Chrome and Firefox browsers
+- ~~render correctly in the current versions of Chrome and Firefox browsers~~
 - Follow the Web accessibility standard
     - Keyboard compatibility
-    - Text to speech
-    - Clear layout and design
+    - ~~Text to speech~~
+    - ~~Clear layout and design~~
     - Customizable text
     - Understandable content
 
