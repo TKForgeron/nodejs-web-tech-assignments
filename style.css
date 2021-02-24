@@ -233,7 +233,6 @@ h1{
 }
 
 .list--noBullets {
-    /*dit moet dus zo: .list--nobullets*/
     list-style-type: none;
 }
 
