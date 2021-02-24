@@ -24,7 +24,8 @@
         </ul>
     </nav>
     <main>
-        <article class="row flexBlockCanvas">
+        <!--This div could not be an article because it logically would never contain a <h1>..<h6>, which would cause errors in the W3C validator-->
+        <div class="row flexBlockCanvas">            
             <section class="flexBlock flexBlock--left">
                 <a href="#clientSide" title="Go to client-side section"><img class="flexBlock__image" src="images/clientSide.svg" alt="Icon of Laptop"></a>
                 <h2 class="flexBlock__title">Client-side</h2>
@@ -40,7 +41,7 @@
                 <h2 class="flexBlock__title">Server-side</h2>
                 <p class="flexBlock__body"><a href="#serverSide">horse</a></p>
             </section>
-        </article>
+        </div>
         <article id="whatIsJS" class="article__section">
             <h2>What is JavaScript?</h2>
             <p>JavaScript (JS) is a high-level programming language that is often just-in-time compiled and multi-paradigm.
