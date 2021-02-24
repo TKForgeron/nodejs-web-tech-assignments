@@ -26,9 +26,58 @@
     <main>
         <article>
             <h2>Code Examples of JS Features</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <section class="article__section">
+            <p>This section shows some examples highlighting certain features that come with JavaScript.
+                All examples are taken from the JavaScript tutorial on <a href="https://www.w3schools.com/js/default.asp">w3schools.com</a>.
+                The dark blocks are the parts where the code can be found, which is HTML  with JS embedded using the script tags.
+                The lighter blocks are the output of the darker ones. Within the code, and thus output, a short explanation of what happens in the code is given.
+            </p>
+            <section class="codeExamplesFlexBlocks">
+                <section class="codeBlock">
+                    &lt;!<p class="codeBlock__code--red codeBlock__code--fog">DOCTYPE </p><p class="codeBlock__code--purple codeBlock__code--fog">html</p>&gt;<br>
+                    &lt;<p class="codeBlock__code--red codeBlock__code--fog">html</p>&gt;<br>
+                    &lt;<p class="codeBlock__code--red codeBlock__code--fog">body</p>&gt;<br>
+                    <br>
+                    &lt;<p class="codeBlock__code--red codeBlock__code--fog">h2</p><p>&gt;JavaScript Objects&lt;/</p><p class="codeBlock__code--red codeBlock__code--fog">h2</p>&gt;<br>
+                    <br>
+                    &lt;<p class="codeBlock__code--red codeBlock__code--fog">p</p>&gt;In this example, the full name of a person in an object will be displayed. This will be done by first of all creating the object. However, it can be noted from the code below that the first name and last name are seperate entries in the object. To piece these two pieces of information together, an attribute holding a function that concatenates the first name and last name is made within the object. Lastly, the attribute of the object will be called to display the first and last name of the person described in the object.&lt;/<p class="codeBlock__code--red codeBlock__code--fog">p</p>&gt;<br>
+                    <br>
+                    &lt;<p class="codeBlock__code--red codeBlock__code--fog">p </p><p class="codeBlock__code--green codeBlock__code--fog">id</p><p>="demo"&gt;&lt;/</p><p class="codeBlock__code--red codeBlock__code--fog">p</p>&gt;<br>
+                    <br>
+                    &lt;<p class="codeBlock__code--red codeBlock__code--fog">script</p>&gt;<br>
+                    <p class="codeBlock__code--gray">// Create an object:</p><br>
+                    <p class="codeBlock__code--cyan">var </p><p>person </p><p class="codeBlock__code--red">= </p><p>{</p><br>
+                    <p class="codeBlock__code--indent">firstName: </p><p class="codeBlock__code--yellow">"John"</p><p>, </p><br>
+                    <p class="codeBlock__code--indent">lastName: </p><p class="codeBlock__code--yellow">"Doe"</p><p>, </p><br>
+                    <p class="codeBlock__code--indent">id: </p><p class="codeBlock__code--purple">5482</p><p>, </p><br>
+                    <p class="codeBlock__code--green codeBlock__code--indent">fullName</p><p>: </p><p class="codeBlock__code--cyan">function</p><p>() {</p><br>
+                    <div class="codeBlock__code--indent"><p class="codeBlock__code--cyan codeBlock__code--indent">return </p><p class="codeBlock__code--orange">this</p><p>.firstName </p><p class="codeBlock__code--red">+ </p><p class="codeBlock__code--yellow">" " </p><p class="codeBlock__code--red">+ </p><p class="codeBlock__code--orange">this</p><p>.lastName;</p></div>
+                    <p class="codeBlock__code--indent">}</p><br>
+                    <p>};</p><br>
+                    <br>
+                    <p class="codeBlock__code--gray">// Display some data from the object:</p><br>
+                    <!--sorry.-->
+                    <div class="codeBlock__code--smallScreenFix">
+                        <p class="codeBlock__code--cyan">document</p>
+                        <p>.</p>
+                        <p class="codeBlock__code--cyan">getElementById</p><p>(</p><p class="codeBlock__code--yellow">"demo"</p><p>)</p>
+                        <p>.</p>
+                        <p class="codeBlock__code--cyan">innerHTML </p><p class="codeBlock__code--red">= </p><p class="codeBlock__code--yellow">"The man's name is: " </p><p class="codeBlock__code--red">+ </p><p>person.fullName();</p><br>
+                    </div>
+                    <div class="codeBlock__code--bigScreenFix">
+                        <p class="codeBlock__code--cyan">document</p><p>.</p><p class="codeBlock__code--cyan">getElementById</p><p>(</p><p class="codeBlock__code--yellow">"demo"</p><p>)</p><p>.</p><p class="codeBlock__code--cyan">innerHTML </p><p class="codeBlock__code--red">= </p><p class="codeBlock__code--yellow">"Using the function returns the man's full name: " </p><p class="codeBlock__code--red">+ </p><p>person.fullName();</p><br>
+                    </div>
+                    &lt;/<p class="codeBlock__code--red codeBlock__code--fog">script</p>&gt;<br>
+                    <br>
+                    &lt;/<p class="codeBlock__code--red codeBlock__code--fog">body</p>&gt;<br>
+                    &lt;/<p class="codeBlock__code--red codeBlock__code--fog">html</p>&gt;
+                </section>
+                <section class="codeResultBlock">
+                    <h2>JavaScript Objects</h2>
 
+                    <p>In this example, the full name of a person in an object will be displayed. This will be done by first of all creating the object. However, it can be noted from the code below that the first name and last name are seperate entries in the object. To piece these two pieces of information together, an attribute holding a function that concatenates the first name and last name is made within the object. Lastly, the attribute of the object will be called to display the first and last name of the person described in the object.</p>
+
+                    <p>Using the function returns the man's full name: John Doe</p>
+                </section>
             </section>
         </article>
     </main>
