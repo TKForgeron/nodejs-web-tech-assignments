@@ -10,9 +10,9 @@
 </head>
 <body>
     <header class="header">
-        <a href="https://www.javascript.com/" target="_blank" title="Click here to go to javascript.com"><img src="images/javascriptlogo.png" alt="JavaScript logo" class="header__img img--left"></a>
-        <a href="index.html"><h1>JavaScript</h1></a>
-        <a href="https://www.uu.nl/" target="_blank" title="Click here to go to uu.nl"><img src="images/uulogo.png" alt="Utrecht Univesity logo" class="header__img img--right"></a>
+        <a href="https://www.javascript.com/" target="_blank" title="Go to JavaScript.com"><img src="images/javascriptlogo.png" alt="JavaScript logo" class="header__img header__img--left"></a>
+        <a href="#"><h1>JavaScript</h1></a>
+        <a href="https://www.uu.nl/" target="_blank" title="Go to uu.nl"><img src="images/uulogo.png" alt="Utrecht Univesity logo" class="header__img header__img--right"></a>
     </header>
     <nav class="nav">
         <ul class="nav__bar list--noBullets">
@@ -26,7 +26,7 @@
     <main>
         <article>
             <h2>Versions and frameworks</h2>
-            <section class="article__section">
+            <section class="article--section">
             <h3>Versions</h3>
                 <p>JavaScript was invented by Brendan Eich in 1995, and became an ECMA standard in 1997. ECMAScript is the official name of the language. ECMAScript versions have been abbreviated to ES1, ES2, ES3, ES5, and ES6. Since 2016 new versions are named by year (ECMAScript 2016 / 2017 / 2018). Development on JavaScript itself has not ceased. JS got extended, updated and optimized throughout its operating years. The first official release was in 1996 and it has not stopped evolving ever since (Refsnes Data, n.d.).</p>
             <table>
@@ -53,7 +53,7 @@
                         <td>ES3</td>
                         <td>ECMAScript 3 (1999)</td>
                         <td>
-                            <ul class="list__nobullets">
+                            <ul class="list--noBullets">
                                 <li>Added regular expressions</li>
                                 <li>Added try/catch</li>
                             </ul>
@@ -68,7 +68,7 @@
                         <td>ES5</td>
                         <td>ECMAScript 5 (2009)</td>
                         <td>
-                            <ul class="list__nobullets">
+                            <ul class="list--noBullets">
                                 <li>Added "strict mode"</li>
                                 <li>Added JSON support</li>
                                 <li>Added String.trim()</li>
@@ -81,7 +81,7 @@
                         <td>ES6</td>
                         <td>ECMAScript 2015</td>
                         <td>
-                            <ul class="list__nobullets">
+                            <ul class="list--noBullets">
                                 <li>Added let and const</li>
                                 <li>Added default parameter values</li>
                                 <li>Added Array.find()</li>
@@ -93,7 +93,7 @@
                         <td></td>
                         <td>ECMAScript 2016</td>
                         <td>
-                            <ul class="list__nobullets">
+                            <ul class="list--noBullets">
                                 <li>Added exponential operator (**)</li>
                                 <li> Added Array.prototype.includes</li>
                             </ul>
@@ -103,20 +103,20 @@
                         <td></td>
                         <td>ECMAScript 2017</td>
                         <td>
-                            <ul class="list__nobullets">
+                            <ul class="list--noBullets">
                                 <li>Added string padding</li>
                                 <li>Added Object.entries</li>
                                 <li>Added Object.values</li>
                                 <li>Added async functions</li>
                                 <li>Added shared memory</li>
-                            </ul
-                            ></td>
+                            </ul>
+                        </td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>ECMAScript 2018</td>
                         <td>
-                            <ul class="list__nobullets">
+                            <ul class="list--noBullets">
                                 <li>Added rest / spread properties</li>
                                 <li>Added asynchronous iteration</li>
                                 <li>Added Promise.finally()</li>
@@ -136,11 +136,10 @@
                 In order to answer this burning question, we’re providing you with a newbie-proof definition of what JS frameworks actually are.</p>
                 <b>Table of contents:</b>
                 <ul>
-                    <!--Kijk naar de (BEM) notatie hier!!!-->
                     <li><a href="#definition" title="Click here to jump to the &#34;What is a JavaScript Framework?&#34; section">What is a JavaScript Framework?</a></li>
-                    <li><a href="#jquery_libraries" title="Click here to jump to the &#34;jQuery and JavaScript Libraries&#34; section">jQuery and JavaScript Libraries</a></li>
-                    <li><a href="#frameworks_vs_libraries" title="Click here to jump to the &#34;How are JavaScript Frameworks different form JS Libraries?&#34; section">How are JavaScript Frameworks different from JS Libraries?</a></li>
-                    <li><a href="#which_one_to_use" title="Click here to jump to the &#34;Which JavaScript Framework should you use?&#34; section">Which JavaScript Framework should you use?</a></li>
+                    <li><a href="#jqueryLibraries" title="Click here to jump to the &#34;jQuery and JavaScript Libraries&#34; section">jQuery and JavaScript Libraries</a></li>
+                    <li><a href="#frameworksVsLibraries" title="Click here to jump to the &#34;How are JavaScript Frameworks different form JS Libraries?&#34; section">How are JavaScript Frameworks different from JS Libraries?</a></li>
+                    <li><a href="#whichOneToUse" title="Click here to jump to the &#34;Which JavaScript Framework should you use?&#34; section">Which JavaScript Framework should you use?</a></li>
                 </ul>
                 <section id="definition">
                     <h4> What is a Javascript framework?</h4>
@@ -149,13 +148,13 @@
                     <q>At their most basic, JS frameworks are collections of JavaScript code libraries (see below) that provide developers with pre-written JS code to use for routine programming features and tasks—literally a framework to build websites or web applications around.</q>
                     <p>If you need a standard JavaScript photo carousel on a webpage, for instance, you can use code from a framework to provide the feature for you (while you spend more time on coding the unique aspects of your site that don’t have an easy, plugin solution). If you’ve heard of the singular JavaScript library jQuery, this might sound familiar, but there’s a small (yet important) distinction when it comes to singular JavaScript libraries versus JavaScript frameworks.</p>
                 </section>
-                <section id="jquery_libraries">
+                <section id="jqueryLibraries">
                     <h4>jQuery and JavaScript Libraries</h4>
                     <p>JS libraries like jQuery are used by plugging library code into the rest of your site’s code when needed.
                     If you want to use a jQuery template for an autocomplete feature, for instance, you would insert the appropriate jQuery code, which then retrieves the feature from the jQuery library and displays it on your user’s web browser.
                     In other words, when a front-end developer uses a library like jQuery, the developer is using jQuery code to “call” the jQuery library, which then provides the requested content.</p>
                 </section>
-                <section id="frameworks_vs_libraries">
+                <section id="frameworksVsLibraries">
                     <h4>How are JavaScript Frameworks different from JS Libraries?</h4>
                     <p>When you’re trying to define framework in the context of library vs framework, think of it like this: when you use JS frameworks the process is more holistic—a framework doesn’t just offer an individual solution to a coding problem, it provides a structure (like a skeleton or a scaffolding…or a framework) that organizes the parts of your site where the framework is implemented.
                     This structure comes via page templates with areas set aside for code from the framework’s libraries (which the JavaScript framework “calls” on its own).
@@ -167,7 +166,7 @@
                     While some frameworks are designed to live underneath all of your site or web app’s code, other frameworks—like the increasingly popular Vue (see below)—allow for incremental use.
                     This means you can apply the framework to as much or as little of your website or web app as you want. As more frameworks have adopted this incremental model, JS frameworks have become an increasingly flexible way to provide structure when appropriate, while still giving front-end developers the freedom to hand-code when necessary.</p>
                 </section>
-                <section id="which_one_to_use">
+                <section id="whichOneToUse">
                     <h4>Which JavaScript Framework should you use?</h4>
                     <p>One of the confusing things about JS frameworks is that there isn’t one be-all, end-all JS framework to learn and use. At any given time there are a handful of widely-used popular frameworks reflecting the latest JS trends and innovations. We’ve written more extensively elsewhere about picking a JavaScript framework to learn first, but it’s worth taking a look at some of the current players to understand what’s out there and how they can be used.
                     Website bestofjs.org aggregates the user popularity of different JavaScript frameworks from the coding site GitHub each year, and then publishes their findings. In 2017, the most popular JS frameworks were Vue, React, and Angular—a trio of JS frameworks that give a good overview of the framework skills employers are looking for.</p>
