@@ -13,14 +13,14 @@
     --themeColor--l5: #fffded;
     --themeColor--l4: #fff8c4;
     --themeColor--l3: #fff189;
-    --themeColor--l2: #ffea4e;
+    /*--themeColor--l2: #ffea4e;*/
     --themeColor--l1: #ffde00;
     --themeColor: #d6be00;
-    --themeColor--d1: #c1aa00;
-    --themeColor--d2: #ab9700;
-    --themeColor--d3: #968400;
-    --themeColor--d4: #817200;
-    --themeColor--d5: #6b5f00;
+    /*--themeColor--d1: #c1aa00;*/
+    /*--themeColor--d2: #ab9700;*/
+    /*--themeColor--d3: #968400;*/
+    /*--themeColor--d4: #817200;*/
+    /*--themeColor--d5: #6b5f00;*/
 
     --themeColor--lightGray: #b1ab99;
     --themeColor--darkGray: #4b4737;
@@ -96,7 +96,7 @@ footer {
     clear: both;
     margin: 1em 0 0 0;
     padding: 10vh;
-    background-color: var(--themeColor--d5);
+    background-color: var(--themeColor);
     position: relative;
     text-align: center;
     color: white;
@@ -233,7 +233,6 @@ h1{
 }
 
 .list--noBullets {
-    /*dit moet dus zo: .list--nobullets*/
     list-style-type: none;
 }
 
