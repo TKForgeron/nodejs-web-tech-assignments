@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" href="images/uulogo.png" type="image">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial scale=1">
     <meta name="description" content="General information about JavaScript">
@@ -11,7 +12,7 @@
 <body>
     <header class="header">
         <a href="https://www.javascript.com/" target="_blank" title="Go to JavaScript.com"><img src="images/javascriptlogo.png" alt="JavaScript logo" class="header__img header__img--left"></a>
-        <a href="#"><h1>JavaScript</h1></a>
+        <a href="index.html"><h1>JavaScript</h1></a>
         <a href="https://www.uu.nl/" target="_blank" title="Go to uu.nl"><img src="images/uulogo.png" alt="Utrecht Univesity logo" class="header__img header__img--right"></a>
     </header>
     <nav class="nav">
@@ -25,11 +26,12 @@
     </nav>
     <main>
         <article>
-            <h2>Versions and Frameworks</h2>
+            <h2>Versions and frameworks</h2>
             <section class="article--section">
             <h3>Versions</h3>
                 <p>JavaScript was invented by Brendan Eich in 1995, and became an ECMA standard in 1997. ECMAScript is the official name of the language. ECMAScript versions have been abbreviated to ES1, ES2, ES3, ES5, and ES6. Since 2016 new versions are named by year (ECMAScript 2016 / 2017 / 2018). Development on JavaScript itself has not ceased. JS got extended, updated and optimized throughout its operating years. The first official release was in 1996 and it has not stopped evolving ever since (Refsnes Data, n.d.).</p>
-                <section class="table--scrollable">    
+                <!--This div could not be an article/section because it logically would never contain a <h1>..<h6>, which would cause errors in the W3C validator-->
+                <div class="table--scrollable">    
                     <table>
                         <caption class="table__caption"><strong>Table 1.</strong> An overview of the JS versions up to ECMAScript 2018 (Refsnes Data, n.d.).</caption>
                         <thead>
@@ -127,7 +129,7 @@
                             </tr>
                         </tbody>
                     </table>
-                </section>
+                </div>
             </section>
             <section class="article__section">
                 <h3>Frameworks</h3>
@@ -137,7 +139,7 @@
                 However, when you start working with JavaScript you’ll soon see references to things called JavaScript frameworks. Whether these references are in job listings, front-end developer forums, or articles about JavaScript, everyone seems to champion JS frameworks—but what is a framework?
                 In order to answer this burning question, we’re providing you with a newbie-proof definition of what JS frameworks actually are.</p>
                 <strong>Table of contents:</strong>
-                <ul>
+                <ul class="list--indent">
                     <li><a href="#definition" title="Click here to jump to the &#34;What is a JavaScript Framework?&#34; section">What is a JavaScript Framework?</a></li>
                     <li><a href="#jqueryLibraries" title="Click here to jump to the &#34;jQuery and JavaScript Libraries&#34; section">jQuery and JavaScript Libraries</a></li>
                     <li><a href="#frameworksVsLibraries" title="Click here to jump to the &#34;How are JavaScript Frameworks different form JS Libraries?&#34; section">How are JavaScript Frameworks different from JS Libraries?</a></li>

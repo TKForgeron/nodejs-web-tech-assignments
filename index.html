@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" href="images/uulogo.png" type="image">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial scale=1">
     <meta name="description" content="General information about JavaScript">
@@ -11,7 +12,7 @@
 <body>
     <header class="header">
         <a href="https://www.javascript.com/" target="_blank" title="Go to JavaScript.com"><img src="images/javascriptlogo.png" alt="JavaScript logo" class="header__img header__img--left"></a>
-        <a href="#"><h1>JavaScript</h1></a>
+        <h1>JavaScript</h1>
         <a href="https://www.uu.nl/" target="_blank" title="Go to uu.nl"><img src="images/uulogo.png" alt="Utrecht Univesity logo" class="header__img header__img--right"></a>
     </header>
     <nav class="nav">
@@ -24,7 +25,8 @@
         </ul>
     </nav>
     <main>
-        <section class="row flexBlockCanvas">
+        <!--This div could not be an article/section because it logically would never contain a <h1>..<h6>, which would cause errors in the W3C validator-->
+        <div class="row flexBlockCanvas">            
             <section class="flexBlock flexBlock--left">
                 <a href="#clientSide" title="Go to client-side section"><img class="flexBlock__image" src="images/clientSide.svg" alt="Icon of Laptop"></a>
                 <h2 class="flexBlock__title">Client-side</h2>
@@ -38,9 +40,9 @@
             <section class="flexBlock flexBlock--right">
                 <a href="#serverSide" title="Go to server-side section"><img class="flexBlock__image" src="images/serverSide.svg" alt="Icon of Server"></a>
                 <h2 class="flexBlock__title">Server-side</h2>
-                <p class="flexBlock__body"><a href="#serverSide">horse</a></p>
+                <p class="flexBlock__body">Server-side concerns operations performed by the server in a client-server relationship. Server-side is often associated with back-end development.</p>
             </section>
-        </section>
+        </div>
         <article id="whatIsJS" class="article__section">
             <h2>What is JavaScript?</h2>
             <p>JavaScript (JS) is a high-level programming language that is often just-in-time compiled and multi-paradigm.
