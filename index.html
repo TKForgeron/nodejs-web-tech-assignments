@@ -11,7 +11,7 @@
 <body>
     <header class="header">
         <a href="https://www.javascript.com/" target="_blank" title="Click here to go to javascript.com"><img src="images/javascriptlogo.png" alt="JavaScript logo" class="header__img img--left"></a>
-        <h1>JavaScript</h1>  
+        <a href="#"><h1>JavaScript</h1></a>
         <a href="https://www.uu.nl/" target="_blank" title="Click here to go to uu.nl"><img src="images/uulogo.png" alt="Utrecht Univesity logo" class="header__img img--right"></a>
     </header>
     <nav class="nav">
@@ -27,17 +27,17 @@
         <div class="flexBlockCanvas">
             <section class="row">
                 <div class="flexBlock flexBlock--left">
-                    <img class="flexBlock__image" src="images/clientSide.svg" alt="Icon of Server">
+                    <a href="#clientSide"><img class="flexBlock__image" src="images/clientSide.svg" alt="Icon of Laptop"></a>
                     <h2 class="flexBlock__title">Client-side</h2>
-                    <p class="flexBlock__body"><a href="#clientSide">als;kdfjadl;fhuei</a></p>
+                    <p class="flexBlock__body">Client-side scripts execute within a user's browser and manipulate the web page, to enable a dynamic and interactive user experience.</p>
                 </div>
-                <div class="flexBlock flexBlock--center" style="float: right">
-                    <img class="flexBlock__image" src="images/questionMark.svg" alt="Icon of Question Mark">
+                <div class="flexBlock flexBlock--center">
+                    <a href="#whatIsJS"><img class="flexBlock__image" src="images/questionMark.svg" alt="Icon of Question Mark"></a>
                     <h2 class="flexBlock__title">What is JavaScript?</h2>
-                    <p class="flexBlock__body">This question will be answered both from a <a href="page_1.html">historical</a> and a <a href="#whatIsJS">engeneering</a> perspective. However, only the surface will be scratched, do not expect a holistic academic answer.</p>
+                    <p class="flexBlock__body">This question will be answered both from <a href="page_1.html">historical</a> and <a href="#whatIsJS">engeneering</a> perspective. However, only the surface will be scratched, do not expect a holistic academic answer.</p>
                 </div>
                 <div class="flexBlock flexBlock--right">
-                    <img class="flexBlock__image" src="images/serverSide.svg" alt="Icon of Server">
+                    <a href="#serverSide"><img class="flexBlock__image" src="images/serverSide.svg" alt="Icon of Server"></a>
                     <h2 class="flexBlock__title">Server-side</h2>
                     <p class="flexBlock__body"><a href="#serverSide">horse</a></p>
                 </div>
@@ -52,12 +52,25 @@
             </section>
             <section id="clientSide" class="article__section">
                 <h3>Client-Side Scripting</h3>
-                <p>In deze toepassing wordt JavaScript vooral gebruikt in interactieve webpagina's. De JavaScript wordt door middel van speciale voorzieningen in HTML (met name het script-element) in de pagina opgenomen, als onderdeel van de pagina geladen door de webbrowser, en vervolgens hierin uitgevoerd. De code kan de pagina op allerlei manieren aanpassen en zelfs, met behulp van AJAX, nieuwe pagina-inhoud of scriptcode laden en weergeven. </p>
+                <p>Client-side refers to operations that are performed by the client in a client–server relationship in a computer network (Lehtinen & Gangemi, 2006).
+                    When talking about the web, we also have a client-server relationship on a network, the internet.
+                    For a web page, HTML supplies document content and structure while CSS provides presentation styling.
+                    In addition, client-side scripts can control browser actions associated with a web page.
+                    Scripts are programs written in a simple and easy-to-use language to specify control of other programs.
+                    Client-side scripts are almost always written in the Javascript language to control browsers actions.
+                    The term 'front-end' is loosely synonymous for client-side development. </p>
             </section>
             <section id="serverSide" class="article__section">
                 <h3>Server-Side Scripting</h3>
-                <p>JavaScript kan ook gebruikt worden voor server-side scripting. De webservers van Netscape waren de eerste die deze ondersteuning boden. Maar ook de webserver van Microsoft, IIS, ondersteunt JavaScript in Active Server Pages en ASP.NET. De laatste jaren maakt node.js een grote opgang.</p>
+                <p>Server-side refers to operations that are performed by the server in a client–server relationship in a computer network (Lehtinen & Gangemi, 2006).
+                    JavaScript, although prevalent, can also be used for server-side scripting. Netscape's web servers were the first to support this.
+                    Nowadays the Node.js framework has made its way up to the mainstream. It is not uncommon to also use JS for server-side scripting.</p>
             </section>
+            <details class="references">
+                <summary class="references__header"><strong>References</strong></summary>
+                <p class="references__item">Lehtinen, R., & Gangemi, G. T. (2006). <em>Computer Security Basics</em>. Van Duuren Media.</p>
+                <p class="references__item">Wikipedia contributors. (2021, February 23). <em>JavaScript</em>. Wikipedia. <a class="references__link" href="https://en.wikipedia.org/wiki/JavaScript" target="_blank" title="Click here to visit the reference">https://en.wikipedia.org/wiki/JavaScript</a></p>
+            </details>
         </article>
     </main>
     <footer>Made by Douwe, Tim and Maarten.</footer>
