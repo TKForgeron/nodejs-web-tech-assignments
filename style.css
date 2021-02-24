@@ -129,6 +129,14 @@ h1{
     display: none;
 }
 
+.header__img--left{
+    float: left;
+}
+
+.header__img--right{
+    float: right;
+}
+
 @media(min-width:601px){
     .header{
         text-align: center;    
@@ -206,21 +214,6 @@ h1{
 .article__section{
     padding-left: 1em;
 }
-
-.img--left{
-    float: left;
-}
-
-.img--right{
-    float: right;
-}
-
-.img__body{
-     float: left;
-     width: 100%;
-     height: auto;
-     max-width: 25em;
- }
 
 .references__header:hover{
     cursor: pointer;
