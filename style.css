@@ -227,6 +227,10 @@ h1{
     text-decoration: underline;
 }
 
+.table--scrollable{
+    overflow-x: auto;
+}
+
 .table__caption{
     caption-side: bottom;
 
