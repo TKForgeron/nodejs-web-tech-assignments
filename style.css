@@ -276,6 +276,10 @@ h1{
     display: none;
 }
 
+.footerImage{
+    max-height: 2em;
+}
+
 @media (min-width: 490px) {
     .codeBlock__code--smallScreenFix{
         display: none;
