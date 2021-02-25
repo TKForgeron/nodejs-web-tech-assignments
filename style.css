@@ -231,61 +231,34 @@ h1{
     margin: 0;
 }
 
-.codeBlock__code--cyan{
-    color: var(--codeCyan);
-}
+.codeBlock__code--cyan{color: var(--codeCyan);}
 
-.codeBlock__code--gray{
-    color: var(--codeGray);
-}
+.codeBlock__code--gray{color: var(--codeGray);}
 
-.codeBlock__code--green{
-    color: var(--codeGreen);
-}
+.codeBlock__code--green{color: var(--codeGreen);}
 
-.codeBlock__code--orange{
-    color: var(--codeOrange);
-}
+.codeBlock__code--orange{color: var(--codeOrange);}
 
-.codeBlock__code--purple{
-    color: var(--codePurple);
-}
+.codeBlock__code--purple{color: var(--codePurple);}
 
-.codeBlock__code--blue{
-    color: var(--codeBlue);
-}
+.codeBlock__code--blue{color: var(--codeBlue);}
 
-.codeBlock__code--yellow{
-    color: var(--codeYellow);
-}
+.codeBlock__code--yellow{color: var(--codeYellow);}
 
-.codeBlock__code--red{
-    color: var(--codeRed);
-}
+.codeBlock__code--red{color: var(--codeRed);}
 
-.codeBlock__code--indent{
-    padding-left: 2rem;
-}
+.codeBlock__code--indent{padding-left: 2rem;}
 
-.codeBlock__code--fog{
-    opacity: .65;
-}
+.codeBlock__code--fog{opacity: .65;}
 
-.codeBlock__code--bigScreenFix{
-    display: none;
-}
+.codeBlock__code--bigScreenFix{display: none;}
 
-.footerImage{
-    max-height: 2em;
-}
+.footerImage{max-height: 2em;}
 
 @media (min-width: 490px) {
-    .codeBlock__code--smallScreenFix{
-        display: none;
-    }
-    .codeBlock__code--bigScreenFix{
-        display: inline;
-    }
+    .codeBlock__code--smallScreenFix{display: none;}
+
+    .codeBlock__code--bigScreenFix{display: inline;}
 }
 
 @media(min-width:601px){
