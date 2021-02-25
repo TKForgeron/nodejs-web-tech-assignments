@@ -13,15 +13,8 @@
     --themeColor--l5: #fffded;
     --themeColor--l4: #fff8c4;
     --themeColor--l3: #fff189;
-    /*--themeColor--l2: #ffea4e;*/
     --themeColor--l1: #ffde00;
     --themeColor: #d6be00;
-    /*--themeColor--d1: #c1aa00;*/
-    /*--themeColor--d2: #ab9700;*/
-    /*--themeColor--d3: #968400;*/
-    /*--themeColor--d4: #817200;*/
-    /*--themeColor--d5: #6b5f00;*/
-
     --codeGray: #74705d;
     --codeCyan: #58d3ef;
     --codeBlue: #4169e1;
@@ -64,6 +57,7 @@ a h1{color: black;}
 
 a h1:visited{color: black;}
 
+/* Generic table styling */
 table {    
     border-collapse: collapse;
     width: 100%;
@@ -107,6 +101,7 @@ h1{
 }
 
 /* CLASSES */
+/* The header images are not visible on mobile which is the default. */
 .header{text-align: center;}
 
 .header__img{display: none;}
@@ -115,6 +110,7 @@ h1{
 
 .header__img--right{float: right;}
 
+/* Our navigation bar is column style by default, and switches to row styles on larger screens via a media query. */
 .nav{background-color: var(--themeColor);}
 
 .nav__bar{
@@ -171,6 +167,7 @@ h1{
 
 .references__link{text-decoration: underline;}
 
+/* Our table is wrapped in a box that allows for scrolling to make it readable on smaller devices. */
 .table--scrollable{overflow-x: auto;}
 
 .table__caption{caption-side: bottom;}
@@ -179,6 +176,7 @@ h1{
 
 .list--indent{padding-left: 2em;}
 
+/* Flexblocks are elements which in this case hold images and text. They are there to highlight important information, giving it some extra "pop" via the shading and scaling effect. */
 .flexBlockCanvas{
     margin: auto;
     max-width: 1200px;
@@ -210,6 +208,7 @@ h1{
 
 .flexBlock__body{text-align: center;}
 
+/* This is to style the codeblocks used on the example page. It allows for a clear difference between regular text and code.*/
 .codeResultBlock{
     background-color: var(--themeColor--l5);
     padding: 1.5em;
