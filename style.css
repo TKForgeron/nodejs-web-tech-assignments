@@ -218,6 +218,7 @@ h1{
 }
 
 .codeBlock{
+    font-family: 'Courier New', Courier, monospace;
     background-color: var(--codeBlockColor);
     color: var(--codeWhite);
     padding: 1.5em;
