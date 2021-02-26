@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="icon" href="images/uulogo.png" type="image">
+    <link rel="icon" href="images/uulogo.png" type="image/png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial scale=1">
     <meta name="description" content="General information about JavaScript">
@@ -32,8 +32,9 @@
                 The dark blocks are the parts where the code can be found, which is HTML  with JS embedded using the script tags.
                 The lighter blocks are the output of the darker ones. Within the code, and thus output, a short explanation of what happens in the code is given.
             </p>
-            <section class="flexBlockCanvas">
-                <section class="codeBlock">
+            <!--This div could not be an article/section because it logically would never contain a <h1>..<h6>, which would cause errors in the W3C validator-->
+            <div class="flexBlockCanvas">
+                <div class="codeBlock">
                     &lt;!<p class="codeBlock__code--red codeBlock__code--fog">DOCTYPE </p><p class="codeBlock__code--purple codeBlock__code--fog">html</p>&gt;<br>
                     &lt;<p class="codeBlock__code--red codeBlock__code--fog">html</p>&gt;<br>
                     &lt;<p class="codeBlock__code--red codeBlock__code--fog">body</p>&gt;<br>
@@ -72,15 +73,16 @@
                     &lt;/<p class="codeBlock__code--red codeBlock__code--fog">script</p>&gt;<br>
                     &lt;/<p class="codeBlock__code--red codeBlock__code--fog">body</p>&gt;<br>
                     &lt;/<p class="codeBlock__code--red codeBlock__code--fog">html</p>&gt;
-                </section>
+                </div>
                 <section class="codeResultBlock">
                     <h2>JavaScript Objects</h2>
                     <p>In this example, the full name of a person in an object will be displayed. This will be done by first of all creating the object. However, it can be noted from the code below that the first name and last name are seperate entries in the object. To piece these two pieces of information together, an attribute holding a function that concatenates the first name and last name is made within the object. Lastly, the attribute of the object will be called to display the first and last name of the person described in the object.</p>
                     <p>Using the function returns the person's full name: John Doe</p>
                 </section>
-            </section>
-            <section class="flexBlockCanvas">
-                <section class="codeBlock">
+            </div>
+            <!--This div could not be an article/section because it logically would never contain a <h1>..<h6>, which would cause errors in the W3C validator-->
+            <div class="flexBlockCanvas">
+                <div class="codeBlock">
                     &lt;!<p class="codeBlock__code--red codeBlock__code--fog">DOCTYPE </p><p class="codeBlock__code--purple codeBlock__code--fog">html</p>&gt;<br>
                     &lt;<p class="codeBlock__code--red codeBlock__code--fog">html</p>&gt;<br>
                     &lt;<p class="codeBlock__code--red codeBlock__code--fog">body</p>&gt;<br>
@@ -117,15 +119,16 @@
                     &lt;/<p class="codeBlock__code--red codeBlock__code--fog">script</p>&gt;<br>
                     &lt;/<p class="codeBlock__code--red codeBlock__code--fog">body</p>&gt;<br>
                     &lt;/<p class="codeBlock__code--red codeBlock__code--fog">html</p>&gt;
-                </section>
+                </div>
                 <section class="codeResultBlock">
                     <h2>JavaScript Number Methods</h2>
                     <p>This piece of JavaScript code converts a number to a string. In the first case, this is realized by calling the toString() function on the variable holding the number. The second case realizes this by calling the toString() function directly on the number itself. It has to be noted that the number has to be in brackets, as can be seen in the example, to work. The last case shows that it is also possible to convert a sum of some sort to a string with the toString() function, as long as the sum is in between brackets.</p>
                     <p>123<br>123<br>123</p>
                 </section>
-            </section>
-            <section class="flexBlockCanvas">
-                <section class="codeBlock">
+            </div>
+            <!--This div could not be an article/section because it logically would never contain a <h1>..<h6>, which would cause errors in the W3C validator-->
+            <div class="flexBlockCanvas">
+                <div class="codeBlock">
                     &lt;!<p class="codeBlock__code--red codeBlock__code--fog">DOCTYPE </p><p class="codeBlock__code--purple codeBlock__code--fog">html</p>&gt;<br>
                     &lt;<p class="codeBlock__code--red codeBlock__code--fog">html</p>&gt;<br>
                     &lt;<p class="codeBlock__code--red codeBlock__code--fog">body</p>&gt;<br>
@@ -209,7 +212,7 @@
                     &lt;/<p class="codeBlock__code--red codeBlock__code--fog">script</p>&gt;<br>
                     &lt;/<p class="codeBlock__code--red codeBlock__code--fog">body</p>&gt;<br>
                     &lt;/<p class="codeBlock__code--red codeBlock__code--fog">html</p>&gt;
-                </section>
+                </div>
                 <section class="codeResultBlock">
                     <h2>JavaScript Classes</h2>
                     <p>This example creates a class named "Car". The class has two initial properties: "name" and "year".
@@ -239,7 +242,7 @@
                             "My car is " + myCar.age(year) + " years old, yours is " + yourCar.age(year) + " years old.";
                     </script>
                 </section>
-            </section>
+            </div>
         </article>
     </main>
     <footer>
