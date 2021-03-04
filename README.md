@@ -1,4 +1,4 @@
-# WebTech_Assignment_1
+# WebTech_Assignment_2
 
 ## Requirements
 - Menus
