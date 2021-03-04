@@ -22,15 +22,32 @@
         <li class="nav__item"><a class="nav__link" href="page_2.html">Versions &#38; frameworks</a></li>
         <li class="nav__item"><a class="nav__link" href="page_3.html">Examples</a></li>
         <li class="nav__item"><a class="nav__link" href="page_4.html">Helpful guides</a></li>
-        <li class="nav__item"><a class="nav__link--active" href="assessment.html">Assessment</a></li>
+        <li class="nav__item--spacer"></li>
+        <li class="nav__item nav__item--right"><a class="nav__link" href="assessment.html">Assessment</a></li>
     </ul>
 </nav>
 <main>
-    test
+    <!--This div could not be an article/section because it logically would never contain a <h1>..<h6>, which would cause errors in the W3C validator-->
+    <div class="container">
+        <section class="card question">
+<!--            <img class="card__image" src="images/questionMark.svg" alt="Icon of Question Mark">-->
+            <section class="question__output">
+                <h2 class="question__title">titlePlaceHolder</h2>
+                <p class="question__description">descriptionPlaceHolder</p>
+                <p class="question__question">questionPlaceHolder</p>
+            </section>
+            <section class="question__input">
+                <form>
+
+                </form>
+            </section>
+        </section>
+    </div>
 </main>
 <footer>
     <p>Made by Douwe, Tim and Maarten.</p>
     <img class="footerImage" src="images/uulogotext.png" alt="UU Logo with Text reading Universiteit Utrecht">
 </footer>
+<script src="js/questions.js"></script>
 </body>
 </html>

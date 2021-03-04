@@ -24,7 +24,7 @@
     --codeWhite: #f8f8f2;
     --codeOrange: #fd9621;
     --codeGreen: #a6e22c;
-    --codeBlockColor: #282923;
+    --codeCardColor: #282923;
     --themeColor--lightGray: #b1ab99;
     --themeColor--darkGray: #4b4737;
 }
@@ -177,14 +177,14 @@ h1{
 .list--indent{padding-left: 2em;}
 
 /* Flexblocks are elements which in this case hold images and text. They are there to highlight important information, giving it some extra "pop" via the shading and scaling effect. */
-.flexBlockCanvas{
+.container{
     margin: auto;
     max-width: 1200px;
     display: flex;
     flex-direction: column;
 }
 
-.flexBlock{
+.card{
     float: left;
     width: 100%;
     padding: 2em;
@@ -193,9 +193,9 @@ h1{
     box-shadow: 0 1em 2em -1em rgba(0, 0, 0, 0.2);
 }
 
-.flexBlock:hover{transform: scale(1.01);}
+.card:hover{transform: scale(1.01);}
 
-.flexBlock__image{
+.card__image{
     display: block;
     margin: auto;
     text-align: center;
@@ -204,12 +204,12 @@ h1{
     max-width: 16em;
 }
 
-.flexBlock__title{text-align: center;}
+.card__title{text-align: center;}
 
-.flexBlock__body{text-align: center;}
+.card__body{text-align: center;}
 
 /* This is to style the codeblocks used on the example page. It allows for a clear difference between regular text and code.*/
-.codeResultBlock{
+.codeResultCard{
     background-color: var(--themeColor--l5);
     padding: 1.5em;
     box-shadow: 0em 0em 2em -1em rgba(0, 0, 0, 0.25);
@@ -217,9 +217,9 @@ h1{
     margin-bottom: 1em;
 }
 
-.codeBlock{
+.codeCard{
     font-family: 'Courier New', Courier, monospace;
-    background-color: var(--codeBlockColor);
+    background-color: var(--codeCardColor);
     color: var(--codeWhite);
     padding: 1.5em;
     box-shadow: 0em 0em 2em -1em rgba(0, 0, 0, 0.25);
@@ -227,39 +227,47 @@ h1{
     margin-bottom: 1em;
 }
 
-.codeBlock p{
+.codeCard p{
     display: inline;
     margin: 0;
 }
 
-.codeBlock__code--cyan{color: var(--codeCyan);}
+.codeCard__code--cyan{color: var(--codeCyan);}
 
-.codeBlock__code--gray{color: var(--codeGray);}
+.codeCard__code--gray{color: var(--codeGray);}
 
-.codeBlock__code--green{color: var(--codeGreen);}
+.codeCard__code--green{color: var(--codeGreen);}
 
-.codeBlock__code--orange{color: var(--codeOrange);}
+.codeCard__code--orange{color: var(--codeOrange);}
 
-.codeBlock__code--purple{color: var(--codePurple);}
+.codeCard__code--purple{color: var(--codePurple);}
 
-.codeBlock__code--blue{color: var(--codeBlue);}
+.codeCard__code--blue{color: var(--codeBlue);}
 
-.codeBlock__code--yellow{color: var(--codeYellow);}
+.codeCard__code--yellow{color: var(--codeYellow);}
 
-.codeBlock__code--red{color: var(--codeRed);}
+.codeCard__code--red{color: var(--codeRed);}
 
-.codeBlock__code--indent{padding-left: 2rem;}
+.codeCard__code--indent{padding-left: 2rem;}
 
-.codeBlock__code--fog{opacity: .65;}
+.codeCard__code--fog{opacity: .65;}
 
-.codeBlock__code--bigScreenFix{display: none;}
+.codeCard__code--bigScreenFix{display: none;}
 
 .footerImage{max-height: 2em;}
 
-@media (min-width: 490px) {
-    .codeBlock__code--smallScreenFix{display: none;}
+.question{
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 2em -1em rgba(0, 0, 0, 0.2);
+}
 
-    .codeBlock__code--bigScreenFix{display: inline;}
+.question:hover{transform: scale(1);}
+
+@media (min-width: 490px) {
+    .codeCard__code--smallScreenFix{display: none;}
+
+    .codeCard__code--bigScreenFix{display: inline;}
 }
 
 @media(min-width:601px){
@@ -279,29 +287,42 @@ h1{
 
 @media(min-width:840px){
     .nav__bar{flex-direction: row;}
-    .flexBlockCanvas{
+    .nav__item{flex-grow: 1;}
+    .nav__item--spacer{flex-grow: 10;}
+    .nav__item--right{justify-content: flex-end;}
+    .container{
         margin: auto;
         max-width: 1200px;
         flex-direction: row;
     }
-    .flexBlock{margin: 2em;}
-    .flexBlock--left{
+    .card{
+        margin: 2em;
+        max-width: 100%;
+    }
+    .card--left{
         box-shadow: -1em 1em 2em -1em rgba(0, 0, 0, 0.1);
         margin-right: 0;
     }
-    .flexBlock--center{
+    .card--center{
         background-color: var(--themeColor--l5);
         margin: 1em 0;
     }
-    .flexBlock--right{
+    .card--right{
         box-shadow: 1em 1em 2em -1em rgba(0, 0, 0, 0.1);
         margin-left: 0;
     }
-    .flexBlock__image{height: 10em;}
-    .codeResultBlock{margin-left: 1em}
-    .codeBlock{margin-right: 1em}
+    .question{flex-direction:row;}
+    .question__output{flex-grow:2;}
+    .question__input{flex-grow:1;}
+    .card__image{height:10em;}
+    .question .card__image{
+        height: 1.5rem;
+        margin: auto 0;
+    }
+    .codeResultCard{margin-left: 1em}
+    .codeCard{margin-right: 1em}
 }
 
 @media (min-width: 1100px) {
-    .flexBlock__image{height: 16em;}
+    .card__image{height:16em;}
 }

@@ -22,26 +22,27 @@
             <li class="nav__item"><a class="nav__link" href="page_2.html">Versions &#38; frameworks</a></li>
             <li class="nav__item"><a class="nav__link" href="page_3.html">Examples</a></li>
             <li class="nav__item"><a class="nav__link" href="page_4.html">Helpful guides</a></li>
-            <li class="nav__item"><a class="nav__link" href="assessment.html">Assessment</a></li>
+            <li class="nav__item--spacer"></li>
+            <li class="nav__item nav__item--right"><a class="nav__link" href="assessment.html">Assessment</a></li>
         </ul>
     </nav>
     <main>
         <!--This div could not be an article/section because it logically would never contain a <h1>..<h6>, which would cause errors in the W3C validator-->
-        <div class="flexBlockCanvas">
-            <section class="flexBlock flexBlock--left">
-                <a href="#clientSide" title="Go to client-side section"><img class="flexBlock__image" src="images/clientSide.svg" alt="Icon of Laptop"></a>
-                <h2 class="flexBlock__title">Client-side</h2>
-                <p class="flexBlock__body">Client-side scripts execute within a user's browser and manipulate the web page, to enable a dynamic and interactive user experience.</p>
+        <div class="container">
+            <section class="card card--left">
+                <a href="#clientSide" title="Go to client-side section"><img class="card__image" src="images/clientSide.svg" alt="Icon of Laptop"></a>
+                <h2 class="card__title">Client-side</h2>
+                <p class="card__body">Client-side scripts execute within a user's browser and manipulate the web page, to enable a dynamic and interactive user experience.</p>
             </section>
-            <section class="flexBlock flexBlock--center">
-                <a href="#whatIsJS" title="Go to beginning of article"><img class="flexBlock__image" src="images/questionMark.svg" alt="Icon of Question Mark"></a>
-                <h2 class="flexBlock__title">What is JavaScript?</h2>
-                <p class="flexBlock__body">This question will be answered both from <a href="page_1.html" title="Go to 'History' page">historical</a> and <a href="page_3.html" title="Go to 'Examples' page">engeneering</a> perspective briefly by some examples. However, only the surface will be scratched, do not expect a holistic academic answer.</p>
+            <section class="card card--center">
+                <a href="#whatIsJS" title="Go to beginning of article"><img class="card__image" src="images/questionMark.svg" alt="Icon of Question Mark"></a>
+                <h2 class="card__title">What is JavaScript?</h2>
+                <p class="card__body">This question will be answered both from <a href="page_1.html" title="Go to 'History' page">historical</a> and <a href="page_3.html" title="Go to 'Examples' page">engeneering</a> perspective briefly by some examples. However, only the surface will be scratched, do not expect a holistic academic answer.</p>
             </section>
-            <section class="flexBlock flexBlock--right">
-                <a href="#serverSide" title="Go to server-side section"><img class="flexBlock__image" src="images/serverSide.svg" alt="Icon of Server"></a>
-                <h2 class="flexBlock__title">Server-side</h2>
-                <p class="flexBlock__body">Server-side concerns operations performed by the server in a client-server relationship. Server-side is often associated with back-end development.</p>
+            <section class="card card--right">
+                <a href="#serverSide" title="Go to server-side section"><img class="card__image" src="images/serverSide.svg" alt="Icon of Server"></a>
+                <h2 class="card__title">Server-side</h2>
+                <p class="card__body">Server-side concerns operations performed by the server in a client-server relationship. Server-side is often associated with back-end development.</p>
             </section>
         </div>
         <article id="whatIsJS" class="article__section">
