@@ -17,7 +17,7 @@ class Question {
 class MultipleChoice extends Question {
     constructor(id, title, description, question, correctAnswer) {
         super(id, title, description, question, correctAnswer);
-        this.correctAnswerIndex = 0;
+        this.correctAnswerIndex = 1;
         this.answerOptions = [];
     }
     setIncorrectAnswers(options) {
