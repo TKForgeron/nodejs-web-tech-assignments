@@ -30,25 +30,23 @@
     <!--This div could not be an article/section because it logically would never contain a <h1>..<h6>, which would cause errors in the W3C validator-->
     <div class="container">
         <section class="card question">
-            <img class="card__image" src="images/questionMark.svg" alt="Icon of Question Mark">
-            <section class="question__output">
-                <h2 class="question__title"></h2>
-                <p class="question__description">descriptionPlaceHolder</p>
-                <p class="question__question">questionPlaceHolder</p>
+            <img class="card__image" id="question__image" src="images/questionMark.svg" alt="Image Concerning Question">
+            <section id="question__output">
+                <h2 id="question__title">QuestionTitle_PlaceHolder</h2>
+                <p id="question__question">Your question does not seem to be loaded correctly.</p>
             </section>
-            <section class="question__input">
-                <form>
-                    <script src="js/questionClass.js"></script>
-                    <script src="js/questionObjects.js"></script>
-                    <script>
-
-                        var x = mpQuestion1.getAllOptions();
-                        console.log(mpQuestion1.title);
-                        document.getElementsByClassName("question__title").innerHTML = mpQuestion1.title;
-
-                    </script>
-                </form>
+            <section id="question__input">
+                <button type="submit" onclick="mpQuestion.checkAnswer()">Submit</button>
             </section>
+            <script src="js/questions.js"></script>
+            <script>
+                /*
+                create array met alle vragen
+                iterate door array wanneer op next/submit geklikt wordt (call bij elke iteratie de show() functie vh object)
+                 */
+                // openQuestion.show("question__title","question__image","question__question","question__input");
+                mpQuestion.show("question__title","question__image","question__question","question__input");
+            </script>
         </section>
     </div>
 </main>

@@ -264,6 +264,8 @@ h1{
 
 .question:hover{transform: scale(1);}
 
+#question__input, #question__output{padding: 1rem};
+
 @media (min-width: 490px) {
     .codeCard__code--smallScreenFix{display: none;}
 
@@ -312,11 +314,11 @@ h1{
         margin-left: 0;
     }
     .question{flex-direction:row;}
-    .question__output{flex-grow:2;}
-    .question__input{flex-grow:1;}
+    #question__output{flex-grow:2;}
+    #question__input{flex-grow:1;}
     .card__image{height:10em;}
     .question .card__image{
-        height: 1.5rem;
+        /*height: 1.5rem;*/
         margin: auto 0;
     }
     .codeResultCard{margin-left: 1em}

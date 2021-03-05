@@ -1,4 +1,5 @@
 # WebTech_Assignment_2
+# DEADLINE: 17 mrt
 
 ## Assignment Description
 Develop a dynamic version of the website created in Assignment 1 using JavaScript (if necessary, you can change/extend the main theme). Use DOM methods, elements and events to interactively modify the content and appearance of your web-pages according to user actions. Use event listeners to process the events. Implement at least 1 case of event propagation (W3C model).
