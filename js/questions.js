@@ -1,32 +1,29 @@
 class Question {
-    constructor(id, title, description, question){
+    constructor(id, title, image, question, explanation, answer){
         this.id = id;
+        this.image = image;
         this.title = title;
-        this.description = description;
         this.question = question;
-        this.correctAnswer = correctAnswer;
+        this.answer = answer;
+        this.explanation = explanation;
     }
     checkAnswer(input) {
         return input == this.answer;
     }
-    addAnswerOption(option) {
-        this.answerOptions.push(option);
-    }
 }
 
 class MultipleChoice extends Question {
-    constructor(id, title, description, question, correctAnswer) {
-        super(id, title, description, question, correctAnswer);
-        this.correctAnswerIndex = 1;
-        this.answerOptions = [];
-    }
-    setIncorrectAnswers(options) {
-        options.push(this.correctAnswer);
-        this.answerOptions = shuffle(options);
+    constructor(id, title, image, question, explanation, answer, otherOptions) {
+        super(id, title, image, question, explanation, answer);
+        this.options = otherOptions;
     }
     getAllOptions(){
-        console.writeline(answerOptions);
-        return answerOptions;
+        this.options.push(this.answer);
+        for (var i = 0; i < this.options.length; i++) {
+            console.log(this.options[i]);
+        }
+        console.log(typeof this.options);
+        return this.options;
     }
 }
 

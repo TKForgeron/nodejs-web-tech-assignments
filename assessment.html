@@ -30,7 +30,7 @@
     <!--This div could not be an article/section because it logically would never contain a <h1>..<h6>, which would cause errors in the W3C validator-->
     <div class="container">
         <section class="card question">
-<!--            <img class="card__image" src="images/questionMark.svg" alt="Icon of Question Mark">-->
+            <img class="card__image" src="images/questionMark.svg" alt="Icon of Question Mark">
             <section class="question__output">
                 <h2 class="question__title">titlePlaceHolder</h2>
                 <p class="question__description">descriptionPlaceHolder</p>
@@ -38,9 +38,15 @@
             </section>
             <section class="question__input">
                 <form>
+                    <script src="js/questions.js"></script>
                     <script>
-                        mp = new MultipleChoice(1,title,description,question?,correct)
-                        mp.setIncorrectAnswers(["incorrect","false","0"])
+                        var title1 = "question1?";
+                        var image1 = "/images/clientSide.svg";
+                        var question1 = "what is question?";
+                        var explanation1 = "explanation";
+                        var answer1 = "TRUE answer";
+                        var otherOptions1 = ["incorrect option", "false again","0"];
+                        let mp = new MultipleChoice(1,title1,image1,question1,explanation1,answer1,otherOptions1);
                         mp.getAllOptions();
                     </script>
                 </form>
@@ -52,6 +58,5 @@
     <p>Made by Douwe, Tim and Maarten.</p>
     <img class="footerImage" src="images/uulogotext.png" alt="UU Logo with Text reading Universiteit Utrecht">
 </footer>
-<script src="js/questions.js"></script>
 </body>
 </html>
