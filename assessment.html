@@ -32,22 +32,20 @@
         <section class="card question">
             <img class="card__image" src="images/questionMark.svg" alt="Icon of Question Mark">
             <section class="question__output">
-                <h2 class="question__title">titlePlaceHolder</h2>
+                <h2 class="question__title"></h2>
                 <p class="question__description">descriptionPlaceHolder</p>
                 <p class="question__question">questionPlaceHolder</p>
             </section>
             <section class="question__input">
                 <form>
-                    <script src="js/questions.js"></script>
+                    <script src="js/questionClass.js"></script>
+                    <script src="js/questionObjects.js"></script>
                     <script>
-                        var title1 = "question1?";
-                        var image1 = "/images/clientSide.svg";
-                        var question1 = "what is question?";
-                        var explanation1 = "explanation";
-                        var answer1 = "TRUE answer";
-                        var otherOptions1 = ["incorrect option", "false again","0"];
-                        let mp = new MultipleChoice(1,title1,image1,question1,explanation1,answer1,otherOptions1);
-                        mp.getAllOptions();
+
+                        var x = mpQuestion1.getAllOptions();
+                        console.log(mpQuestion1.title);
+                        document.getElementsByClassName("question__title").innerHTML = mpQuestion1.title;
+
                     </script>
                 </form>
             </section>
