@@ -137,7 +137,7 @@ let q1 = new Question(
     "Prototypal Inheritance",
     "images/questions/q1.png",
     "In this question, we have a Dog constructor function. Our dog obviously knows the speak command. What gets logged in the following example when we ask Pogo to speak?",
-    "",
+    "Every time we create a new Dog instance, we set the speak property of that instance to be a function returning the string woof. Since this is being set every time we create a new Dog instance, the interpreter never has to look farther up the prototype chain to find a speak property. As a result, the speak method on Dog.prototype.speak never gets used.",
     "Woof"
 );
 
