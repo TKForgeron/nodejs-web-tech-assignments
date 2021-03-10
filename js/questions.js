@@ -132,48 +132,49 @@ let mpQuestion = new MultipleChoice(
     ["", "false","0"]
 );
 
-// It still has to be determined which questions are going to be open and which questions are going to be multiple choice (I think 1,3,5 mp, the rest open)
 let q1 = new Question(
-    id= "q1",
-    title= "Prototypal Inheritance",
-    image="images/questions/q1.png",
-    question= "In this question, we have a Dog constructor function. Our dog obviously knows the speak command. What gets logged in the following example when we ask Pogo to speak?",
-    explanation= "",
-    answer= "Woof"
+    "q1",
+    "Prototypal Inheritance",
+    "images/questions/q1.png",
+    "In this question, we have a Dog constructor function. Our dog obviously knows the speak command. What gets logged in the following example when we ask Pogo to speak?",
+    "",
+    "Woof"
 );
 
-let q2 = new Question(
-    id= "q2",
-    title= "Changing HTML content",
-    image="images/questions/'q2.jpg",
-    question= "Which is the correct JavaScript syntax to change the HTML content given below?",
-    explanation= "Every time we create a new Dog instance, we set the speak property of that instance to be a function returning the string woof. Since this is being set every time we create a new Dog instance, the interpreter never has to look farther up the prototype chain to find a speak property. As a result, the speak method on Dog.prototype.speak never gets used.",
-    answer= "document.getElementById(“test”).innerHTML = “Hello DataFlair!”;"
+let q2 = new MultipleChoice(
+    "q2",
+    "Changing HTML content",
+    "images/questions/'q2.jpg",
+    "Which is the correct JavaScript syntax to change the HTML content given below?",
+    "Every time we create a new Dog instance, we set the speak property of that instance to be a function returning the string woof. Since this is being set every time we create a new Dog instance, the interpreter never has to look farther up the prototype chain to find a speak property. As a result, the speak method on Dog.prototype.speak never gets used.",
+    "document.getElementById(“test”).innerHTML = “Hello DataFlair!”;",
+    ["document.getElementById(test).innerHTML = “Hello DataFlair!”;", "document.getElementsById(“test”).innerHTML = “Hello DataFlair!”;", "document.getElementByTagName(“p”)[0].innerHTML = “Hello DataFlair!”;"]
 );
 
 let q3 = new Question(
-    id= "q3",
-    title= "Indexing",
-    image="images/questions/q3.png",
-    question= "Predict the output of the following JavaScript code.",
-    explanation= "The index starts with 0 in JavaScript. Here, x searches for the last occurrence of “G” in the text.",
-    answer= "8"
+    "q3",
+    "Indexing",
+    "images/questions/q3.png",
+    "Predict the output of the following JavaScript code.",
+    "The index starts with 0 in JavaScript. Here, x searches for the last occurrence of “G” in the text.",
+    "8"
 );
 
-let q4 = new Question(
-    id= "q4",
-    title= "Event scheduling",
-    image="images/questions/q4.png",
-    question= "In what order will the numbers 1-4 be logged to the console when the code below is executed?",
-    explanation= "1 and 4 are displayed first since they are logged by simple calls to console.log() without any delay. 2 is displayed after 3 because 2 is being logged after a delay of 1000 msecs (i.e., 1 second) whereas 3 is being logged after a delay of 0 msecs. Note that, despite 3 having a delay of 0 msecs, its code will only be executed after the current call stack is cleared.",
-    answer= "1, 4, 3, 2"
+let q4 = new MultipleChoice(
+    "q4",
+    "Event scheduling",
+    "images/questions/q4.png",
+    "In what order will the numbers 1-4 be logged to the console when the code below is executed?",
+    "1 and 4 are displayed first since they are logged by simple calls to console.log() without any delay. 2 is displayed after 3 because 2 is being logged after a delay of 1000 msecs (i.e., 1 second) whereas 3 is being logged after a delay of 0 msecs. Note that, despite 3 having a delay of 0 msecs, its code will only be executed after the current call stack is cleared.",
+    "1, 4, 3, 2",
+    ["1, 2, 3, 4", "4, 3, 2, 1", "4, 2, 1, 3"]
 );
 
 let q5 = new Question(
-    id= "q5",
-    title= "Functions",
-    image="images/questions/q5.png",
-    question= "Consider the following code. What will be displayed on the console?",
-    explanation= "",
-    answer= "7.5"
+    "q5",
+    "Functions",
+    "images/questions/q5.png",
+    "Consider the following code. What will be displayed on the console?",
+    "",
+    "7.5"
 );
