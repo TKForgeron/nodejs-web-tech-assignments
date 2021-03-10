@@ -113,25 +113,6 @@ function stringToHTML(str) {
     return dom;
 }
 
-let openQuestion = new Question(
-    1,
-    "Open Question",
-    "images/serverSide.svg",
-    "What is an open question?",
-    "Explanation",
-    "CORRECT",
-);
-
-let mpQuestion = new MultipleChoice(
-    1,
-    "Multiple Choice Question",
-    "images/clientSide.svg",
-    "Which is a multiple choice question?",
-    "Explanation",
-    "true",
-    ["", "false","0"]
-);
-
 let q1 = new Question(
     "q1",
     "Prototypal Inheritance",
