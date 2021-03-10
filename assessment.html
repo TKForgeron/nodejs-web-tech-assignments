@@ -55,7 +55,7 @@
         /*
                 iterate door array wanneer op next/submit geklikt wordt (call bij elke iteratie de show() functie vh object)
                  */
-        var number = 3;
+        var number = q4.id;
         var next = document.getElementById("controls__next");
         var back = document.getElementById("controls__back");
         next.onclick = function() {
@@ -72,6 +72,7 @@
                 number--;
             }
         };
+        console.log(number);
         questions[number].show("question__title","question__image","question__question","question__input");
     </script>
 </main>
