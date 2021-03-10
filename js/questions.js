@@ -113,7 +113,7 @@ function stringToHTML(str) {
     return dom;
 }
 
-let q1 = new Question(
+const q1 = new Question(
     "q1",
     "Prototypal Inheritance",
     "images/questions/q1.png",
@@ -122,7 +122,7 @@ let q1 = new Question(
     "Woof"
 );
 
-let q2 = new MultipleChoice(
+const q2 = new MultipleChoice(
     "q2",
     "Changing HTML content",
     "images/questions/'q2.jpg",
@@ -132,7 +132,7 @@ let q2 = new MultipleChoice(
     ["document.getElementById(test).innerHTML = “Hello DataFlair!”;", "document.getElementsById(“test”).innerHTML = “Hello DataFlair!”;", "document.getElementByTagName(“p”)[0].innerHTML = “Hello DataFlair!”;"]
 );
 
-let q3 = new Question(
+const q3 = new Question(
     "q3",
     "Indexing",
     "images/questions/q3.png",
@@ -141,7 +141,7 @@ let q3 = new Question(
     "8"
 );
 
-let q4 = new MultipleChoice(
+const q4 = new MultipleChoice(
     "q4",
     "Event scheduling",
     "images/questions/q4.png",
@@ -151,7 +151,7 @@ let q4 = new MultipleChoice(
     ["1, 2, 3, 4", "4, 3, 2, 1", "4, 2, 1, 3"]
 );
 
-let q5 = new Question(
+const q5 = new Question(
     "q5",
     "Functions",
     "images/questions/q5.png",
@@ -159,3 +159,15 @@ let q5 = new Question(
     "First, 5 and 10 will be added up using the function add. Hereafter, the result of that addition will be divided by 2. Last up, the mean of the two numbers, the value that we just calculated, will be shown on the console by console.log().",
     "7.5"
 );
+
+const questions = [q1,q2,q3,q4,q5];
+
+/* Opening and closing the explanation section */
+var explanation = document.getElementById("explanation__background");
+var explanationButton = document.getElementById("explanation__image");
+explanationButton.onclick = function() {explanation.style.display = "block";}
+window.onclick = function(event) {
+    if (event.target == explanation) {
+        explanation.style.display = "none";
+    }
+}
