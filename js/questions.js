@@ -146,7 +146,7 @@ let q2 = new MultipleChoice(
     "Changing HTML content",
     "images/questions/'q2.jpg",
     "Which is the correct JavaScript syntax to change the HTML content given below?",
-    "Every time we create a new Dog instance, we set the speak property of that instance to be a function returning the string woof. Since this is being set every time we create a new Dog instance, the interpreter never has to look farther up the prototype chain to find a speak property. As a result, the speak method on Dog.prototype.speak never gets used.",
+    "This is the correct syntax to change the HTML context in the image. Please take a detailed look at it!",
     "document.getElementById(“test”).innerHTML = “Hello DataFlair!”;",
     ["document.getElementById(test).innerHTML = “Hello DataFlair!”;", "document.getElementsById(“test”).innerHTML = “Hello DataFlair!”;", "document.getElementByTagName(“p”)[0].innerHTML = “Hello DataFlair!”;"]
 );
@@ -175,6 +175,6 @@ let q5 = new Question(
     "Functions",
     "images/questions/q5.png",
     "Consider the following code. What will be displayed on the console?",
-    "",
+    "First, 5 and 10 will be added up using the function add. Hereafter, the result of that addition will be divided by 2. Last up, the mean of the two numbers, the value that we just calculated, will be shown on the console by console.log().",
     "7.5"
 );
