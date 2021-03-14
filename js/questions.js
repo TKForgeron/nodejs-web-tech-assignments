@@ -112,6 +112,64 @@ function stringToHTML(str) {
     dom.innerHTML = str;
     return dom;
 }
+// The goal of this function is to create the initial html elements and put them in order
+// Afterwards questions can be appended and removed from those elements when pressing the "next question" or "submit" button
+// This would also greatly benefit from not being in a function, allowing variables to be accessed at will, but that would probably end up fucking up a whole lot of code
+// So if you feel like this is a fine way to approach the problem then by all means take it out of the function
+// All that needs to be added are eventhandlers for submit, back and next
+// They should manipulate some elements to change the question
+// Keep track of which question we're on by keeping an array of all question objects, and just increase or decrease the counter when pressing one of the buttons respectively
+function createInitialElements(){
+    var main = document.getElementsByTagName("main");
+
+    var container = document.createElement("div");
+    container.classList.add("container");
+
+    var controlsImageBack = document.createElement("img");
+    controlsImageBack.setAttribute("src","images/back.svg");
+    controlsImageBack.setAttribute("alt","Back button");
+    controlsImageBack.classList.add("controls__back");
+
+    var controlsImageNext = document.createElement("img");
+    controlsImageNext.setAttribute("src","images/next.svg");
+    controlsImageNext.setAttribute("alt","Next button");
+    controlsImageNext.classList.add("controls__back");
+
+    var cardQuestion = document.createElement("section");
+    cardQuestion.classList.add("card__question");
+
+    var questionOutput = document.createElement("section");
+    questionOutput.classList.add("question__output");
+    // MANIPULATE THIS TO CHANGE THE TITLE OF A QUESTION
+    var questionTitle = document.createElement("h2");
+    questionTitle.classList.add("question__title");
+    // MANIPULATE THIS TO CHANGE THE CONTENTS OF A QUESTION
+    var questionQuestion = document.createElement("p");
+    questionQuestion.classList.add("question__question");
+    // THIS SECTIONS CONTAINS A SUBMIT BUTTON AND A TEXTBOX OR MULTIPLE CHOICE BUTTONS DEPENDING ON THE QUESTION
+    // MANIPULATE THIS TO DIFFERENTIATE BETWEEN DIFFERENT QUESTION TYPES
+    // INSERT TEXTBOX OR MULTIPLECHOICE BUTTON INFRONT OF SUBMIT BUTTON
+    var questionInput = document.createElement("section");
+    questionInput.classList.add("question__input");
+
+    var questionSubmit = document.createElement("submit");
+    questionSubmit.classList.add("question__submit");
+    questionSubmit.appendChild(document.createTextNode("Submit"));
+
+    questionInput.appendChild(questionSubmit);
+
+    questionOutput.appendChild(questionTitle);
+    questionOutput.appendChild(questionQuestion);
+
+    cardQuestion.appendChild(questionOutput);
+    cardQuestion.appendChild(questionInput);
+
+    container.appendChild(controlsImageBack);
+    container.appendChild(cardQuestion);
+    container.appendChild(controlsImageNext);
+
+    main.appendChild(container);
+}
 
 const q1 = new Question(
     "0",
