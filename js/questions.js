@@ -1,5 +1,7 @@
-var questionTitleId = "question__title";
 var questionImageId = "question__image";
+var questionInputSectionId = "question__input";
+var questionOutputSectionId = "question__output";
+// var questionQuestionId = "question__question";
 
 // The goal of this function is to create the initial html elements and put them in order
 // Afterwards questions can be appended and removed from those elements when pressing the "next question" or "submit" button
@@ -35,18 +37,18 @@ function createInitialElements() {
     questionImage.setAttribute("alt","Image concerning the question is not correctly loaded");
     questionImage.classList.add("card__image");
     var questionOutput = document.createElement("section");
-    questionOutput.setAttribute("id","question__output");
-    // MANIPULATE THIS TO CHANGE THE TITLE OF A QUESTION
-    var questionTitle = document.createElement("h2");
-    questionTitle.setAttribute("id", questionTitleId);
-    // MANIPULATE THIS TO CHANGE THE CONTENTS OF A QUESTION
-    var questionQuestion = document.createElement("p");
-    questionQuestion.setAttribute("id","question__question");
+    questionOutput.setAttribute("id", questionOutputSectionId);
+    // // MANIPULATE THIS TO CHANGE THE TITLE OF A QUESTION
+    // var questionTitle = document.createElement("h2");
+    // questionTitle.setAttribute("id", "question__title");
+    // // MANIPULATE THIS TO CHANGE THE CONTENTS OF A QUESTION
+    // var questionQuestion = document.createElement("p");
+    // questionQuestion.setAttribute("id", questionQuestionId);
     // THIS SECTIONS CONTAINS A SUBMIT BUTTON AND A TEXTBOX OR MULTIPLE CHOICE BUTTONS DEPENDING ON THE QUESTION
     // MANIPULATE THIS TO DIFFERENTIATE BETWEEN DIFFERENT QUESTION TYPES
     // INSERT TEXTBOX OR MULTIPLECHOICE BUTTON INFRONT OF SUBMIT BUTTON
     var questionInput = document.createElement("section");
-    questionInput.setAttribute("id", "question__input");
+    questionInput.setAttribute("id", questionInputSectionId);
 
     var questionSubmit = document.createElement("submit");
     questionSubmit.classList.add("question__submit");
@@ -54,8 +56,8 @@ function createInitialElements() {
 
     questionInput.appendChild(questionSubmit);
 
-    questionOutput.appendChild(questionTitle);
-    questionOutput.appendChild(questionQuestion);
+    // questionOutput.appendChild(questionTitle);
+    // questionOutput.appendChild(questionQuestion);
 
     cardQuestion.appendChild(questionImage);
     cardQuestion.appendChild(questionOutput);
@@ -91,11 +93,29 @@ class Question {
         console.log(isCorrect);
         return isCorrect;
     };
-    show(titleId, imageId, questionId, sectionToShowIn) {
-        document.getElementById(questionTitleId).innerText = this.title; // dit moet wel op deze manier aangezien we de h2 node al gebouwd hebben
+    show(inputSectionId, outputSectionId) {
+        var outputSection = document.getElementById(outputSectionId);
+
+        // create HTML heading containing title
+        var title = document.createElement("h2");
+        title.setAttribute("id", "question" + this.id);
+        var titleText = document.createTextNode(this.title);
+        title.appendChild(titleText);
+
+        // create HTML paragraph containing question
+        var question = document.createElement("p");
+        var questionText = document.createTextNode(this.question);
+        question.appendChild(questionText);
+
+        // append them to desired HTML node
+        outputSection.appendChild(questionTitle);
+        outputSection.appendChild(questionQuestion);
+
+        // determine image source
         document.getElementById(questionImageId).setAttribute("src", this.image);
-        document.getElementById(questionId).innerHTML = this.question;
-        this.generateInputPossibility(sectionToShowIn);
+
+        // create input section (may differ per subclass, e.g. MultipleChoice)
+        this.generateInputPossibility(inputSectionId);
     };
     generateInputPossibility(sectionToGenerateIn) {
         createInputElement("text", "openQuestion","",sectionToGenerateIn);
@@ -237,6 +257,8 @@ const q5 = new Question(
 const questions = [q1, q2, q3, q4, q5];
 
 createInitialElements();
+
+q1.show(questionInputSectionId, questionOutputSectionId);
 
 /* Opening and closing the explanation section */
 var explanation = document.getElementById("explanation__background");
