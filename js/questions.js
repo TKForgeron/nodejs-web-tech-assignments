@@ -148,7 +148,10 @@ let q2 = new MultipleChoice(
     "Which is the correct JavaScript syntax to change the HTML content given below?",
     "Every time we create a new Dog instance, we set the speak property of that instance to be a function returning the string woof. Since this is being set every time we create a new Dog instance, the interpreter never has to look farther up the prototype chain to find a speak property. As a result, the speak method on Dog.prototype.speak never gets used.",
     "document.getElementById(“test”).innerHTML = “Hello DataFlair!”;",
-    ["document.getElementById(test).innerHTML = “Hello DataFlair!”;", "document.getElementsById(“test”).innerHTML = “Hello DataFlair!”;", "document.getElementByTagName(“p”)[0].innerHTML = “Hello DataFlair!”;"]
+    ["document.getElementById(test).innerHTML = “Hello DataFlair!”;",
+                 "document.getElementsById(“test”).innerHTML = “Hello DataFlair!”;",
+                 "document.getElementByTagName(“p”)[0].innerHTML = “Hello DataFlair!”;"
+                ]
 );
 
 let q3 = new Question(
