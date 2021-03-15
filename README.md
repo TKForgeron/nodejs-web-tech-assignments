@@ -25,3 +25,13 @@ Do not use external libraries and frameworks.
 - use indentation when writing your JavaScript code
 - use meaningful comments
 - terminate JavaScript statements with a ";"
+
+
+
+## To-Do:
+- Fixing header (moving UU logo up + place text, menu in center)
+- Back/forward (on assessment.html) is now event handler -> event listener
+- i-icon (on assessment.html) is now event handler -> event listener
+- Show questions on assessment.html (including image and explanation)
+- Cleaning and checking everything
+- Fixing styling of menu on index.html
