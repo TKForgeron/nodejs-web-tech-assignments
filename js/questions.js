@@ -112,50 +112,89 @@ function stringToHTML(str) {
     dom.innerHTML = str;
     return dom;
 }
+// The goal of this function is to create the initial html elements and put them in order
+// Afterwards questions can be appended and removed from those elements when pressing the "next question" or "submit" button
+// This would also greatly benefit from not being in a function, allowing variables to be accessed at will, but that would probably end up fucking up a whole lot of code
+// So if you feel like this is a fine way to approach the problem then by all means take it out of the function
+// All that needs to be added are eventhandlers for submit, back and next
+// They should manipulate some elements to change the question
+// Keep track of which question we're on by keeping an array of all question objects, and just increase or decrease the counter when pressing one of the buttons respectively
+function createInitialElements(){
+    var main = document.getElementsByTagName("main");
 
-let openQuestion = new Question(
-    1,
-    "Open Question",
-    "images/serverSide.svg",
-    "What is an open question?",
-    "Explanation",
-    "CORRECT",
-);
+    var container = document.createElement("div");
+    container.classList.add("container");
 
-let mpQuestion = new MultipleChoice(
-    1,
-    "Multiple Choice Question",
-    "images/clientSide.svg",
-    "Which is a multiple choice question?",
-    "Explanation",
-    "true",
-    ["", "false","0"]
-);
+    var controlsImageBack = document.createElement("img");
+    controlsImageBack.setAttribute("src","images/back.svg");
+    controlsImageBack.setAttribute("alt","Back button");
+    controlsImageBack.classList.add("controls__back");
 
-let q1 = new Question(
-    "q1",
+    var controlsImageNext = document.createElement("img");
+    controlsImageNext.setAttribute("src","images/next.svg");
+    controlsImageNext.setAttribute("alt","Next button");
+    controlsImageNext.classList.add("controls__back");
+
+    var cardQuestion = document.createElement("section");
+    cardQuestion.classList.add("card__question");
+
+    var questionOutput = document.createElement("section");
+    questionOutput.classList.add("question__output");
+    // MANIPULATE THIS TO CHANGE THE TITLE OF A QUESTION
+    var questionTitle = document.createElement("h2");
+    questionTitle.classList.add("question__title");
+    // MANIPULATE THIS TO CHANGE THE CONTENTS OF A QUESTION
+    var questionQuestion = document.createElement("p");
+    questionQuestion.classList.add("question__question");
+    // THIS SECTIONS CONTAINS A SUBMIT BUTTON AND A TEXTBOX OR MULTIPLE CHOICE BUTTONS DEPENDING ON THE QUESTION
+    // MANIPULATE THIS TO DIFFERENTIATE BETWEEN DIFFERENT QUESTION TYPES
+    // INSERT TEXTBOX OR MULTIPLECHOICE BUTTON INFRONT OF SUBMIT BUTTON
+    var questionInput = document.createElement("section");
+    questionInput.classList.add("question__input");
+
+    var questionSubmit = document.createElement("submit");
+    questionSubmit.classList.add("question__submit");
+    questionSubmit.appendChild(document.createTextNode("Submit"));
+
+    questionInput.appendChild(questionSubmit);
+
+    questionOutput.appendChild(questionTitle);
+    questionOutput.appendChild(questionQuestion);
+
+    cardQuestion.appendChild(questionOutput);
+    cardQuestion.appendChild(questionInput);
+
+    container.appendChild(controlsImageBack);
+    container.appendChild(cardQuestion);
+    container.appendChild(controlsImageNext);
+
+    main.appendChild(container);
+}
+
+const q1 = new Question(
+    0,
     "Prototypal Inheritance",
     "images/questions/q1.png",
     "In this question, we have a Dog constructor function. Our dog obviously knows the speak command. What gets logged in the following example when we ask Pogo to speak?",
-    "",
+    "Every time we create a new Dog instance, we set the speak property of that instance to be a function returning the string woof. Since this is being set every time we create a new Dog instance, the interpreter never has to look farther up the prototype chain to find a speak property. As a result, the speak method on Dog.prototype.speak never gets used.",
     "Woof"
 );
 
-let q2 = new MultipleChoice(
-    "q2",
+const q2 = new MultipleChoice(
+    1,
     "Changing HTML content",
-    "images/questions/'q2.jpg",
+    "images/questions/q2.jpg",
     "Which is the correct JavaScript syntax to change the HTML content given below?",
-    "Every time we create a new Dog instance, we set the speak property of that instance to be a function returning the string woof. Since this is being set every time we create a new Dog instance, the interpreter never has to look farther up the prototype chain to find a speak property. As a result, the speak method on Dog.prototype.speak never gets used.",
+    "This is the correct syntax to change the HTML context in the image. Please take a detailed look at it!",
     "document.getElementById(“test”).innerHTML = “Hello DataFlair!”;",
-    ["document.getElementById(test).innerHTML = “Hello DataFlair!”;",
-                 "document.getElementsById(“test”).innerHTML = “Hello DataFlair!”;",
-                 "document.getElementByTagName(“p”)[0].innerHTML = “Hello DataFlair!”;"
+    ["document.getElementById(test).innerHTML = “Hello DataFlair!”;"
+                ,"document.getElementsById(“test”).innerHTML = “Hello DataFlair!”;"
+                ,"document.getElementByTagName(“p”)[0].innerHTML = “Hello DataFlair!”;"
                 ]
 );
 
-let q3 = new Question(
-    "q3",
+const q3 = new Question(
+    2,
     "Indexing",
     "images/questions/q3.png",
     "Predict the output of the following JavaScript code.",
@@ -163,8 +202,8 @@ let q3 = new Question(
     "8"
 );
 
-let q4 = new MultipleChoice(
-    "q4",
+const q4 = new MultipleChoice(
+    3,
     "Event scheduling",
     "images/questions/q4.png",
     "In what order will the numbers 1-4 be logged to the console when the code below is executed?",
@@ -173,11 +212,23 @@ let q4 = new MultipleChoice(
     ["1, 2, 3, 4", "4, 3, 2, 1", "4, 2, 1, 3"]
 );
 
-let q5 = new Question(
-    "q5",
+const q5 = new Question(
+    4,
     "Functions",
     "images/questions/q5.png",
     "Consider the following code. What will be displayed on the console?",
-    "",
+    "First, 5 and 10 will be added up using the function add. Hereafter, the result of that addition will be divided by 2. Last up, the mean of the two numbers, the value that we just calculated, will be shown on the console by console.log().",
     "7.5"
 );
+
+const questions = [q1, q2, q3, q4, q5];
+
+/* Opening and closing the explanation section */
+var explanation = document.getElementById("explanation__background");
+var explanationButton = document.getElementById("explanation__image");
+explanationButton.onclick = function() {explanation.style.display = "block";}
+window.onclick = function(event) {
+    if (event.target == explanation) {
+        explanation.style.display = "none";
+    }
+}
