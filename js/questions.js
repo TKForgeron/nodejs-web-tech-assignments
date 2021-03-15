@@ -1,6 +1,10 @@
 var questionImageId = "question__image";
 var questionInputSectionId = "question__input";
 var questionOutputSectionId = "question__output";
+var questionSubmitId = "question__submit";
+var controlsNextId = "controls__next";
+var controlsBackId = "controls__back";
+var currentQuestionIndex = 0;
 // var questionQuestionId = "question__question";
 
 // The goal of this function is to create the initial html elements and put them in order
@@ -21,21 +25,23 @@ function createInitialElements() {
     var controlsImageBack = document.createElement("img");
     controlsImageBack.setAttribute("src","images/back.svg");
     controlsImageBack.setAttribute("alt","Back button");
-    controlsImageBack.setAttribute("id","controls__back");
+    controlsImageBack.setAttribute("id",controlsBackId);
     controlsImageBack.classList.add("controls");
 
     var controlsImageNext = document.createElement("img");
     controlsImageNext.setAttribute("src","images/next.svg");
     controlsImageNext.setAttribute("alt","Next button");
-    controlsImageNext.setAttribute("id","controls__next");
+    controlsImageNext.setAttribute("id",controlsNextId);
     controlsImageNext.classList.add("controls");
 
     var cardQuestion = document.createElement("section");
     cardQuestion.classList.add("card__question");
+
     var questionImage = document.createElement("img");
     questionImage.setAttribute("id", questionImageId);
     questionImage.setAttribute("alt","Image concerning the question is not correctly loaded");
     questionImage.classList.add("card__image");
+
     var questionOutput = document.createElement("section");
     questionOutput.setAttribute("id", questionOutputSectionId);
     // // MANIPULATE THIS TO CHANGE THE TITLE OF A QUESTION
@@ -50,11 +56,11 @@ function createInitialElements() {
     var questionInput = document.createElement("section");
     questionInput.setAttribute("id", questionInputSectionId);
 
-    var questionSubmit = document.createElement("submit");
-    questionSubmit.classList.add("question__submit");
+    var questionSubmit = document.createElement("button");    
+    questionSubmit.setAttribute("id", questionSubmitId);
     questionSubmit.appendChild(document.createTextNode("Submit"));
-
-    questionInput.appendChild(questionSubmit);
+    
+    
 
     // questionOutput.appendChild(questionTitle);
     // questionOutput.appendChild(questionQuestion);
@@ -62,7 +68,8 @@ function createInitialElements() {
     cardQuestion.appendChild(questionImage);
     cardQuestion.appendChild(questionOutput);
     cardQuestion.appendChild(questionInput);
-
+    cardQuestion.appendChild(questionSubmit);
+    
     container.appendChild(controlsImageBack);
     container.appendChild(cardQuestion);
     container.appendChild(controlsImageNext);
@@ -94,7 +101,7 @@ class Question {
         return isCorrect;
     };
     show(inputSectionId, outputSectionId) {
-        var outputSection = document.getElementById(outputSectionId);
+        var outputSection = document.getElementById(outputSectionId);        
 
         // create HTML heading containing title
         var title = document.createElement("h2");
@@ -108,8 +115,8 @@ class Question {
         question.appendChild(questionText);
 
         // append them to desired HTML node
-        outputSection.appendChild(questionTitle);
-        outputSection.appendChild(questionQuestion);
+        outputSection.appendChild(title);
+        outputSection.appendChild(question);
 
         // determine image source
         document.getElementById(questionImageId).setAttribute("src", this.image);
@@ -130,12 +137,6 @@ class MultipleChoice extends Question {
     getAllOptions(){
         this.options.push(this.answer);
         return this.options;
-    };
-    show(titleId, imageId, questionId, sectionToShowIn) {
-        document.getElementById(titleId).innerHTML = this.title;
-        document.getElementById(imageId).src = this.image;
-        document.getElementById(questionId).innerHTML = this.question;
-        this.generateInputPossibility(sectionToShowIn);
     };
     generateInputPossibility(sectionToGenerateIn){
         this.generateOptionRadios(sectionToGenerateIn);
@@ -177,6 +178,7 @@ function createInputElement(type, name, value, nodeIdToCreateIn) {
     inputHtml += ' '+ value +'';
 
     var radioObject = stringToHTML(inputHtml);
+
     document.getElementById(nodeIdToCreateIn).appendChild(radioObject);
 };
 // https://gomakethings.com/converting-a-string-into-markup-with-vanilla-js/
@@ -258,9 +260,44 @@ const questions = [q1, q2, q3, q4, q5];
 
 createInitialElements();
 
-q1.show(questionInputSectionId, questionOutputSectionId);
+questions[currentQuestionIndex].show(questionInputSectionId, questionOutputSectionId);
 
-/* Opening and closing the explanation section */
+document.getElementById(questionSubmitId).addEventListener("click", function(){
+    alert("placeholder");
+});
+
+//We first wipe out all input and output elements and then show the next or previous question.
+document.getElementById(controlsBackId).addEventListener("click", function(){
+    if(currentQuestionIndex > 0){
+        var outputSection = document.getElementById(questionOutputSectionId);
+        var inputSection = document.getElementById(questionInputSectionId);
+        while(outputSection.lastChild){
+            outputSection.removeChild(outputSection.lastChild)
+        }
+        while(inputSection.lastChild){
+            inputSection.removeChild(inputSection.lastChild);
+        }
+        currentQuestionIndex--;
+        questions[currentQuestionIndex].show(questionInputSectionId, questionOutputSectionId);
+    }
+});
+
+document.getElementById(controlsNextId).addEventListener("click", function(){
+    if(currentQuestionIndex < questions.length){
+        var outputSection = document.getElementById(questionOutputSectionId);
+        var inputSection = document.getElementById(questionInputSectionId);
+        while(outputSection.lastChild){
+            outputSection.removeChild(outputSection.lastChild)
+        }
+        while(inputSection.lastChild){
+            inputSection.removeChild(inputSection.lastChild);
+        }
+        currentQuestionIndex++;
+        questions[currentQuestionIndex].show(questionInputSectionId, questionOutputSectionId);
+    }
+});
+
+/* Opening and closing the explanation section 
 var explanation = document.getElementById("explanation__background");
 var explanationButton = document.getElementById("explanation__image");
 explanationButton.onclick = function() {explanation.style.display = "block";};
@@ -269,3 +306,4 @@ window.onclick = function(event) {
         explanation.style.display = "none";
     };
 };
+*/
