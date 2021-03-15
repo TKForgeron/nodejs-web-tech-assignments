@@ -254,7 +254,7 @@ h1{
 
 .codeCard__code--bigScreenFix{display: none;}
 
-.footerImage{max-height: 2em;}
+.footer__image{max-height: 2em;}
 
 .question{
     display: flex;
