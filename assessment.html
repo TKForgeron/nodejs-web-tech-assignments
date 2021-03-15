@@ -55,25 +55,28 @@
         /*
                 iterate door array wanneer op next/submit geklikt wordt (call bij elke iteratie de show() functie vh object)
                  */
-        var number = q4.id;
+        var number = q1.id;
+        questions[number].show("question__title","question__image","question__question","question__input");
         var next = document.getElementById("controls__next");
         var back = document.getElementById("controls__back");
         next.onclick = function() {
             if (number===4) {
                 number = 0;
-            } else{
+            } else {
                 number++;
-            }
+            };
+            console.log(number);
+            questions[number].show("question__title","question__image","question__question","question__input");
         };
         back.onclick = function() {
             if(number===0){
                 number = 4;
             }else {
                 number--;
-            }
+            };
+            console.log(number);
+            questions[number].show("question__title","question__image","question__question","question__input");
         };
-        console.log(number);
-        questions[number].show("question__title","question__image","question__question","question__input");
     </script>
 </main>
 <footer>

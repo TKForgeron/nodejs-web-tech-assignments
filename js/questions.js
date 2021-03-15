@@ -172,7 +172,7 @@ function createInitialElements(){
 }
 
 const q1 = new Question(
-    "0",
+    0,
     "Prototypal Inheritance",
     "images/questions/q1.png",
     "In this question, we have a Dog constructor function. Our dog obviously knows the speak command. What gets logged in the following example when we ask Pogo to speak?",
@@ -181,9 +181,9 @@ const q1 = new Question(
 );
 
 const q2 = new MultipleChoice(
-    "1",
+    1,
     "Changing HTML content",
-    "images/questions/'q2.jpg",
+    "images/questions/q2.jpg",
     "Which is the correct JavaScript syntax to change the HTML content given below?",
     "This is the correct syntax to change the HTML context in the image. Please take a detailed look at it!",
     "document.getElementById(“test”).innerHTML = “Hello DataFlair!”;",
@@ -191,7 +191,7 @@ const q2 = new MultipleChoice(
 );
 
 const q3 = new Question(
-    "2",
+    2,
     "Indexing",
     "images/questions/q3.png",
     "Predict the output of the following JavaScript code.",
@@ -200,7 +200,7 @@ const q3 = new Question(
 );
 
 const q4 = new MultipleChoice(
-    "3",
+    3,
     "Event scheduling",
     "images/questions/q4.png",
     "In what order will the numbers 1-4 be logged to the console when the code below is executed?",
@@ -210,7 +210,7 @@ const q4 = new MultipleChoice(
 );
 
 const q5 = new Question(
-    "4",
+    4,
     "Functions",
     "images/questions/q5.png",
     "Consider the following code. What will be displayed on the console?",
