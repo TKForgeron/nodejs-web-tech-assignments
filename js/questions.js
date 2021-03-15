@@ -1,117 +1,6 @@
-class Question {
-    constructor(id, title, image, question, explanation, answer){
-        this.id = id;
-        this.title = title;
-        this.image = image;
-        this.question = question;
-        this.answer = answer;
-        this.explanation = explanation;
-        this.userAnswer = "";
-    }
-    checkAnswer() {
-        /*
-        maak voor elke input een id aan
-        use iteration through getElementById to check which one is checked
-        set this.userAnswer to that one
-         */
-        // var input = document.getElementById("answerField").value;
-        var input = this.userAnswer;
-        var isCorrect = input.toLowerCase() == this.answer.toLowerCase();
-        console.log(isCorrect);
-        return isCorrect;
-    }
-    show(titleId, imageId, questionId, sectionToShowIn) {
-        document.getElementById(titleId).innerHTML = this.title;
-        document.getElementById(imageId).src = this.image;
-        document.getElementById(questionId).innerHTML = this.question;
-        this.generateInputPossibility(sectionToShowIn);
-    }
-    generateInputPossibility(sectionToGenerateIn) {
-        createInputElement("text", "openQuestion","",sectionToGenerateIn);
-    }
-}
+var questionTitleId = "question__title";
+var questionImageId = "question__image";
 
-class MultipleChoice extends Question {
-    constructor(id, title, image, question, explanation, answer, otherOptions) {
-        super(id, title, image, question, explanation, answer);
-        this.options = otherOptions;
-    }
-    getAllOptions(){
-        this.options.push(this.answer);
-        return this.options;
-    }
-    show(titleId, imageId, questionId, sectionToShowIn) {
-        document.getElementById(titleId).innerHTML = this.title;
-        document.getElementById(imageId).src = this.image;
-        document.getElementById(questionId).innerHTML = this.question;
-        this.generateInputPossibility(sectionToShowIn);
-    }
-    generateInputPossibility(sectionToGenerateIn){
-        this.generateOptionRadios(sectionToGenerateIn);
-    }
-    generateOptionRadios(sectionToGenerateIn){
-        var options = this.getAllOptions();
-        shuffle(options).forEach(helper);
-        function helper(option) {
-            createInputElement("radio", "multipleChoice",option, sectionToGenerateIn);
-        }
-    }
-}
-// https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
-function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-
-    while (0 !== currentIndex) {    // While there remain elements to shuffle
-        // Pick a remaining element
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        // And swap it with the current element
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-}
-// https://stackoverflow.com/questions/118693/how-do-you-dynamically-create-a-radio-button-in-javascript-that-works-in-all-bro
-function createInputElement(type, name, value, nodeIdToCreateIn) {
-    type = type.toLowerCase();
-    var inputHtml = '<input type="' + type + '" name="' + name + '"';
-
-    if (type == "radio") {
-        inputHtml += ' value="' + value + '"';
-    }
-
-    inputHtml += '/>';
-    inputHtml += ' '+ value +'';
-
-    var radioObject = stringToHTML(inputHtml);
-    document.getElementById(nodeIdToCreateIn).appendChild(radioObject);
-}
-// https://gomakethings.com/converting-a-string-into-markup-with-vanilla-js/
-function stringToHTML(str) {
-    var support = (function () {
-        if (!window.DOMParser) return false;
-        var parser = new DOMParser();
-        try {
-            parser.parseFromString('x', 'text/html');
-        } catch(err) {
-            return false;
-        }
-        return true;
-    })();
-
-    // If DOMParser is supported, use it
-    if (support) {
-        var parser = new DOMParser();
-        var doc = parser.parseFromString(str, 'text/html');
-        return doc.body;
-    }
-    // Otherwise, fallback to old-school method
-    var dom = document.createElement('div');
-    dom.innerHTML = str;
-    return dom;
-}
 // The goal of this function is to create the initial html elements and put them in order
 // Afterwards questions can be appended and removed from those elements when pressing the "next question" or "submit" button
 // This would also greatly benefit from not being in a function, allowing variables to be accessed at will, but that would probably end up messing up a whole lot of code
@@ -121,6 +10,9 @@ function stringToHTML(str) {
 // Keep track of which question we're on by keeping an array of all question objects, and just increase or decrease the counter when pressing one of the buttons respectively
 function createInitialElements() {
     var main = document.getElementsByTagName("main")[0];
+
+    var comment = document.createComment("This div could not be an article/section because it logically would never contain a <h1>..<h6>, which would cause errors in the W3C validator");
+
     var container = document.createElement("div");
     container.classList.add("container");
 
@@ -138,15 +30,18 @@ function createInitialElements() {
 
     var cardQuestion = document.createElement("section");
     cardQuestion.classList.add("card__question");
-
+    var questionImage = document.createElement("img");
+    questionImage.setAttribute("id", questionImageId);
+    questionImage.setAttribute("alt","Image concerning the question is not correctly loaded");
+    questionImage.classList.add("card__image");
     var questionOutput = document.createElement("section");
     questionOutput.setAttribute("id","question__output");
     // MANIPULATE THIS TO CHANGE THE TITLE OF A QUESTION
     var questionTitle = document.createElement("h2");
-    questionTitle.classList.add("question__title");
+    questionTitle.setAttribute("id", questionTitleId);
     // MANIPULATE THIS TO CHANGE THE CONTENTS OF A QUESTION
     var questionQuestion = document.createElement("p");
-    questionQuestion.classList.add("question__question");
+    questionQuestion.setAttribute("id","question__question");
     // THIS SECTIONS CONTAINS A SUBMIT BUTTON AND A TEXTBOX OR MULTIPLE CHOICE BUTTONS DEPENDING ON THE QUESTION
     // MANIPULATE THIS TO DIFFERENTIATE BETWEEN DIFFERENT QUESTION TYPES
     // INSERT TEXTBOX OR MULTIPLECHOICE BUTTON INFRONT OF SUBMIT BUTTON
@@ -162,6 +57,7 @@ function createInitialElements() {
     questionOutput.appendChild(questionTitle);
     questionOutput.appendChild(questionQuestion);
 
+    cardQuestion.appendChild(questionImage);
     cardQuestion.appendChild(questionOutput);
     cardQuestion.appendChild(questionInput);
 
@@ -169,8 +65,124 @@ function createInitialElements() {
     container.appendChild(cardQuestion);
     container.appendChild(controlsImageNext);
 
+    main.appendChild(comment);
     main.appendChild(container);
-}
+};
+
+class Question {
+    constructor(id, title, image, question, explanation, answer){
+        this.id = id;
+        this.title = title;
+        this.image = image;
+        this.question = question;
+        this.answer = answer;
+        this.explanation = explanation;
+        this.userAnswer = "";
+    };
+    checkAnswer() {
+        /*
+        maak voor elke input een id aan
+        use iteration through getElementById to check which one is checked
+        set this.userAnswer to that one
+         */
+        // var input = document.getElementById("answerField").value;
+        var input = this.userAnswer;
+        var isCorrect = input.toLowerCase() == this.answer.toLowerCase();
+        console.log(isCorrect);
+        return isCorrect;
+    };
+    show(titleId, imageId, questionId, sectionToShowIn) {
+        document.getElementById(questionTitleId).innerText = this.title; // dit moet wel op deze manier aangezien we de h2 node al gebouwd hebben
+        document.getElementById(questionImageId).setAttribute("src", this.image);
+        document.getElementById(questionId).innerHTML = this.question;
+        this.generateInputPossibility(sectionToShowIn);
+    };
+    generateInputPossibility(sectionToGenerateIn) {
+        createInputElement("text", "openQuestion","",sectionToGenerateIn);
+    };
+};
+
+class MultipleChoice extends Question {
+    constructor(id, title, image, question, explanation, answer, otherOptions) {
+        super(id, title, image, question, explanation, answer);
+        this.options = otherOptions;
+    };
+    getAllOptions(){
+        this.options.push(this.answer);
+        return this.options;
+    };
+    show(titleId, imageId, questionId, sectionToShowIn) {
+        document.getElementById(titleId).innerHTML = this.title;
+        document.getElementById(imageId).src = this.image;
+        document.getElementById(questionId).innerHTML = this.question;
+        this.generateInputPossibility(sectionToShowIn);
+    };
+    generateInputPossibility(sectionToGenerateIn){
+        this.generateOptionRadios(sectionToGenerateIn);
+    };
+    generateOptionRadios(sectionToGenerateIn){
+        var options = this.getAllOptions();
+        shuffle(options).forEach(helper);
+        function helper(option) {
+            createInputElement("radio", "multipleChoice",option, sectionToGenerateIn);
+        };
+    };
+};
+// https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    while (0 !== currentIndex) {    // While there remain elements to shuffle
+        // Pick a remaining element
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        // And swap it with the current element
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    };
+
+    return array;
+};
+// https://stackoverflow.com/questions/118693/how-do-you-dynamically-create-a-radio-button-in-javascript-that-works-in-all-bro
+function createInputElement(type, name, value, nodeIdToCreateIn) {
+    type = type.toLowerCase();
+    var inputHtml = '<input type="' + type + '" name="' + name + '"';
+
+    if (type == "radio") {
+        inputHtml += ' value="' + value + '"';
+    };
+
+    inputHtml += '/>';
+    inputHtml += ' '+ value +'';
+
+    var radioObject = stringToHTML(inputHtml);
+    document.getElementById(nodeIdToCreateIn).appendChild(radioObject);
+};
+// https://gomakethings.com/converting-a-string-into-markup-with-vanilla-js/
+function stringToHTML(str) {
+    var support = (() => {
+        if (!window.DOMParser) return false;
+        var parser = new DOMParser();
+        try {
+            parser.parseFromString('x', 'text/html');
+        } catch(err) {
+            return false;
+        }
+        return true;
+    })();
+
+    // If DOMParser is supported, use it
+    if (support) {
+        var parser = new DOMParser();
+        var doc = parser.parseFromString(str, 'text/html');
+        return doc.body;
+    };
+    // Otherwise, fallback to old-school method
+    var dom = document.createElement('div');
+    dom.innerHTML = str;
+    return dom;
+};
 
 const q1 = new Question(
     0,
