@@ -27,61 +27,13 @@
     </ul>
 </nav>
 <main>
-    <!--This div could not be an article/section because it logically would never contain a <h1>..<h6>, which would cause errors in the W3C validator-->
-    <div class="container">
-        <img id="controls__back" class="controls" src="images/back.svg" alt="Back">
-        <section class="card question">
-            <img class="card__image" id="question__image" src="images/questionMark.svg" alt="Image Concerning Question">
-            <section id="question__output">
-                <h2 id="question__title">QuestionTitle_PlaceHolder</h2>
-                <p id="question__question">Your question does not seem to be loaded correctly.</p>
-            </section>
-            <section id="question__input">
-                <button type="submit" onclick="questions[3].checkAnswer()">Submit</button>
-            </section>
-            <img id="explanation__image" src="images/explanationButton.svg" alt="Explanation">
-        </section>
-        <img id="controls__next" class="controls" src="images/next.svg" alt="Next">
-    </div>
-    <!--This div could not be an article/section because it logically would never contain a <h1>..<h6>, which would cause errors in the W3C validator-->
-    <div id="explanation__background">
-        <section id="explanation__content">
-            <h2>Explanation:</h2>
-            <p id="question__explanation">Correct answer explanation belonging to this question.</p>
-        </section>
-    </div>
-    <script src="js/questions.js"></script>
-    <script>
-        /*
-                iterate door array wanneer op next/submit geklikt wordt (call bij elke iteratie de show() functie vh object)
-                 */
-        var number = q1.id;
-        questions[number].show("question__title","question__image","question__question","question__input");
-        var next = document.getElementById("controls__next");
-        var back = document.getElementById("controls__back");
-        next.onclick = function() {
-            if (number===4) {
-                number = 0;
-            } else {
-                number++;
-            }
-            console.log(number);
-            questions[number].show("question__title","question__image","question__question","question__input");
-        };
-        back.onclick = function() {
-            if(number===0){
-                number = 4;
-            }else {
-                number--;
-            }
-            console.log(number);
-            questions[number].show("question__title","question__image","question__question","question__input");
-        };
-    </script>
 </main>
 <footer>
     <p>Made by Douwe, Tim and Maarten.</p>
     <img class="footer__image" src="images/uulogotext.png" alt="UU Logo with Text reading Universiteit Utrecht">
 </footer>
+<script src="js/questions.js">
+    // document.getElementsByTagName("main").addEventListener("load", createInitialElements);
+</script>
 </body>
 </html>
