@@ -29,13 +29,14 @@
     --themeColor--darkGray: #4b4737;
 }
 
-html,body
-{
+html,body {
     width: 100%;
     margin: 0px auto;
     padding: 0px;
     overflow-x: hidden;
 }
+
+header a:hover{text-decoration: none;}
 
 body{font-family: 'Trebuchet MS', sans-serif;}
 
