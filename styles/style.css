@@ -267,7 +267,7 @@ h1{
 
 #question__input, #question__output{padding: 1rem;}
 
-#question__submit{margin: 1rem;}
+#question__submitBtn{margin: 1rem;}
 
 @media (min-width: 490px) {
     .codeCard__code--smallScreenFix{display: none;}

@@ -1,7 +1,7 @@
 var questionImageId = "question__image";
 var questionInputSectionId = "question__input";
 var questionOutputSectionId = "question__output";
-var questionSubmitId = "question__submit";
+var questionSubmitId = "question__submitBtn";
 var controlsNextId = "controls__next";
 var controlsBackId = "controls__back";
 var currentQuestionIndex = 0;
@@ -72,6 +72,8 @@ function createInitialElements() {
 class Question {
     constructor(id, title, image, question, explanation, answer){
         this.id = id;
+        this.type = "open";
+        this.formName = this.type + this.id;
         this.title = title;
         this.image = image;
         this.question = question;
@@ -79,17 +81,35 @@ class Question {
         this.explanation = explanation;
         this.userAnswer = "";
     };
-    checkAnswer() {
-        /*
-        maak voor elke input een id aan
-        use iteration through getElementById to check which one is checked
-        set this.userAnswer to that one
-         */
-        // var input = document.getElementById("answerField").value;
-        var input = this.userAnswer;
-        var isCorrect = input.toLowerCase() == this.answer.toLowerCase();
-        console.log(isCorrect);
-        return isCorrect;
+    answerFeedback() {
+        // get user's answer & set this.userAnswer
+        this.userAnswer = document.forms[this.formName][this.type].value;
+
+        var notAnsweredYet = "Please give your answer here";
+        // check it against this.answer
+        if (this.answeredCorrectly()) {
+            document.forms[this.formName][this.type].value += " &#10003;"; // put check mark behind user's input
+        } else if (!this.userAnswer) {
+            document.forms[this.formName][this.type].value = notAnsweredYet; // set text box value to "Please give your answer here"
+        } else if (this.userAnswer == notAnsweredYet) {
+            alert("Please give an answer.");
+        }else {
+            document.forms[this.formName][this.type].value += " &#10007;"; // put cross mark behind user's input
+        }
+
+
+        function displayRadioValue() {
+            var ele = document.getElementsByName('gender');
+
+            for(i = 0; i < ele.length; i++) {
+                if(ele[i].checked)
+                    document.getElementById("result").innerHTML
+                        = "Gender: "+ele[i].value;
+            }
+        }
+    }
+    answeredCorrectly() {
+        return this.userAnswer.toLowerCase() == this.answer.toLowerCase();
     };
     show(inputSectionId, outputSectionId) {
         // determine image source
@@ -100,7 +120,7 @@ class Question {
         // create HTML heading containing title
         var title = document.createElement("h2");
         title.setAttribute("id", "question" + this.id);
-        var titleText = document.createTextNode(`${this.id + 1}. ${this.title}`);
+        var titleText = document.createTextNode(`${this.id}. ${this.title}`);
         title.appendChild(titleText);
 
         // create HTML paragraph containing question
@@ -120,13 +140,14 @@ class Question {
     };
     generateForm() { // loose coupling
         var form = document.createElement("form");
-        var inputField = createInputElement("text", "openQuestion","");
+        form.setAttribute("name", this.formName);
+        var inputTextBox = createInputElement("text", this.type,"");
 
         var questionSubmit = document.createElement("button");
         questionSubmit.setAttribute("id", questionSubmitId);
         questionSubmit.appendChild(document.createTextNode("Submit"));
 
-        form.appendChild(inputField);
+        form.appendChild(inputTextBox);
         form.appendChild(questionSubmit);
         return form;
     };
@@ -135,6 +156,7 @@ class Question {
 class MultipleChoice extends Question {
     constructor(id, title, image, question, explanation, answer, otherOptions) {
         super(id, title, image, question, explanation, answer);
+        this.type = "closed";
         this.options = otherOptions;
     };
     getAllOptions(){
@@ -223,7 +245,7 @@ function stringToHTML(str) {
 };
 
 const q1 = new Question(
-    0,
+    1,
     "Prototypal Inheritance",
     "images/questions/q1.png",
     "In this question, we have a Dog constructor function. Our dog obviously knows the speak command. What gets logged in this example when we ask Pogo to speak?",
@@ -232,7 +254,7 @@ const q1 = new Question(
 );
 
 const q2 = new MultipleChoice(
-    1,
+    2,
     "Changing HTML content",
     "images/questions/q2.jpg",
     "Which is the correct JavaScript syntax to change the HTML content given below?",
@@ -245,7 +267,7 @@ const q2 = new MultipleChoice(
 );
 
 const q3 = new Question(
-    2,
+    3,
     "Indexing",
     "images/questions/q3.png",
     "Predict the output of this JavaScript code.",
@@ -254,7 +276,7 @@ const q3 = new Question(
 );
 
 const q4 = new MultipleChoice(
-    3,
+    4,
     "Event scheduling",
     "images/questions/q4.png",
     "In what order will the numbers 1-4 be logged to the console when this code is executed?",
@@ -264,7 +286,7 @@ const q4 = new MultipleChoice(
 );
 
 const q5 = new Question(
-    4,
+    5,
     "Functions",
     "images/questions/q5.png",
     "Consider this code. What will be displayed on the console?",
@@ -284,6 +306,7 @@ questions[currentQuestionIndex].show(questionInputSectionId, questionOutputSecti
 document.getElementById(questionSubmitId).addEventListener("click", () => {
     alert("placeholder");
 });
+// document.getElementById(questionSubmitId).addEventListener("click", questions.[currentQuestionIndex].answerFeedback());
 
 // We first wipe out all input and output elements and then show the next or previous question.
 document.getElementById(controlsBackId).addEventListener("click", () => {
