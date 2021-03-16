@@ -1,6 +1,7 @@
 var questionImageId = "question__image";
-var questionInputSectionId = "question__input";
+var questionCodeBlockSectionId = "question__codeBlock";
 var questionOutputSectionId = "question__output";
+var questionInputSectionId = "question__input";
 var questionSubmitId = "question__submitBtn";
 var controlsNextId = "controls__next";
 var controlsBackId = "controls__back";
@@ -43,20 +44,16 @@ function createInitialElements() {
     questionImage.setAttribute("alt","Image concerning the question is not correctly loaded");
     questionImage.classList.add("card__image");
 
+    var questionCodeBlock = document.createElement("section");
+    questionCodeBlock.setAttribute("id", questionCodeBlockSectionId);
+
     var questionOutput = document.createElement("section");
     questionOutput.setAttribute("id", questionOutputSectionId);
-    // // MANIPULATE THIS TO CHANGE THE TITLE OF A QUESTION
-    // var questionTitle = document.createElement("h2");
-    // questionTitle.setAttribute("id", "question__title");
-    // // MANIPULATE THIS TO CHANGE THE CONTENTS OF A QUESTION
-    // var questionQuestion = document.createElement("p");
-    // questionQuestion.setAttribute("id", questionQuestionId);
-    // THIS SECTIONS CONTAINS A SUBMIT BUTTON AND A TEXTBOX OR MULTIPLE CHOICE BUTTONS DEPENDING ON THE QUESTION
-    // MANIPULATE THIS TO DIFFERENTIATE BETWEEN DIFFERENT QUESTION TYPES
-    // INSERT TEXTBOX OR MULTIPLECHOICE BUTTON INFRONT OF SUBMIT BUTTON
+
     var questionInput = document.createElement("section");
     questionInput.setAttribute("id", questionInputSectionId);
-    
+
+    cardQuestion.appendChild(questionCodeBlock);
     cardQuestion.appendChild(questionImage);
     cardQuestion.appendChild(questionOutput);
     cardQuestion.appendChild(questionInput);
@@ -70,11 +67,12 @@ function createInitialElements() {
 };
 
 class Question {
-    constructor(id, title, image, question, explanation, answer){
+    constructor(id, title, code, image, question, explanation, answer){
         this.id = id;
         this.type = "open";
         this.formName = this.type + this.id;
         this.title = title;
+        this.code = code;
         this.image = image;
         this.question = question;
         this.answer = answer;
@@ -124,9 +122,14 @@ class Question {
         this.userAnswer = document.forms[this.formName][this.type].value;
         return this.userAnswer.toLowerCase() == this.answer.toLowerCase();
     };
-    show(inputSectionId, outputSectionId) {
+    show(codeSectionId, inputSectionId, outputSectionId) {
         // determine image source
         document.getElementById(questionImageId).setAttribute("src", this.image);
+        document.getElementById(questionImageId).setAttribute("style", "display:none");
+
+        // create javascript code block using library (www.prismjs.com)
+        var codeSection = document.getElementById(codeSectionId);
+        codeSection.appendChild(this.generateCodeBlock());
 
         var outputSection = document.getElementById(outputSectionId);
 
@@ -168,7 +171,25 @@ class Question {
 
         form.appendChild(inputTextBox);
         form.appendChild(questionSubmit);
+
         return form;
+    };
+    generateCodeBlock() {
+        // wrapper
+        var pre = document.createElement("pre");
+
+        // node containing code and library
+        var code = document.createElement("code");
+        code.classList.add("language-javascript");
+
+        // the plain code
+        var codeText = document.createTextNode(this.code);
+
+        // appending it all
+        code.appendChild(codeText);
+        pre.appendChild(code);
+
+        return pre;
     };
 };
 
@@ -248,6 +269,20 @@ function shuffle(array) {
 const q1 = new Question(
     1,
     "Prototypal Inheritance",
+    "function Dog(name) {\n" +
+    "  this.name = name;\n" +
+    "  this.speak = function() {\n" +
+    "    return 'woof';\n" +
+    "  };\n" +
+    "}\n" +
+    "\n" +
+    "const dog = new Dog('Pogo');\n" +
+    "\n" +
+    "Dog.prototype.speak = " +
+    "\n" +
+    "   () => return 'arf';\n" +
+    "\n" +
+    "console.log(dog.speak());",
     "images/questions/q1.png",
     "In this question, we have a Dog constructor function. Our dog obviously knows the speak command. What gets logged in this example when we ask Pogo to speak?",
     "Every time we create a new Dog instance, we set the speak property of that instance to be a function returning the string woof. Since this is being set every time we create a new Dog instance, the interpreter never has to look farther up the prototype chain to find a speak property. As a result, the speak method on Dog.prototype.speak never gets used.",
@@ -270,6 +305,7 @@ const q2 = new MultipleChoice(
 const q3 = new Question(
     3,
     "Indexing",
+    "code...",
     "images/questions/q3.png",
     "Predict the output of this JavaScript code.",
     "The index starts with 0 in JavaScript. Here, x searches for the last occurrence of “G” in the text.",
@@ -289,6 +325,7 @@ const q4 = new MultipleChoice(
 const q5 = new Question(
     5,
     "Functions",
+    "code...",
     "images/questions/q5.png",
     "Consider this code. What will be displayed on the console?",
     "First, 5 and 10 will be added up using the function add. Hereafter, the result of that addition will be divided by 2. Last up, the mean of the two numbers, the value that we just calculated, will be shown on the console by console.log().",
@@ -302,7 +339,7 @@ createInitialElements();
 // console.log(mainBlock);
 // document.getElementsByTagName("main")[0].addEventListener("load", createInitialElements);
 
-questions[currentQuestionIndex].show(questionInputSectionId, questionOutputSectionId);
+questions[currentQuestionIndex].show(questionCodeBlockSectionId, questionInputSectionId, questionOutputSectionId);
 
 
 // document.getElementById(questionSubmitId).addEventListener("click", questions.[currentQuestionIndex].answerFeedback());
@@ -312,6 +349,10 @@ document.getElementById(controlsBackId).addEventListener("click", () => {
     if(currentQuestionIndex > 0){
         var outputSection = document.getElementById(questionOutputSectionId);
         var inputSection = document.getElementById(questionInputSectionId);
+        var codeSection = document.getElementById(questionCodeBlockSectionId);
+        while(codeSection.lastChild){
+            codeSection.removeChild(codeSection.lastChild)
+        }
         while(outputSection.lastChild){
             outputSection.removeChild(outputSection.lastChild)
         }
@@ -319,7 +360,7 @@ document.getElementById(controlsBackId).addEventListener("click", () => {
             inputSection.removeChild(inputSection.lastChild);
         }
         currentQuestionIndex--;
-        questions[currentQuestionIndex].show(questionInputSectionId, questionOutputSectionId);
+        questions[currentQuestionIndex].show(questionCodeBlockSectionId, questionInputSectionId, questionOutputSectionId);
     }
 });
 
@@ -327,6 +368,10 @@ document.getElementById(controlsNextId).addEventListener("click", () => {
     if(currentQuestionIndex < questions.length-1){
         var outputSection = document.getElementById(questionOutputSectionId);
         var inputSection = document.getElementById(questionInputSectionId);
+        var codeSection = document.getElementById(questionCodeBlockSectionId);
+        while(codeSection.lastChild){
+            codeSection.removeChild(codeSection.lastChild)
+        }
         while(outputSection.lastChild){
             outputSection.removeChild(outputSection.lastChild)
         }
@@ -334,7 +379,7 @@ document.getElementById(controlsNextId).addEventListener("click", () => {
             inputSection.removeChild(inputSection.lastChild);
         }
         currentQuestionIndex++;
-        questions[currentQuestionIndex].show(questionInputSectionId, questionOutputSectionId);
+        questions[currentQuestionIndex].show(questionCodeBlockSectionId, questionInputSectionId, questionOutputSectionId);
     }
 });
 
