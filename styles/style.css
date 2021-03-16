@@ -111,6 +111,16 @@ h1{
 
 .header__img--right{float: right;}
 
+.header__menu{
+    -moz-appearance: none;
+    background: url(../images/dropdownTriangle.png) right / 1.5em no-repeat #fff;
+    padding: 0.5em 1em;
+    margin: 0 0.25em;
+    /*border-radius: 0.75em;*/
+    border: 2px solid var(--themeColor--l1);
+    cursor: pointer;
+}
+
 /* Our navigation bar is column style by default, and switches to row styles on larger screens via a media query. */
 .nav{background-color: var(--themeColor);}
 
@@ -180,7 +190,7 @@ h1{
 /* Flexblocks are elements which in this case hold images and text. They are there to highlight important information, giving it some extra "pop" via the shading and scaling effect. */
 .container{
     margin: auto;
-    max-width: 1200px;
+    max-width: 1280px;
     display: flex;
     flex-direction: column;
 }
@@ -267,71 +277,6 @@ h1{
 
 #question__input, #question__output{padding: 1rem;}
 
-#question__submitBtn{margin: 1rem;}
-
-@media (min-width: 490px) {
-    .codeCard__code--smallScreenFix{display: none;}
-
-    .codeCard__code--bigScreenFix{display: inline;}
-}
-
-@media(min-width:601px){
-    .header{
-        text-align: center;
-        min-height: 7em;
-        margin: 1em;
-        padding: 1em;
-    }
-
-    .header__img{
-        display: inline;
-        max-height: 7.5em;
-        max-width: 7.5em;
-    }
-}
-
-@media(min-width:840px){
-    .nav__bar{flex-direction: row;}
-    .nav__item{flex-grow: 1;}
-    .nav__item--spacer{flex-grow: 10;}
-    .nav__item--right{justify-content: flex-end;}
-    .container{
-        margin: auto;
-        max-width: 1200px;
-        flex-direction: row;
-    }
-    .card{
-        margin: 2em;
-        max-width: 100%;
-    }
-    .card--left{
-        box-shadow: -1em 1em 2em -1em rgba(0, 0, 0, 0.1);
-        margin-right: 0;
-    }
-    .card--center{
-        background-color: var(--themeColor--l5);
-        margin: 1em 0;
-    }
-    .card--right{
-        box-shadow: 1em 1em 2em -1em rgba(0, 0, 0, 0.1);
-        margin-left: 0;
-    }
-    .question{flex-direction:row;}
-    #question__output{flex-grow:2;}
-    #question__input{flex-grow:1;}
-    .card__image{height:10em;}
-    .question .card__image{
-        /*height: 1.5rem;*/
-        margin: auto 0;
-    }
-    .codeResultCard{margin-left: 1em}
-    .codeCard{margin-right: 1em}
-}
-
-@media (min-width: 1100px) {
-    .card__image{height:16em;}
-}
-
 #explanation__image{
     position: relative;
     width: 2em;
@@ -364,34 +309,97 @@ h1{
 }
 
 button{
-    padding: 1em 1em;
-    text-align: center;
-    border-radius: 0.75em;
-    background-color: var(--themeColor);
-    color: white;
+    padding: 0.5em 1em;
+    /*border-radius: 0.75em;*/
+    color: black;
     border: 2px solid var(--themeColor--l1);
     font-weight: bold;
+    background-color: white;
     margin: 0.2em;
 }
 
 button:hover {
-    background-color: white;
-    color: var(--themeColor);
+    background-color: var(--themeColor--l1);
     cursor: pointer;
 }
 
-.header__menu{
-    -moz-appearance: none;
-    background: url(../images/dropdownTriangle.png) right / 1.5em no-repeat #fff;
-    padding: 1em 1.5em 1em 1em;
-    margin: 0.2em;
-    border-radius: 0.75em;
-    border: 2px solid var(--themeColor--l1);
-    cursor: pointer;
-}
+#question__submitBtn{margin: 1rem 0}
 
 input[type=text] {
     border: 2px solid var(--themeColor--l1);
     padding: 0.5em;
-    border-radius: 0.75em;
+    min-width: 50vw;
+    max-width: 28rem;
+    transition: width 0.25s;
+    text-align: right;
+}
+
+input[type=radio]{margin: 0.5rem 0.5rem 0 0}
+
+@media (min-width: 490px) {
+    .codeCard__code--smallScreenFix{display: none;}
+
+    .codeCard__code--bigScreenFix{display: inline;}
+}
+
+@media(min-width:601px){
+    .header{
+        text-align: center;
+        min-height: 7em;
+        margin: 1em;
+        padding: 1em;
+    }
+
+    .header__img{
+        display: inline;
+        max-height: 7.5em;
+        max-width: 7.5em;
+    }
+}
+
+@media(min-width:840px){
+    .nav__bar{flex-direction: row;}
+    .nav__item{flex-grow: 1;}
+    .nav__item--spacer{flex-grow: 10;}
+    .nav__item--right{justify-content: flex-end;}
+    .container{
+        flex-direction: row;
+    }
+    .card{
+        margin: 2em;
+        max-width: 100%;
+    }
+    .card--left{
+        box-shadow: -1em 1em 2em -1em rgba(0, 0, 0, 0.1);
+        margin-right: 0;
+    }
+    .card--center{
+        background-color: var(--themeColor--l5);
+        margin: 1em 0;
+    }
+    .card--right{
+        box-shadow: 1em 1em 2em -1em rgba(0, 0, 0, 0.1);
+        margin-left: 0;
+    }
+    .question{flex-direction:row;}
+    #question__output{flex-grow:2;}
+    #question__input{flex-grow:1;}
+    .card__image{height:10em;}
+    .question .card__image{
+        /*height: 1.5rem;*/
+        margin: auto 0;
+    }
+    .codeResultCard{margin-left: 1em}
+    .codeCard{margin-right: 1em}
+    #question__input, #question__output{max-width: 32rem}
+    input[type=text]{
+        min-width: 8rem;
+        max-width: 200px;
+        margin-right: 0.5rem;
+        text-align: left;
+    }
+}
+
+@media (min-width: 1100px) {
+    .card__image{height:16em;}
 }

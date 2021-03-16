@@ -82,9 +82,6 @@ class Question {
         this.userAnswer = "";
     };
     answerFeedback() {
-        // get user's answer & set this.userAnswer
-        
-
         var notAnsweredYet = "Please give your answer here";
         // check it against this.answer
         if (this.answeredCorrectly()) {
@@ -101,7 +98,7 @@ class Question {
         
     }
     answeredCorrectly() {
-        // get user answer from box
+        // get user's answer & set this.userAnswer
         this.userAnswer = document.forms[this.formName][this.type].value;
         return this.userAnswer.toLowerCase() == this.answer.toLowerCase();
     };
@@ -138,9 +135,11 @@ class Question {
         form.addEventListener("submit", function(e){
             e.preventDefault();
         });
+
         var inputTextBox = document.createElement("input");
         inputTextBox.setAttribute("name", this.type);
         inputTextBox.setAttribute("type", "text");
+        inputTextBox.setAttribute("value", this.userAnswer); // to 'remember' user's answer upon coming back from another question
 
         var questionSubmit = document.createElement("button");
         questionSubmit.setAttribute("id", questionSubmitId);
@@ -168,17 +167,16 @@ class MultipleChoice extends Question {
         return this.generateOptionRadios();
     };
     answeredCorrectly() {
-        // get user answer from box
-        var ele = document.getElementsByName("radioName");
+        // get radio button options
+        var ele = document.getElementsByName(this.formName)[0].elements;
 
+        // get checked radio btn and set this.userAnswer to that value
         for(let i = 0; i < ele.length; i++) {
             if(ele[i].checked){
                 this.userAnswer = ele[i].value;
             }
         }
-        //this.userAnswer = document.forms[this.formName][this.type].value;
         return this.userAnswer.toLowerCase() == this.answer.toLowerCase();
-        
     };
     generateOptionRadios(){
         var form = document.createElement("form");
@@ -186,21 +184,22 @@ class MultipleChoice extends Question {
         form.addEventListener("submit", function(e){
             e.preventDefault();
         });
+
         var options = this.getAllOptions();
         shuffle(options).forEach((option) => {
             var radioOption = document.createElement("input");
             radioOption.setAttribute("type", "radio");
             radioOption.setAttribute("value", option);
-            radioOption.setAttribute("name", "radioName");
+            radioOption.setAttribute("name", this.type);
 
             var radioLabel = document.createElement("label");
-            radioLabel.setAttribute("id", option);            
+            radioLabel.setAttribute("id", option);
             radioLabel.setAttribute("for", option);
             radioLabel.appendChild(document.createTextNode(option));
+
             form.appendChild(radioOption);
-            form.appendChild(radioLabel);            
+            form.appendChild(radioLabel);
             form.appendChild(document.createElement("br"));
-            //form.appendChild(createInputElement("radio", "multipleChoice", option));
         });
 
         var questionSubmit = document.createElement("button");
@@ -229,51 +228,6 @@ function shuffle(array) {
     };
 
     return array;
-};
-// https://stackoverflow.com/questions/118693/how-do-you-dynamically-create-a-radio-button-in-javascript-that-works-in-all-bro
-function createInputElement(type, name, value) {
-    type = type.toLowerCase();
-    var inputHtml = `<input type="${type}"`;
-
-    // if is not empty add name attribute
-    if (name) {
-        inputHtml += ` name="${name}"`;
-    }
-    if (type == "radio") {
-        inputHtml += ` value="${value}"`;
-    };
-
-    inputHtml += '/>';
-
-    if (type != "submit") {
-        inputHtml += ' '+ value +'';
-    }
-
-    return stringToHTML(inputHtml);
-};
-// https://gomakethings.com/converting-a-string-into-markup-with-vanilla-js/
-function stringToHTML(str) {
-    var support = (() => {
-        if (!window.DOMParser) return false;
-        var parser = new DOMParser();
-        try {
-            parser.parseFromString('x', 'text/html');
-        } catch(err) {
-            return false;
-        }
-        return true;
-    })();
-
-    // If DOMParser is supported, use it
-    if (support) {
-        var parser = new DOMParser();
-        var doc = parser.parseFromString(str, 'text/html');
-        return doc.body;
-    };
-    // Otherwise, fallback to old-school method
-    var dom = document.createElement('div');
-    dom.innerHTML = str;
-    return dom;
 };
 
 const q1 = new Question(
