@@ -33,3 +33,4 @@ Do not use external libraries and frameworks.
 - i-icon (on assessment.html) is now event handler -> event listener
 - Show questions on assessment.html (including image and explanation)
 - Cleaning and checking everything
+- Implement at least 1 case of event propagation (W3C model).
