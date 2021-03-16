@@ -35,7 +35,8 @@ function createInitialElements() {
     controlsImageNext.classList.add("controls");
 
     var cardQuestion = document.createElement("section");
-    cardQuestion.classList.add("card__question");
+    cardQuestion.classList.add("card");
+    cardQuestion.classList.add("question");
 
     var questionImage = document.createElement("img");
     questionImage.setAttribute("id", questionImageId);
@@ -55,21 +56,11 @@ function createInitialElements() {
     // INSERT TEXTBOX OR MULTIPLECHOICE BUTTON INFRONT OF SUBMIT BUTTON
     var questionInput = document.createElement("section");
     questionInput.setAttribute("id", questionInputSectionId);
-
-    var questionSubmit = document.createElement("button");    
-    questionSubmit.setAttribute("id", questionSubmitId);
-    questionSubmit.appendChild(document.createTextNode("Submit"));
     
-    
-
-    // questionOutput.appendChild(questionTitle);
-    // questionOutput.appendChild(questionQuestion);
-
     cardQuestion.appendChild(questionImage);
     cardQuestion.appendChild(questionOutput);
     cardQuestion.appendChild(questionInput);
-    cardQuestion.appendChild(questionSubmit);
-    
+
     container.appendChild(controlsImageBack);
     container.appendChild(cardQuestion);
     container.appendChild(controlsImageNext);
@@ -101,7 +92,10 @@ class Question {
         return isCorrect;
     };
     show(inputSectionId, outputSectionId) {
-        var outputSection = document.getElementById(outputSectionId);        
+        // determine image source
+        document.getElementById(questionImageId).setAttribute("src", this.image);
+
+        var outputSection = document.getElementById(outputSectionId);
 
         // create HTML heading containing title
         var title = document.createElement("h2");
@@ -118,14 +112,23 @@ class Question {
         outputSection.appendChild(title);
         outputSection.appendChild(question);
 
-        // determine image source
-        document.getElementById(questionImageId).setAttribute("src", this.image);
+        var inputSection = document.getElementById(inputSectionId);
 
         // create input section (may differ per subclass, e.g. MultipleChoice)
-        this.generateInputPossibility(inputSectionId);
+        var formObject = this.generateForm();
+        inputSection.appendChild(formObject);
     };
-    generateInputPossibility(sectionToGenerateIn) {
-        createInputElement("text", "openQuestion","",sectionToGenerateIn);
+    generateForm() { // loose coupling
+        var form = document.createElement("form");
+        var inputField = createInputElement("text", "openQuestion","");
+
+        var questionSubmit = document.createElement("button");
+        questionSubmit.setAttribute("id", questionSubmitId);
+        questionSubmit.appendChild(document.createTextNode("Submit"));
+
+        form.appendChild(inputField);
+        form.appendChild(questionSubmit);
+        return form;
     };
 };
 
@@ -138,15 +141,23 @@ class MultipleChoice extends Question {
         this.options.push(this.answer);
         return this.options;
     };
-    generateInputPossibility(sectionToGenerateIn){
-        this.generateOptionRadios(sectionToGenerateIn);
+    generateForm(){ // loose coupling
+        return this.generateOptionRadios();
     };
-    generateOptionRadios(sectionToGenerateIn){
+    generateOptionRadios(){
+        var form = document.createElement("form");
+
         var options = this.getAllOptions();
-        shuffle(options).forEach(helper);
-        function helper(option) {
-            createInputElement("radio", "multipleChoice",option, sectionToGenerateIn);
-        };
+        shuffle(options).forEach((option) => {
+            form.appendChild(createInputElement("radio", "multipleChoice", option));
+        });
+
+        var questionSubmit = document.createElement("button");
+        questionSubmit.setAttribute("id", questionSubmitId);
+        questionSubmit.appendChild(document.createTextNode("Submit"));
+        form.appendChild(questionSubmit);
+
+        return form;
     };
 };
 // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
@@ -166,20 +177,25 @@ function shuffle(array) {
     return array;
 };
 // https://stackoverflow.com/questions/118693/how-do-you-dynamically-create-a-radio-button-in-javascript-that-works-in-all-bro
-function createInputElement(type, name, value, nodeIdToCreateIn) {
+function createInputElement(type, name, value) {
     type = type.toLowerCase();
-    var inputHtml = '<input type="' + type + '" name="' + name + '"';
+    var inputHtml = `<input type="${type}"`;
 
+    // if is not empty add name attribute
+    if (name) {
+        inputHtml += ` name="${name}"`;
+    }
     if (type == "radio") {
-        inputHtml += ' value="' + value + '"';
+        inputHtml += ` value="${value}"`;
     };
 
     inputHtml += '/>';
-    inputHtml += ' '+ value +'';
 
-    var radioObject = stringToHTML(inputHtml);
+    if (type != "submit") {
+        inputHtml += ' '+ value +'';
+    }
 
-    document.getElementById(nodeIdToCreateIn).appendChild(radioObject);
+    return stringToHTML(inputHtml);
 };
 // https://gomakethings.com/converting-a-string-into-markup-with-vanilla-js/
 function stringToHTML(str) {
@@ -210,7 +226,7 @@ const q1 = new Question(
     0,
     "Prototypal Inheritance",
     "images/questions/q1.png",
-    "In this question, we have a Dog constructor function. Our dog obviously knows the speak command. What gets logged in the following example when we ask Pogo to speak?",
+    "In this question, we have a Dog constructor function. Our dog obviously knows the speak command. What gets logged in this example when we ask Pogo to speak?",
     "Every time we create a new Dog instance, we set the speak property of that instance to be a function returning the string woof. Since this is being set every time we create a new Dog instance, the interpreter never has to look farther up the prototype chain to find a speak property. As a result, the speak method on Dog.prototype.speak never gets used.",
     "Woof"
 );
@@ -232,7 +248,7 @@ const q3 = new Question(
     2,
     "Indexing",
     "images/questions/q3.png",
-    "Predict the output of the following JavaScript code.",
+    "Predict the output of this JavaScript code.",
     "The index starts with 0 in JavaScript. Here, x searches for the last occurrence of “G” in the text.",
     "8"
 );
@@ -241,7 +257,7 @@ const q4 = new MultipleChoice(
     3,
     "Event scheduling",
     "images/questions/q4.png",
-    "In what order will the numbers 1-4 be logged to the console when the code below is executed?",
+    "In what order will the numbers 1-4 be logged to the console when this code is executed?",
     "1 and 4 are displayed first since they are logged by simple calls to console.log() without any delay. 2 is displayed after 3 because 2 is being logged after a delay of 1000 msecs (i.e., 1 second) whereas 3 is being logged after a delay of 0 msecs. Note that, despite 3 having a delay of 0 msecs, its code will only be executed after the current call stack is cleared.",
     "1, 4, 3, 2",
     ["1, 2, 3, 4", "4, 3, 2, 1", "4, 2, 1, 3"]
@@ -251,7 +267,7 @@ const q5 = new Question(
     4,
     "Functions",
     "images/questions/q5.png",
-    "Consider the following code. What will be displayed on the console?",
+    "Consider this code. What will be displayed on the console?",
     "First, 5 and 10 will be added up using the function add. Hereafter, the result of that addition will be divided by 2. Last up, the mean of the two numbers, the value that we just calculated, will be shown on the console by console.log().",
     "7.5"
 );
@@ -259,15 +275,18 @@ const q5 = new Question(
 const questions = [q1, q2, q3, q4, q5];
 
 createInitialElements();
+// var mainBlock = document.getElementsByTagName("main")[0];
+// console.log(mainBlock);
+// document.getElementsByTagName("main")[0].addEventListener("load", createInitialElements);
 
 questions[currentQuestionIndex].show(questionInputSectionId, questionOutputSectionId);
 
-document.getElementById(questionSubmitId).addEventListener("click", function(){
+document.getElementById(questionSubmitId).addEventListener("click", () => {
     alert("placeholder");
 });
 
-//We first wipe out all input and output elements and then show the next or previous question.
-document.getElementById(controlsBackId).addEventListener("click", function(){
+// We first wipe out all input and output elements and then show the next or previous question.
+document.getElementById(controlsBackId).addEventListener("click", () => {
     if(currentQuestionIndex > 0){
         var outputSection = document.getElementById(questionOutputSectionId);
         var inputSection = document.getElementById(questionInputSectionId);
@@ -282,7 +301,7 @@ document.getElementById(controlsBackId).addEventListener("click", function(){
     }
 });
 
-document.getElementById(controlsNextId).addEventListener("click", function(){
+document.getElementById(controlsNextId).addEventListener("click", () => {
     if(currentQuestionIndex < questions.length){
         var outputSection = document.getElementById(questionOutputSectionId);
         var inputSection = document.getElementById(questionInputSectionId);

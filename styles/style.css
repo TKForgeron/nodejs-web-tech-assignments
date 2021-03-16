@@ -29,13 +29,14 @@
     --themeColor--darkGray: #4b4737;
 }
 
-html,body
-{
+html, body{
     width: 100%;
     margin: 0px auto;
     padding: 0px;
     overflow-x: hidden;
 }
+
+header a:hover{text-decoration: none}
 
 body{font-family: 'Trebuchet MS', sans-serif;}
 
@@ -365,7 +366,7 @@ h1{
 .header__button{
     padding: 1em 1em;
     text-align: center;
-    border-radius: 0.75em;
+    border-radius: 0.5em;
     background-color: var(--themeColor);
     color: white;
     border: 2px solid var(--themeColor--l1);
@@ -382,13 +383,13 @@ h1{
 .header__menu{
     padding: 1em 1em;
     margin: 0.2em;
-    border-radius: 0.75em;
+    border-radius: 0.5em;
     border: 2px solid var(--themeColor--l1);
 }
 
 .header__menu:focus{
     padding: 1em 1em;
     margin: 0.2em;
-    border-radius: 0.75em;
+    border-radius: 0.5em;
     border: 2px solid var(--themeColor--l1);
 }
