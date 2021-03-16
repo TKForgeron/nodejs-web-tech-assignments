@@ -29,9 +29,7 @@ Do not use external libraries and frameworks.
 
 
 ## To-Do:
-- Fixing header (moving UU logo up + place text, menu in center)
-- Back/forward (on assessment.html) is now event handler -> event listener
+- Loop back/forward buttons (on assessment.html)
 - i-icon (on assessment.html) is now event handler -> event listener
 - Show questions on assessment.html (including image and explanation)
 - Cleaning and checking everything
-- Fixing styling of menu on index.html
