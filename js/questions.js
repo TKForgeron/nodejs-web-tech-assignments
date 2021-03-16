@@ -83,7 +83,7 @@ class Question {
     };
     answerFeedback() {
         // get user's answer & set this.userAnswer
-        this.userAnswer = document.forms[this.formName][this.type].value;
+        
 
         var notAnsweredYet = "Please give your answer here";
         // check it against this.answer
@@ -98,17 +98,11 @@ class Question {
         }
 
 
-        function displayRadioValue() {
-            var ele = document.getElementsByName('gender');
-
-            for(i = 0; i < ele.length; i++) {
-                if(ele[i].checked)
-                    document.getElementById("result").innerHTML
-                        = "Gender: "+ele[i].value;
-            }
-        }
+        
     }
     answeredCorrectly() {
+        // get user answer from box
+        this.userAnswer = document.forms[this.formName][this.type].value;
         return this.userAnswer.toLowerCase() == this.answer.toLowerCase();
     };
     show(inputSectionId, outputSectionId) {
@@ -141,11 +135,19 @@ class Question {
     generateForm() { // loose coupling
         var form = document.createElement("form");
         form.setAttribute("name", this.formName);
-        var inputTextBox = createInputElement("text", this.type,"");
+        form.addEventListener("submit", function(e){
+            e.preventDefault();
+        });
+        var inputTextBox = document.createElement("input");
+        inputTextBox.setAttribute("name", this.type);
+        inputTextBox.setAttribute("type", "text");
 
         var questionSubmit = document.createElement("button");
         questionSubmit.setAttribute("id", questionSubmitId);
         questionSubmit.appendChild(document.createTextNode("Submit"));
+        questionSubmit.addEventListener("click", () => {
+            alert(this.answeredCorrectly());
+        });
 
         form.appendChild(inputTextBox);
         form.appendChild(questionSubmit);
@@ -160,23 +162,53 @@ class MultipleChoice extends Question {
         this.options = otherOptions;
     };
     getAllOptions(){
-        this.options.push(this.answer);
-        return this.options;
+        return this.options.concat([this.answer]);        
     };
     generateForm(){ // loose coupling
         return this.generateOptionRadios();
     };
+    answeredCorrectly() {
+        // get user answer from box
+        var ele = document.getElementsByName("radioName");
+
+        for(let i = 0; i < ele.length; i++) {
+            if(ele[i].checked){
+                this.userAnswer = ele[i].value;
+            }
+        }
+        //this.userAnswer = document.forms[this.formName][this.type].value;
+        return this.userAnswer.toLowerCase() == this.answer.toLowerCase();
+        
+    };
     generateOptionRadios(){
         var form = document.createElement("form");
-
+        form.setAttribute("name", this.formName);
+        form.addEventListener("submit", function(e){
+            e.preventDefault();
+        });
         var options = this.getAllOptions();
         shuffle(options).forEach((option) => {
-            form.appendChild(createInputElement("radio", "multipleChoice", option));
+            var radioOption = document.createElement("input");
+            radioOption.setAttribute("type", "radio");
+            radioOption.setAttribute("value", option);
+            radioOption.setAttribute("name", "radioName");
+
+            var radioLabel = document.createElement("label");
+            radioLabel.setAttribute("id", option);            
+            radioLabel.setAttribute("for", option);
+            radioLabel.appendChild(document.createTextNode(option));
+            form.appendChild(radioOption);
+            form.appendChild(radioLabel);            
+            form.appendChild(document.createElement("br"));
+            //form.appendChild(createInputElement("radio", "multipleChoice", option));
         });
 
         var questionSubmit = document.createElement("button");
         questionSubmit.setAttribute("id", questionSubmitId);
         questionSubmit.appendChild(document.createTextNode("Submit"));
+        questionSubmit.addEventListener("click", () => {
+            alert(this.answeredCorrectly());
+        });
         form.appendChild(questionSubmit);
 
         return form;
@@ -262,7 +294,7 @@ const q2 = new MultipleChoice(
     "document.getElementById(“test”).innerHTML = “Hello DataFlair!”;",
     ["document.getElementById(test).innerHTML = “Hello DataFlair!”;"
                 ,"document.getElementsById(“test”).innerHTML = “Hello DataFlair!”;"
-                ,"document.getElementByTagName(“p”)[0].innerHTML = “Hello DataFlair!”;"
+                ,"document.getElementByTagName(“p”)[0].innerHTML = “Hello DataFlair!”;"                
                 ]
 );
 
@@ -303,9 +335,7 @@ createInitialElements();
 
 questions[currentQuestionIndex].show(questionInputSectionId, questionOutputSectionId);
 
-document.getElementById(questionSubmitId).addEventListener("click", () => {
-    alert("placeholder");
-});
+
 // document.getElementById(questionSubmitId).addEventListener("click", questions.[currentQuestionIndex].answerFeedback());
 
 // We first wipe out all input and output elements and then show the next or previous question.
@@ -325,7 +355,7 @@ document.getElementById(controlsBackId).addEventListener("click", () => {
 });
 
 document.getElementById(controlsNextId).addEventListener("click", () => {
-    if(currentQuestionIndex < questions.length){
+    if(currentQuestionIndex < questions.length-1){
         var outputSection = document.getElementById(questionOutputSectionId);
         var inputSection = document.getElementById(questionInputSectionId);
         while(outputSection.lastChild){
