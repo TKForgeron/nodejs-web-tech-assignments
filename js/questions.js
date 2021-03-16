@@ -82,20 +82,42 @@ class Question {
         this.userAnswer = "";
     };
     answerFeedback() {
-        var notAnsweredYet = "Please give your answer here";
-        // check it against this.answer
-        if (this.answeredCorrectly()) {
-            document.forms[this.formName][this.type].value += " &#10003;"; // put check mark behind user's input
-        } else if (!this.userAnswer) {
-            document.forms[this.formName][this.type].value = notAnsweredYet; // set text box value to "Please give your answer here"
-        } else if (this.userAnswer == notAnsweredYet) {
-            alert("Please give an answer.");
-        }else {
-            document.forms[this.formName][this.type].value += " &#10007;"; // put cross mark behind user's input
+        var outputSection = document.getElementById(questionOutputSectionId);
+        var formSection = document.forms[this.formName];
+        var feedbackText = document.createElement("p");
+        var explanationText = document.createElement("p");
+        var explanationId = "question__explanation";
+        // var secretComment = this.id + this.title + this.question + this.answer + this.explanation;
+
+        // first check whether feedback was already given (by previous run of this function)
+        // console.log(formSection.lastChild == document.createComment(secretComment));
+
+        // first check whether user had answered
+        if (formSection[this.type].value){
+            // then check whether it is correct
+            if (this.answeredCorrectly()) {
+                // put check mark behind user's input
+                feedbackText.setAttribute("style","color:green;font-size:2em");
+                feedbackText.appendChild(document.createTextNode('\u2713'));
+                formSection.appendChild(feedbackText);
+            } else {
+                // put cross mark behind user's input
+                feedbackText.setAttribute("style","color:red;font-size:2em");
+                feedbackText.appendChild(document.createTextNode('\u2717'));
+                formSection.appendChild(feedbackText);
+            }
+            // output explanation
+            explanationText.appendChild(document.createTextNode(this.explanation));
+            explanationText.setAttribute("style", "color:gray");
+            explanationText.setAttribute("id", explanationId);
+            outputSection.appendChild(explanationText);
+
+            // // dirty cheatcodes
+            // outputSection.appendChild(document.createComment(secretComment));
+            // formSection.appendChild(document.createComment(secretComment));
+        } else {
+            alert("Please give an answer");
         }
-
-
-        
     }
     answeredCorrectly() {
         // get user's answer & set this.userAnswer
@@ -132,9 +154,7 @@ class Question {
     generateForm() { // loose coupling
         var form = document.createElement("form");
         form.setAttribute("name", this.formName);
-        form.addEventListener("submit", function(e){
-            e.preventDefault();
-        });
+        form.addEventListener("submit", (e) => e.preventDefault());
 
         var inputTextBox = document.createElement("input");
         inputTextBox.setAttribute("name", this.type);
@@ -144,9 +164,7 @@ class Question {
         var questionSubmit = document.createElement("button");
         questionSubmit.setAttribute("id", questionSubmitId);
         questionSubmit.appendChild(document.createTextNode("Submit"));
-        questionSubmit.addEventListener("click", () => {
-            alert(this.answeredCorrectly());
-        });
+        questionSubmit.addEventListener("click", () => this.answerFeedback());
 
         form.appendChild(inputTextBox);
         form.appendChild(questionSubmit);
@@ -157,6 +175,7 @@ class Question {
 class MultipleChoice extends Question {
     constructor(id, title, image, question, explanation, answer, otherOptions) {
         super(id, title, image, question, explanation, answer);
+        this.formName = this.type + this.id;
         this.type = "closed";
         this.options = otherOptions;
     };
@@ -181,9 +200,7 @@ class MultipleChoice extends Question {
     generateOptionRadios(){
         var form = document.createElement("form");
         form.setAttribute("name", this.formName);
-        form.addEventListener("submit", function(e){
-            e.preventDefault();
-        });
+        form.addEventListener("submit", (e) => e.preventDefault());
 
         var options = this.getAllOptions();
         shuffle(options).forEach((option) => {
@@ -205,9 +222,7 @@ class MultipleChoice extends Question {
         var questionSubmit = document.createElement("button");
         questionSubmit.setAttribute("id", questionSubmitId);
         questionSubmit.appendChild(document.createTextNode("Submit"));
-        questionSubmit.addEventListener("click", () => {
-            alert(this.answeredCorrectly());
-        });
+        questionSubmit.addEventListener("click", () => this.answerFeedback());
         form.appendChild(questionSubmit);
 
         return form;
