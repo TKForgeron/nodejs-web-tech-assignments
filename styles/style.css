@@ -386,4 +386,5 @@ button:hover {
     margin: 0.2em;
     border-radius: 0.75em;
     border: 2px solid var(--themeColor--l1);
+    cursor: pointer;
 }
