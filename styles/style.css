@@ -332,7 +332,6 @@ h1{
     .card__image{height:16em;}
 }
 
-/* rename this using BEM!!! */
 #explanation__image{
     position: relative;
     width: 2em;
@@ -341,6 +340,7 @@ h1{
 .controls{
     position: relative;
     width: 5em;
+    cursor: pointer;
 }
 
 #explanation__background {
