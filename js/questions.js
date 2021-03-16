@@ -2,6 +2,7 @@ var questionImageId = "question__image";
 var questionInputSectionId = "question__input";
 var questionOutputSectionId = "question__output";
 var questionSubmitId = "question__submitBtn";
+var questionRetryId = "question__retryBtn"
 var controlsNextId = "controls__next";
 var controlsBackId = "controls__back";
 var currentQuestionIndex = 0;
@@ -56,6 +57,7 @@ function createInitialElements() {
     // INSERT TEXTBOX OR MULTIPLECHOICE BUTTON INFRONT OF SUBMIT BUTTON
     var questionInput = document.createElement("section");
     questionInput.setAttribute("id", questionInputSectionId);
+
     
     cardQuestion.appendChild(questionImage);
     cardQuestion.appendChild(questionOutput);
@@ -80,6 +82,7 @@ class Question {
         this.answer = answer;
         this.explanation = explanation;
         this.userAnswer = "";
+        this.showingFeedback = false;
     };
     answerFeedback() {
         var outputSection = document.getElementById(questionOutputSectionId);
@@ -100,11 +103,13 @@ class Question {
                 feedbackText.setAttribute("style","color:green;font-size:2em");
                 feedbackText.appendChild(document.createTextNode('\u2713'));
                 formSection.appendChild(feedbackText);
+                this.showingFeedback = true;
             } else {
                 // put cross mark behind user's input
                 feedbackText.setAttribute("style","color:red;font-size:2em");
                 feedbackText.appendChild(document.createTextNode('\u2717'));
                 formSection.appendChild(feedbackText);
+                this.showingFeedback = true;
             }
             // output explanation
             explanationText.appendChild(document.createTextNode(this.explanation));
@@ -117,6 +122,7 @@ class Question {
             // formSection.appendChild(document.createComment(secretComment));
         } else {
             alert("Please give an answer");
+            this.showingFeedback = false;
         }
     }
     answeredCorrectly() {
@@ -163,11 +169,26 @@ class Question {
 
         var questionSubmit = document.createElement("button");
         questionSubmit.setAttribute("id", questionSubmitId);
-        questionSubmit.appendChild(document.createTextNode("Submit"));
-        questionSubmit.addEventListener("click", () => this.answerFeedback());
+        questionSubmit.appendChild(document.createTextNode("Submit"));       
+        questionSubmit.addEventListener("click",() => {
+            if(this.showingFeedback == false){
+            this.showingFeedback = true;
+            this.answerFeedback();
+            
+            }
+        });
+
+        var questionRetry = document.createElement("button");
+        questionRetry.setAttribute("id", questionRetryId);
+        questionRetry.appendChild(document.createTextNode("Retry")); 
+        questionRetry.addEventListener("click", () => {
+            clearQuestionElements();            
+            questions[currentQuestionIndex].show(questionInputSectionId, questionOutputSectionId);
+        });
 
         form.appendChild(inputTextBox);
         form.appendChild(questionSubmit);
+        form.appendChild(questionRetry)
         return form;
     };
 };
@@ -222,9 +243,23 @@ class MultipleChoice extends Question {
         var questionSubmit = document.createElement("button");
         questionSubmit.setAttribute("id", questionSubmitId);
         questionSubmit.appendChild(document.createTextNode("Submit"));
-        questionSubmit.addEventListener("click", () => this.answerFeedback());
-        form.appendChild(questionSubmit);
+        questionSubmit.addEventListener("click",() => {
+            if(this.showingFeedback == false){
+            this.answerFeedback();
+            this.showingFeedback = true;
+            }
+        });
 
+        var questionRetry = document.createElement("button");
+        questionRetry.setAttribute("id", questionRetryId);
+        questionRetry.appendChild(document.createTextNode("Retry")); 
+        questionRetry.addEventListener("click", () => {
+            clearQuestionElements();
+            questions[currentQuestionIndex].show(questionInputSectionId, questionOutputSectionId);
+        });
+
+        form.appendChild(questionSubmit);
+        form.appendChild(questionRetry);
         return form;
     };
 };
@@ -244,6 +279,18 @@ function shuffle(array) {
 
     return array;
 };
+
+function clearQuestionElements(){
+    var outputSection = document.getElementById(questionOutputSectionId);
+    var inputSection = document.getElementById(questionInputSectionId);
+    while(outputSection.lastChild){
+        outputSection.removeChild(outputSection.lastChild)
+    }
+    while(inputSection.lastChild){
+        inputSection.removeChild(inputSection.lastChild);
+    }
+    questions[currentQuestionIndex].showingFeedback = false;
+}
 
 const q1 = new Question(
     1,
@@ -310,14 +357,7 @@ questions[currentQuestionIndex].show(questionInputSectionId, questionOutputSecti
 // We first wipe out all input and output elements and then show the next or previous question.
 document.getElementById(controlsBackId).addEventListener("click", () => {
     if(currentQuestionIndex > 0){
-        var outputSection = document.getElementById(questionOutputSectionId);
-        var inputSection = document.getElementById(questionInputSectionId);
-        while(outputSection.lastChild){
-            outputSection.removeChild(outputSection.lastChild)
-        }
-        while(inputSection.lastChild){
-            inputSection.removeChild(inputSection.lastChild);
-        }
+        clearQuestionElements();
         currentQuestionIndex--;
         questions[currentQuestionIndex].show(questionInputSectionId, questionOutputSectionId);
     }
@@ -325,14 +365,7 @@ document.getElementById(controlsBackId).addEventListener("click", () => {
 
 document.getElementById(controlsNextId).addEventListener("click", () => {
     if(currentQuestionIndex < questions.length-1){
-        var outputSection = document.getElementById(questionOutputSectionId);
-        var inputSection = document.getElementById(questionInputSectionId);
-        while(outputSection.lastChild){
-            outputSection.removeChild(outputSection.lastChild)
-        }
-        while(inputSection.lastChild){
-            inputSection.removeChild(inputSection.lastChild);
-        }
+        clearQuestionElements();
         currentQuestionIndex++;
         questions[currentQuestionIndex].show(questionInputSectionId, questionOutputSectionId);
     }
