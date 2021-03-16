@@ -100,7 +100,7 @@ class Question {
         // create HTML heading containing title
         var title = document.createElement("h2");
         title.setAttribute("id", "question" + this.id);
-        var titleText = document.createTextNode(this.title);
+        var titleText = document.createTextNode(`${this.id + 1}. ${this.title}`);
         title.appendChild(titleText);
 
         // create HTML paragraph containing question

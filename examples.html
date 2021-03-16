@@ -1,255 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="stylesheet" type="text/css" href="styles/style.css">
-    <link rel="icon" href="images/uulogo.png" type="image/png">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial scale=1">
-    <meta name="description" content="Examples of JavaScript code with explanation">
-    <meta name="keywords" content="JavaScript, Examples">
-    <title>JavaScript - Examples</title>
-</head>
-<body>
-    <header class="header">
-        <a href="https://www.javascript.com/" target="_blank" title="Go to JavaScript.com"><img src="images/javascriptlogo.png" alt="JavaScript logo" class="header__img header__img--left"></a>
-        <a href="index.html"><h1>JavaScript</h1></a>
-        <a href="https://www.uu.nl/" target="_blank" title="Go to uu.nl"><img src="images/uulogo.png" alt="Utrecht Univesity logo" class="header__img header__img--right"></a>
-    </header>
-    <nav class="nav">
-        <ul class="nav__bar list--noBullets">
-            <li class="nav__item"><a class="nav__link" href="index.html">Home</a></li>
-            <li class="nav__item"><a class="nav__link" href="history.html">History</a></li>
-            <li class="nav__item"><a class="nav__link" href="versionsFrameworks.html">Versions &#38; frameworks</a></li>
-            <li class="nav__item"><a class="nav__link nav__link--active" href="examples.html">Examples</a></li>
-            <li class="nav__item"><a class="nav__link" href="guides.html">Helpful guides</a></li>
-            <li class="nav__item--spacer"></li>
-            <li class="nav__item nav__item--right"><a class="nav__link" href="assessment.html">Assessment</a></li>
-        </ul>
-    </nav>
-    <main>
-        <article>
-            <h2>Code Examples of JS Features</h2>
-            <p>This section shows some examples highlighting certain features that come with JavaScript.
-                All examples are taken from the JavaScript tutorial on <a title="Go to w3schools' JavaScript tutorial" target="_blank" href="https://www.w3schools.com/js/default.asp">w3schools.com</a>.
-                The dark blocks are the parts where the code can be found, which is HTML  with JS embedded using the script tags.
-                The lighter blocks are the output of the darker ones. Within the code, and thus output, a short explanation of what happens in the code is given.
-            </p>
-            <!--This div could not be an article/section because it logically would never contain a <h1>..<h6>, which would cause errors in the W3C validator-->
-            <div class="container">
-                <div class="codeCard">
-                    &lt;!<p class="codeCard__code--red codeCard__code--fog">DOCTYPE </p><p class="codeCard__code--purple codeCard__code--fog">html</p>&gt;<br>
-                    &lt;<p class="codeCard__code--red codeCard__code--fog">html</p>&gt;<br>
-                    &lt;<p class="codeCard__code--red codeCard__code--fog">body</p>&gt;<br>
-                    &lt;<p class="codeCard__code--red codeCard__code--fog">h2</p><p>&gt;JavaScript Objects&lt;/</p><p class="codeCard__code--red codeCard__code--fog">h2</p>&gt;<br>
-                    &lt;<p class="codeCard__code--red codeCard__code--fog">p</p>&gt;In this example, the full name of a person in an object will be displayed. This will be done by first of all creating the object. However, it can be noted from the code below that the first name and last name are seperate entries in the object. To piece these two pieces of information together, an attribute holding a function that concatenates the first name and last name is made within the object. Lastly, the attribute of the object will be called to display the first and last name of the person described in the object.&lt;/<p class="codeCard__code--red codeCard__code--fog">p</p>&gt;<br>
-                    &lt;<p class="codeCard__code--red codeCard__code--fog">p </p><p class="codeCard__code--green codeCard__code--fog">id</p><p>="demo"&gt;&lt;/</p><p class="codeCard__code--red codeCard__code--fog">p</p>&gt;<br>
-                    &lt;<p class="codeCard__code--red codeCard__code--fog">script</p>&gt;<br>
-                    <p class="codeCard__code--gray">// Create an object:</p><br>
-                    <p class="codeCard__code--cyan">var </p><p>person </p><p class="codeCard__code--red">= </p><p>{</p><br>
-                    <p class="codeCard__code--indent">firstName: </p><p class="codeCard__code--yellow">"John"</p><p>, </p><br>
-                    <p class="codeCard__code--indent">lastName: </p><p class="codeCard__code--yellow">"Doe"</p><p>, </p><br>
-                    <p class="codeCard__code--indent">id: </p><p class="codeCard__code--purple">5482</p><p>, </p><br>
-                    <p class="codeCard__code--green codeCard__code--indent">fullName</p><p>: </p><p class="codeCard__code--cyan">function</p><p>() {</p><br>
-                    <div class="codeCard__code--indent"><p class="codeCard__code--red codeCard__code--indent">return </p><p class="codeCard__code--orange">this</p><p>.firstName </p><p class="codeCard__code--red">+ </p><p class="codeCard__code--yellow">" " </p><p class="codeCard__code--red">+ </p><p class="codeCard__code--orange">this</p><p>.lastName;</p></div>
-                    <p class="codeCard__code--indent">}</p><br>
-                    <p>};</p><br>
-                    <br>
-                    <p class="codeCard__code--gray">// Display some data from the object:</p><br>
-                    <div class="codeCard__code--smallScreenFix"><!--sorry.-->
-                        <p class="codeCard__code--cyan">document</p>
-                        <p>.</p>
-                        <p class="codeCard__code--cyan">getElementById</p><p>(</p><p class="codeCard__code--yellow">"demo"</p><p>)</p>
-                        <p>.</p>
-                        <p>innerHTML</p>
-                        <p class="codeCard__code--red">=</p>
-                    </div>
-                    <div class="codeCard__code--bigScreenFix"><!--sorry.-->
-                        <p class="codeCard__code--cyan">document</p><p>.</p><p class="codeCard__code--cyan">getElementById</p><p>(</p><p class="codeCard__code--yellow">"demo"</p><p>)</p><p>.</p><p>innerHTML </p>
-                        <p class="codeCard__code--red">=</p>
-                    </div>
-                    <div class="codeCard__code--indent">
-                            <p class="codeCard__code--yellow">"Using the function returns the person's full name: "</p>
-                            <p class="codeCard__code--red">+</p>
-                            <p>person.fullName();</p><br>
+    <head>
+        <link rel="stylesheet" type="text/css" href="styles/style.css">
+        <link rel="icon" href="images/uulogo.png" type="image/png">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial scale=1">
+        <meta name="description" content="Examples of JavaScript code with explanation">
+        <meta name="keywords" content="JavaScript, Examples">
+        <title>JavaScript - Examples</title>
+    </head>
+    <body>
+        <header class="header">
+            <a href="https://www.javascript.com/" target="_blank" title="Go to JavaScript.com"><img src="images/javascriptlogo.png" alt="JavaScript logo" class="header__img header__img--left"></a>
+            <a href="https://www.uu.nl/" target="_blank" title="Go to uu.nl"><img src="images/uulogo.png" alt="Utrecht Univesity logo" class="header__img header__img--right"></a>
+            <a href="index.html"><h1>JavaScript</h1></a>
+        </header>
+        <nav class="nav">
+            <ul class="nav__bar list--noBullets">
+                <li class="nav__item"><a class="nav__link" href="index.html">Home</a></li>
+                <li class="nav__item"><a class="nav__link" href="history.html">History</a></li>
+                <li class="nav__item"><a class="nav__link" href="versionsFrameworks.html">Versions &#38; frameworks</a></li>
+                <li class="nav__item"><a class="nav__link nav__link--active" href="examples.html">Examples</a></li>
+                <li class="nav__item"><a class="nav__link" href="guides.html">Helpful guides</a></li>
+                <li class="nav__item--spacer"></li>
+                <li class="nav__item nav__item--right"><a class="nav__link" href="assessment.html">Assessment</a></li>
+            </ul>
+        </nav>
+        <main>
+            <article>
+                <h2>Code Examples of JS Features</h2>
+                <p>This section shows some examples highlighting certain features that come with JavaScript.
+                    All examples are taken from the JavaScript tutorial on <a title="Go to w3schools' JavaScript tutorial" target="_blank" href="https://www.w3schools.com/js/default.asp">w3schools.com</a>.
+                    The dark blocks are the parts where the code can be found, which is HTML  with JS embedded using the script tags.
+                    The lighter blocks are the output of the darker ones. Within the code, and thus output, a short explanation of what happens in the code is given.
+                </p>
+                <!--This div could not be an article/section because it logically would never contain a <h1>..<h6>, which would cause errors in the W3C validator-->
+                <div class="container">
+                    <div class="codeCard">
+                        &lt;!<p class="codeCard__code--red codeCard__code--fog">DOCTYPE </p><p class="codeCard__code--purple codeCard__code--fog">html</p>&gt;<br>
+                        &lt;<p class="codeCard__code--red codeCard__code--fog">html</p>&gt;<br>
+                        &lt;<p class="codeCard__code--red codeCard__code--fog">body</p>&gt;<br>
+                        &lt;<p class="codeCard__code--red codeCard__code--fog">h2</p><p>&gt;JavaScript Objects&lt;/</p><p class="codeCard__code--red codeCard__code--fog">h2</p>&gt;<br>
+                        &lt;<p class="codeCard__code--red codeCard__code--fog">p</p>&gt;In this example, the full name of a person in an object will be displayed. This will be done by first of all creating the object. However, it can be noted from the code below that the first name and last name are seperate entries in the object. To piece these two pieces of information together, an attribute holding a function that concatenates the first name and last name is made within the object. Lastly, the attribute of the object will be called to display the first and last name of the person described in the object.&lt;/<p class="codeCard__code--red codeCard__code--fog">p</p>&gt;<br>
+                        &lt;<p class="codeCard__code--red codeCard__code--fog">p </p><p class="codeCard__code--green codeCard__code--fog">id</p><p>="demo"&gt;&lt;/</p><p class="codeCard__code--red codeCard__code--fog">p</p>&gt;<br>
+                        &lt;<p class="codeCard__code--red codeCard__code--fog">script</p>&gt;<br>
+                        <p class="codeCard__code--gray">// Create an object:</p><br>
+                        <p class="codeCard__code--cyan">var </p><p>person </p><p class="codeCard__code--red">= </p><p>{</p><br>
+                        <p class="codeCard__code--indent">firstName: </p><p class="codeCard__code--yellow">"John"</p><p>, </p><br>
+                        <p class="codeCard__code--indent">lastName: </p><p class="codeCard__code--yellow">"Doe"</p><p>, </p><br>
+                        <p class="codeCard__code--indent">id: </p><p class="codeCard__code--purple">5482</p><p>, </p><br>
+                        <p class="codeCard__code--green codeCard__code--indent">fullName</p><p>: </p><p class="codeCard__code--cyan">function</p><p>() {</p><br>
+                        <div class="codeCard__code--indent"><p class="codeCard__code--red codeCard__code--indent">return </p><p class="codeCard__code--orange">this</p><p>.firstName </p><p class="codeCard__code--red">+ </p><p class="codeCard__code--yellow">" " </p><p class="codeCard__code--red">+ </p><p class="codeCard__code--orange">this</p><p>.lastName;</p></div>
+                        <p class="codeCard__code--indent">}</p><br>
+                        <p>};</p><br>
+                        <br>
+                        <p class="codeCard__code--gray">// Display some data from the object:</p><br>
+                        <div class="codeCard__code--smallScreenFix"><!--sorry.-->
+                            <p class="codeCard__code--cyan">document</p>
+                            <p>.</p>
+                            <p class="codeCard__code--cyan">getElementById</p><p>(</p><p class="codeCard__code--yellow">"demo"</p><p>)</p>
+                            <p>.</p>
+                            <p>innerHTML</p>
+                            <p class="codeCard__code--red">=</p>
                         </div>
-                    &lt;/<p class="codeCard__code--red codeCard__code--fog">script</p>&gt;<br>
-                    &lt;/<p class="codeCard__code--red codeCard__code--fog">body</p>&gt;<br>
-                    &lt;/<p class="codeCard__code--red codeCard__code--fog">html</p>&gt;
-                </div>
-                <section class="codeResultCard">
-                    <h2>JavaScript Objects</h2>
-                    <p>In this example, the full name of a person in an object will be displayed. This will be done by first of all creating the object. However, it can be noted from the code below that the first name and last name are seperate entries in the object. To piece these two pieces of information together, an attribute holding a function that concatenates the first name and last name is made within the object. Lastly, the attribute of the object will be called to display the first and last name of the person described in the object.</p>
-                    <p>Using the function returns the person's full name: John Doe</p>
-                </section>
-            </div>
-            <!--This div could not be an article/section because it logically would never contain a <h1>..<h6>, which would cause errors in the W3C validator-->
-            <div class="container">
-                <div class="codeCard">
-                    &lt;!<p class="codeCard__code--red codeCard__code--fog">DOCTYPE </p><p class="codeCard__code--purple codeCard__code--fog">html</p>&gt;<br>
-                    &lt;<p class="codeCard__code--red codeCard__code--fog">html</p>&gt;<br>
-                    &lt;<p class="codeCard__code--red codeCard__code--fog">body</p>&gt;<br>
-                    &lt;<p class="codeCard__code--red codeCard__code--fog">h2</p><p>&gt;JavaScript Number Methods&lt;/</p><p class="codeCard__code--red codeCard__code--fog">h2</p>&gt;<br>
-                    &lt;<p class="codeCard__code--red codeCard__code--fog">p</p>&gt;This piece of JavaScript code converts a number to a string. In the first case, this is realized by calling the toString() function on the variable holding the number. The second case realizes this by calling the toString() function directly on the number itself. It has to be noted that the number has to be in brackets, as can be seen in the example, to work. The last case shows that it is also possible to convert a sum of some sort to a string with the toString() function, as long as the sum is in between brackets.&lt;/<p class="codeCard__code--red codeCard__code--fog">p</p>&gt;<br>
-                    &lt;<p class="codeCard__code--red codeCard__code--fog">p </p><p class="codeCard__code--green codeCard__code--fog">id</p><p>="demo"&gt;&lt;/</p><p class="codeCard__code--red codeCard__code--fog">p</p>&gt;<br>
-                    &lt;<p class="codeCard__code--red codeCard__code--fog">script</p>&gt;<br>
-                    <p class="codeCard__code--cyan">var </p><p>x </p><p class="codeCard__code--red">= </p><p class="codeCard__code--purple">123</p><p>;</p><br>
-                    <div class="codeCard__code--smallScreenFix"><!--sorry.-->
-                        <p class="codeCard__code--cyan">document</p>
-                        <p>.</p>
-                        <p class="codeCard__code--cyan">getElementById</p><p>(</p><p class="codeCard__code--yellow">"demo"</p><p>)</p>
-                        <p>.</p>
-                        <p>innerHTML</p>
-                        <p class="codeCard__code--red">=</p>
-                    </div>
-                    <div class="codeCard__code--bigScreenFix"> <!--sorry.-->
-                        <p class="codeCard__code--cyan">document</p><p>.</p><p class="codeCard__code--cyan">getElementById</p><p>(</p><p class="codeCard__code--yellow">"demo"</p><p>)</p><p>.</p><p>innerHTML</p>
-                        <p class="codeCard__code--red">=</p>
-                    </div>
-                    <div class="codeCard__code--indent">
-                        <p>x.</p><p class="codeCard__code--cyan">toString</p><p>()</p>
-                        <p class="codeCard__code--red">+</p>
-                        <p class="codeCard__code--yellow">"&lt;br&gt;"</p>
-                        <p class="codeCard__code--red">+</p>
-                        <p>(</p><p class="codeCard__code--purple">123</p><p>).</p><p class="codeCard__code--cyan">toString</p><p>()</p>
-                        <p class="codeCard__code--red">+</p>
-                        <p class="codeCard__code--yellow">"&lt;br&gt;"</p>
-                        <p class="codeCard__code--red">+</p>
-                        <p>(</p><p class="codeCard__code--purple">100</p>
-                        <p class="codeCard__code--red">+</p>
-                        <p class="codeCard__code--purple">23</p><p>).</p><p class="codeCard__code--cyan">toString</p><p>();</p>
-                    </div>
-                    &lt;/<p class="codeCard__code--red codeCard__code--fog">script</p>&gt;<br>
-                    &lt;/<p class="codeCard__code--red codeCard__code--fog">body</p>&gt;<br>
-                    &lt;/<p class="codeCard__code--red codeCard__code--fog">html</p>&gt;
-                </div>
-                <section class="codeResultCard">
-                    <h2>JavaScript Number Methods</h2>
-                    <p>This piece of JavaScript code converts a number to a string. In the first case, this is realized by calling the toString() function on the variable holding the number. The second case realizes this by calling the toString() function directly on the number itself. It has to be noted that the number has to be in brackets, as can be seen in the example, to work. The last case shows that it is also possible to convert a sum of some sort to a string with the toString() function, as long as the sum is in between brackets.</p>
-                    <p>123<br>123<br>123</p>
-                </section>
-            </div>
-            <!--This div could not be an article/section because it logically would never contain a <h1>..<h6>, which would cause errors in the W3C validator-->
-            <div class="container">
-                <div class="codeCard">
-                    &lt;!<p class="codeCard__code--red codeCard__code--fog">DOCTYPE </p><p class="codeCard__code--purple codeCard__code--fog">html</p>&gt;<br>
-                    &lt;<p class="codeCard__code--red codeCard__code--fog">html</p>&gt;<br>
-                    &lt;<p class="codeCard__code--red codeCard__code--fog">body</p>&gt;<br>
-                    &lt;<p class="codeCard__code--red codeCard__code--fog">h2</p><p>&gt;JavaScript Classes&lt;/</p><p class="codeCard__code--red codeCard__code--fog">h2</p>&gt;<br>
-                    &lt;<p class="codeCard__code--red codeCard__code--fog">p</p>&gt;This example creates a class named "Car". The class has two initial properties: "name" and "year". A JavaScript class is not an object, it is a template for objects. When you have a class, you can use the class to create (multiple) objects, like with the 'let myCar' declarations. The constructor method is called automatically when a new object is created. All the methods of the objects are now available for use. As can be seen with the final output below.&lt;/<p class="codeCard__code--red codeCard__code--fog">p</p>&gt;<br>
-                    &lt;<p class="codeCard__code--red codeCard__code--fog">p </p><p class="codeCard__code--green codeCard__code--fog">id</p><p>="demo"&gt;&lt;/</p><p class="codeCard__code--red codeCard__code--fog">p</p>&gt;<br>
-                    &lt;<p class="codeCard__code--red codeCard__code--fog">script</p>&gt;<br>
-                    <p class="codeCard__code--cyan">class</p>
-                    <p class="codeCard__code--green">Car</p>
-                    <p>{</p>
-                    <div class="codeCard__code--indent">
-                        <p class="codeCard__code--green">constructor</p><p>(</p><p class="codeCard__code--orange">name</p><p>,</p>
-                        <p class="codeCard__code--orange">year</p><p>)</p>
-                        <p>{</p><br>
+                        <div class="codeCard__code--bigScreenFix"><!--sorry.-->
+                            <p class="codeCard__code--cyan">document</p><p>.</p><p class="codeCard__code--cyan">getElementById</p><p>(</p><p class="codeCard__code--yellow">"demo"</p><p>)</p><p>.</p><p>innerHTML </p>
+                            <p class="codeCard__code--red">=</p>
+                        </div>
                         <div class="codeCard__code--indent">
-                            <p class="codeCard__code--orange">this</p><p>.name</p>
-                            <p class="codeCard__code--purple">=</p>
-                            <p>name;</p><br>
-                            <p class="codeCard__code--orange">this</p><p>.year</p>
-                            <p class="codeCard__code--purple">=</p>
-                            <p>year;</p><br>
+                                <p class="codeCard__code--yellow">"Using the function returns the person's full name: "</p>
+                                <p class="codeCard__code--red">+</p>
+                                <p>person.fullName();</p><br>
+                            </div>
+                        &lt;/<p class="codeCard__code--red codeCard__code--fog">script</p>&gt;<br>
+                        &lt;/<p class="codeCard__code--red codeCard__code--fog">body</p>&gt;<br>
+                        &lt;/<p class="codeCard__code--red codeCard__code--fog">html</p>&gt;
+                    </div>
+                    <section class="codeResultCard">
+                        <h2>JavaScript Objects</h2>
+                        <p>In this example, the full name of a person in an object will be displayed. This will be done by first of all creating the object. However, it can be noted from the code below that the first name and last name are seperate entries in the object. To piece these two pieces of information together, an attribute holding a function that concatenates the first name and last name is made within the object. Lastly, the attribute of the object will be called to display the first and last name of the person described in the object.</p>
+                        <p>Using the function returns the person's full name: John Doe</p>
+                    </section>
+                </div>
+                <!--This div could not be an article/section because it logically would never contain a <h1>..<h6>, which would cause errors in the W3C validator-->
+                <div class="container">
+                    <div class="codeCard">
+                        &lt;!<p class="codeCard__code--red codeCard__code--fog">DOCTYPE </p><p class="codeCard__code--purple codeCard__code--fog">html</p>&gt;<br>
+                        &lt;<p class="codeCard__code--red codeCard__code--fog">html</p>&gt;<br>
+                        &lt;<p class="codeCard__code--red codeCard__code--fog">body</p>&gt;<br>
+                        &lt;<p class="codeCard__code--red codeCard__code--fog">h2</p><p>&gt;JavaScript Number Methods&lt;/</p><p class="codeCard__code--red codeCard__code--fog">h2</p>&gt;<br>
+                        &lt;<p class="codeCard__code--red codeCard__code--fog">p</p>&gt;This piece of JavaScript code converts a number to a string. In the first case, this is realized by calling the toString() function on the variable holding the number. The second case realizes this by calling the toString() function directly on the number itself. It has to be noted that the number has to be in brackets, as can be seen in the example, to work. The last case shows that it is also possible to convert a sum of some sort to a string with the toString() function, as long as the sum is in between brackets.&lt;/<p class="codeCard__code--red codeCard__code--fog">p</p>&gt;<br>
+                        &lt;<p class="codeCard__code--red codeCard__code--fog">p </p><p class="codeCard__code--green codeCard__code--fog">id</p><p>="demo"&gt;&lt;/</p><p class="codeCard__code--red codeCard__code--fog">p</p>&gt;<br>
+                        &lt;<p class="codeCard__code--red codeCard__code--fog">script</p>&gt;<br>
+                        <p class="codeCard__code--cyan">var </p><p>x </p><p class="codeCard__code--red">= </p><p class="codeCard__code--purple">123</p><p>;</p><br>
+                        <div class="codeCard__code--smallScreenFix"><!--sorry.-->
+                            <p class="codeCard__code--cyan">document</p>
+                            <p>.</p>
+                            <p class="codeCard__code--cyan">getElementById</p><p>(</p><p class="codeCard__code--yellow">"demo"</p><p>)</p>
+                            <p>.</p>
+                            <p>innerHTML</p>
+                            <p class="codeCard__code--red">=</p>
+                        </div>
+                        <div class="codeCard__code--bigScreenFix"> <!--sorry.-->
+                            <p class="codeCard__code--cyan">document</p><p>.</p><p class="codeCard__code--cyan">getElementById</p><p>(</p><p class="codeCard__code--yellow">"demo"</p><p>)</p><p>.</p><p>innerHTML</p>
+                            <p class="codeCard__code--red">=</p>
+                        </div>
+                        <div class="codeCard__code--indent">
+                            <p>x.</p><p class="codeCard__code--cyan">toString</p><p>()</p>
+                            <p class="codeCard__code--red">+</p>
+                            <p class="codeCard__code--yellow">"&lt;br&gt;"</p>
+                            <p class="codeCard__code--red">+</p>
+                            <p>(</p><p class="codeCard__code--purple">123</p><p>).</p><p class="codeCard__code--cyan">toString</p><p>()</p>
+                            <p class="codeCard__code--red">+</p>
+                            <p class="codeCard__code--yellow">"&lt;br&gt;"</p>
+                            <p class="codeCard__code--red">+</p>
+                            <p>(</p><p class="codeCard__code--purple">100</p>
+                            <p class="codeCard__code--red">+</p>
+                            <p class="codeCard__code--purple">23</p><p>).</p><p class="codeCard__code--cyan">toString</p><p>();</p>
+                        </div>
+                        &lt;/<p class="codeCard__code--red codeCard__code--fog">script</p>&gt;<br>
+                        &lt;/<p class="codeCard__code--red codeCard__code--fog">body</p>&gt;<br>
+                        &lt;/<p class="codeCard__code--red codeCard__code--fog">html</p>&gt;
+                    </div>
+                    <section class="codeResultCard">
+                        <h2>JavaScript Number Methods</h2>
+                        <p>This piece of JavaScript code converts a number to a string. In the first case, this is realized by calling the toString() function on the variable holding the number. The second case realizes this by calling the toString() function directly on the number itself. It has to be noted that the number has to be in brackets, as can be seen in the example, to work. The last case shows that it is also possible to convert a sum of some sort to a string with the toString() function, as long as the sum is in between brackets.</p>
+                        <p>123<br>123<br>123</p>
+                    </section>
+                </div>
+                <!--This div could not be an article/section because it logically would never contain a <h1>..<h6>, which would cause errors in the W3C validator-->
+                <div class="container">
+                    <div class="codeCard">
+                        &lt;!<p class="codeCard__code--red codeCard__code--fog">DOCTYPE </p><p class="codeCard__code--purple codeCard__code--fog">html</p>&gt;<br>
+                        &lt;<p class="codeCard__code--red codeCard__code--fog">html</p>&gt;<br>
+                        &lt;<p class="codeCard__code--red codeCard__code--fog">body</p>&gt;<br>
+                        &lt;<p class="codeCard__code--red codeCard__code--fog">h2</p><p>&gt;JavaScript Classes&lt;/</p><p class="codeCard__code--red codeCard__code--fog">h2</p>&gt;<br>
+                        &lt;<p class="codeCard__code--red codeCard__code--fog">p</p>&gt;This example creates a class named "Car". The class has two initial properties: "name" and "year". A JavaScript class is not an object, it is a template for objects. When you have a class, you can use the class to create (multiple) objects, like with the 'let myCar' declarations. The constructor method is called automatically when a new object is created. All the methods of the objects are now available for use. As can be seen with the final output below.&lt;/<p class="codeCard__code--red codeCard__code--fog">p</p>&gt;<br>
+                        &lt;<p class="codeCard__code--red codeCard__code--fog">p </p><p class="codeCard__code--green codeCard__code--fog">id</p><p>="demo"&gt;&lt;/</p><p class="codeCard__code--red codeCard__code--fog">p</p>&gt;<br>
+                        &lt;<p class="codeCard__code--red codeCard__code--fog">script</p>&gt;<br>
+                        <p class="codeCard__code--cyan">class</p>
+                        <p class="codeCard__code--green">Car</p>
+                        <p>{</p>
+                        <div class="codeCard__code--indent">
+                            <p class="codeCard__code--green">constructor</p><p>(</p><p class="codeCard__code--orange">name</p><p>,</p>
+                            <p class="codeCard__code--orange">year</p><p>)</p>
+                            <p>{</p><br>
+                            <div class="codeCard__code--indent">
+                                <p class="codeCard__code--orange">this</p><p>.name</p>
+                                <p class="codeCard__code--purple">=</p>
+                                <p>name;</p><br>
+                                <p class="codeCard__code--orange">this</p><p>.year</p>
+                                <p class="codeCard__code--purple">=</p>
+                                <p>year;</p><br>
+                            </div>
+                            <p>}</p><br>
+                            <p class="codeCard__code--green">age</p><p>(</p><p class="codeCard__code--blue">x</p><p>)</p>
+                            <p>{</p><br>
+                            <div class="codeCard__code--indent">
+                                <p class="codeCard__code--red">return</p>
+                                <p class="codeCard__code--blue">x</p>
+                                <p class="codeCard__code--red">-</p>
+                                <p class="codeCard__code--orange">this</p><p>.year;</p><br>
+                            </div>
+                            <p>}</p>
                         </div>
                         <p>}</p><br>
-                        <p class="codeCard__code--green">age</p><p>(</p><p class="codeCard__code--blue">x</p><p>)</p>
-                        <p>{</p><br>
-                        <div class="codeCard__code--indent">
-                            <p class="codeCard__code--red">return</p>
-                            <p class="codeCard__code--blue">x</p>
-                            <p class="codeCard__code--red">-</p>
-                            <p class="codeCard__code--orange">this</p><p>.year;</p><br>
+                        <br>
+                        <p class="codeCard__code--cyan">let</p>
+                        <p>date</p>
+                        <p class="codeCard__code--red">=</p>
+                        <p class="codeCard__code--red">new</p>
+                        <p class="codeCard__code--cyan">Date</p><p>();</p>
+                        <p class="codeCard__code--cyan">let</p>
+                        <p>year</p>
+                        <p class="codeCard__code--red">=</p>
+                        <p>date.</p><p class="codeCard__code--cyan">getFullYear</p><p>();</p><br>
+                        <br>
+                        <p class="codeCard__code--cyan">let</p>
+                        <p>myCar</p>
+                        <p class="codeCard__code--red">=</p>
+                        <p class="codeCard__code--red">new</p>
+                        <p>Car(</p><p class="codeCard__code--yellow">"Ford"</p><p>,</p>
+                        <p class="codeCard__code--purple">2014</p><p>);</p><br>
+                        <p class="codeCard__code--cyan">let</p>
+                        <p>yourCar</p>
+                        <p class="codeCard__code--red">=</p>
+                        <p class="codeCard__code--red">new</p>
+                        <p>Car(</p><p class="codeCard__code--yellow">"Audi"</p><p>,</p>
+                        <p class="codeCard__code--purple">2020</p><p>);</p><br>
+                        <div class="codeCard__code--smallScreenFix"><!--sorry.-->
+                            <p class="codeCard__code--cyan">document</p>
+                            <p>.</p>
+                            <p class="codeCard__code--cyan">getElementById</p><p>(</p><p class="codeCard__code--yellow">"demo"</p><p>)</p>
+                            <p>.</p>
+                            <p>innerHTML</p>
+                            <p class="codeCard__code--red">=</p>
                         </div>
-                        <p>}</p>
+                        <div class="codeCard__code--bigScreenFix"><!--sorry.-->
+                            <p class="codeCard__code--cyan">document</p><p>.</p><p class="codeCard__code--cyan">getElementById</p><p>(</p><p class="codeCard__code--yellow">"demo"</p><p>)</p><p>.</p><p>innerHTML</p>
+                            <p class="codeCard__code--red">=</p>
+                        </div>
+                        <div class="codeCard__code--indent">
+                            <p class="codeCard__code--yellow">"My car is "</p>
+                            <p class="codeCard__code--red">+</p>
+                            <p>myCar.</p><p class="codeCard__code--cyan">age</p><p>(year)</p>
+                            <p class="codeCard__code--red">+</p>
+                            <p class="codeCard__code--yellow">" years old, yours is "</p>
+                            <p class="codeCard__code--red">+</p>
+                            <p>yourCar.</p><p class="codeCard__code--cyan">age</p><p>(year)</p>
+                            <p class="codeCard__code--red">+</p>
+                            <p class="codeCard__code--yellow">" years old.</p><p>";</p>
+                        </div>
+                        &lt;/<p class="codeCard__code--red codeCard__code--fog">script</p>&gt;<br>
+                        &lt;/<p class="codeCard__code--red codeCard__code--fog">body</p>&gt;<br>
+                        &lt;/<p class="codeCard__code--red codeCard__code--fog">html</p>&gt;
                     </div>
-                    <p>}</p><br>
-                    <br>
-                    <p class="codeCard__code--cyan">let</p>
-                    <p>date</p>
-                    <p class="codeCard__code--red">=</p>
-                    <p class="codeCard__code--red">new</p>
-                    <p class="codeCard__code--cyan">Date</p><p>();</p>
-                    <p class="codeCard__code--cyan">let</p>
-                    <p>year</p>
-                    <p class="codeCard__code--red">=</p>
-                    <p>date.</p><p class="codeCard__code--cyan">getFullYear</p><p>();</p><br>
-                    <br>
-                    <p class="codeCard__code--cyan">let</p>
-                    <p>myCar</p>
-                    <p class="codeCard__code--red">=</p>
-                    <p class="codeCard__code--red">new</p>
-                    <p>Car(</p><p class="codeCard__code--yellow">"Ford"</p><p>,</p>
-                    <p class="codeCard__code--purple">2014</p><p>);</p><br>
-                    <p class="codeCard__code--cyan">let</p>
-                    <p>yourCar</p>
-                    <p class="codeCard__code--red">=</p>
-                    <p class="codeCard__code--red">new</p>
-                    <p>Car(</p><p class="codeCard__code--yellow">"Audi"</p><p>,</p>
-                    <p class="codeCard__code--purple">2020</p><p>);</p><br>
-                    <div class="codeCard__code--smallScreenFix"><!--sorry.-->
-                        <p class="codeCard__code--cyan">document</p>
-                        <p>.</p>
-                        <p class="codeCard__code--cyan">getElementById</p><p>(</p><p class="codeCard__code--yellow">"demo"</p><p>)</p>
-                        <p>.</p>
-                        <p>innerHTML</p>
-                        <p class="codeCard__code--red">=</p>
-                    </div>
-                    <div class="codeCard__code--bigScreenFix"><!--sorry.-->
-                        <p class="codeCard__code--cyan">document</p><p>.</p><p class="codeCard__code--cyan">getElementById</p><p>(</p><p class="codeCard__code--yellow">"demo"</p><p>)</p><p>.</p><p>innerHTML</p>
-                        <p class="codeCard__code--red">=</p>
-                    </div>
-                    <div class="codeCard__code--indent">
-                        <p class="codeCard__code--yellow">"My car is "</p>
-                        <p class="codeCard__code--red">+</p>
-                        <p>myCar.</p><p class="codeCard__code--cyan">age</p><p>(year)</p>
-                        <p class="codeCard__code--red">+</p>
-                        <p class="codeCard__code--yellow">" years old, yours is "</p>
-                        <p class="codeCard__code--red">+</p>
-                        <p>yourCar.</p><p class="codeCard__code--cyan">age</p><p>(year)</p>
-                        <p class="codeCard__code--red">+</p>
-                        <p class="codeCard__code--yellow">" years old.</p><p>";</p>
-                    </div>
-                    &lt;/<p class="codeCard__code--red codeCard__code--fog">script</p>&gt;<br>
-                    &lt;/<p class="codeCard__code--red codeCard__code--fog">body</p>&gt;<br>
-                    &lt;/<p class="codeCard__code--red codeCard__code--fog">html</p>&gt;
+                    <section class="codeResultCard">
+                        <h2>JavaScript Classes</h2>
+                        <p>This example creates a class named "Car". The class has two initial properties: "name" and "year".
+                            A JavaScript class is not an object, it is a template for objects.
+                            When you have a class, you can use the class to create (multiple) objects, like with the 'let myCar' declarations.
+                            The constructor method is called automatically when a new object is created.
+                            All the methods of the objects are now available for use. As can be seen with the final output below.
+                        </p>
+                        <p id="demo"></p>
+                        <script>
+                            class Car {
+                                constructor(name, year) {
+                                    this.name = name;
+                                    this.year = year;
+                                }
+                                age(x) {
+                                    return x - this.year;
+                                }
+                            }
+
+                            let date = new Date();
+                            let year = date.getFullYear();
+
+                            let myCar = new Car("Ford", 2014);
+                            let yourCar = new Car("Audi", 2020);
+                            document.getElementById("demo").innerHTML =
+                                "My car is " + myCar.age(year) + " years old, yours is " + yourCar.age(year) + " years old.";
+                        </script>
+                    </section>
                 </div>
-                <section class="codeResultCard">
-                    <h2>JavaScript Classes</h2>
-                    <p>This example creates a class named "Car". The class has two initial properties: "name" and "year".
-                        A JavaScript class is not an object, it is a template for objects.
-                        When you have a class, you can use the class to create (multiple) objects, like with the 'let myCar' declarations.
-                        The constructor method is called automatically when a new object is created.
-                        All the methods of the objects are now available for use. As can be seen with the final output below.
-                    </p>
-                    <p id="demo"></p>
-                    <script>
-                        class Car {
-                            constructor(name, year) {
-                                this.name = name;
-                                this.year = year;
-                            }
-                            age(x) {
-                                return x - this.year;
-                            }
-                        }
-
-                        let date = new Date();
-                        let year = date.getFullYear();
-
-                        let myCar = new Car("Ford", 2014);
-                        let yourCar = new Car("Audi", 2020);
-                        document.getElementById("demo").innerHTML =
-                            "My car is " + myCar.age(year) + " years old, yours is " + yourCar.age(year) + " years old.";
-                    </script>
-                </section>
-            </div>
-        </article>
-    </main>
-    <footer>
-        <p>Made by Douwe, Tim and Maarten.</p>
-        <img class="footer__image" src="images/uulogotext.png" alt="UU Logo with Text reading Universiteit Utrecht">
-    </footer>
-</body>
+            </article>
+        </main>
+        <footer>
+            <p>Made by Douwe, Tim and Maarten.</p>
+            <img class="footer__image" src="images/uulogotext.png" alt="UU Logo with Text reading Universiteit Utrecht">
+        </footer>
+    </body>
 </html>
