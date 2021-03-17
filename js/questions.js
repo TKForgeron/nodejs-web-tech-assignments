@@ -116,7 +116,7 @@ function createInitialElements() {
 
     var questionImage = document.createElement("img");
     questionImage.setAttribute("id", questionImageId);
-    questionImage.classList.add("card__image");
+    questionImage.classList.add("question__image");
 
     var questionOutput = document.createElement("section");
     questionOutput.setAttribute("id", questionOutputSectionId);
@@ -212,7 +212,7 @@ class Question {
     show(inputSectionId, outputSectionId) {
         // determine image source
         var questionImage = document.getElementById(questionImageId);
-        questionImage.setAttribute("alt",`Image of question ${this.id + 1}: ${this.title}`);
+        questionImage.setAttribute("alt",`Image of question ${this.id}: ${this.title}`);
         questionImage.setAttribute("src", this.image);
 
         var outputSection = document.getElementById(outputSectionId);

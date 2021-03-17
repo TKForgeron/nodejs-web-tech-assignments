@@ -316,6 +316,12 @@ input[type=text] {
 
 input[type=radio]{margin: 0.5rem 0.5rem 0 0}
 
+.question__image{
+    height: 100%;
+    width: 100%;
+    max-width: 16em;
+}
+
 @media (min-width: 490px) {
     .codeCard__code--smallScreenFix{display: none;}
 
@@ -365,7 +371,6 @@ input[type=radio]{margin: 0.5rem 0.5rem 0 0}
     #question__input{flex-grow:1;}
     .card__image{height:10em;}
     .question .card__image{
-        /*height: 1.5rem;*/
         margin: auto 0;
     }
     .codeResultCard{margin-left: 1em}
