@@ -31,7 +31,8 @@ Do not use external libraries and frameworks.
 ## To-Do:
 - Buttons mobile first, within question block, aligned with overall theme/style of website
 - previous button absent on q1 and next button absent on q5
-- i-icon (on assessment.html) is now event handler -> event listener
+- ~~i-icon (on assessment.html) is now event handler -> event listener~~
 - ~~Show questions on assessment.html (including image and explanation)~~
 - Cleaning and checking everything: BEM, validator...
-- Implement at least 1 case of event propagation (W3C model).
+- ~~Implement at least 1 case of event propagation (W3C model).~~
+- Delete prism.js and prism.css
