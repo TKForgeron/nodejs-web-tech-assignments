@@ -33,5 +33,5 @@ Do not use external libraries and frameworks.
 - previous button absent on q1 and next button absent on q5
 - i-icon (on assessment.html) is now event handler -> event listener
 - ~~Show questions on assessment.html (including image and explanation)~~
-- Cleaning and checking everything
+- Cleaning and checking everything: BEM, validator...
 - Implement at least 1 case of event propagation (W3C model).
