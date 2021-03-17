@@ -236,6 +236,9 @@ class Question {
         // create input section (may differ per subclass, e.g. MultipleChoice)
         var formObject = this.generateForm();
         inputSection.appendChild(formObject);
+        inputSection.addEventListener("click", () => {
+            inputSection.style.boxShadow = "10px 10px 10px 10px grey";
+        }, true);
     };
     generateForm() { // loose coupling
         var form = document.createElement("form");
@@ -363,6 +366,8 @@ function shuffle(array) {
 function clearQuestionElements(){
     var outputSection = document.getElementById(questionOutputSectionId);
     var inputSection = document.getElementById(questionInputSectionId);
+    var inputSection = document.getElementById(questionInputSectionId);
+    inputSection.style.boxShadow = "initial";
     while(outputSection.lastChild){
         outputSection.removeChild(outputSection.lastChild)
     }
