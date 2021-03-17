@@ -7,7 +7,7 @@ var questionRetryId = "question__retryBtn"
 var controlsNextId = "controls__next";
 var controlsBackId = "controls__back";
 var currentQuestionIndex = 0;
-// var questionQuestionId = "question__question";
+
 function createNav(){
     var nav = document.getElementsByTagName("nav")[0];
     var navItemClass = "nav__item";

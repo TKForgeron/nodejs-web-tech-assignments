@@ -312,7 +312,6 @@ input[type=text] {
     min-width: 50vw;
     max-width: 28rem;
     transition: width 0.25s;
-    text-align: right;
 }
 
 input[type=radio]{margin: 0.5rem 0.5rem 0 0}
