@@ -237,6 +237,7 @@ class Question {
         // create input section (may differ per subclass, e.g. MultipleChoice)
         var formObject = this.generateForm();
         inputSection.appendChild(formObject);
+
     };
     generateForm() { // loose coupling
         var form = document.createElement("form");
@@ -364,6 +365,8 @@ function shuffle(array) {
 function clearQuestionElements(){
     var outputSection = document.getElementById(questionOutputSectionId);
     var inputSection = document.getElementById(questionInputSectionId);
+    var inputSection = document.getElementById(questionInputSectionId);
+    inputSection.style.boxShadow = "initial";
     while(outputSection.lastChild){
         outputSection.removeChild(outputSection.lastChild)
     }
@@ -453,3 +456,10 @@ document.getElementById(controlsNextId).addEventListener("click", () => {
         questions[currentQuestionIndex].show(questionInputSectionId, questionOutputSectionId);
     }
 });
+// Causes a nice dropshadow effect on the inputsection, 
+// pressing retry or next will remove it because of event propagation. If this were to use the bubbling phase
+// it would still be applied after pressing the retry button and thus the retry button would not remove the effect
+document.getElementById(questionInputSectionId).addEventListener("click", () => {    
+    var inputSection = document.getElementById(questionInputSectionId);
+    inputSection.style.boxShadow = "10px 10px 10px 10px grey";
+}, true);
