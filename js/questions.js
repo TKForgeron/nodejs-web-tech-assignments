@@ -7,7 +7,7 @@ var questionRetryId = "question__retryBtn"
 var controlsNextId = "controls__next";
 var controlsBackId = "controls__back";
 var currentQuestionIndex = 0;
-
+// This just creates the navbar.
 function createNav(){
     var nav = document.getElementsByTagName("nav")[0];
     var navItemClass = "nav__item";
@@ -78,7 +78,7 @@ function createNav(){
     unorderedNavList.appendChild(assessmentItem);
     nav.appendChild(unorderedNavList);
 }
-
+// This just creates the footer
 function createFooter(){
     var footer = document.getElementsByTagName("footer")[0];
 
@@ -93,13 +93,7 @@ function createFooter(){
     footer.appendChild(footerP);
     footer.appendChild(footerImg);
 }
-// The goal of this function is to create the initial html elements and put them in order
-// Afterwards questions can be appended and removed from those elements when pressing the "next question" or "submit" button
-// This would also greatly benefit from not being in a function, allowing variables to be accessed at will, but that would probably end up messing up a whole lot of code
-// So if you feel like this is a fine way to approach the problem then by all means take it out of the function
-// All that needs to be added are eventhandlers for submit, back and next
-// They should manipulate some elements to change the question
-// Keep track of which question we're on by keeping an array of all question objects, and just increase or decrease the counter when pressing one of the buttons respectively
+// We create an intial framework of html elements which we will manipulate to add or remove questions and check user answers
 function createInitialElements() {
     var main = document.getElementsByTagName("main")[0];
 
@@ -168,11 +162,7 @@ class Question {
         var feedbackText = document.createElement("p");
         var explanationText = document.createElement("p");
         var explanationId = "question__explanation";
-        // var secretComment = this.id + this.title + this.question + this.answer + this.explanation;
-
         // first check whether feedback was already given (by previous run of this function)
-        // console.log(formSection.lastChild == document.createComment(secretComment));
-
         // first check whether user had answered
         if (formSection[this.type].value){
             // then check whether it is correct
@@ -197,9 +187,6 @@ class Question {
             explanationText.setAttribute("id", explanationId);
             outputSection.appendChild(explanationText);
 
-            // // dirty cheatcodes
-            // outputSection.appendChild(document.createComment(secretComment));
-            // formSection.appendChild(document.createComment(secretComment));
         } else {
             alert("Please give an answer");
             this.showingFeedback = false;
@@ -360,7 +347,8 @@ function shuffle(array) {
 
     return array;
 };
-
+// Clears all non-framework elements that will be replaced by the next question
+// We remove everything to make sure no artifacts from the previous question are left over
 function clearQuestionElements(){
     var outputSection = document.getElementById(questionOutputSectionId);
     var inputSection = document.getElementById(questionInputSectionId);
@@ -430,14 +418,7 @@ createNav();
 createInitialElements();
 createFooter();
 
-// var mainBlock = document.getElementsByTagName("main")[0];
-// console.log(mainBlock);
-// document.getElementsByTagName("main")[0].addEventListener("load", createInitialElements);
-
 questions[currentQuestionIndex].show(questionInputSectionId, questionOutputSectionId);
-
-
-// document.getElementById(questionSubmitId).addEventListener("click", questions.[currentQuestionIndex].answerFeedback());
 
 // We first wipe out all input and output elements and then show the next or previous question.
 document.getElementById(controlsBackId).addEventListener("click", () => {
@@ -455,6 +436,7 @@ document.getElementById(controlsNextId).addEventListener("click", () => {
         questions[currentQuestionIndex].show(questionInputSectionId, questionOutputSectionId);
     }
 });
+
 // Causes a nice dropshadow effect on the inputsection, 
 // pressing retry or next will remove it because of event propagation. If this were to use the bubbling phase
 // it would still be applied after pressing the retry button and thus the retry button would not remove the effect
