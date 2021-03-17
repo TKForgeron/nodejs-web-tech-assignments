@@ -31,4 +31,3 @@ Do not use external libraries and frameworks.
 ## To-Do:
 - previous button absent on q1 and next button absent on q5
 - Cleaning and checking everything: BEM, validator...
-- Implement at least 1 case of event propagation (W3C model).
