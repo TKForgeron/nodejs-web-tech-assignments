@@ -206,6 +206,8 @@ h1{
 
 .card:hover{transform: scale(1.01);}
 
+.card--noWidthMagicForQuestion{width: auto}
+
 .card__image{
     display: block;
     margin: auto;
@@ -217,7 +219,7 @@ h1{
 
 .card__title{text-align: center;}
 
-.card__body{text-align: center;}
+.card__body{text-align: center}
 
 /* This is to style the codeblocks used on the example page. It allows for a clear difference between regular text and code.*/
 .codeResultCard{
@@ -277,35 +279,14 @@ h1{
 
 #question__input, #question__output{padding: 1rem;}
 
-#explanation__image{
-    position: relative;
-    width: 2em;
+#controls{
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
 }
 
-.controls{
-    position: relative;
-    width: 5em;
-    cursor: pointer;
-}
-
-#explanation__background {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    padding-top: 100px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.4);
-}
-
-#explanation__content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+#controls__back, #controls__next{
 }
 
 button{
@@ -331,7 +312,6 @@ input[type=text] {
     min-width: 50vw;
     max-width: 28rem;
     transition: width 0.25s;
-    text-align: right;
 }
 
 input[type=radio]{margin: 0.5rem 0.5rem 0 0}
@@ -362,9 +342,8 @@ input[type=radio]{margin: 0.5rem 0.5rem 0 0}
     .nav__item{flex-grow: 1;}
     .nav__item--spacer{flex-grow: 10;}
     .nav__item--right{justify-content: flex-end;}
-    .container{
-        flex-direction: row;
-    }
+    .container{flex-direction: row}
+    .container--questionBlock{flex-direction: column}
     .card{
         margin: 2em;
         max-width: 100%;

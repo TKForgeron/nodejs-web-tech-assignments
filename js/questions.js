@@ -1,3 +1,4 @@
+var controlSectionId = "controls";
 var questionImageId = "question__image";
 var questionOutputSectionId = "question__output";
 var questionInputSectionId = "question__input";
@@ -6,7 +7,7 @@ var questionRetryId = "question__retryBtn"
 var controlsNextId = "controls__next";
 var controlsBackId = "controls__back";
 var currentQuestionIndex = 0;
-// var questionQuestionId = "question__question";
+
 function createNav(){
     var nav = document.getElementsByTagName("nav")[0];
     var navItemClass = "nav__item";
@@ -106,9 +107,11 @@ function createInitialElements() {
 
     var container = document.createElement("div");
     container.classList.add("container");
+    container.classList.add("container--questionBlock");
 
     var cardQuestion = document.createElement("section");
     cardQuestion.classList.add("card");
+    cardQuestion.classList.add("card--noWidthMagicForQuestion");
     cardQuestion.classList.add("question");
 
     var questionImage = document.createElement("img");
@@ -134,10 +137,13 @@ function createInitialElements() {
     cardQuestion.appendChild(questionOutput);
     cardQuestion.appendChild(questionInput);
 
-    container.appendChild(controlsBack);
-    container.appendChild(controlsNext);
+    var controlSection = document.createElement("section");
+    controlSection.setAttribute("id", controlSectionId);
+    controlSection.appendChild(controlsBack);
+    controlSection.appendChild(controlsNext);
 
     container.appendChild(cardQuestion);
+    container.appendChild(controlSection);
 
     main.appendChild(comment);
     main.appendChild(container);
