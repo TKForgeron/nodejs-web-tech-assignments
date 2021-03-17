@@ -19,3 +19,11 @@
 - Code block/image
 - Description is obsolete
 - Type (open/multiple choice/...)
+
+Scialli, N. (2020, May 27). 10 JavaScript Quiz Questions and Answers to Sharpen Your Skills. https://typeofnan.dev/10-javascript-quiz-questions-and-answers/
+DataFlair. (n.d.). Top JavaScript Quiz Questions – Learn, Explore, Play, Repeat! https://data-flair.training/blogs/javascript-quiz/
+GeeksforGeeks. (2020, June 2). JavaScript Quiz | Set-1. https://www.geeksforgeeks.org/javascript-quiz-set-1/
+TypeOfNaN. (n.d.). Event Scheduling. https://quiz.typeofnan.dev/event-scheduling/
+Quizitor. (2021, May, 3). In-class, question 7
+
+author, date, title, link

@@ -143,7 +143,7 @@ function createInitialElements() {
 };
 
 class Question {
-    constructor(id, title, image, question, explanation, answer){
+    constructor(id, title, image, question, explanation, answer, reference){
         this.id = id;
         this.type = "open";
         this.formName = this.type + this.id;
@@ -154,42 +154,59 @@ class Question {
         this.explanation = explanation;
         this.userAnswer = "";
         this.showingFeedback = false;
+        this.reference = [];
+        this.reference.separator = ". ";
+        this.reference = reference.split(this.reference.separator).concat(this.reference.separator); // array of author, title, date, etc.
+        console.log(this.reference);
+        this.reference.author = this.reference[0];
+        this.reference.date = this.reference[1];
+        this.reference.title = this.reference[2];
+        this.reference.link = this.reference[3];
+        this.reference.separator = this.reference[4]; // could come in handy later
     };
     answerFeedback() {
-        var outputSection = document.getElementById(questionOutputSectionId);
         var formSection = document.forms[this.formName];
-        var feedbackText = document.createElement("p");
-        var explanationText = document.createElement("p");
-        var explanationId = "question__explanation";
+        var feedbackMark = document.createElement("p");
         // first check whether feedback was already given (by previous run of this function)
         // first check whether user had answered
         if (formSection[this.type].value){
             // then check whether it is correct
             if (this.answeredCorrectly()) {
                 // put check mark behind user's input
-                feedbackText.setAttribute("style","color:green;font-size:2em");
-                feedbackText.appendChild(document.createTextNode('\u2713'));
-                formSection.appendChild(feedbackText);
+                feedbackMark.setAttribute("style","color:green;font-size:2em");
+                feedbackMark.appendChild(document.createTextNode('\u2713'));
+                formSection.appendChild(feedbackMark);
                 this.showingFeedback = true;
             } else {
                 // put cross mark behind user's input
-                feedbackText.setAttribute("style","color:red;font-size:2em");
-                feedbackText.appendChild(document.createTextNode(`\u2717`));
-                formSection.appendChild(feedbackText);
+                feedbackMark.setAttribute("style","color:red;font-size:2em");
+                feedbackMark.appendChild(document.createTextNode(`\u2717`));
+                formSection.appendChild(feedbackMark);
                 this.showingFeedback = true;
             }
             // output explanation
-            var correctAnswer = document.createElement("strong");
-            correctAnswer.appendChild(document.createTextNode(this.answer));
-            explanationText.appendChild(correctAnswer);
-            explanationText.appendChild(document.createTextNode(". " + this.explanation));
-            explanationText.setAttribute("id", explanationId);
-            outputSection.appendChild(explanationText);
+            var explanationText = this.generateExplanation();
+
+            var outputSection = document.getElementById(questionOutputSectionId);
+            // outputSection.appendChild(explanationText);
+            outputSection.insertBefore(explanationText, outputSection.childNodes[outputSection.childNodes.length - 1]);
 
         } else {
             alert("Please give an answer");
             this.showingFeedback = false;
         }
+    };
+    generateExplanation() {
+        var correctAnswer = document.createElement("strong");
+        correctAnswer.appendChild(document.createTextNode(this.answer));
+
+        var explanationText = document.createElement("p");
+        explanationText.setAttribute("id", "question__explanation");
+
+        explanationText.appendChild(correctAnswer);
+        explanationText.appendChild(document.createTextNode(". " + this.explanation));
+
+        return explanationText;
     }
     answeredCorrectly() {
         // get user's answer & set this.userAnswer
@@ -202,30 +219,75 @@ class Question {
         questionImage.setAttribute("alt",`Image of question ${this.id}: ${this.title}`);
         questionImage.setAttribute("src", this.image);
 
+        // create HTML heading node containing title
+        var title = this.generateTitle();
+
+        // create HTML paragraph node containing question
+        var question = this.generateQuestion();
+
+        // create HTML details node containing reference
+        var detailsElement = this.generateReference();
+
+        // append them to desired HTML node
         var outputSection = document.getElementById(outputSectionId);
+        outputSection.appendChild(title);
+        outputSection.appendChild(question);
+        outputSection.appendChild(detailsElement);
 
-        // create HTML heading containing title
-        var title = document.createElement("h2");
-        title.setAttribute("id", "question" + this.id);
-        var titleText = document.createTextNode(`${this.id}. ${this.title}`);
-        title.appendChild(titleText);
+        // create input section (may differ per subclass, e.g. MultipleChoice)
+        var formObject = this.generateForm();
 
-        // create HTML paragraph containing question
+        var inputSection = document.getElementById(inputSectionId);
+        inputSection.appendChild(formObject);
+    };
+    generateQuestion() {
         var question = document.createElement("p");
         var questionText = document.createTextNode(this.question);
         question.appendChild(questionText);
 
-        // append them to desired HTML node
-        outputSection.appendChild(title);
-        outputSection.appendChild(question);
+        return question;
+    }
+    generateTitle() {
+        var title = document.createElement("h2");
+        title.setAttribute("id", "question" + this.id);
+        title.appendChild(document.createTextNode(`${this.id}. ${this.title}`));
 
-        var inputSection = document.getElementById(inputSectionId);
+        return title;
+    }
+    generateReference() {
+        // create reference element, just like in the other pages, its contained in a details node
+        var detailsElement = document.createElement("details");
+        detailsElement.classList.add("references");
+        detailsElement.setAttribute("id", this.reference.slice(0, this.reference.length - 1).join(this.reference.separator)); // set whole reference (cleaned) as id
 
-        // create input section (may differ per subclass, e.g. MultipleChoice)
-        var formObject = this.generateForm();
-        inputSection.appendChild(formObject);
+        var summaryElement = document.createElement("summary");
+        var strongElement = document.createElement("strong");
+        strongElement.appendChild(document.createTextNode("Reference"));
+        summaryElement.appendChild(strongElement);
 
-    };
+        var referenceParagraph = document.createElement("p");
+        referenceParagraph.classList.add("reference__item");
+
+        var referenceTitle = document.createElement("em");
+        referenceTitle.appendChild(document.createTextNode(this.reference.title + ". "));
+
+        var referenceLink = document.createElement("a");
+        referenceLink.classList.add("reference__link");
+        referenceLink.setAttribute("href", this.reference.link);
+        referenceLink.setAttribute("target", "_blank");
+        referenceLink.setAttribute("title", "Go to reference");
+        referenceLink.appendChild(document.createTextNode(this.reference.link));
+
+        referenceParagraph.appendChild(document.createTextNode(this.reference.author + ". "));
+        referenceParagraph.appendChild(document.createTextNode(this.reference.date + ". "));
+        referenceParagraph.appendChild(referenceTitle);
+        referenceParagraph.appendChild(referenceLink);
+
+        detailsElement.appendChild(summaryElement);
+        detailsElement.appendChild(referenceParagraph);
+
+        return detailsElement;
+    }
     generateForm() { // loose coupling
         var form = document.createElement("form");
         form.setAttribute("name", this.formName);
@@ -264,8 +326,8 @@ class Question {
 };
 
 class MultipleChoice extends Question {
-    constructor(id, title, image, question, explanation, answer, otherOptions) {
-        super(id, title, image, question, explanation, answer);
+    constructor(id, title, image, question, explanation, answer, otherOptions, reference) {
+        super(id, title, image, question, explanation, answer, reference);
         this.type = "closed";
         this.options = otherOptions;
     };
@@ -370,7 +432,8 @@ const q1 = new Question(
     "images/questions/q1.png",
     "In this question, we have a Dog constructor function. Our dog obviously knows the speak command. What gets logged in this example when we ask Pogo to speak?",
     "Every time we create a new Dog instance, we set the speak property of that instance to be a function returning the string woof. Since this is being set every time we create a new Dog instance, the interpreter never has to look farther up the prototype chain to find a speak property. As a result, the speak method on Dog.prototype.speak never gets used.",
-    "Woof"
+    "Woof",
+    "Scialli, N. (2020, May 27). 10 JavaScript Quiz Questions and Answers to Sharpen Your Skills. https://typeofnan.dev/10-javascript-quiz-questions-and-answers/"
 );
 
 const q2 = new MultipleChoice(
@@ -383,7 +446,8 @@ const q2 = new MultipleChoice(
     ["document.getElementById(test).innerHTML = “Hello DataFlair!”;"
                 ,"document.getElementsById(“test”).innerHTML = “Hello DataFlair!”;"
                 ,"document.getElementByTagName(“p”)[1].innerHTML = “Hello DataFlair!”;"
-                ]
+                ],
+    "DataFlair. (n.d.). Top JavaScript Quiz Questions – Learn, Explore, Play, Repeat! https://data-flair.training/blogs/javascript-quiz/"
 );
 
 const q3 = new Question(
@@ -392,7 +456,8 @@ const q3 = new Question(
     "images/questions/q3.png",
     "Predict the output of this JavaScript code.",
     "The index starts with 0 in JavaScript. Here, x searches for the last occurrence of “G” in the text.",
-    "8"
+    "8",
+    "GeeksforGeeks. (2020, June 2). JavaScript Quiz | Set-1. https://www.geeksforgeeks.org/javascript-quiz-set-1/"
 );
 
 const q4 = new MultipleChoice(
@@ -402,7 +467,8 @@ const q4 = new MultipleChoice(
     "In what order will the numbers 1-4 be logged to the console when this code is executed?",
     "1 and 4 are displayed first since they are logged by simple calls to console.log() without any delay. 2 is displayed after 3 because 2 is being logged after a delay of 1000 msecs (i.e., 1 second) whereas 3 is being logged after a delay of 0 msecs. Note that, despite 3 having a delay of 0 msecs, its code will only be executed after the current call stack is cleared.",
     "1, 4, 3, 2",
-    ["1, 2, 3, 4", "4, 3, 2, 1", "4, 2, 1, 3"]
+    ["1, 2, 3, 4", "4, 3, 2, 1", "4, 2, 1, 3"],
+    "TypeOfNaN. (n.d.). Event Scheduling. https://quiz.typeofnan.dev/event-scheduling/"
 );
 
 const q5 = new Question(
@@ -411,7 +477,8 @@ const q5 = new Question(
     "images/questions/q5.png",
     "Consider this code. What will be displayed on the console?",
     "First, 5 and 10 will be added up using the function add. Hereafter, the result of that addition will be divided by 2. Last up, the mean of the two numbers, the value that we just calculated, will be shown on the console by console.log().",
-    "7.5"
+    "7.5",
+    "Quizitor. (2021, May, 3). In-class, question 7"
 );
 
 const questions = [q1, q2, q3, q4, q5];
@@ -438,7 +505,7 @@ document.getElementById(controlsNextId).addEventListener("click", () => {
     }
 });
 
-// Causes a nice dropshadow effect on the inputsection, 
+// Causes a very nice dropshadow effect on the inputsection,
 // pressing retry or next will remove it because of event propagation. If this were to use the bubbling phase
 // it would still be applied after pressing the retry button and thus the retry button would not remove the effect
 document.getElementById(questionInputSectionId).addEventListener("click", () => {    
