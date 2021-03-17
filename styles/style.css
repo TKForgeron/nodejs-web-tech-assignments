@@ -315,7 +315,7 @@ button{
     border: 2px solid var(--themeColor--l1);
     font-weight: bold;
     background-color: white;
-    margin: 0.2em;
+    margin: 0.5rem;
 }
 
 button:hover {
@@ -323,7 +323,7 @@ button:hover {
     cursor: pointer;
 }
 
-#question__submitBtn, #question__retryBtn{margin: 1rem 0}
+#question__submitBtn, #question__retryBtn{margin: 1rem 0.5rem 0 0}
 
 input[type=text] {
     border: 2px solid var(--themeColor--l1);

@@ -29,8 +29,9 @@ Do not use external libraries and frameworks.
 
 
 ## To-Do:
-- Loop back/forward buttons (on assessment.html)
+- Buttons mobile first, within question block, aligned with overall theme/style of website
+- previous button absent on q1 and next button absent on q5
 - i-icon (on assessment.html) is now event handler -> event listener
-- Show questions on assessment.html (including image and explanation)
+- ~~Show questions on assessment.html (including image and explanation)~~
 - Cleaning and checking everything
 - Implement at least 1 case of event propagation (W3C model).

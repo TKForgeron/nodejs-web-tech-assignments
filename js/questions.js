@@ -68,12 +68,13 @@ function createInitialElements() {
 };
 
 class Question {
-    constructor(id, title, code, image, question, explanation, answer){
+    constructor(id, title, code, codeLang, image, question, explanation, answer){
         this.id = id;
         this.type = "open";
         this.formName = this.type + this.id;
         this.title = title;
         this.code = code;
+        this.codeLang = codeLang;
         this.image = image;
         this.question = question;
         this.answer = answer;
@@ -104,12 +105,15 @@ class Question {
             } else {
                 // put cross mark behind user's input
                 feedbackText.setAttribute("style","color:red;font-size:2em");
-                feedbackText.appendChild(document.createTextNode('\u2717'));
+                feedbackText.appendChild(document.createTextNode(`\u2717`));
                 formSection.appendChild(feedbackText);
                 this.showingFeedback = true;
             }
             // output explanation
-            explanationText.appendChild(document.createTextNode(this.explanation));
+            var correctAnswer = document.createElement("strong");
+            correctAnswer.appendChild(document.createTextNode(this.answer));
+            explanationText.appendChild(correctAnswer);
+            explanationText.appendChild(document.createTextNode(". " + this.explanation));
             explanationText.setAttribute("style", "color:gray");
             explanationText.setAttribute("id", explanationId);
             outputSection.appendChild(explanationText);
@@ -200,7 +204,7 @@ class Question {
 
         // node containing code and library
         var code = document.createElement("code");
-        code.classList.add("language-javascript");
+        code.classList.add("language-" + this.codeLang);
 
         // the plain code
         var codeText = document.createTextNode(this.code);
@@ -214,9 +218,8 @@ class Question {
 };
 
 class MultipleChoice extends Question {
-    constructor(id, title, image, question, explanation, answer, otherOptions) {
-        super(id, title, image, question, explanation, answer);
-        this.formName = this.type + this.id;
+    constructor(id, title, code, codeLang, image, question, explanation, answer, otherOptions) {
+        super(id, title, code, codeLang, image, question, explanation, answer);
         this.type = "closed";
         this.options = otherOptions;
     };
@@ -303,6 +306,10 @@ function shuffle(array) {
 function clearQuestionElements(){
     var outputSection = document.getElementById(questionOutputSectionId);
     var inputSection = document.getElementById(questionInputSectionId);
+    var codeSection = document.getElementById(questionCodeBlockSectionId);
+    while(codeSection.lastChild){
+        codeSection.removeChild(codeSection.lastChild)
+    }
     while(outputSection.lastChild){
         outputSection.removeChild(outputSection.lastChild)
     }
@@ -329,6 +336,7 @@ const q1 = new Question(
     "   () => return 'arf';\n" +
     "\n" +
     "console.log(dog.speak());",
+    "javascript",
     "images/questions/q1.png",
     "In this question, we have a Dog constructor function. Our dog obviously knows the speak command. What gets logged in this example when we ask Pogo to speak?",
     "Every time we create a new Dog instance, we set the speak property of that instance to be a function returning the string woof. Since this is being set every time we create a new Dog instance, the interpreter never has to look farther up the prototype chain to find a speak property. As a result, the speak method on Dog.prototype.speak never gets used.",
@@ -338,20 +346,36 @@ const q1 = new Question(
 const q2 = new MultipleChoice(
     2,
     "Changing HTML content",
+    "<!DOCTYPE html>\n" +
+    "<html lang=\"en\">\n" +
+    "<head>\n" +
+    "    <meta charset=\"UTF-8\">\n" +
+    "</head>\n" +
+    "<body>\n" +
+    "<main>\n" +
+    "    <p id=\"test\">Hello World!</p>\n" +
+    "    <p>Hi World!</p>\n" +
+    "</main>\n" +
+    "</body>\n" +
+    "</html>",
+    "html",
     "images/questions/q2.jpg",
-    "Which is the correct JavaScript syntax to change the HTML content given below?",
+    "Which is the correct JavaScript syntax to change the first paragraph in the HTML content given?",
     "This is the correct syntax to change the HTML context in the image. Please take a detailed look at it!",
     "document.getElementById(“test”).innerHTML = “Hello DataFlair!”;",
     ["document.getElementById(test).innerHTML = “Hello DataFlair!”;"
                 ,"document.getElementsById(“test”).innerHTML = “Hello DataFlair!”;"
-                ,"document.getElementByTagName(“p”)[0].innerHTML = “Hello DataFlair!”;"                
+                ,"document.getElementByTagName(“p”)[1].innerHTML = “Hello DataFlair!”;"
                 ]
 );
 
 const q3 = new Question(
     3,
     "Indexing",
-    "code...",
+    "var a=\"GeeksforGeeks\"; \n" +
+    "var x=a.lastIndexOf(\"G\"); \n" +
+    "document.write(x);",
+    "javascript",
     "images/questions/q3.png",
     "Predict the output of this JavaScript code.",
     "The index starts with 0 in JavaScript. Here, x searches for the last occurrence of “G” in the text.",
@@ -361,6 +385,17 @@ const q3 = new Question(
 const q4 = new MultipleChoice(
     4,
     "Event scheduling",
+    "(function() {\n" +
+    "  console.log(1);\n" +
+    "  setTimeout(function() {\n" +
+    "    console.log(2);\n" +
+    "  }, 1000);\n" +
+    "  setTimeout(function() {\n" +
+    "    console.log(3);\n" +
+    "  }, 0);\n" +
+    "  console.log(4);\n" +
+    "})();",
+    "javascript",
     "images/questions/q4.png",
     "In what order will the numbers 1-4 be logged to the console when this code is executed?",
     "1 and 4 are displayed first since they are logged by simple calls to console.log() without any delay. 2 is displayed after 3 because 2 is being logged after a delay of 1000 msecs (i.e., 1 second) whereas 3 is being logged after a delay of 0 msecs. Note that, despite 3 having a delay of 0 msecs, its code will only be executed after the current call stack is cleared.",
@@ -371,7 +406,16 @@ const q4 = new MultipleChoice(
 const q5 = new Question(
     5,
     "Functions",
-    "code...",
+    "function mean(a,b,addition) {\n" +
+    "    console.log(addition(a,b)/2);\n" +
+    "}\n" +
+    "\n" +
+    "function add(x,y) {\n" +
+    "    return x+y;\n" +
+    "}\n" +
+    "\n" +
+    "mean(5,10,add);",
+    "javascript",
     "images/questions/q5.png",
     "Consider this code. What will be displayed on the console?",
     "First, 5 and 10 will be added up using the function add. Hereafter, the result of that addition will be divided by 2. Last up, the mean of the two numbers, the value that we just calculated, will be shown on the console by console.log().",
@@ -412,7 +456,7 @@ document.getElementById(controlsBackId).addEventListener("click", () => {
 });
 
 document.getElementById(controlsNextId).addEventListener("click", () => {
-    if(currentQuestionIndex < questions.length-1){
+    if(currentQuestionIndex < questions.length - 1){
         var outputSection = document.getElementById(questionOutputSectionId);
         var inputSection = document.getElementById(questionInputSectionId);
         var codeSection = document.getElementById(questionCodeBlockSectionId);
