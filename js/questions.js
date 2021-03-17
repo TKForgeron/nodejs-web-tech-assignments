@@ -1,5 +1,4 @@
 var questionImageId = "question__image";
-var questionCodeBlockSectionId = "question__codeBlock";
 var questionOutputSectionId = "question__output";
 var questionInputSectionId = "question__input";
 var questionSubmitId = "question__submitBtn";
@@ -24,18 +23,6 @@ function createInitialElements() {
     var container = document.createElement("div");
     container.classList.add("container");
 
-    var controlsImageBack = document.createElement("img");
-    controlsImageBack.setAttribute("src","images/back.svg");
-    controlsImageBack.setAttribute("alt","Back button");
-    controlsImageBack.setAttribute("id",controlsBackId);
-    controlsImageBack.classList.add("controls");
-
-    var controlsImageNext = document.createElement("img");
-    controlsImageNext.setAttribute("src","images/next.svg");
-    controlsImageNext.setAttribute("alt","Next button");
-    controlsImageNext.setAttribute("id",controlsNextId);
-    controlsImageNext.classList.add("controls");
-
     var cardQuestion = document.createElement("section");
     cardQuestion.classList.add("card");
     cardQuestion.classList.add("question");
@@ -45,36 +32,39 @@ function createInitialElements() {
     questionImage.setAttribute("alt","Image concerning the question is not correctly loaded");
     questionImage.classList.add("card__image");
 
-    var questionCodeBlock = document.createElement("section");
-    questionCodeBlock.setAttribute("id", questionCodeBlockSectionId);
-
     var questionOutput = document.createElement("section");
     questionOutput.setAttribute("id", questionOutputSectionId);
 
     var questionInput = document.createElement("section");
     questionInput.setAttribute("id", questionInputSectionId);
 
-    cardQuestion.appendChild(questionCodeBlock);
+    var controlsBack = document.createElement("button");
+    controlsBack.setAttribute("id",controlsBackId);
+    controlsBack.appendChild(document.createTextNode("\u003C"));
+
+    var controlsNext = document.createElement("button");
+    controlsNext.setAttribute("id",controlsNextId);
+    controlsNext.appendChild(document.createTextNode('\u003E'))
+
     cardQuestion.appendChild(questionImage);
     cardQuestion.appendChild(questionOutput);
     cardQuestion.appendChild(questionInput);
 
-    container.appendChild(controlsImageBack);
+    container.appendChild(controlsBack);
+    container.appendChild(controlsNext);
+
     container.appendChild(cardQuestion);
-    container.appendChild(controlsImageNext);
 
     main.appendChild(comment);
     main.appendChild(container);
 };
 
 class Question {
-    constructor(id, title, code, codeLang, image, question, explanation, answer){
+    constructor(id, title, image, question, explanation, answer){
         this.id = id;
         this.type = "open";
         this.formName = this.type + this.id;
         this.title = title;
-        this.code = code;
-        this.codeLang = codeLang;
         this.image = image;
         this.question = question;
         this.answer = answer;
@@ -131,14 +121,9 @@ class Question {
         this.userAnswer = document.forms[this.formName][this.type].value;
         return this.userAnswer.toLowerCase() == this.answer.toLowerCase();
     };
-    show(codeSectionId, inputSectionId, outputSectionId) {
+    show(inputSectionId, outputSectionId) {
         // determine image source
         document.getElementById(questionImageId).setAttribute("src", this.image);
-        document.getElementById(questionImageId).setAttribute("style", "display:none");
-
-        // create javascript code block using library (www.prismjs.com)
-        var codeSection = document.getElementById(codeSectionId);
-        codeSection.appendChild(this.generateCodeBlock());
 
         var outputSection = document.getElementById(outputSectionId);
 
@@ -194,32 +179,15 @@ class Question {
 
         form.appendChild(inputTextBox);
         form.appendChild(questionSubmit);
-        form.appendChild(questionRetry)
+        form.appendChild(questionRetry);
 
         return form;
-    };
-    generateCodeBlock() {
-        // wrapper
-        var pre = document.createElement("pre");
-
-        // node containing code and library
-        var code = document.createElement("code");
-        code.classList.add("language-" + this.codeLang);
-
-        // the plain code
-        var codeText = document.createTextNode(this.code);
-
-        // appending it all
-        code.appendChild(codeText);
-        pre.appendChild(code);
-
-        return pre;
     };
 };
 
 class MultipleChoice extends Question {
-    constructor(id, title, code, codeLang, image, question, explanation, answer, otherOptions) {
-        super(id, title, code, codeLang, image, question, explanation, answer);
+    constructor(id, title, image, question, explanation, answer, otherOptions) {
+        super(id, title, image, question, explanation, answer);
         this.type = "closed";
         this.options = otherOptions;
     };
@@ -306,10 +274,6 @@ function shuffle(array) {
 function clearQuestionElements(){
     var outputSection = document.getElementById(questionOutputSectionId);
     var inputSection = document.getElementById(questionInputSectionId);
-    var codeSection = document.getElementById(questionCodeBlockSectionId);
-    while(codeSection.lastChild){
-        codeSection.removeChild(codeSection.lastChild)
-    }
     while(outputSection.lastChild){
         outputSection.removeChild(outputSection.lastChild)
     }
@@ -322,21 +286,6 @@ function clearQuestionElements(){
 const q1 = new Question(
     1,
     "Prototypal Inheritance",
-    "function Dog(name) {\n" +
-    "  this.name = name;\n" +
-    "  this.speak = function() {\n" +
-    "    return 'woof';\n" +
-    "  };\n" +
-    "}\n" +
-    "\n" +
-    "const dog = new Dog('Pogo');\n" +
-    "\n" +
-    "Dog.prototype.speak = " +
-    "\n" +
-    "   () => return 'arf';\n" +
-    "\n" +
-    "console.log(dog.speak());",
-    "javascript",
     "images/questions/q1.png",
     "In this question, we have a Dog constructor function. Our dog obviously knows the speak command. What gets logged in this example when we ask Pogo to speak?",
     "Every time we create a new Dog instance, we set the speak property of that instance to be a function returning the string woof. Since this is being set every time we create a new Dog instance, the interpreter never has to look farther up the prototype chain to find a speak property. As a result, the speak method on Dog.prototype.speak never gets used.",
@@ -346,19 +295,6 @@ const q1 = new Question(
 const q2 = new MultipleChoice(
     2,
     "Changing HTML content",
-    "<!DOCTYPE html>\n" +
-    "<html lang=\"en\">\n" +
-    "<head>\n" +
-    "    <meta charset=\"UTF-8\">\n" +
-    "</head>\n" +
-    "<body>\n" +
-    "<main>\n" +
-    "    <p id=\"test\">Hello World!</p>\n" +
-    "    <p>Hi World!</p>\n" +
-    "</main>\n" +
-    "</body>\n" +
-    "</html>",
-    "html",
     "images/questions/q2.jpg",
     "Which is the correct JavaScript syntax to change the first paragraph in the HTML content given?",
     "This is the correct syntax to change the HTML context in the image. Please take a detailed look at it!",
@@ -372,10 +308,6 @@ const q2 = new MultipleChoice(
 const q3 = new Question(
     3,
     "Indexing",
-    "var a=\"GeeksforGeeks\"; \n" +
-    "var x=a.lastIndexOf(\"G\"); \n" +
-    "document.write(x);",
-    "javascript",
     "images/questions/q3.png",
     "Predict the output of this JavaScript code.",
     "The index starts with 0 in JavaScript. Here, x searches for the last occurrence of “G” in the text.",
@@ -385,17 +317,6 @@ const q3 = new Question(
 const q4 = new MultipleChoice(
     4,
     "Event scheduling",
-    "(function() {\n" +
-    "  console.log(1);\n" +
-    "  setTimeout(function() {\n" +
-    "    console.log(2);\n" +
-    "  }, 1000);\n" +
-    "  setTimeout(function() {\n" +
-    "    console.log(3);\n" +
-    "  }, 0);\n" +
-    "  console.log(4);\n" +
-    "})();",
-    "javascript",
     "images/questions/q4.png",
     "In what order will the numbers 1-4 be logged to the console when this code is executed?",
     "1 and 4 are displayed first since they are logged by simple calls to console.log() without any delay. 2 is displayed after 3 because 2 is being logged after a delay of 1000 msecs (i.e., 1 second) whereas 3 is being logged after a delay of 0 msecs. Note that, despite 3 having a delay of 0 msecs, its code will only be executed after the current call stack is cleared.",
@@ -406,16 +327,6 @@ const q4 = new MultipleChoice(
 const q5 = new Question(
     5,
     "Functions",
-    "function mean(a,b,addition) {\n" +
-    "    console.log(addition(a,b)/2);\n" +
-    "}\n" +
-    "\n" +
-    "function add(x,y) {\n" +
-    "    return x+y;\n" +
-    "}\n" +
-    "\n" +
-    "mean(5,10,add);",
-    "javascript",
     "images/questions/q5.png",
     "Consider this code. What will be displayed on the console?",
     "First, 5 and 10 will be added up using the function add. Hereafter, the result of that addition will be divided by 2. Last up, the mean of the two numbers, the value that we just calculated, will be shown on the console by console.log().",
@@ -429,7 +340,7 @@ createInitialElements();
 // console.log(mainBlock);
 // document.getElementsByTagName("main")[0].addEventListener("load", createInitialElements);
 
-questions[currentQuestionIndex].show(questionCodeBlockSectionId, questionInputSectionId, questionOutputSectionId);
+questions[currentQuestionIndex].show(questionInputSectionId, questionOutputSectionId);
 
 
 // document.getElementById(questionSubmitId).addEventListener("click", questions.[currentQuestionIndex].answerFeedback());
@@ -437,41 +348,17 @@ questions[currentQuestionIndex].show(questionCodeBlockSectionId, questionInputSe
 // We first wipe out all input and output elements and then show the next or previous question.
 document.getElementById(controlsBackId).addEventListener("click", () => {
     if(currentQuestionIndex > 0){
-        var outputSection = document.getElementById(questionOutputSectionId);
-        var inputSection = document.getElementById(questionInputSectionId);
-        var codeSection = document.getElementById(questionCodeBlockSectionId);
-        while(codeSection.lastChild){
-            codeSection.removeChild(codeSection.lastChild)
-        }
-        while(outputSection.lastChild){
-            outputSection.removeChild(outputSection.lastChild)
-        }
-        while(inputSection.lastChild){
-            inputSection.removeChild(inputSection.lastChild);
-        }
         clearQuestionElements();
         currentQuestionIndex--;
-        questions[currentQuestionIndex].show(questionCodeBlockSectionId, questionInputSectionId, questionOutputSectionId);
+        questions[currentQuestionIndex].show(questionInputSectionId, questionOutputSectionId);
     }
 });
 
 document.getElementById(controlsNextId).addEventListener("click", () => {
     if(currentQuestionIndex < questions.length - 1){
-        var outputSection = document.getElementById(questionOutputSectionId);
-        var inputSection = document.getElementById(questionInputSectionId);
-        var codeSection = document.getElementById(questionCodeBlockSectionId);
-        while(codeSection.lastChild){
-            codeSection.removeChild(codeSection.lastChild)
-        }
-        while(outputSection.lastChild){
-            outputSection.removeChild(outputSection.lastChild)
-        }
-        while(inputSection.lastChild){
-            inputSection.removeChild(inputSection.lastChild);
-        }
         clearQuestionElements();
         currentQuestionIndex++;
-        questions[currentQuestionIndex].show(questionCodeBlockSectionId, questionInputSectionId, questionOutputSectionId);
+        questions[currentQuestionIndex].show(questionInputSectionId, questionOutputSectionId);
     }
 });
 
