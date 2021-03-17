@@ -110,8 +110,7 @@ function createInitialElements() {
 
     var questionImage = document.createElement("img");
     questionImage.setAttribute("id", questionImageId);
-    questionImage.setAttribute("alt","Image concerning the question is not correctly loaded");
-    questionImage.classList.add("card__image");
+    questionImage.classList.add("question__image");
 
     var questionOutput = document.createElement("section");
     questionOutput.setAttribute("id", questionOutputSectionId);
@@ -199,7 +198,9 @@ class Question {
     };
     show(inputSectionId, outputSectionId) {
         // determine image source
-        document.getElementById(questionImageId).setAttribute("src", this.image);
+        var questionImage = document.getElementById(questionImageId);
+        questionImage.setAttribute("alt",`Image of question ${this.id}: ${this.title}`);
+        questionImage.setAttribute("src", this.image);
 
         var outputSection = document.getElementById(outputSectionId);
 
@@ -375,7 +376,7 @@ const q1 = new Question(
 const q2 = new MultipleChoice(
     2,
     "Changing HTML content",
-    "images/questions/q2.jpg",
+    "images/questions/q2.png",
     "Which is the correct JavaScript syntax to change the first paragraph in the HTML content given?",
     "This is the correct syntax to change the HTML context in the image. Please take a detailed look at it!",
     "document.getElementById(“test”).innerHTML = “Hello DataFlair!”;",

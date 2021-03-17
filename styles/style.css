@@ -116,7 +116,6 @@ h1{
     background: url(../images/dropdownTriangle.png) right / 1.5em no-repeat #fff;
     padding: 0.5em 1em;
     margin: 0 0.25em;
-    /*border-radius: 0.75em;*/
     border: 2px solid var(--themeColor--l1);
     cursor: pointer;
 }
@@ -286,9 +285,6 @@ h1{
     flex-direction: row;
 }
 
-#controls__back, #controls__next{
-}
-
 button{
     padding: 0.5em 1em;
     /*border-radius: 0.75em;*/
@@ -316,9 +312,13 @@ input[type=text] {
 
 input[type=radio]{margin: 0.5rem 0.5rem 0 0}
 
+.question__image{
+    height: 100%;
+    width: 100%;
+}
+
 @media (min-width: 490px) {
     .codeCard__code--smallScreenFix{display: none;}
-
     .codeCard__code--bigScreenFix{display: inline;}
 }
 
@@ -344,33 +344,40 @@ input[type=radio]{margin: 0.5rem 0.5rem 0 0}
     .nav__item--right{justify-content: flex-end;}
     .container{flex-direction: row}
     .container--questionBlock{flex-direction: column}
+
     .card{
         margin: 2em;
         max-width: 100%;
     }
+
     .card--left{
         box-shadow: -1em 1em 2em -1em rgba(0, 0, 0, 0.1);
         margin-right: 0;
     }
+
     .card--center{
         background-color: var(--themeColor--l5);
         margin: 1em 0;
     }
+
     .card--right{
         box-shadow: 1em 1em 2em -1em rgba(0, 0, 0, 0.1);
         margin-left: 0;
     }
+
     .question{flex-direction:row;}
     #question__output{flex-grow:2;}
     #question__input{flex-grow:1;}
     .card__image{height:10em;}
+    .question__image{max-width: 16em}
     .question .card__image{
-        /*height: 1.5rem;*/
         margin: auto 0;
     }
+
     .codeResultCard{margin-left: 1em}
     .codeCard{margin-right: 1em}
     #question__input, #question__output{max-width: 32rem}
+
     input[type=text]{
         min-width: 8rem;
         max-width: 200px;
@@ -379,11 +386,6 @@ input[type=radio]{margin: 0.5rem 0.5rem 0 0}
     }
 }
 
-@media (min-width: 1100px) {
-    .card__image{height:16em;}
-}
+@media (min-width: 1100px) {.card__image{height:16em;}}
 
-#question__explanation{
-    color: var(--codeGray);
-
-}
+#question__explanation{color: var(--codeGray);}
