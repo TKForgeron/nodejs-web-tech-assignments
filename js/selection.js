@@ -35,11 +35,10 @@ function addToAdvancedDropDown(selectableCollection) {
         var tag = selectableCollection[i][1];
         
         // Loop over each element and create an option for it, then append it to the selection box.
-        // Apparently you cannot retreive the value from a selectbox? So we have to push the value onto an empty array to ensure we have the same index and then use this array to manipulate the css.
+        // We push the value onto an empty array to ensure we have the same index and then use this array to manipulate the css.
         for(let j = 0; j < collection.length; j++){
             // The value of each option is set to the corresponding html element, the text is set to whichever element plus a number starting from 1
-            var option = document.createElement("option");
-            //option.setAttribute("value",colletion[j]);
+            var option = document.createElement("option");            
             option.text = tag + " " + (j + 1).toString();   
             dropdownBox.add(option);
             dropdownBoxObjects.push(collection[j]);
@@ -62,12 +61,15 @@ applyButton.addEventListener("click", function(){
     dropdownBoxObjects[dropdownBox.selectedIndex].style.backgroundColor = selectableColors[backgroundColorBox.selectedIndex];
     dropdownBoxObjects[dropdownBox.selectedIndex].style.fontSize = selectableFontSizes[fontSizeBox.selectedIndex] + "px";
 });
-
+// Here we set up the entire thing by appending everything. We call this last
+function appendEverything(){
+    header = document.getElementsByTagName("header")[0];
+    header.appendChild(dropdownBox);
+    header.appendChild(backgroundColorBox);
+    header.appendChild(fontSizeBox);
+    header.appendChild(applyButton);
+}
 addToAdvancedDropDown(selectableElements);
 addToBasicDropDown(selectableColors,backgroundColorBox);
 addToBasicDropDown(selectableFontSizes,fontSizeBox);
-header = document.getElementsByTagName("header")[0];
-header.appendChild(dropdownBox);
-header.appendChild(backgroundColorBox);
-header.appendChild(fontSizeBox);
-header.appendChild(applyButton);
+appendEverything();
