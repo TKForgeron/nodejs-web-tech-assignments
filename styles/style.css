@@ -287,7 +287,6 @@ h1{
 
 button{
     padding: 0.5em 1em;
-    /*border-radius: 0.75em;*/
     color: black;
     border: 2px solid var(--themeColor--l1);
     font-weight: bold;
