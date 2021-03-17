@@ -1,3 +1,4 @@
+// GLOBALS
 var controlSectionId = "controls";
 var questionImageId = "question__image";
 var questionOutputSectionId = "question__output";
@@ -7,6 +8,7 @@ var questionRetryId = "question__retryBtn"
 var controlsNextId = "controls__next";
 var controlsBackId = "controls__back";
 var currentQuestionIndex = 0;
+
 // This just creates the navbar.
 function createNav(){
     var nav = document.getElementsByTagName("nav")[0];
@@ -77,7 +79,7 @@ function createNav(){
     unorderedNavList.appendChild(spacerItem);
     unorderedNavList.appendChild(assessmentItem);
     nav.appendChild(unorderedNavList);
-}
+};
 // This just creates the footer
 function createFooter(){
     var footer = document.getElementsByTagName("footer")[0];
@@ -154,10 +156,10 @@ class Question {
         this.explanation = explanation;
         this.userAnswer = "";
         this.showingFeedback = false;
+        // reference is made an object so styling (and other use) can be done per part of the reference
         this.reference = [];
         this.reference.separator = ". ";
-        this.reference = reference.split(this.reference.separator).concat(this.reference.separator); // array of author, title, date, etc.
-        console.log(this.reference);
+        this.reference = reference.split(this.reference.separator).concat(this.reference.separator);
         this.reference.author = this.reference[0];
         this.reference.date = this.reference[1];
         this.reference.title = this.reference[2];
@@ -167,6 +169,7 @@ class Question {
     answerFeedback() {
         var formSection = document.forms[this.formName];
         var feedbackMark = document.createElement("p");
+
         // first check whether feedback was already given (by previous run of this function)
         // first check whether user had answered
         if (formSection[this.type].value){
@@ -188,7 +191,6 @@ class Question {
             var explanationText = this.generateExplanation();
 
             var outputSection = document.getElementById(questionOutputSectionId);
-            // outputSection.appendChild(explanationText);
             outputSection.insertBefore(explanationText, outputSection.childNodes[outputSection.childNodes.length - 1]);
 
         } else {
@@ -246,14 +248,14 @@ class Question {
         question.appendChild(questionText);
 
         return question;
-    }
+    };
     generateTitle() {
         var title = document.createElement("h2");
         title.setAttribute("id", "question" + this.id);
         title.appendChild(document.createTextNode(`${this.id}. ${this.title}`));
 
         return title;
-    }
+    };
     generateReference() {
         // create reference element, just like in the other pages, its contained in a details node
         var detailsElement = document.createElement("details");
@@ -287,7 +289,7 @@ class Question {
         detailsElement.appendChild(referenceParagraph);
 
         return detailsElement;
-    }
+    };
     generateForm() { // loose coupling
         var form = document.createElement("form");
         form.setAttribute("name", this.formName);
@@ -447,7 +449,7 @@ const q2 = new MultipleChoice(
                 ,"document.getElementsById(“test”).innerHTML = “Hello DataFlair!”;"
                 ,"document.getElementByTagName(“p”)[1].innerHTML = “Hello DataFlair!”;"
                 ],
-    "DataFlair. (n.d.). Top JavaScript Quiz Questions – Learn, Explore, Play, Repeat! https://data-flair.training/blogs/javascript-quiz/"
+    "DataFlair. (n.d.). Top JavaScript Quiz Questions – Learn, Explore, Play, Repeat!. https://data-flair.training/blogs/javascript-quiz/"
 );
 
 const q3 = new Question(
