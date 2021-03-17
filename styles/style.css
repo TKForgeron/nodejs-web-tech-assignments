@@ -315,7 +315,6 @@ input[type=radio]{margin: 0.5rem 0.5rem 0 0}
 .question__image{
     height: 100%;
     width: 100%;
-    max-width: 16em;
 }
 
 @media (min-width: 490px) {
@@ -370,6 +369,7 @@ input[type=radio]{margin: 0.5rem 0.5rem 0 0}
     #question__output{flex-grow:2;}
     #question__input{flex-grow:1;}
     .card__image{height:10em;}
+    .question__image{max-width: 16em}
     .question .card__image{
         margin: auto 0;
     }
