@@ -188,7 +188,6 @@ class Question {
             correctAnswer.appendChild(document.createTextNode(this.answer));
             explanationText.appendChild(correctAnswer);
             explanationText.appendChild(document.createTextNode(". " + this.explanation));
-            explanationText.setAttribute("style", "color:gray");
             explanationText.setAttribute("id", explanationId);
             outputSection.appendChild(explanationText);
 
@@ -447,14 +446,3 @@ document.getElementById(controlsNextId).addEventListener("click", () => {
         questions[currentQuestionIndex].show(questionInputSectionId, questionOutputSectionId);
     }
 });
-
-/* Opening and closing the explanation section 
-var explanation = document.getElementById("explanation__background");
-var explanationButton = document.getElementById("explanation__image");
-explanationButton.onclick = function() {explanation.style.display = "block";};
-window.onclick = function(event) {
-    if (event.target == explanation) {
-        explanation.style.display = "none";
-    };
-};
-*/
