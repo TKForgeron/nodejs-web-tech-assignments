@@ -191,7 +191,7 @@ class Question {
             var explanationText = this.generateExplanation();
 
             var outputSection = document.getElementById(questionOutputSectionId);
-            outputSection.insertBefore(explanationText, outputSection.childNodes[outputSection.childNodes.length - 1]);
+            outputSection.insertBefore(explanationText, outputSection.childNodes[outputSection.childNodes.length - 1]); // add explanation node before reference node
 
         } else {
             alert("Please give an answer");
