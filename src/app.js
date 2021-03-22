@@ -10,4 +10,5 @@ server.on('connection', (socket) => {
     console.log("New Connection...");
 });
 
-server.listen(8015, 'localhost');
+const port = process.env.PORT || 3000;
+server.listen(port, 'localhost');
