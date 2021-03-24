@@ -2,4 +2,4 @@
 *.txt
 *.pdf
 *.zip
-.node_modules
+node_modules
