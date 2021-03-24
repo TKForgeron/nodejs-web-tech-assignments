@@ -23,7 +23,6 @@ Do not use external libraries and frameworks.
 The assessment page of your website should become an entrance to the assessment system that you implement.
 There are following entities that you need to handle: Topics, Quizzes, Questions, Users.
 
-
 - Topics
   - Identify 2 to 3 topics that correspond to the theme of your website. Make sure that these topics are described somewhere on your website. Make sure, you can provide a link to this description (use # if necessary). Each topic should have:
     - Title
