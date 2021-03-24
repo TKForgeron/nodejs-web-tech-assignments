@@ -1,6 +1,9 @@
 # WebTech_Assignment_3
 # DEADLINE: 13 april
 
+## Folder Structure
+https://www.terlici.com/2014/08/25/best-practices-express-structure.html
+
 ## To-Do:
 - previous button absent on q1 and next button absent on q5
 - 
