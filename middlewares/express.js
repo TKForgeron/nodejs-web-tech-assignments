@@ -1,6 +1,5 @@
 const express = require('express');
-const app = express();
-
+const app = express(); // the server
 
 const questions =   [ {id: 1, topic: "javascript", title: "question 1"}
                     , {id: 2, topic: "javascript", title: "question 2"}
@@ -12,6 +11,8 @@ const questions =   [ {id: 1, topic: "javascript", title: "question 1"}
                     , {id: 2, topic: "express", title: "express question 2"}
                     , {id: 3, topic: "express", title: "express question 3"}
                     ]; // ID's moeten nog ff anders, want die horen uniek te zijn
+
+app.use(express.json());
 
 app.get('/', (req, res) => {
     res.send("hello world");
