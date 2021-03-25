@@ -2,7 +2,7 @@
 exports.up = function(knex) {
     return knex.schema.createTable('quizzes', table => {
         table.increments('quizId');
-        table.text('name', 128).notNullable();
+        table.text('title', 128).notNullable();
     })
     .createTable('questions', table => {
         table.increments('questionId');
@@ -10,7 +10,7 @@ exports.up = function(knex) {
         table.text('image', 128).notNullable();
         table.text('explanation', 128).notNullable();
         table.text('answer', 128).notNullable();
-        table.text('otherOptions');
+        table.text('otherOptions'); // is NULL for open questions
         // foreign key info to 'quizzes' table
         table.integer('quizId_fk')
             .unsigned()
