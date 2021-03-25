@@ -9,6 +9,7 @@ module.exports = {
   find,
   findById,
   remove,
+  update,
 };
 
 // add, find, findById, remove, update
@@ -28,4 +29,13 @@ function findById(id) {
 
 function remove(id) {
   return db('quizzes').where({ quizId: id }).del();
+}
+
+function update(id, changes) {
+  return db('quizzes')
+    .where({ quizId: id })
+    .update(changes)
+    .then(() => {
+      return findById(id);
+    }); // return complete record that was updated
 }
