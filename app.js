@@ -7,7 +7,7 @@ const server = http.createServer((request, response) => {
 });
 
 server.on('connection', (socket) => {
-    console.log("New Connection...");
+    console.log(`New Connection on port ${port}...`);
 });
 
 const port = process.env.PORT || 3000;

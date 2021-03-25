@@ -10,7 +10,7 @@ var controlsBackId = "controls__back";
 var currentQuestionIndex = 0;
 
 // This just creates the navbar.
-function createNav(){
+function createNav() {
     var nav = document.getElementsByTagName("nav")[0];
     var navItemClass = "nav__item";
     var navItemAClass = "nav__link";
