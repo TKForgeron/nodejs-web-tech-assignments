@@ -1,31 +1,14 @@
 #!/usr/bin nodejs
-var http = require('http');
-var express = require('express');
-var session = require('express-session');
-var cookieParser = require('cookie-parser');
-var path = require('path');
+const http = require('http');
 
-var app = express();
-const port = process.env.PORT || 3000;
-
-// View Engine
-app.set('view engine', 'pug');
-app.set('views', path.join(__dirname, 'views'));
-
-// Session
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({ path: '/', httpOnly: true, secure: false, maxAge: null, secret: "session", resave: false, saveUninitialized: false }));
-
-
-var registerRouter = require('./routes/register');
-
-app.use('/register', registerRouter);
-
-var server = app.listen(port, function() { console.log(`Server Listening on port ${port}`); });
+const server = http.createServer((request, response) => {
+    response.writeHead(200, {'Content-Type': 'text/plain'});
+    response.end('Hello World.');
+});
 
 server.on('connection', (socket) => {
     console.log("New Connection...");
 });
+
+const port = process.env.PORT || 3000;
+server.listen(port, 'localhost');
