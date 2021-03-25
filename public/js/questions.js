@@ -480,7 +480,7 @@ const q5 = new Question(
     "Consider this code. What will be displayed on the console?",
     "First, 5 and 10 will be added up using the function add. Hereafter, the result of that addition will be divided by 2. Last up, the mean of the two numbers, the value that we just calculated, will be shown on the console by console.log().",
     "7.5",
-    "Quizitor. (2021, May, 3). In-class, question 7"
+    "Quizitor. (2021, March, 3). In-class, question 7"
 );
 
 const questions = [q1, q2, q3, q4, q5];
