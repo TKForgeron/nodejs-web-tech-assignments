@@ -8,12 +8,17 @@
 <body>
     <h1>Populate HTML using AJAX</h1>
     <p>the following will be filled using AJAX.</p>
-<table id="rankings-table">
+<table id="table">
     <thead>
         <tr>
-            <th>Ranking</th>
-            <th>Full Name</th>
-            <th>Points</th>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Image</th>
+            <th>Question</th>
+            <th>Explanation</th>
+            <th>Answer</th>
+            <th>Other options</th>
+            <th>Reference</th>
         </tr>
     </thead>
     <tbody>
@@ -22,47 +27,73 @@
 </table>
 
 <script type="text/javascript">
-    const rankingsBody = document.querySelector("#rankings-table > tbody");
+    const tableBody = document.querySelector("#table > tbody");
 
-    function loadRankings() {
+    function loadQuiz() {
         const request = new XMLHttpRequest();
 
-        request.open("get", "data/rankings.json");
-        request.onload = () => {
-            try {
-                const json = JSON.parse(request.responseText);
-                populateRankings(json);
-            } catch (e){
-                console.warn("Could not load rankings! :(");
+        request.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                const quiz = JSON.parse(this.responseText);
+                populateTable(quiz);
             }
-        }
+        };
 
+        request.open("get", "data/quiz.json");
         request.send();
     }
 
-    function populateRankings(json){
+    function populateTable(json){
         // Clears out existing table data
-        while (rankingsBody.firstChild){
-            rankingsBody.removeChild(rankingsBody.firstChild);
+        while (tableBody.firstChild){
+            tableBody.removeChild(tableBody.firstChild);
         }
 
+        //console.log(json);
+
         // Populate table
-        json.forEach((row) =>{
-            const tr = document.createElement("tr");
+         json.forEach((row) =>{
+             const tr = document.createElement("tr");
 
+             const td1 = document.createElement("td");
+             td1.textContent = row.id;
+             tr.appendChild(td1);
 
-            row.forEach((cell) =>{
-               const td = document.createElement("td");
-               td.textContent = cell;
-               tr.appendChild(td);
-            });
+             const td2 = document.createElement("td");
+             td2.textContent = row.title;
+             tr.appendChild(td2);
 
-            rankingsBody.appendChild(tr);
+             const td3 = document.createElement("td");
+             td3.textContent = row.image;
+             tr.appendChild(td3);
 
-        });
+             const td4 = document.createElement("td");
+             td4.textContent = row.question;
+             tr.appendChild(td4);
+
+             const td5 = document.createElement("td");
+             td5.textContent = row.explanation;
+             tr.appendChild(td5);
+
+             const td6 = document.createElement("td");
+             td6.textContent = row.answer;
+             tr.appendChild(td6);
+
+             const td7 = document.createElement("td");
+             td7.textContent = row.otherOptions;
+             tr.appendChild(td7);
+
+             const td8 = document.createElement("td");
+             td8.textContent = row.reference;
+             tr.appendChild(td8);
+
+             //console.log(row.id);
+             tableBody.appendChild(tr);
+
+         });
     }
 
-    document.addEventListener("DOMContentLoaded", () => {loadRankings();});
+    document.addEventListener("DOMContentLoaded", () => {loadQuiz();});
 
 </script>
 
