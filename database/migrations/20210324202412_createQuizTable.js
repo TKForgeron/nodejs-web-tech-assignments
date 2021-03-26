@@ -21,7 +21,7 @@ exports.up = function (knex) {
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
     })
-    .createTable('user', table => {
+    .createTable('users', table => {
       table.increments('userId');
       table.text('username', 128).notNullable();
       table.text('password', 128).notNullable();
