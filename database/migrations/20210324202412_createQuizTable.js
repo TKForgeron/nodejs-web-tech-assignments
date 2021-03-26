@@ -1,11 +1,11 @@
 exports.up = function (knex) {
   return knex.schema
     .createTable('quizzes', table => {
-      table.increments('quizId');
+      table.increments(); // is called id
       table.text('title', 128).notNullable();
     })
     .createTable('questions', table => {
-      table.increments('questionId');
+      table.increments();
       table.text('title', 128).notNullable();
       table.text('image', 128);
       table.text('explanation', 128).notNullable();
@@ -22,7 +22,7 @@ exports.up = function (knex) {
         .onUpdate('CASCADE');
     })
     .createTable('users', table => {
-      table.increments('userId');
+      table.increments();
       table.text('username', 128).notNullable();
       table.text('password', 128).notNullable();
       table.timestamps(true, true);

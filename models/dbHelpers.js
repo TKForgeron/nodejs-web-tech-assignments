@@ -18,9 +18,9 @@ module.exports = {
 
 // add, find, findById, remove, update
 async function addQuiz(quiz) {
-  const [quizId] = await db('quizzes').insert(quiz);
+  const [id] = await db('quizzes').insert(quiz);
 
-  return quizId;
+  return id;
 }
 
 function findAllQuizzes() {
@@ -28,16 +28,16 @@ function findAllQuizzes() {
 }
 
 function findQuizById(id) {
-  return db('quizzes').where({ quizId: id }).first();
+  return db('quizzes').where({ id }).first();
 }
 
 function removeQuiz(id) {
-  return db('quizzes').where({ quizId: id }).del();
+  return db('quizzes').where({ id }).del();
 }
 
 function updateQuiz(id, changes) {
   return db('quizzes')
-    .where({ quizId: id })
+    .where({ id })
     .update(changes)
     .then(() => {
       return findById(id);
@@ -45,43 +45,43 @@ function updateQuiz(id, changes) {
 }
 
 function findQuestionById(id) {
-  return db('questions').where({ questionId: id }).first();
+  return db('questions').where({ id }).first();
 }
 
 async function addQuestion(question, quizId_fk) {
-  const [questionId] = await db('questions')
+  const [id] = await db('questions')
     .where({ quizId_fk }) // quizId_fk : quizId_fk
     .insert(question);
 
-  return findQuestionById(questionId);
+  return findQuestionById(id);
 }
 
-function findQuestionsByQuizId(quizId) {
+function findQuestionsByQuizId(id) {
   return db('quizzes as qzz')
     .join('questions as qtn', 'quizId_fk', 'qtn.quizId_fk')
     .select(
-      'qzz.quizId',
+      'qzz.id',
       'qzz.title as quizTitle',
-      'qtn.questionId',
+      'qtn.id',
       'qtn.title as questionTitle',
       'qtn.image',
       'qtn.explanation',
       'qtn.answer',
       'qtn.otherOptions'
     )
-    .where({ quizId });
+    .where({ id });
 }
 
-function removeQuestion(questionId) {
-  return db('questions').where({ questionId }).del();
+function removeQuestion(id) {
+  return db('questions').where({ id }).del();
 }
 
 async function registerUser(user) {
-  console.log(user.username + ' ' + user.password);
-  await db('users').insert({
-    username: 'naam',
-    password: 'ww',
-  });
-
+  console.log(user.username + ' - ' + user.password);
+  const [userId] = await db('quizzes')
+    .insert(user)
+    .then(console.log('registration working'))
+    .catch(console.log('registration not working'));
+  return userId;
   // return userId;
 }
