@@ -8,11 +8,21 @@ server.get('/', (req, res) => {
   return res.render('register', { title: 'Register' });
 });
 
-server.post('/auth', (req, res) => {
-  req.body.password = bcrypt.hash(password, 10);
+server.post('/auth', async (req, res) => {
+  let password = await bcrypt.hash(req.body.password, 10);
+  const body = {
+    // username: req.body.username,
+    // password: password,
+    username: 'name',
+    password: 'ww',
+  };
+
+  let json = JSON.stringify(body);
+
+  // console.log(json);
 
   dbOperations
-    .registerUser(req.body)
+    .registerUser(json)
     .then(user => {
       res.status(200).json(user);
       req.session.loggedin = true;
@@ -24,7 +34,6 @@ server.post('/auth', (req, res) => {
         .status(500)
         .json({ message: "Unable to perform 'registerUser' operation" });
     });
-  console.log(username + ' , ' + password + ' , ' + encryptedPassword);
 });
 
 module.exports = server;

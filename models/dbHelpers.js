@@ -77,7 +77,11 @@ function removeQuestion(questionId) {
 }
 
 async function registerUser(user) {
-  const [userId] = await db('users').insert(user);
+  console.log(user.username + ' ' + user.password);
+  await db('users').insert({
+    username: 'naam',
+    password: 'ww',
+  });
 
-  return userId;
+  // return userId;
 }

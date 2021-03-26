@@ -4,7 +4,7 @@ const server = express();
 
 server.use(express.json());
 
-server.post('/api/quizzes', (req, res) => {
+server.post('/quizzes', (req, res) => {
   dbOperations
     .addQuiz(req.body)
     .then(quiz => {
@@ -15,7 +15,7 @@ server.post('/api/quizzes', (req, res) => {
     });
 });
 
-server.get('api/quizzes', (req, res) => {
+server.get('quizzes', (req, res) => {
   dbOperations
     .findAllQuizzes()
     .then(quizzes => {
@@ -26,7 +26,7 @@ server.get('api/quizzes', (req, res) => {
     });
 });
 
-server.get('api/quizzes/:id', (req, res) => {
+server.get('quizzes/:id', (req, res) => {
   dbOperations
     .findQuizById(req.params.id)
     .then(quiz => {
@@ -43,7 +43,7 @@ server.get('api/quizzes/:id', (req, res) => {
     );
 });
 
-server.delete('api/quizzes/:id', (req, res) => {
+server.delete('quizzes/:id', (req, res) => {
   const { id } = req.params;
   dbOperations
     .removeQuiz(id)
@@ -61,7 +61,7 @@ server.delete('api/quizzes/:id', (req, res) => {
     );
 });
 
-server.patch('/api/quizzes/:id', (req, res) => {
+server.patch('/quizzes/:id', (req, res) => {
   const { id } = req.params;
   const changes = req.body;
 
@@ -80,7 +80,7 @@ server.patch('/api/quizzes/:id', (req, res) => {
 });
 
 // add question to quiz (to db)
-server.post('/api/quizzes/:id/questions', (req, res) => {
+server.post('/quizzes/:id/questions', (req, res) => {
   const { id } = parseInt(req.params, 10);
   const question = req.body;
 
@@ -126,7 +126,7 @@ server.post('/api/quizzes/:id/questions', (req, res) => {
     });
 });
 
-server.get('/api/quizzes/:id/questions', (req, res) => {
+server.get('/quizzes/:id/questions', (req, res) => {
   const id = req.params.id;
 
   dbOperations
@@ -141,7 +141,7 @@ server.get('/api/quizzes/:id/questions', (req, res) => {
     );
 });
 
-server.delete('api/questions/:id', (req, res) => {
+server.delete('questions/:id', (req, res) => {
   const { id } = req.params;
   dbOperations
     .removeQuestion(id)
