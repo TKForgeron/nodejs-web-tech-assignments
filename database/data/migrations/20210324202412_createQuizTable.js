@@ -1,10 +1,10 @@
 exports.up = function (knex) {
   return knex.schema
-    .createTable('quizzes', table => {
+    .createTable('quiz', table => {
       table.increments(); // is called id
       table.text('title', 128).notNullable();
     })
-    .createTable('questions', table => {
+    .createTable('question', table => {
       table.increments();
       table.text('title', 128).notNullable();
       table.text('image', 128);
@@ -21,7 +21,7 @@ exports.up = function (knex) {
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
     })
-    .createTable('users', table => {
+    .createTable('user', table => {
       table.increments();
       table.text('username', 128).notNullable();
       table.text('password', 128).notNullable();
@@ -31,6 +31,7 @@ exports.up = function (knex) {
 
 exports.down = function (knex) {
   return knex.schema
-    .dropTableIfExists('questions')
-    .dropTableIfExists('quizzes');
+    .dropTableIfExists('question')
+    .dropTableIfExists('quiz')
+    .dropTableIfExists('user');
 };

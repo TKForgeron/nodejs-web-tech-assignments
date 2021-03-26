@@ -77,11 +77,13 @@ function removeQuestion(id) {
 }
 
 async function registerUser(user) {
-  console.log(user.username + ' - ' + user.password);
+  console.log(`inside registerUser: ${user.username}, ${user.password}`);
   const [userId] = await db('quizzes')
     .insert(user)
-    .then(console.log('registration working'))
-    .catch(console.log('registration not working'));
+    .then(ids => ({ id: ids[0] }))
+    .catch(err => {
+      console.log(`registration not working: ${err}`);
+    });
   return userId;
   // return userId;
 }
