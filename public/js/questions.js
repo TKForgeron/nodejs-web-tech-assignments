@@ -8,6 +8,7 @@ var questionRetryId = "question__retryBtn"
 var controlsNextId = "controls__next";
 var controlsBackId = "controls__back";
 var currentQuestionIndex = 0;
+var questions=[];
 
 // This just creates the navbar.
 function createNav() {
@@ -428,66 +429,101 @@ function clearQuestionElements(){
     questions[currentQuestionIndex].showingFeedback = false;
 }
 
-const q1 = new Question(
-    1,
-    "Prototypal Inheritance",
-    "images/questions/q1.png",
-    "In this question, we have a Dog constructor function. Our dog obviously knows the speak command. What gets logged in this example when we ask Pogo to speak?",
-    "Every time we create a new Dog instance, we set the speak property of that instance to be a function returning the string woof. Since this is being set every time we create a new Dog instance, the interpreter never has to look farther up the prototype chain to find a speak property. As a result, the speak method on Dog.prototype.speak never gets used.",
-    "Woof",
-    "Scialli, N. (2020, May 27). 10 JavaScript Quiz Questions and Answers to Sharpen Your Skills. https://typeofnan.dev/10-javascript-quiz-questions-and-answers/"
-);
 
-const q2 = new MultipleChoice(
-    2,
-    "Changing HTML content",
-    "images/questions/q2.png",
-    "Which is the correct JavaScript syntax to change the first paragraph in the HTML content given?",
-    "This is the correct syntax to change the HTML context in the image. Please take a detailed look at it!",
-    "document.getElementById(“test”).innerHTML = “Hello DataFlair!”;",
-    ["document.getElementById(test).innerHTML = “Hello DataFlair!”;"
-                ,"document.getElementsById(“test”).innerHTML = “Hello DataFlair!”;"
-                ,"document.getElementByTagName(“p”)[1].innerHTML = “Hello DataFlair!”;"
-                ],
-    "DataFlair. (n.d.). Top JavaScript Quiz Questions – Learn, Explore, Play, Repeat!. https://data-flair.training/blogs/javascript-quiz/"
-);
+// Loads quiz form JSON file and puts it in the classes made for assignment 2 (Hereafter, the rest of assignment 2 should take over)
+function loadQuiz() {
+    const request = new XMLHttpRequest();
 
-const q3 = new Question(
-    3,
-    "Indexing",
-    "images/questions/q3.png",
-    "Predict the output of this JavaScript code.",
-    "The index starts with 0 in JavaScript. Here, x searches for the last occurrence of “G” in the text.",
-    "8",
-    "GeeksforGeeks. (2020, June 2). JavaScript Quiz | Set-1. https://www.geeksforgeeks.org/javascript-quiz-set-1/"
-);
+    request.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            const quiz = JSON.parse(this.responseText);
+            populate(quiz);
+        }
+    };
 
-const q4 = new MultipleChoice(
-    4,
-    "Event scheduling",
-    "images/questions/q4.png",
-    "In what order will the numbers 1-4 be logged to the console when this code is executed?",
-    "1 and 4 are displayed first since they are logged by simple calls to console.log() without any delay. 2 is displayed after 3 because 2 is being logged after a delay of 1000 msecs (i.e., 1 second) whereas 3 is being logged after a delay of 0 msecs. Note that, despite 3 having a delay of 0 msecs, its code will only be executed after the current call stack is cleared.",
-    "1, 4, 3, 2",
-    ["1, 2, 3, 4", "4, 3, 2, 1", "4, 2, 1, 3"],
-    "TypeOfNaN. (n.d.). Event Scheduling. https://quiz.typeofnan.dev/event-scheduling/"
-);
+    request.open("get", "../test (Maarten)/data/quiz.json");
+    request.send();
+}
+function populate(json) {
+    json.forEach((row) => {
+        var q;
+        var mq;
+        if(!row.otherOptions) {
+            q = new Question(row.id, row.title, row.image, row.question, row.explanation, row.answer, row.reference);
+            questions.push(q);
+        }
+        if (row.otherOptions){
+            // otherOptions in multiple choice questions are called options (keep this in mind)!!!
+            mq = new MultipleChoice(row.id, row.title, row.image, row.question, row.explanation, row.answer, row.otherOptions, row.reference);
+            questions.push(mq);
+        }
+    });
+    console.log(questions);
+}
 
-const q5 = new Question(
-    5,
-    "Functions",
-    "images/questions/q5.png",
-    "Consider this code. What will be displayed on the console?",
-    "First, 5 and 10 will be added up using the function add. Hereafter, the result of that addition will be divided by 2. Last up, the mean of the two numbers, the value that we just calculated, will be shown on the console by console.log().",
-    "7.5",
-    "Quizitor. (2021, March, 3). In-class, question 7"
-);
+// const q1 = new Question(
+//     1,
+//     "Prototypal Inheritance",
+//     "images/questions/q1.png",
+//     "In this question, we have a Dog constructor function. Our dog obviously knows the speak command. What gets logged in this example when we ask Pogo to speak?",
+//     "Every time we create a new Dog instance, we set the speak property of that instance to be a function returning the string woof. Since this is being set every time we create a new Dog instance, the interpreter never has to look farther up the prototype chain to find a speak property. As a result, the speak method on Dog.prototype.speak never gets used.",
+//     "Woof",
+//     "Scialli, N. (2020, May 27). 10 JavaScript Quiz Questions and Answers to Sharpen Your Skills. https://typeofnan.dev/10-javascript-quiz-questions-and-answers/"
+// );
+//
+// const q2 = new MultipleChoice(
+//     2,
+//     "Changing HTML content",
+//     "images/questions/q2.png",
+//     "Which is the correct JavaScript syntax to change the first paragraph in the HTML content given?",
+//     "This is the correct syntax to change the HTML context in the image. Please take a detailed look at it!",
+//     "document.getElementById(“test”).innerHTML = “Hello DataFlair!”;",
+//     ["document.getElementById(test).innerHTML = “Hello DataFlair!”;"
+//                 ,"document.getElementsById(“test”).innerHTML = “Hello DataFlair!”;"
+//                 ,"document.getElementByTagName(“p”)[1].innerHTML = “Hello DataFlair!”;"
+//                 ],
+//     "DataFlair. (n.d.). Top JavaScript Quiz Questions – Learn, Explore, Play, Repeat!. https://data-flair.training/blogs/javascript-quiz/"
+// );
+//
+// const q3 = new Question(
+//     3,
+//     "Indexing",
+//     "images/questions/q3.png",
+//     "Predict the output of this JavaScript code.",
+//     "The index starts with 0 in JavaScript. Here, x searches for the last occurrence of “G” in the text.",
+//     "8",
+//     "GeeksforGeeks. (2020, June 2). JavaScript Quiz | Set-1. https://www.geeksforgeeks.org/javascript-quiz-set-1/"
+// );
+//
+// const q4 = new MultipleChoice(
+//     4,
+//     "Event scheduling",
+//     "images/questions/q4.png",
+//     "In what order will the numbers 1-4 be logged to the console when this code is executed?",
+//     "1 and 4 are displayed first since they are logged by simple calls to console.log() without any delay. 2 is displayed after 3 because 2 is being logged after a delay of 1000 msecs (i.e., 1 second) whereas 3 is being logged after a delay of 0 msecs. Note that, despite 3 having a delay of 0 msecs, its code will only be executed after the current call stack is cleared.",
+//     "1, 4, 3, 2",
+//     ["1, 2, 3, 4", "4, 3, 2, 1", "4, 2, 1, 3"],
+//     "TypeOfNaN. (n.d.). Event Scheduling. https://quiz.typeofnan.dev/event-scheduling/"
+// );
+//
+// const q5 = new Question(
+//     5,
+//     "Functions",
+//     "images/questions/q5.png",
+//     "Consider this code. What will be displayed on the console?",
+//     "First, 5 and 10 will be added up using the function add. Hereafter, the result of that addition will be divided by 2. Last up, the mean of the two numbers, the value that we just calculated, will be shown on the console by console.log().",
+//     "7.5",
+//     "Quizitor. (2021, March, 3). In-class, question 7"
+// );
+//
+// const questions = [q1, q2, q3, q4, q5];
 
-const questions = [q1, q2, q3, q4, q5];
+loadQuiz();
 createNav();
 createInitialElements();
 createFooter();
 
+console.log(questions);
 questions[currentQuestionIndex].show(questionInputSectionId, questionOutputSectionId);
 
 // We first wipe out all input and output elements and then show the next or previous question.

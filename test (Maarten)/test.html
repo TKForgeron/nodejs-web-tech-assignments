@@ -2,14 +2,24 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="../public/styles/style.css">
+    <link rel="icon" href="../public/images/uulogo.png" type="image/png">
     <meta charset="UTF-8">
-    <title>Populate HTML using AJAX</title>
+    <meta name="viewport" content="width=device-width, initial scale=1">
+    <meta name="description" content="5-question quiz about JavaScript">
+    <meta name="keywords" content="JavaScript, questions, test yourself">
+    <title>JavaScript - Assessment</title>
 </head>
 <body>
-    <h1>Populate HTML using AJAX</h1>
-    <p>the following will be filled using AJAX.</p>
-<table id="table">
-    <thead>
+<header class="header">
+    <a href="https://www.javascript.com/" target="_blank" title="Go to JavaScript.com"><img src="../public/images/javascriptlogo.png" alt="JavaScript logo" class="header__img header__img--left"></a>
+    <a href="https://www.uu.nl/" target="_blank" title="Go to uu.nl"><img src="../public/images/uulogo.png" alt="Utrecht Univesity logo" class="header__img header__img--right"></a>
+    <a href="../public/index.html"><h1>JavaScript</h1></a>
+</header>
+<nav class="nav">
+</nav>
+<!--<main>-->
+    <table id="table">
+        <thead>
         <tr>
             <th>ID</th>
             <th>Title</th>
@@ -20,29 +30,53 @@
             <th>Other options</th>
             <th>Reference</th>
         </tr>
-    </thead>
-    <tbody>
+        </thead>
+        <tbody>
         <!-- To be filled by AJAX -->
-    </tbody>
-</table>
+        </tbody>
+    </table>
+<!--</main>-->
+<footer>
+</footer>
 
+
+<script type="text/javascript" src="../public/js/questions.js"></script>
 <script type="text/javascript">
-    const tableBody = document.querySelector("#table > tbody");
-
+    // Loads quiz form JSON file and puts it in the classes made for assignment 2 (Hereafter, the rest of assignment 2 should take over)
     function loadQuiz() {
         const request = new XMLHttpRequest();
 
         request.onreadystatechange = function() {
             if (this.readyState === 4 && this.status === 200) {
                 const quiz = JSON.parse(this.responseText);
-                populateTable(quiz);
+                populate(quiz);
             }
         };
 
         request.open("get", "data/quiz.json");
         request.send();
     }
+    var array=[];
+    function populate(json) {
+        json.forEach((row) => {
+            var q;
+            var mq;
+            if(!row.otherOptions) {
+                q = new Question(row.id, row.title, row.image, row.question, row.explanation, row.answer, row.reference);
+                array.push(q);
+            }
+            if (row.otherOptions){
+                // otherOptions in multiple choice questions are called options (keep this in mind)!!!
+                mq = new MultipleChoice(row.id, row.title, row.image, row.question, row.explanation, row.answer, row.otherOptions, row.reference);
+                array.push(mq);
+            }
+        });
+        //console.log(array);
+        populateTable(array);
+    }
 
+    // Temporary code that puts the questions in a table
+    const tableBody = document.querySelector("#table > tbody");
     function populateTable(json){
         // Clears out existing table data
         while (tableBody.firstChild){
@@ -80,7 +114,7 @@
              tr.appendChild(td6);
 
              const td7 = document.createElement("td");
-             td7.textContent = row.otherOptions;
+             td7.textContent = row.options;
              tr.appendChild(td7);
 
              const td8 = document.createElement("td");
@@ -96,6 +130,7 @@
     document.addEventListener("DOMContentLoaded", () => {loadQuiz();});
 
 </script>
+<script src="../public/js/selection.js"></script>
 
 </body>
 </html>
