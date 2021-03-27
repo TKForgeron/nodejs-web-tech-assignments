@@ -76,11 +76,17 @@ function removeQuestion(id) {
   return db('questions').where({ id }).del();
 }
 
-async function registerUser(user) {
-  console.log(`inside registerUser: ${user.username}, ${user.password}`);
-  const [userId] = await db('quizzes')
+async function registerUser(username,password) {
+  console.log("inside register user");
+  const user = {};
+  user.username = username;
+  user.password = password;
+
+  let JSONUser = JSON.stringify(user);
+  console.log(JSONUser)
+  const [userId] = await db('user')
     .insert(user)
-    .then(ids => ({ id: ids[0] }))
+    .then(ids => { console.log('kankerknex werkt') })
     .catch(err => {
       console.log(`registration not working: ${err}`);
     });

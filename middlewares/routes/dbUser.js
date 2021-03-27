@@ -9,12 +9,11 @@ server.get('/', (req, res) => {
 });
 
 server.post('/auth', async function (req, res) {
-  const user = {};
-  user.username = req.params.username;
-  user.password = req.params.password;
-
-  dbOperations
-    .registerUser(JSON.stringify(user))
+  let encryptedPassword = await bcrypt.hash(req.body.password, 10);
+  let actualUsername = req.body.username;
+  
+  const [kkr] = await dbOperations
+    .registerUser(actualUsername,encryptedPassword)
     .then(test => {
       console.log('im in the then');
       // res.status(200).json(test);
