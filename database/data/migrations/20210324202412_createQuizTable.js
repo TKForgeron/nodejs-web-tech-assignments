@@ -1,37 +1,87 @@
-exports.up = function (knex) {
-  return knex.schema
-    .createTable('quiz', table => {
-      table.increments(); // is called id
-      table.text('title', 128).notNullable();
-    })
-    .createTable('question', table => {
-      table.increments();
-      table.text('title', 128).notNullable();
-      table.text('image', 128);
-      table.text('explanation', 128).notNullable();
-      table.text('answer', 128).notNullable();
-      table.text('otherOptions'); // is NULL for open questions
-      // foreign key info to 'quizzes' table
-      table
-        .integer('quizId_fk')
-        .unsigned()
-        .notNullable()
-        .references('quizId')
-        .inTable('quizzes')
-        .onDelete('CASCADE')
-        .onUpdate('CASCADE');
-    })
-    .createTable('user', table => {
-      table.increments();
-      table.text('username', 128).notNullable();
-      table.text('password', 128).notNullable();
-      table.timestamps(true, true);
-    });
+exports.up = knex => {
+  return (
+    knex.schema
+      .createTable('topic', table => {
+        table.increments();
+        table.text('name');
+      })
+      // quiz belonging to a topic
+      .createTable('quiz', table => {
+        table.increments(); // is called id
+        table.text('title', 128).notNullable();
+        table
+          .integer('topicId_fk')
+          .unsigned()
+          .notNullable()
+          .references('id')
+          .inTable('topic')
+          .onDelete('CASCADE')
+          .onUpdate('CASCADE');
+      })
+      // question belonging to a quiz
+      .createTable('question', table => {
+        table.increments();
+        table.text('title', 128).notNullable();
+        table.text('image', 128);
+        table.text('explanation', 128).notNullable();
+        table.text('answer', 128).notNullable();
+        table.text('otherOptions'); // is NULL for open questions
+        // foreign key info to 'quiz' table
+        table
+          .integer('quizId_fk')
+          .unsigned()
+          .notNullable()
+          .references('id')
+          .inTable('quiz')
+          .onDelete('CASCADE')
+          .onUpdate('CASCADE');
+      })
+      .createTable('user', table => {
+        table.increments();
+        table.text('name', 128).notNullable();
+        table.text('username', 128).notNullable();
+        table.text('password', 128).notNullable();
+        // table.decimal('successRate').unsigned(); // is optional, could also be calculated through a function locally querying 'userQuizStats' => more efficient data wise
+        table.timestamps(true, true);
+      })
+      // Per user per quiz, progress and success rate will be recorded
+      .createTable('userQuizStats', table => {
+        table.increments();
+        table
+          .integer('userId_fk')
+          .unsigned()
+          .notNullable()
+          .references('id')
+          .inTable('user')
+          .onDelete('CASCADE')
+          .onUpdate('CASCADE');
+        table
+          .integer('quizId_fk')
+          .unsigned()
+          .notNullable()
+          .references('id')
+          .inTable('quiz')
+          .onDelete('CASCADE')
+          .onUpdate('CASCADE');
+        table.integer('quizProgress', 128).unsigned();
+        table.decimal('quizSuccessRate').unsigned();
+      })
+      .catch(err => {
+        console.error(err);
+        throw err;
+      })
+  );
 };
 
-exports.down = function (knex) {
+exports.down = knex => {
   return knex.schema
-    .dropTableIfExists('question')
+    .dropTableIfExists('topic')
     .dropTableIfExists('quiz')
-    .dropTableIfExists('user');
+    .dropTableIfExists('question')
+    .dropTableIfExists('user')
+    .dropTableIfExists('userQuizStats')
+    .catch(err => {
+      console.error(err);
+      throw err;
+    });
 };
