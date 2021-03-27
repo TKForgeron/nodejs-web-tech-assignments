@@ -458,7 +458,7 @@ function loadQuiz() {
         }
     };
 
-    request.open("get", "../test (Maarten)/data/quiz.json");
+    request.open("get", "../data/quiz.json");
     request.send();
 }
 
