@@ -92,6 +92,6 @@ async function registerUser(username, password) {
     .catch(err => {
       console.log(`registration not working: ${err}`);
     });
+
   return userId;
-  // return userId;
 }

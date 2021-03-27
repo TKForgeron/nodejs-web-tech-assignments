@@ -1,7 +1,7 @@
 {
   "name": "Webapp",
   "version": "1.0.0",
-  "description": "- previous button absent on q1 and next button absent on q5\r -",
+  "description": "Assignment 3",
   "main": "index.js",
   "scripts": {
     "server": "nodemon app.js",
