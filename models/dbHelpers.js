@@ -18,25 +18,25 @@ module.exports = {
 
 // add, find, findById, remove, update
 async function addQuiz(quiz) {
-  const [id] = await db('quizzes').insert(quiz);
+  const [id] = await db('quiz').insert(quiz);
 
   return id;
 }
 
 function findAllQuizzes() {
-  return db('quizzes');
+  return db('quiz');
 }
 
 function findQuizById(id) {
-  return db('quizzes').where({ id }).first();
+  return db('quiz').where({ id }).first();
 }
 
 function removeQuiz(id) {
-  return db('quizzes').where({ id }).del();
+  return db('quiz').where({ id }).del();
 }
 
 function updateQuiz(id, changes) {
-  return db('quizzes')
+  return db('quiz')
     .where({ id })
     .update(changes)
     .then(() => {
@@ -45,11 +45,11 @@ function updateQuiz(id, changes) {
 }
 
 function findQuestionById(id) {
-  return db('questions').where({ id }).first();
+  return db('question').where({ id }).first();
 }
 
 async function addQuestion(question, quizId_fk) {
-  const [id] = await db('questions')
+  const [id] = await db('question')
     .where({ quizId_fk }) // quizId_fk : quizId_fk
     .insert(question);
 
@@ -57,11 +57,11 @@ async function addQuestion(question, quizId_fk) {
 }
 
 function findQuestionsByQuizId(id) {
-  return db('quizzes as qzz')
-    .join('questions as qtn', 'quizId_fk', 'qtn.quizId_fk')
+  return db('quiz as qz')
+    .join('question as qtn', 'quizId_fk', 'qtn.quizId_fk')
     .select(
-      'qzz.id',
-      'qzz.title as quizTitle',
+      'qz.id',
+      'qz.title as quizTitle',
       'qtn.id',
       'qtn.title as questionTitle',
       'qtn.image',
@@ -73,20 +73,22 @@ function findQuestionsByQuizId(id) {
 }
 
 function removeQuestion(id) {
-  return db('questions').where({ id }).del();
+  return db('question').where({ id }).del();
 }
 
-async function registerUser(username,password) {
-  console.log("inside register user");
+async function registerUser(username, password) {
+  console.log('inside register user');
   const user = {};
   user.username = username;
   user.password = password;
   let JSONUser = JSON.stringify(user);
-  console.log(JSONUser)
+  console.log(JSONUser);
 
   const userId = await db('user')
     .insert(user)
-    .then(result => { console.log('registerUser insert then result: ' + result) })
+    .then(result => {
+      console.log('registerUser insert then result: ' + result);
+    })
     .catch(err => {
       console.log(`registration not working: ${err}`);
     });

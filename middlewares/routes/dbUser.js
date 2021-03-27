@@ -11,13 +11,13 @@ server.get('/', (req, res) => {
 server.post('/auth', async function (req, res) {
   let encryptedPassword = await bcrypt.hash(req.body.password, 10);
   let actualUsername = req.body.username;
-  
+
   dbOperations
-    .registerUser(actualUsername,encryptedPassword)
+    .registerUser(actualUsername, encryptedPassword)
     .then(result => {
       console.log('then of registerUser (in POST, dbUser.js)');
       console.log('post then result: ' + result);
-      //res.status(200).json(result);
+      res.status(200);
       req.session.loggedin = true;
       req.session.username = actualUsername;
       req.session.progress = 0;
