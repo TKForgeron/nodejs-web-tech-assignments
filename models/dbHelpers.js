@@ -77,7 +77,9 @@ function removeQuestion(id) {
 }
 
 async function registerUser(user) {
-  console.log(`inside registerUser: ${user.username}, ${user.password}`);
+  console.log(
+    `inside registerUser (dbHelpers.js): ${user.username}, ${user.password}`
+  );
   const [userId] = await db('user')
     .insert(user)
     .then(ids => {

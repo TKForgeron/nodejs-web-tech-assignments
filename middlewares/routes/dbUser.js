@@ -16,14 +16,14 @@ server.post('/auth', async function (req, res) {
   dbOperations
     .registerUser(JSON.stringify(user))
     .then(test => {
-      console.log('im in the then');
+      console.log('then of registerUser (in POST, dbUser.js)');
       // res.status(200).json(test);
       // req.session.loggedin = true;
       // req.session.username = username;
       // res.redirect('../profile');
     })
     .catch(error => {
-      console.log('im in the catch');
+      console.log('catch of registerUser (in POST, dbUser.js)');
       res
         .status(500)
         .json({ message: "Unable to perform 'registerUser' operation" });
