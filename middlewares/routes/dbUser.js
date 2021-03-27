@@ -12,14 +12,16 @@ server.post('/auth', async function (req, res) {
   let encryptedPassword = await bcrypt.hash(req.body.password, 10);
   let actualUsername = req.body.username;
   
-  const [kkr] = await dbOperations
+  dbOperations
     .registerUser(actualUsername,encryptedPassword)
-    .then(test => {
+    .then(result => {
       console.log('then of registerUser (in POST, dbUser.js)');
-      // res.status(200).json(test);
-      // req.session.loggedin = true;
-      // req.session.username = username;
-      // res.redirect('../profile');
+      console.log('post then result: ' + result);
+      //res.status(200).json(result);
+      req.session.loggedin = true;
+      req.session.username = actualUsername;
+      req.session.progress = 0;
+      res.redirect('/profile');
     })
     .catch(error => {
       console.log('catch of registerUser (in POST, dbUser.js)');

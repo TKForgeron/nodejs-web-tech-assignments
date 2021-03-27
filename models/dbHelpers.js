@@ -81,12 +81,12 @@ async function registerUser(username,password) {
   const user = {};
   user.username = username;
   user.password = password;
-
   let JSONUser = JSON.stringify(user);
   console.log(JSONUser)
-  const [userId] = await db('user')
+
+  const userId = await db('user')
     .insert(user)
-    .then(ids => { console.log('kankerknex werkt') })
+    .then(result => { console.log('registerUser insert then result: ' + result) })
     .catch(err => {
       console.log(`registration not working: ${err}`);
     });
