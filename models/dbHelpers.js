@@ -45,11 +45,11 @@ function updateQuiz(id, changes) {
 }
 
 function findQuestionById(id) {
-  return db('questions').where({ id }).first();
+  return db('questios').where({ id }).first();
 }
 
 async function addQuestion(question, quizId_fk) {
-  const [id] = await db('questions')
+  const [id] = await db('question')
     .where({ quizId_fk }) // quizId_fk : quizId_fk
     .insert(question);
 
@@ -57,11 +57,11 @@ async function addQuestion(question, quizId_fk) {
 }
 
 function findQuestionsByQuizId(id) {
-  return db('quizzes as qzz')
-    .join('questions as qtn', 'quizId_fk', 'qtn.quizId_fk')
+  return db('quiz as qz')
+    .join('question as qtn', 'quizId_fk', 'qtn.quizId_fk')
     .select(
-      'qzz.id',
-      'qzz.title as quizTitle',
+      'qz.id',
+      'qz.title as quizTitle',
       'qtn.id',
       'qtn.title as questionTitle',
       'qtn.image',
@@ -73,14 +73,17 @@ function findQuestionsByQuizId(id) {
 }
 
 function removeQuestion(id) {
-  return db('questions').where({ id }).del();
+  return db('question').where({ id }).del();
 }
 
 async function registerUser(user) {
   console.log(`inside registerUser: ${user.username}, ${user.password}`);
-  const [userId] = await db('quizzes')
+  const [userId] = await db('user')
     .insert(user)
-    .then(ids => ({ id: ids[0] }))
+    .then(ids => {
+      console.log(ids);
+      ({ id: ids[0] });
+    })
     .catch(err => {
       console.log(`registration not working: ${err}`);
     });
