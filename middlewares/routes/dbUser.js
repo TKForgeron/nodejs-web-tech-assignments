@@ -3,20 +3,22 @@ const server = express();
 const dbOperations = require('../../models/dbHelpers');
 const bcrypt = require('bcrypt');
 
+server.use(express.json());
+
 server.get('/', (req, res) => {
   // this does nothing cause we're using static html files
   return res.render('register', { title: 'Register' });
 });
 
 server.post('/auth', async function (req, res) {
-  let encryptedPassword = await bcrypt.hash(req.body.password, 10);
-  let actualUsername = req.body.username;
+  req.body.password = await bcrypt.hash(req.body.password, 10);
+  let user = JSON.stringify(req.body);
+  let actualUsername = user.username;
 
   dbOperations
-    .registerUser(actualUsername, encryptedPassword)
+    .addUser(user)
     .then(result => {
-      console.log('then of registerUser (in POST, dbUser.js)');
-      console.log('post then result: ' + result);
+      console.log(`then of registerUser (in POST, dbUser.js): ${result}`);
       res.status(200);
       req.session.loggedin = true;
       req.session.username = actualUsername;

@@ -32,7 +32,7 @@ app.use(
 const registerRouter = require('./middlewares/routes/dbUser');
 const profileRouter = require('./middlewares/routes/profile');
 const loginRouter = require('./middlewares/routes/login');
-const quizQuestionApi = require('./middlewares/routes/dbquizQuestion');
+const quizQuestionApi = require('./middlewares/routes/dbQuizQuestion');
 
 app.use('/register', registerRouter);
 app.use('/profile', profileRouter);

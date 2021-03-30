@@ -1,10 +1,9 @@
 # vscode
 .vscode
+.prettierrc
 
-# overig
-*.txt
-*.pdf
-*.zip
+# webstorm
+.idea
 
 # node
 node_modules
@@ -12,3 +11,8 @@ build
 npm-debug.log
 .env
 .DS_Store
+
+# overig
+*.txt
+*.pdf
+*.zip
