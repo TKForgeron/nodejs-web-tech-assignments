@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="../public/styles/style.css">
+    <link rel="icon" href="../public/images/uulogo.png" type="image/png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial scale=1">
+    <meta name="description" content="5-question quiz about JavaScript">
+    <meta name="keywords" content="JavaScript, questions, test yourself">
+    <title>JavaScript - Assessment</title>
+</head>
+<body>
+<header class="header">
+    <a href="https://www.javascript.com/" target="_blank" title="Go to JavaScript.com"><img src="../public/images/javascriptlogo.png" alt="JavaScript logo" class="header__img header__img--left"></a>
+    <a href="https://www.uu.nl/" target="_blank" title="Go to uu.nl"><img src="../public/images/uulogo.png" alt="Utrecht Univesity logo" class="header__img header__img--right"></a>
+    <a href="../public/index.html"><h1>JavaScript</h1></a>
+</header>
+<nav class="nav">
+</nav>
+
+<form method="post">
+    <label>
+        Input:
+        <input name="open" type="text">
+    </label>
+    <button id="submit" onclick="answer(); return false;">Submit</button>
+    <!--<button id="submit">Submit</button>-->
+</form>
+
+<footer>
+</footer>
+
+<script type="text/javascript">
+function answer (){
+    const xmlHttp = new XMLHttpRequest();
+    let submission = document.getElementsByTagName("input")[0].value;
+    console.log(submission);
+
+    xmlHttp.onreadystatechange = function() {
+        if(xmlHttp.readyState === 4 && xmlHttp.status === 200){
+            let feedback = xmlHttp.responseText;
+            console.log(feedback);
+        }
+    };
+
+    xmlHttp.open("post", "server.php");
+    xmlHttp.send(submission);
+    return false;
+}
+//const bttn = document.getElementById("submit");
+//bttn.addEventListener("click", () => {answer();});
+</script>
+<!--<script type="text/javascript" src="../public/js/questions.js"></script>-->
+</body>
+</html>
