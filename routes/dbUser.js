@@ -1,9 +1,7 @@
 const express = require('express');
 const server = express();
-const dbAdder = require('../../models/dbAdd');
+const dbAdder = require('../models/dbAdd');
 const bcrypt = require('bcrypt');
-
-server.use(express.json());
 
 server.get('/', (req, res) => {
   // this does nothing cause we're using static html files

@@ -29,10 +29,10 @@ app.use(
   })
 );
 
-const registerRouter = require('./middlewares/routes/dbUser');
-const profileRouter = require('./middlewares/routes/profile');
-const loginRouter = require('./middlewares/routes/login');
-const topicQuizQuestionApi = require('./middlewares/routes/dbTopicQuizQuestion');
+const registerRouter = require('./routes/dbUser');
+const profileRouter = require('./routes/profile');
+const loginRouter = require('./routes/login');
+const topicQuizQuestionApi = require('./routes/dbTopicQuizQuestion');
 
 app.use('/register', registerRouter);
 app.use('/profile', profileRouter);
