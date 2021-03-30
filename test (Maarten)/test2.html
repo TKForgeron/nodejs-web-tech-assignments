@@ -32,9 +32,14 @@
 
 <script type="text/javascript">
 function answer (){
+    var quizNumber = "0";           //  Gather this from the webpage
+    var questionNumber = "2";       // Gather this from the webpage
+    var provAnswer = document.getElementsByTagName("input")[0].value
     const xmlHttp = new XMLHttpRequest();
-    let submission = document.getElementsByTagName("input")[0].value;
-    console.log(submission);
+    var subObj = {quiz: quizNumber, question: questionNumber, answer: provAnswer};
+    let submission = new FormData();
+    submission.append("submission", JSON.stringify(subObj));                            //Ask TA whether this is allowed!!!
+
 
     xmlHttp.onreadystatechange = function() {
         if(xmlHttp.readyState === 4 && xmlHttp.status === 200){
@@ -43,7 +48,7 @@ function answer (){
         }
     };
 
-    xmlHttp.open("post", "server.php");
+    xmlHttp.open("post", "server.php");     // Put the filepath to Express middleware that handles the request here (PHP is now acting server)
     xmlHttp.send(submission);
     return false;
 }

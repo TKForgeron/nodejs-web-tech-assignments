@@ -454,12 +454,12 @@ function loadQuiz() {
             questions[currentQuestionIndex].show(questionInputSectionId, questionOutputSectionId);
         }catch (e){
             //console.log(questions);
-            console.warn("Questions are still loading...");
+            console.warn("Questions are (still) loading...");
         }
     };
 
-    request.open("get", "../data/quiz.json");
-    request.send();
+    request.open("get", "../data/quiz.json");        // Put the filepath to Express middleware that handles the request here
+    request.send();                                             // Put which quiz you want to load in here (now just everything in the .json file will be send as response)
 }
 
 /* Function that turns JSON array (which contains quiz questions) into an array of Question/MultipleChoice objects

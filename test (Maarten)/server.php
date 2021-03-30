@@ -1,5 +1,16 @@
 <?php
-//$submission = $_POST["open"];
-echo "Working!!!";
-//enter name and lastname into your form and onclick they will be alerted
+$provided = json_decode($_POST["submission"]);
+
+$quiz = $provided->quiz;
+$question = $provided->question;
+$submission = $provided->answer;
+
+
+if ($submission=="test"){
+    $feedback = "true";
+}else{
+    $feedback = "false";
+}
+
+echo $quiz.",".$question.": ".$feedback;
 ?>
