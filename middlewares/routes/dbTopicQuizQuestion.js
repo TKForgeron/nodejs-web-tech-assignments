@@ -7,6 +7,28 @@ const server = express();
 
 server.use(express.json());
 
+server.post('/topics', (req, res) => {
+  dbAdder
+    .addTopic(req.body)
+    .then(topic => {
+      res.status(200).json(topic);
+    })
+    .catch(error => {
+      res.status(500).json({ message: 'cannot add topic' });
+    });
+});
+
+server.get('topics', (req, res) => {
+  dbFinder
+    .findAllTopics()
+    .then(topics => {
+      res.status(200).json(topics);
+    })
+    .catch(error => {
+      res.status(500).json({ message: 'could not retrieve topics' });
+    });
+});
+
 server.post('/quizzes', (req, res) => {
   dbAdder
     .addQuiz(req.body)

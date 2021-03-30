@@ -2,9 +2,10 @@
 const knex = require('knex');
 const config = require('../database/knexfile');
 const db = knex(config.development);
+const dbOperationHelpers = require('./dbOperationHelpers');
 
 module.exports = {
-  // updateTopic,
+  updateTopic,
   updateQuiz,
   // updateQuestion,
   // updateUser,
@@ -12,11 +13,11 @@ module.exports = {
 };
 
 // expects: (number, JSON string)
+function updateTopic(id, changes) {
+  return dbOperationHelpers.updater('topic', id, changes);
+}
+
+// expects: (number, JSON string)
 function updateQuiz(id, changes) {
-  return db('quiz')
-    .where({ id })
-    .update(changes)
-    .then(() => {
-      return findById(id);
-    }); // return complete record that was updated
+  return dbOperationHelpers.updater('quiz', id, changes);
 }

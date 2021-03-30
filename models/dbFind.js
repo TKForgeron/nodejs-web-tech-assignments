@@ -2,18 +2,21 @@
 const knex = require('knex');
 const config = require('../database/knexfile');
 const db = knex(config.development);
+const dbOperationHelpers = require('./dbOperationHelpers');
 
 module.exports = {
   findAllTopics,
   findAllQuizzes,
-  // findAllUsers,
+  findAllUsers,
+
   findTopicById,
   findQuizById,
   findQuestionById,
   findUserById,
-  // findQuizByTopicId,
+
+  findQuizzesByTopicId,
   findQuestionsByQuizId,
-  // findStatsByUserId,
+  findStatsByUserId,
 };
 
 function findAllQuizzes() {
@@ -24,9 +27,36 @@ function findAllTopics() {
   return db('topic');
 }
 
+function findAllUsers() {
+  return db('user');
+}
+
+// expects: (number)
+function findTopicById(id) {
+  return dbOperationHelpers.finder('topic', id);
+}
+
+// expects: (number)
+function findQuizById(id) {
+  return dbOperationHelpers.finder('quiz', id);
+}
+
 // expects: (number)
 function findQuestionById(id) {
-  return db('question').where({ id }).first();
+  return dbOperationHelpers.finder('question', id);
+}
+
+// expects: (number)
+function findUserById(id) {
+  return dbOperationHelpers.finder('user', id);
+}
+
+// expects: (number)
+function findQuizzesByTopicId(id) {
+  return db('topic')
+    .join('quiz as qz', 'topicId_fk', 'qz.topicId_fk')
+    .select('topic.id', 'topic.name as topicName', 'qz.id')
+    .where({ id });
 }
 
 // expects: (number)
@@ -47,21 +77,17 @@ function findQuestionsByQuizId(id) {
 }
 
 // expects: (number)
-function findQuizById(id) {
-  const quiz = db('quiz').where({ id }).first();
-  // console.log(`inside findQuizById: ${quiz}`);
-  return quiz;
-}
-
-// expects: (number)
-function findTopicById(id) {
-  const topic = db('topic').where({ id }).first();
-  return topic;
-}
-
-// expects: (number)
-function findUserById(id) {
-  const user = db('user').where({ id }).first();
-  // console.log(`inside findUserById: ${user}`);
-  return user;
+function findStatsByUserId(id) {
+  return db('user')
+    .join('userQuizStats as stats', 'userId_fk', 'user.userId_fk')
+    .select(
+      'user.id',
+      'user.name',
+      'user.username',
+      'stats.id',
+      'stats.quizId_fk',
+      'stats.quizProgress',
+      'stats.quizSuccessRate'
+    )
+    .where({ id });
 }

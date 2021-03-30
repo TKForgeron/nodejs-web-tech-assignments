@@ -32,12 +32,12 @@ app.use(
 const registerRouter = require('./middlewares/routes/dbUser');
 const profileRouter = require('./middlewares/routes/profile');
 const loginRouter = require('./middlewares/routes/login');
-const quizQuestionApi = require('./middlewares/routes/dbQuizQuestion');
+const topicQuizQuestionApi = require('./middlewares/routes/dbTopicQuizQuestion');
 
 app.use('/register', registerRouter);
 app.use('/profile', profileRouter);
 app.use('/login', loginRouter);
-app.use('/api', quizQuestionApi);
+app.use('/api', topicQuizQuestionApi);
 
 const server = app.listen(port, function () {
   console.log(`Server Listening on port ${port}`);
