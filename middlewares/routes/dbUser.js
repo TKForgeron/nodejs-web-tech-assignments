@@ -1,6 +1,6 @@
 const express = require('express');
 const server = express();
-const dbOperations = require('../../models/dbHelpers');
+const dbAdder = require('../../models/dbAdd');
 const bcrypt = require('bcrypt');
 
 server.use(express.json());
@@ -15,7 +15,7 @@ server.post('/auth', async function (req, res) {
   let user = JSON.stringify(req.body);
   let actualUsername = user.username;
 
-  dbOperations
+  dbAdder
     .addUser(user)
     .then(result => {
       console.log(`then of registerUser (in POST, dbUser.js): ${result}`);

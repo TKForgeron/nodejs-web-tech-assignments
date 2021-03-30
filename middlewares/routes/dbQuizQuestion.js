@@ -1,11 +1,14 @@
 const express = require('express');
-const dbOperations = require('../../models/dbHelpers');
+const dbAdder = require('../../models/dbAdd'); // C
+const dbFinder = require('../../models/dbFind'); // R
+const dbUpdater = require('../../models/dbUpdate'); // U
+const dbRemover = require('../../models/dbRemove'); // D
 const server = express();
 
 server.use(express.json());
 
 server.post('/quizzes', (req, res) => {
-  dbOperations
+  dbAdder
     .addQuiz(req.body)
     .then(quiz => {
       res.status(200).json(quiz);
@@ -16,7 +19,7 @@ server.post('/quizzes', (req, res) => {
 });
 
 server.get('quizzes', (req, res) => {
-  dbOperations
+  dbFinder
     .findAllQuizzes()
     .then(quizzes => {
       res.status(200).json(quizzes);
@@ -27,7 +30,7 @@ server.get('quizzes', (req, res) => {
 });
 
 server.get('quizzes/:id', (req, res) => {
-  dbOperations
+  dbFinder
     .findQuizById(req.params.id)
     .then(quiz => {
       if (quiz) {
@@ -45,7 +48,7 @@ server.get('quizzes/:id', (req, res) => {
 
 server.delete('quizzes/:id', (req, res) => {
   const { id } = req.params;
-  dbOperations
+  dbRemover
     .removeQuiz(id)
     .then(deletedRecordsAmt => {
       if (deletedRecordsAmt > 0) {
@@ -65,7 +68,7 @@ server.patch('/quizzes/:id', (req, res) => {
   const { id } = req.params;
   const changes = req.body;
 
-  dbOperations
+  dbUpdater
     .updateQuiz(id, changes)
     .then(quiz => {
       if (quiz) {
@@ -84,7 +87,7 @@ server.post('/quizzes/:id/questions', (req, res) => {
   const { id } = parseInt(req.params, 10);
   const question = req.body;
 
-  dbOperations
+  dbFinder
     .findQuizById(id)
     .then(quiz => {
       if (!quiz) {
@@ -106,7 +109,7 @@ server.post('/quizzes/:id/questions', (req, res) => {
             'Please provide title, answer, and explanation to the question',
         });
       } else {
-        dbOperations
+        dbAdder
           .addQuestion(question, id)
           .then(q => {
             res.status(200).json(q);
@@ -129,7 +132,7 @@ server.post('/quizzes/:id/questions', (req, res) => {
 server.get('/quizzes/:id/questions', (req, res) => {
   const id = req.params.id;
 
-  dbOperations
+  dbFinder
     .findQuestionsByQuizId(id)
     .then(quiz => {
       res.status(200).json(quiz);
@@ -143,7 +146,7 @@ server.get('/quizzes/:id/questions', (req, res) => {
 
 server.delete('questions/:id', (req, res) => {
   const { id } = req.params;
-  dbOperations
+  dbRemover
     .removeQuestion(id)
     .then(deletedRecordsAmt => {
       if (deletedRecordsAmt > 0) {
