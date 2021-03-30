@@ -7,9 +7,9 @@ const dbOperationHelpers = require('./dbOperationHelpers');
 module.exports = {
   updateTopic,
   updateQuiz,
-  // updateQuestion,
-  // updateUser,
-  // updateUserStat,
+  updateQuestion,
+  updateUser,
+  updateUserStat,
 };
 
 // expects: (number, JSON string)
@@ -20,4 +20,33 @@ function updateTopic(id, changes) {
 // expects: (number, JSON string)
 function updateQuiz(id, changes) {
   return dbOperationHelpers.updater('quiz', id, changes);
+}
+
+// expects: (number, JSON string)
+function updateQuestion(id, changes) {
+  return dbOperationHelpers.updater('question', id, changes);
+}
+
+// expects: (number, JSON string)
+function updateUser(id, changes) {
+  return dbOperationHelpers.updater('user', id, changes);
+}
+
+function updateUserStat(userId_fk, quizId_fk, changes) {
+  const table = 'userQuizStats';
+  const statIds = db(table).where({ userId_fk, quizId_fk }).select('id');
+
+  if (statIds.length >= 2) {
+    console.log(
+      `there are more than 1 user/quiz combinations in '${table}' table`
+    );
+  } else if (statIds.length <= 0) {
+    console.log(
+      `no such user/quiz combination exists in '${table}' table, i.e. this user has not done this quiz yet`
+    );
+  } else {
+    statIds.forEach(statId => {
+      return dbOperationHelpers.updater(table, statId, changes);
+    });
+  }
 }

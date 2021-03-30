@@ -56,6 +56,7 @@ function removeUser(id) {
   return dbOperationHelpers.remover('user', id);
 }
 
+// expects: (number)
 function removeUserStat(id) {
   return dbOperationHelpers.remover('userQuizStats', id);
 }

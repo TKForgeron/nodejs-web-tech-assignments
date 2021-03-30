@@ -20,7 +20,7 @@ function updater(table, id, changes) {
     .where({ id })
     .update(changes)
     .then(() => {
-      return finderById(table, id);
+      return finder(table, id);
     }); // return complete record that was updated
 }
 
