@@ -16,7 +16,8 @@ router.get('/', (req, res) => {
   }
 });
 
-router.get('/logout', (req, res) => {
+router.post('/logout', (req, res) => {
+  // Send session progress to database, then destroy session and redirect to index
   req.session.destroy();
   res.redirect('/index.html');
 });

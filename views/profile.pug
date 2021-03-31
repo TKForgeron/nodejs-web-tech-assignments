@@ -31,6 +31,8 @@ nav.nav
 main
   h1= message
   h2= messageTwo
+  form(action='/profile/logout' method='POST')
+    input(type='submit', value= 'Logout')
 footer
   p Made by Douwe, Tim and Maarten.
   img.footer__image(src='images/uulogotext.png' alt='UU Logo with Text reading Universiteit Utrecht')
