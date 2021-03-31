@@ -33,21 +33,23 @@ function updateUser(id, changes) {
 }
 
 // expects: (number, number, JSON string)
-function updateUserStat(userId_fk, quizId_fk, changes) {
+function updateUserStat(id, changes) {
   const table = 'userQuizStats';
-  const statIds = db(table).where({ userId_fk, quizId_fk }).select('id');
+  // const statIds = db(table).where({ userId_fk, quizId_fk }).select('id');
 
-  if (statIds.length >= 2) {
-    console.log(
-      `there are more than 1 user/quiz combinations in '${table}' table`
-    );
-  } else if (statIds.length <= 0) {
-    console.log(
-      `no such user/quiz combination exists in '${table}' table, i.e. this user has not done this quiz yet`
-    );
-  } else {
-    statIds.forEach(statId => {
-      return dbOperationHelpers.updater(table, statId, changes);
-    });
-  }
+  // if (statIds.length >= 2) {
+  //   console.log(
+  //     `there are more than 1 user/quiz combinations in '${table}' table`
+  //   );
+  // } else if (statIds.length <= 0) {
+  //   console.log(
+  //     `no such user/quiz combination exists in '${table}' table, i.e. this user has not done this quiz yet`
+  //   );
+  // } else {
+  //   statIds.forEach(statId => {
+  //     return dbOperationHelpers.updater(table, statId, changes);
+  //   });
+  // }
+
+  return dbOperationHelpers.updater(table, id, changes);
 }
