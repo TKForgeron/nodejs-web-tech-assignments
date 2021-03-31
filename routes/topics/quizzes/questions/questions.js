@@ -4,22 +4,22 @@ const router = express();
 // add question to quiz (to db)
 router.post(
   '/:topicId/quizzes/:quizId/questions',
-  require('../../../../controllers/adders/addQuestionController')
+  require('../../../../controllers/dbAdders/addQuestionController')
 );
 
 router.get(
   '/:topicId/quizzes/:quizId/questions',
-  require('../../../../controllers/getters/getQuestionsController')
+  require('../../../../controllers/dbGetters/getQuestionsController')
 );
 
 router.patch(
   '/:topicId/quizzes/:quizId/questions/:questionId',
-  require('../../../../controllers/updaters/updateQuestionController')
+  require('../../../../controllers/dbUpdaters/updateQuestionController')
 );
 
 router.delete(
   '/:topicId/quizzes/:quizId/questions/:questionId',
-  require('../../../../controllers/removers/removeQuestionController')
+  require('../../../../controllers/dbRemovers/removeQuestionController')
 );
 
 module.exports = router;
