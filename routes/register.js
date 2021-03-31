@@ -6,6 +6,6 @@ server.get('/', (req, res) => {
   return res.render('register', { title: 'Register' });
 });
 
-server.post('/auth', require('../controllers/dbAdders/addUser'));
+server.post('/auth', require('../controllers/dbAdders/addUserController'));
 
 module.exports = server;
