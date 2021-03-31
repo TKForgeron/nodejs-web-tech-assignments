@@ -9,7 +9,7 @@ router.get('/', function (req, res) {
     console.log("You're already logged in");
     res.redirect('/profile');
   } else {
-    //Database stuff goes here
+    // database stuff goes here
     foundInDatabase = true;
     if (foundInDatabase) {
       return res.render('login', { title: 'Login' });
