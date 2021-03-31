@@ -47,7 +47,7 @@ function answer (){
         }
     };
 
-    const method = 'post';
+    const method = 'get';
     xmlHttp.open(method, "/topics");     // Put the filepath to Express middleware that handles the request here (PHP is now acting server)
     
     if (method == 'get' || method == 'delete') {
