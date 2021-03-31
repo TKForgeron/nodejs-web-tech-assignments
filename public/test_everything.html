@@ -41,6 +41,15 @@
 </footer>
 
 <script type="text/javascript">
+    /*
+    paths:
+        /topics/:topicId/quizzes/:quizId/questions/:questionId (checkAnswer)
+        /topics/:topicId/quizzes/:quizId/questions (loadQuestions)
+        /topics/:topicId/quizzes (loadQuizzes)
+        /topics (loadTopics)
+     */
+
+    // Change these variables depending on the current question showed to the user
     var questionId = "0";
     var topicId = "1";
     var quizId = "2";

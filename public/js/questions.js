@@ -429,38 +429,38 @@ function clearQuestionElements(){
   questions[currentQuestionIndex].showingFeedback = false;
 }
 
-// Loads quiz form JSON file and turns it into an array of Question/MultipleChoice objects
-// function loadQuiz() {
-//   const request = new XMLHttpRequest();
-//
-//   request.onreadystatechange = function() {
-//     if (this.readyState === 4 && this.status === 200) {
-//       const quiz = JSON.parse(this.responseText);
-//       //populate(quiz);
-//       quiz.forEach((row) => {
-//         var q;
-//         var mq;
-//         if(!row.otherOptions) {
-//           q = new Question(row.id, row.title, row.image, row.question, row.explanation, row.answer, row.reference);
-//           questions.push(q);
-//         } else {
-//           // otherOptions in multiple choice questions are called options (keep this in mind)!!!
-//           mq = new MultipleChoice(row.id, row.title, row.image, row.question, row.explanation, row.answer, row.otherOptions, row.reference);
-//           questions.push(mq);
-//         }
-//       });
-//     }
-//     try {
-//       questions[currentQuestionIndex].show(questionInputSectionId, questionOutputSectionId);
-//     }catch (e){
-//       //console.log(questions);
-//       console.warn("Questions are (still) loading...");
-//     }
-//   };
-//
-//   request.open("get", "../data/quiz.json");        // Put the filepath to Express middleware that handles the request here
-//   request.send();                                             // Put which quiz you want to load in here (now just everything in the .json file will be send as response)
-// }
+//Loads quiz form JSON file and turns it into an array of Question/MultipleChoice objects
+function loadQuiz() {
+  const request = new XMLHttpRequest();
+
+  request.onreadystatechange = function() {
+    if (this.readyState === 4 && this.status === 200) {
+      const quiz = JSON.parse(this.responseText);
+      //populate(quiz);
+      quiz.forEach((row) => {
+        var q;
+        var mq;
+        if(!row.otherOptions) {
+          q = new Question(row.id, row.title, row.image, row.question, row.explanation, row.answer, row.reference);
+          questions.push(q);
+        } else {
+          // otherOptions in multiple choice questions are called options (keep this in mind)!!!
+          mq = new MultipleChoice(row.id, row.title, row.image, row.question, row.explanation, row.answer, row.otherOptions, row.reference);
+          questions.push(mq);
+        }
+      });
+    }
+    try {
+      questions[currentQuestionIndex].show(questionInputSectionId, questionOutputSectionId);
+    }catch (e){
+      //console.log(questions);
+      console.warn("Questions are (still) loading...");
+    }
+  };
+
+  request.open("get", "../data/quiz.json");        // Put the filepath to Express middleware that handles the request here
+  request.send();                                             // Put which quiz you want to load in here (now just everything in the .json file will be send as response)
+}
 
 /* Function that turns JSON array (which contains quiz questions) into an array of Question/MultipleChoice objects
 This function is now commented out, because the content of it is duplicated into the loadQuiz() function*/
@@ -480,7 +480,7 @@ This function is now commented out, because the content of it is duplicated into
 //     //console.log(questions);
 // } console.log(questions);
 
-//loadQuiz();
+//loadQuiz();  //commented out for test purposes (in test_everything.html)
 //document.addEventListener("DOMContentLoaded", () => {loadQuiz();});
 createNav();
 createInitialElements();
