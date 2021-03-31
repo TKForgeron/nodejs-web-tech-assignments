@@ -65,8 +65,8 @@ exports.up = knex => {
           .inTable('quiz')
           .onDelete('CASCADE')
           .onUpdate('CASCADE');
-        table.integer('quizProgress', 128).unsigned();
-        table.decimal('quizSuccessRate').unsigned();
+        table.integer('quizProgress', 128).unsigned(); // how many questions answered user has in this quiz
+        table.decimal('quizSuccessRate').unsigned(); // how many correctly answered questions user has in this quiz
       })
       .catch(err => {
         console.error(err);

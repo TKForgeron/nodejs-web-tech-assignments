@@ -85,16 +85,18 @@ function findQuestionsByQuizId(id) {
 
 // expects: (number)
 function findStatsByUserId(id) {
-  return db('user')
-    .join('userQuizStats as stats', 'userId_fk', 'user.userId_fk')
-    .select(
-      'user.id',
-      'user.name',
-      'user.username',
-      'stats.id',
-      'stats.quizId_fk',
-      'stats.quizProgress',
-      'stats.quizSuccessRate'
-    )
-    .where({ id });
+  //   return db('user')
+  //     .join('userQuizStats as stats', 'userId_fk', 'user.userId_fk')
+  //     .select(
+  //       'user.id',
+  //       'user.name',
+  //       'user.username',
+  //       'stats.id',
+  //       'stats.quizId_fk',
+  //       'stats.quizProgress', // how many questions answered user has in this quiz
+  //       'stats.quizSuccessRate' // how many correctly answered questions user has in this quiz
+  //     )
+  //     .where({ id });
+  // }
+  return db('userQuizStat').where({ userId_fk: id }); // array of JS-objects
 }
