@@ -48,8 +48,9 @@ function answer (){
         }
     };
 
-    xmlHttp.open("post", "/topics");     // Put the filepath to Express middleware that handles the request here (PHP is now acting server)
-    xmlHttp.send(JSON.stringify(subObj));
+    xmlHttp.open("get", "/api/topics");     // Put the filepath to Express middleware that handles the request here (PHP is now acting server)
+    xmlHttp.send();
+    // xmlHttp.send(JSON.stringify(subObj));
     return false;
 }
 

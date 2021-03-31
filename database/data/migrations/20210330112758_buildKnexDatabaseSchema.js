@@ -23,8 +23,10 @@ exports.up = knex => {
         table.increments();
         table.text('title', 128).notNullable();
         table.text('image', 128);
+        table.text('question', 128).notNullable();
         table.text('explanation', 128).notNullable();
         table.text('answer', 128).notNullable();
+        table.text('reference', 128);
         table.text('otherOptions'); // is NULL for open questions
         // foreign key info to 'quiz' table
         table

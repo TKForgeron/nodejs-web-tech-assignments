@@ -33,8 +33,10 @@ const registerRouter = require('./routes/dbUser');
 const profileRouter = require('./routes/profile');
 const loginRouter = require('./routes/login');
 const topicQuizQuestionApi = require('./routes/dbTopicQuizQuestion');
+const answerChecker = require('./routes/answerChecker');
 
 app.use('/register', registerRouter);
+app.use('/quiz', answerChecker);
 app.use('/profile', profileRouter);
 app.use('/login', loginRouter);
 app.use('/api', topicQuizQuestionApi);

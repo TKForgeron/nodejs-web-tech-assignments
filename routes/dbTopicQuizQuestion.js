@@ -1,5 +1,4 @@
 const express = require('express');
-const dbAdder = require('../models/dbAdd'); // C
 const dbFinder = require('../models/dbFind'); // R
 const dbUpdater = require('../models/dbUpdate'); // U
 const dbRemover = require('../models/dbRemove'); // D
@@ -7,13 +6,22 @@ const server = express();
 
 server.post('/topics', require('../controllers/createTopicController'));
 
-server.get('topics', require('../controllers/getTopicsController'));
+server.get('/topics', require('../controllers/getTopicsController'));
 
-server.post('/quizzes', require('../controllers/createQuizController'));
+server.post(
+  '/topics/:topicId/quizzes',
+  require('../controllers/createQuizController')
+);
 
-server.get('quizzes', require('../controllers/getQuizzesController'));
+server.get(
+  'topics/:topicId/quizzes',
+  require('../controllers/getQuizzesController') // nog fixen
+);
 
-server.get('quizzes/:id', require('../controllers/getQuizController'));
+server.get(
+  'topics/:topicId/quizzes/:quizId',
+  require('../controllers/getQuizController')
+); // public/data/quiz.json ... in dat format een array van alle questions bij de correcte quiz in response teruggeven
 
 server.delete('quizzes/:id', require('../controllers/removeQuizController'));
 

@@ -1,3 +1,5 @@
+const dbFinder = require('../models/dbFind');
+
 module.exports = (req, res) => {
   dbFinder
     .findAllTopics()
