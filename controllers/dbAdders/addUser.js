@@ -1,14 +1,7 @@
-const express = require('express');
-const server = express();
-const dbAdder = require('../models/dbAdd');
 const bcrypt = require('bcrypt');
+const dbAdder = require('../../models/dbAdd');
 
-server.get('/', (req, res) => {
-  // this does nothing cause we're using static html files
-  return res.render('register', { title: 'Register' });
-});
-
-server.post('/auth', async function (req, res) {
+module.exports = async function (req, res) {
   req.body.password = await bcrypt.hash(req.body.password, 10);
   let user = JSON.stringify(req.body);
   let actualUsername = user.username;
@@ -29,6 +22,4 @@ server.post('/auth', async function (req, res) {
         .status(500)
         .json({ message: "Unable to perform 'registerUser' operation" });
     });
-});
-
-module.exports = server;
+};

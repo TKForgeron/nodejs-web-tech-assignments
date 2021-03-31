@@ -3,7 +3,7 @@ exports.up = knex => {
     knex.schema
       .createTable('topic', table => {
         table.increments();
-        table.text('name');
+        table.text('name').notNullable();
       })
       // quiz belonging to a topic
       .createTable('quiz', table => {

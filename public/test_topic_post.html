@@ -18,11 +18,11 @@
 <nav class="nav">
 </nav>
 
-<form>
+<form id='formpie'>
     <label>
-        <input name="open" type="text">
+        <input name="open" type="text" required>
     </label>
-    <button id="submit" onclick="answer(); return false;">Submit</button>
+    <button id="submit" onclick="answer();return false;">Submit</button>
     <!--<button id="submit">Submit</button>-->
 </form>
 
@@ -31,23 +31,23 @@
 
 <script type="text/javascript">
 function answer (){
+
     var quizNumber = "0";           //  Gather this from the webpage
     var questionNumber = "2";       // Gather this from the webpage
     var provAnswer = document.getElementsByTagName("input")[0].value
     const xmlHttp = new XMLHttpRequest();
-    var subObj = {name:"topic1"};
+    var subObj = {name:provAnswer};
     //let submission = new FormData();
     //submission.append("submission", JSON.stringify(subObj));                            //Ask TA whether this is allowed!!!
 
 
     xmlHttp.onreadystatechange = function() {
         if(xmlHttp.readyState === 4 && xmlHttp.status === 200){
-            let feedback = xmlHttp.responseText;
-            console.log(feedback);
+            console.log(xmlHttp.responseText);
         }
     };
 
-    const method = 'get';
+    const method = 'post';
     xmlHttp.open(method, "/topics");     // Put the filepath to Express middleware that handles the request here (PHP is now acting server)
     
     if (method == 'get' || method == 'delete') {

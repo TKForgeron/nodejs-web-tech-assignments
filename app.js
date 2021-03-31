@@ -29,7 +29,7 @@ app.use(
   })
 );
 
-app.use('/register', require('./routes/dbUser'));
+app.use('/register', require('./routes/register'));
 app.use('/profile', require('./routes/profile'));
 app.use('/login', require('./routes/login'));
 
