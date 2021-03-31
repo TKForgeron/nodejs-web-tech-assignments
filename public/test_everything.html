@@ -99,10 +99,10 @@
             }
         };
 
-        let path = "/topics/"+topicId+"/quizzes/"+quizId+"/questions";
+        let path = `/topics/${topicId}/quizzes/${quizId}/questions`;
         request.open("get", "../data/quiz.json");         // Put variable path here
         request.send();                                  // Put which quiz you want to load in here (now just everything in the .json file will be send as response)
-        return false        // To prevent te default behavior of the button
+        return false        // To prevent the default behavior of the button
     }
 
     function loadQuizzes (){
