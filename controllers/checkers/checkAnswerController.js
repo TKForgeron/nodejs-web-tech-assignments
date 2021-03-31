@@ -1,3 +1,8 @@
+const dbAdder = require('../../models/dbAdd');
+const dbFinder = require('../../models/dbFind');
+const dbUpdater = require('../../models/dbUpdate');
+const dbRemover = require('../../models/dbRemove');
+
 module.exports = (req, res) => {
   const topicId = req.params.topicId;
   const quizId = req.params.quizId;

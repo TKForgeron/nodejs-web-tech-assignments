@@ -27,4 +27,10 @@ function updater(table, id, changes) {
 // expects: (string, number)
 function remover(table, id) {
   return db(table).where({ id }).del();
+  // .then(res => {
+  //   console.log('remover successfull');
+  // })
+  // .catch(err => {
+  //   console.log('remover unsuccessfull: ' + err);
+  // });
 }

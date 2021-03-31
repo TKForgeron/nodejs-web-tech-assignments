@@ -1,3 +1,5 @@
+const dbUpdater = require('../../models/dbUpdate');
+
 module.exports = (req, res) => {
   const { id } = req.params;
   const changes = req.body;

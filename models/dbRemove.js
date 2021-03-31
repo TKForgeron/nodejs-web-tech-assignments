@@ -3,9 +3,11 @@ const knex = require('knex');
 const config = require('../database/knexfile');
 const db = knex(config.development);
 const dbOperationHelpers = require('./dbOperationHelpers');
+const dbFinder = require('./dbFind');
 
 module.exports = {
   removeTopic,
+  removeTopics,
   removeQuiz,
   removeQuestion,
   removeUser,
@@ -14,26 +16,39 @@ module.exports = {
 
 // all records with relations are removed recursively
 
+function removeTopics() {
+  dbFinder
+    .findAllTopics()
+    .then(topics => {
+      topics.forEach(topic => {
+        removeTopic(topic.id);
+      });
+    })
+    .catch(err =>
+      console.log(`unable to perform 'findAllTopics' operation: ${err}`)
+    );
+}
+
 // expects: (number)
 function removeTopic(id) {
-  const quizzesToRemove = db('quiz').where({ topicId_fk: id }).select('id');
+  // const quizzesToRemove = db('quiz').where({ topicId_fk: id }).select('id');
 
-  quizzesToRemove.forEach(quizId => {
-    removeQuiz(quizId);
-  });
+  // quizzesToRemove.forEach(quizId => {
+  //   removeQuiz(quizId);
+  // });
 
   return dbOperationHelpers.remover('topic', id);
 }
 
 // expects: (number)
 function removeQuiz(id) {
-  const questionsToRemove = db('question')
-    .where({ quizId_fk: id })
-    .select('id');
+  // const questionsToRemove = db('question')
+  //   .where({ quizId_fk: id })
+  //   .select('id');
 
-  questionsToRemove.forEach(questionId => {
-    removeQuestion(questionId);
-  });
+  // questionsToRemove.forEach(questionId => {
+  //   removeQuestion(questionId);
+  // });
 
   return dbOperationHelpers.remover('quiz', id);
 }

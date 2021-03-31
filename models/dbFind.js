@@ -69,8 +69,10 @@ function findQuestionsByQuizId(id) {
       'qtn.id',
       'qtn.title as questionTitle',
       'qtn.image',
+      'qtn.question',
       'qtn.explanation',
       'qtn.answer',
+      'qtn.reference',
       'qtn.otherOptions'
     )
     .where({ id });

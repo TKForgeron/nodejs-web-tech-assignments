@@ -29,19 +29,15 @@ app.use(
   })
 );
 
-const registerRouter = require('./routes/dbUser');
-const profileRouter = require('./routes/profile');
-const loginRouter = require('./routes/login');
-const topicQuizQuestionApi = require('./routes/dbTopicQuizQuestion');
-const answerChecker = require('./routes/answerChecker');
+app.use('/register', require('./routes/dbUser'));
+app.use('/profile', require('./routes/profile'));
+app.use('/login', require('./routes/login'));
 
-app.use('/register', registerRouter);
-app.use('/quiz', answerChecker);
-app.use('/profile', profileRouter);
-app.use('/login', loginRouter);
-app.use('/api', topicQuizQuestionApi);
+app.use('/topics', require('./routes/topicsQuizzesQuestions'));
+app.use('/quiz', require('./routes/answerChecker'));
+// app.use('/api', require('./routes/apiForPublic'));
 
-const server = app.listen(port, function () {
+const server = app.listen(port, () => {
   console.log(`Server Listening on port ${port}`);
 });
 

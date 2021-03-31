@@ -1,6 +1,8 @@
+const dbAdder = require('../../models/dbAdd');
+
 module.exports = (req, res) => {
   dbAdder
-    .addQuiz(req.body)
+    .addQuiz(JSON.stringify(req.body))
     .then(quiz => {
       res.status(200).json(quiz);
     })

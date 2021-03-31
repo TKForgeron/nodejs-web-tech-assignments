@@ -18,9 +18,8 @@
 <nav class="nav">
 </nav>
 
-<form method="post">
+<form>
     <label>
-        Input:
         <input name="open" type="text">
     </label>
     <button id="submit" onclick="answer(); return false;">Submit</button>
@@ -36,7 +35,7 @@ function answer (){
     var questionNumber = "2";       // Gather this from the webpage
     var provAnswer = document.getElementsByTagName("input")[0].value
     const xmlHttp = new XMLHttpRequest();
-    var subObj = {name:"test1"};
+    var subObj = {name:"topic1"};
     //let submission = new FormData();
     //submission.append("submission", JSON.stringify(subObj));                            //Ask TA whether this is allowed!!!
 
@@ -48,9 +47,14 @@ function answer (){
         }
     };
 
-    xmlHttp.open("get", "/api/topics");     // Put the filepath to Express middleware that handles the request here (PHP is now acting server)
-    xmlHttp.send();
-    // xmlHttp.send(JSON.stringify(subObj));
+    const method = 'get';
+    xmlHttp.open(method, "/topics");     // Put the filepath to Express middleware that handles the request here (PHP is now acting server)
+    
+    if (method == 'get' || method == 'delete') {
+        xmlHttp.send();
+    } else if (method == 'post'|| method == 'patch') {
+        xmlHttp.send(JSON.stringify(subObj));
+    }
     return false;
 }
 

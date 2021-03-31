@@ -1,4 +1,4 @@
-const dbFinder = require('../models/dbFind');
+const dbFinder = require('../../models/dbFind');
 
 module.exports = (req, res) => {
   dbFinder

@@ -1,6 +1,9 @@
+const dbFinder = require('../../models/dbFind');
+const dbAdder = require('../../models/dbAdd');
+
 module.exports = (req, res) => {
   const { id } = parseInt(req.params, 10);
-  const question = req.body;
+  const question = JSON.stringify(req.body);
 
   dbFinder
     .findQuizById(id)

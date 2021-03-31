@@ -1,4 +1,4 @@
-const dbAdder = require('../models/dbAdd');
+const dbAdder = require('../../models/dbAdd');
 
 module.exports = (req, res) => {
   dbAdder
