@@ -22,45 +22,120 @@
     <label>
         <input name="open" type="text">
     </label>
-    <button id="submit" onclick="answer(); return false;">Submit</button>
+    <button id="submit" onclick="checkAnswer(); return false;">Submit</button>
+    <button id="questions_bttn" onclick="loadQuestions(); return false;">Load Questions</button>
+    <button id="quizzes" onclick="loadQuizzes(); return false;">Load Quizzes</button>
+    <button id="topics" onclick="loadTopics(); return false;">Load Topics</button>
     <!--<button id="submit">Submit</button>-->
 </form>
+
+<ul id="topicsList">
+    <!-- To be filled with topics -->
+</ul>
+
+<ul id="quizzesList">
+    <!-- To be filled with quizzes -->
+</ul>
 
 <footer>
 </footer>
 
 <script type="text/javascript">
-function answer (){
-    var quizNumber = "0";           //  Gather this from the webpage
-    var questionNumber = "2";       // Gather this from the webpage
-    var provAnswer = document.getElementsByTagName("input")[0].value
+    var questionId = "0";
+    var topicId = "1";
+    var quizId = "2";
+    var questions = [];
+
+    function checkAnswer (){
+        var provAnswer = document.getElementsByTagName("input")[0].value
+        const xmlHttp = new XMLHttpRequest();
+        var subObj = JSON.stringify({answer: provAnswer});
+
+        xmlHttp.onreadystatechange = function() {
+            if(xmlHttp.readyState === 4 && xmlHttp.status === 200){
+                let feedback = xmlHttp.responseText;
+                console.log(feedback);
+            }
+        };
+
+        let path = "/topics/"+topicId+"/quizzes/"+quizId+"/questions/"+questionId;
+        xmlHttp.open("post", path);
+        xmlHttp.send(subObj);
+        return false;       // To prevent te default behavior of the button
+    }
+
+    function loadQuestions() {
+        const request = new XMLHttpRequest();
+
+        request.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                const quiz = JSON.parse(this.responseText);
+                quiz.forEach((row) => {
+                    var q;
+                    var mq;
+                    if(!row.otherOptions) {
+                        q = new Question(row.id, row.title, row.image, row.question, row.explanation, row.answer, row.reference);
+                        questions.push(q);
+                    } else {
+                        // otherOptions in multiple choice questions are called options (keep this in mind)!!!
+                        mq = new MultipleChoice(row.id, row.title, row.image, row.question, row.explanation, row.answer, row.otherOptions, row.reference);
+                        questions.push(mq);
+                    }
+                });
+            }
+            try {
+                questions[currentQuestionIndex].show(questionInputSectionId, questionOutputSectionId);
+            }catch (e){
+                console.warn("Questions are (still) loading...");
+            }
+        };
+
+        let path = "/topics/"+topicId+"/quizzes/"+quizId+"/questions";
+        request.open("get", "../data/quiz.json");         // Put variable path here
+        request.send();                                  // Put which quiz you want to load in here (now just everything in the .json file will be send as response)
+        return false        // To prevent te default behavior of the button
+    }
+
+    function loadQuizzes (){
+        const list = document.getElementById("quizzesList");
+        const xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() {
+            if(xmlHttp.readyState === 4 && xmlHttp.status === 200){
+                const quizzes = JSON.parse(this.responseText);
+                quizzes.forEach((object)=>{
+                    let tr = document.createElement("li")
+                    tr.textContent=object.id;
+                    list.appendChild(tr);});
+            }
+        };
+
+        let path = "/topics/"+topicId+"/quizzes";
+        xmlHttp.open("get", path);
+        xmlHttp.send();
+        return false;       // To prevent te default behavior of the button
+    }
+
+    function loadTopics (){
+    const list = document.getElementById("topicsList");
     const xmlHttp = new XMLHttpRequest();
-    var subObj = {name:"topic1"};
-    //let submission = new FormData();
-    //submission.append("submission", JSON.stringify(subObj));                            //Ask TA whether this is allowed!!!
-
-
     xmlHttp.onreadystatechange = function() {
         if(xmlHttp.readyState === 4 && xmlHttp.status === 200){
-            let feedback = xmlHttp.responseText;
-            console.log(feedback);
+            const topics = JSON.parse(this.responseText);
+            topics.forEach((object)=>{
+            let tr = document.createElement("li")
+            tr.textContent=object.id;           // Has to become object.name eventually
+            list.appendChild(tr);});
         }
     };
 
-    const method = 'get';
-    xmlHttp.open(method, "/topics");     // Put the filepath to Express middleware that handles the request here (PHP is now acting server)
-    
-    if (method == 'get' || method == 'delete') {
-        xmlHttp.send();
-    } else if (method == 'post'|| method == 'patch') {
-        xmlHttp.send(JSON.stringify(subObj));
-    }
-    return false;
+    xmlHttp.open("get", "/topics");
+    xmlHttp.send();
+    return false;       // To prevent te default behavior of the button
 }
 
 //const bttn = document.getElementById("submit");
 //bttn.addEventListener("click", () => {answer();});
 </script>
-<!--<script type="text/javascript" src="../public/js/questions.js"></script>-->
+<script type="text/javascript" src="/js/questions.js"></script>
 </body>
 </html>
