@@ -1,23 +1,23 @@
 const express = require('express');
 const router = express();
 
-router.post('/', require('../../controllers/adders/addTopicController'));
+router.post('/', require('../../controllers/dbAdders/addTopicController'));
 
-router.get('/', require('../../controllers/getters/getTopicsController'));
+router.get('/', require('../../controllers/dbGetters/getTopicsController'));
 
 router.patch(
   '/:topicId',
-  require('../../controllers/updaters/updateTopicController')
+  require('../../controllers/dbUpdaters/updateTopicController')
 );
 
 router.delete(
   '/:topicId',
-  require('../../controllers/removers/removeTopicController')
+  require('../../controllers/dbRemovers/removeTopicController')
 );
 
 router.delete(
   '/',
-  require('../../controllers/removers/removeTopicsController')
+  require('../../controllers/dbRemovers/removeTopicsController')
 );
 
 module.exports = router;

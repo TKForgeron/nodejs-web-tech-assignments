@@ -3,7 +3,7 @@ exports.up = knex => {
     knex.schema
       .createTable('topic', table => {
         table.increments();
-        table.text('name');
+        table.text('name').notNullable();
       })
       // quiz belonging to a topic
       .createTable('quiz', table => {
@@ -65,8 +65,8 @@ exports.up = knex => {
           .inTable('quiz')
           .onDelete('CASCADE')
           .onUpdate('CASCADE');
-        table.integer('quizProgress', 128).unsigned();
-        table.decimal('quizSuccessRate').unsigned();
+        table.integer('quizProgress', 128).unsigned(); // how many questions answered user has in this quiz
+        table.decimal('quizSuccessRate').unsigned(); // how many correctly answered questions user has in this quiz
       })
       .catch(err => {
         console.error(err);

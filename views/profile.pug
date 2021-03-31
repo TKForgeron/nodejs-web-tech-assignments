@@ -29,8 +29,12 @@ nav.nav
     li.nav__item.nav__item--right
       a.nav__link(href='assessment.html') Assessment
 main
-  h1= message
-  h2= messageTwo
+  article
+    h1= welcomeMessage
+    p= sesionprogress
+    p= totalprogress
+  form(action='/profile/logout' method='POST')
+    input(type='submit', value= 'Logout')
 footer
   p Made by Douwe, Tim and Maarten.
   img.footer__image(src='images/uulogotext.png' alt='UU Logo with Text reading Universiteit Utrecht')

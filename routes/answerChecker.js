@@ -4,7 +4,7 @@ const server = express();
 
 server.post(
   '/topics/:topicId/quizzes/:quizId',
-  require('../controllers/checkers/checkAnswerController')
+  require('../controllers/dbCheckers/checkAnswerController')
 );
 
 module.exports = server;

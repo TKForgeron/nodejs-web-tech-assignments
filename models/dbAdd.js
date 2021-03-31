@@ -13,7 +13,7 @@ module.exports = {
 
 // expects: (JSON string)
 async function addTopic(topic) {
-  console.log(`inside addTopic: ${topic}`);
+  console.log(`inside addTopic, adding: ${topic}`);
   topic = JSON.parse(topic);
 
   const [id] = await db('topic').insert(topic);
@@ -79,7 +79,7 @@ async function addUser(user) {
   const userId = await db('user')
     .insert(user)
     .then(result => {
-      console.log('registerUser inserted userId: ' + result);
+      console.log(`'addUser' operation inserted userId: ${result}`);
     })
     .catch(err => {
       console.log(`registration not working: ${err}`);
