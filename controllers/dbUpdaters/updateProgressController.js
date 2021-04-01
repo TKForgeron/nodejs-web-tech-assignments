@@ -7,6 +7,7 @@ module.exports = userStatsArray => {
   userStatsArray = [
     { userId: 2, quizId: 1, quizProgress: 1, quizSuccessRate: 1 },
   ];
+
   userStatsArray.forEach((stat, index) => {
     const existingUserStats = dbFinder.findStatsByUserId(stat.userId_fk);
 

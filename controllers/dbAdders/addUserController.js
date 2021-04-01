@@ -19,7 +19,6 @@ module.exports = async function (req, res) {
       console.log(err);
       userWithSameUsername = false;
     });
-  console.log('user.username: ' + user.username);
 
   // make sure username is unique
   if (userWithSameUsername) {
@@ -36,7 +35,7 @@ module.exports = async function (req, res) {
         res.status(200).redirect('/profile').json('registration successful');
       })
       .catch(error => {
-        console.log('catch of registerUser (in POST, dbUser.js)');
+        console.log('catch of registerUser (in POST, addUserController.js)');
         // res
         //   .status(500)
         //   .json({ message: "Unable to perform 'registerUser' operation" });
