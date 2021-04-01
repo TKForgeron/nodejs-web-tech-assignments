@@ -5,5 +5,15 @@ block content
     h1= welcomeMessage
     p= sesionprogress
     p= totalprogress
-  form(action='/logout', method='POST')
-    input(type='submit', value='Logout')
+    h1 add topic
+  form(action='/topics', method='POST')
+    input(type='text', name='name', placeholder='Name', required)
+    input(type='submit')
+    h1 add quiz to topicId 1
+  form(action='/topics/1/quizzes', method='POST')
+    input(type='text', name='title', placeholder='title', required)
+    input(type='submit')
+    h1 add questoin
+  form(action='/topics', method='POST')
+    input(type='text', name='name', placeholder='Name', required)
+    input(type='submit')
