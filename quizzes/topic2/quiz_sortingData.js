@@ -2,7 +2,6 @@
 // Multiple choice: id, title, image, question, explanation, answer, otherOptions, reference
 
 // Topic2: Coding related
-// Quiz title: storing data
 
 // Multiple choice
 var question1 = {
