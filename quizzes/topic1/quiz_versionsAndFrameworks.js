@@ -11,7 +11,7 @@ var question1 = {
     question: "Since what version/when did they stop bringing out versions and start bringing out yearly updates? ",
     explanation: "",
     answer: "ES6/2016",
-    reference: "" // Versions and frameworks page, table/text above table, 2nd line
+    reference: "/versionsFrameworks.html" // Table/text above table, 2nd line
 }
 
 // Multiple choice
@@ -22,8 +22,8 @@ var question2 = {
     question: "Where is JavaScript good for?",
     explanation: "",
     answer: "To create and control dynamic web components",
-    otherOptions: "",
-    reference: "" // Versions and frameworks page, frameworks section, 2nd line
+    otherOptions: ["To create and control static web components","To learn programming Java in an easier way","JavaScript isn't good for anything"],
+    reference: "/versionsFrameworks.html" // Frameworks section, 2nd line
 }
 
 // Multiple choice
@@ -34,6 +34,6 @@ var question3 = {
     question: "What is the idea behind a JavaScript framework?",
     explanation: "",
     answer: "JavaScript frameworks provide developers with pre-written JavaScript code to use for routine programming features and tasks",
-    otherOptions: "",
-    reference: "" // Versions and frameworks page, What s a JavaScript framework? section, quote
+    otherOptions: ["To create more robust JavaScript code","It is just JavaScript, but with a different syntax than used in vanilla JavaScript, just like an accent of a language","None of the above"],
+    reference: "/versionsFrameworks.html" // What is a JavaScript framework? section, quote
 }
