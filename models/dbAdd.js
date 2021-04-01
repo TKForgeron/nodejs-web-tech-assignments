@@ -2,6 +2,7 @@
 const knex = require('knex');
 const config = require('../database/knexfile');
 const db = knex(config.development);
+const dbFinder = require('./dbFind');
 
 module.exports = {
   addTopic,
@@ -27,7 +28,8 @@ async function addQuestion(question, quizId_fk) {
   let quiz = undefined;
 
   // trying to fetch quiz
-  await findQuizById(quizId_fk)
+  await dbFinder
+    .findQuizById(quizId_fk)
     .then(foundQuiz => (quiz = foundQuiz))
     .catch(err => {
       console.log(`findQuizById not working: ${err}`);
@@ -99,13 +101,15 @@ async function addUserStat(
   let quiz = undefined;
 
   // trying to fetch user
-  await findUserById(userId)
+  await dbFinder
+    .findUserById(userId_fk)
     .then(res => (user = res))
     .catch(err => {
       console.log(`findUserById not working: ${err}`);
     });
   // trying to fetch quiz
-  await findQuizById(quizId)
+  await dbFinder
+    .findQuizById(quizId_fk)
     .then(res => (quiz = res))
     .catch(err => {
       console.log(`findQuizById not working: ${err}`);

@@ -85,7 +85,7 @@ function findQuestionsByQuizId(id) {
 }
 
 // expects: (number)
-function findStatsByUserId(id) {
+function findStatsByUserId(userId_fk) {
   //   return db('user')
   //     .join('userQuizStats as stats', 'userId_fk', 'user.userId_fk')
   //     .select(
@@ -99,5 +99,6 @@ function findStatsByUserId(id) {
   //     )
   //     .where({ id });
   // }
-  return db('userQuizStat').where({ userId_fk: id }); // array of JS-objects
+  console.log(`userId_fk in findStatsByUserId: ${userId_fk}`);
+  return db('userQuizStats').where({ userId_fk }); // array of JS-objects
 }

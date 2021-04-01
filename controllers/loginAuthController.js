@@ -1,12 +1,13 @@
 const bcrypt = require('bcrypt');
 const dbFinder = require('../models/dbFind');
+const success = require('./loginSuccessful');
 
 module.exports = async (req, res) => {
   const username = req.body.username;
   const passwordGuess = req.body.password;
 
   let userFromDB = '';
-  dbFinder
+  await dbFinder
     .findUserByUsername(username)
     .then(usr => {
       userFromDB = usr;
@@ -23,7 +24,7 @@ module.exports = async (req, res) => {
 
     // check password
     if (await bcrypt.compare(passwordGuess, passwordCorrect)) {
-      req = loginSuccessful(req);
+      req = success(req);
 
       // check whether user is admin
       if (username == 'admin') {
