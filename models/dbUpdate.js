@@ -32,7 +32,7 @@ function updateUser(id, changes) {
   return dbOperationHelpers.updater('user', id, changes);
 }
 
-// expects: (number, number, JSON string)
+// expects: (number, JSON string)
 function updateUserStat(id, changes) {
   const table = 'userQuizStats';
   // const statIds = db(table).where({ userId_fk, quizId_fk }).select('id');

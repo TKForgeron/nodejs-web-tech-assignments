@@ -7,28 +7,29 @@ module.exports = userStatsArray => {
   userStatsArray = [
     { userId: 2, quizId: 1, quizProgress: 1, quizSuccessRate: 1 },
   ];
-  userStatsArray.forEach((stat, index) => {
+  userStatsArray.forEach((stat) => {
     const existingUserStats = dbFinder.findStatsByUserId(stat.userId_fk);
 
     // if obj is not empty then userStatsArray[index] exists in the database and then we can freely update, if not we have to add it
-    let obj = existingUserStats.find(o => o.quizId_fk == stat.quizId_fk);
+    let foundDatabaseItem = existingUserStats.find(o => o.quizId_fk == stat.quizId_fk);
 
-    if (!obj) {
+    if (!foundDatabaseItem) {
       //just add
       // we couldn't find the current userStatsArray[index] object so we have to add that
       dbAdder.addUserStat(
-        userStatsArray[index].userId_fk,
-        userStatsArray[index].quizId_fk,
-        userStatsArray[index].quizProgress,
-        userStatsArray[index].quizSuccessRate
+        stat.userId_fk,
+        stat.quizId_fk,
+        stat.quizProgress,
+        stat.quizSuccessRate
       );
     } else {
       //just update
+      const changes = JSON.stringify({quizProgress: stat.quizProgress, quizSuccessRate: stat.quizSuccessRate});
       dbUpdater
-        .updateUserStat(obj.id, changes)
+        .updateUserStat(foundDatabaseItem.id, changes)
         .then(res => {
           console.log(
-            `userStat: ${obj.id} successfully updated, result: ${res}`
+            `userStat: ${foundDatabaseItem.id} successfully updated, result: ${res}`
           );
         })
         .catch(err => {
