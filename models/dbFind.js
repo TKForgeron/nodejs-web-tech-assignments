@@ -14,6 +14,7 @@ module.exports = {
   findQuestionById,
   findUserByUsername,
   findUserById,
+  findUserIdByUsername,
 
   findQuizzesByTopicId,
   findQuestionsByQuizId,
@@ -55,6 +56,11 @@ function findUserById(id) {
 // expects: (string)
 function findUserByUsername(username) {
   return db('user').where({ username }).first();
+}
+
+// expects: (string)
+function findUserIdByUsername(username) {
+  return db('user').where({ username }).select('id').first();
 }
 
 // expects: (number)

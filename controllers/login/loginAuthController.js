@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
-const dbFinder = require('../models/dbFind');
-const success = require('./loginSuccessful');
+const dbFinder = require('../../models/dbFind');
+const helpers = require('../helpers');
 
 module.exports = async (req, res) => {
   const username = req.body.username;
@@ -24,7 +24,7 @@ module.exports = async (req, res) => {
 
     // check password
     if (await bcrypt.compare(passwordGuess, passwordCorrect)) {
-      req = success(req);
+      req = helpers.setSessionVars(req);
 
       // check whether user is admin
       if (username == 'admin') {
@@ -41,12 +41,3 @@ module.exports = async (req, res) => {
     );
   }
 };
-
-function loginSuccessful(req) {
-  console.log('login successful');
-  req.session.loggedin = true;
-  req.session.username = req.body.username;
-  req.session.progress = 0; // progress is set no 0 on every login
-
-  return req;
-}

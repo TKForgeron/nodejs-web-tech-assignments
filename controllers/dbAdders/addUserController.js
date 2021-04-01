@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const dbFinder = require('../../models/dbFind');
 const dbAdder = require('../../models/dbAdd');
-const success = require('../loginSuccessful');
+const helpers = require('../helpers');
 
 module.exports = async function (req, res) {
   req.body.password = await bcrypt.hash(req.body.password, 10);
@@ -32,7 +32,7 @@ module.exports = async function (req, res) {
         console.log(
           `then of registerUser (in POST, addUserController.js): ${result}`
         );
-        req = success(req);
+        req = helpers.setSessionVars(req);
         res.status(200).redirect('/profile').json('registration successful');
       })
       .catch(error => {
