@@ -52,6 +52,7 @@ function findUserById(id) {
   return dbOperationHelpers.finder('user', id);
 }
 
+// expects: (string)
 function findUserByUsername(username) {
   return db('user').where({ username }).first();
 }

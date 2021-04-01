@@ -1,17 +1,27 @@
 doctype html
 head
-  link(rel='stylesheet' type='text/css' href='../styles/style.css')
-  link(rel='icon' href='../public/images/uulogo.png' type='image/png')
+  link(rel='stylesheet', type='text/css', href='../styles/style.css')
+  link(rel='icon', href='../public/images/uulogo.png', type='image/png')
   meta(charset='UTF-8')
-  meta(name='viewport' content='width=device-width, initial scale=1')
-  meta(name='description' content='General information about JavaScript')
-  meta(name='keywords' content='JavaScript, basics, definition')
+  meta(name='viewport', content='width=device-width, initial scale=1')
+  meta(name='description', content='General information about JavaScript')
+  meta(name='keywords', content='JavaScript, basics, definition')
   title= title
 header.header
-  a(href='https://www.javascript.com/' target='_blank' title='Go to JavaScript.com')
-    img.header__img.header__img--left(src='images/javascriptlogo.png' alt='JavaScript logo')
-  a(href='https://www.uu.nl/' target='_blank' title='Go to uu.nl')
-    img.header__img.header__img--right(src='images/uulogo.png' alt='Utrecht Univesity logo')
+  a(
+    href='https://www.javascript.com/',
+    target='_blank',
+    title='Go to JavaScript.com'
+  )
+    img.header__img.header__img--left(
+      src='images/javascriptlogo.png',
+      alt='JavaScript logo'
+    )
+  a(href='https://www.uu.nl/', target='_blank', title='Go to uu.nl')
+    img.header__img.header__img--right(
+      src='images/uulogo.png',
+      alt='Utrecht Univesity logo'
+    )
   h1 JavaScript
 nav.nav
   ul.nav__bar.list--noBullets
@@ -33,9 +43,12 @@ main
     h1= welcomeMessage
     p= sesionprogress
     p= totalprogress
-  form(action='/profile/logout' method='POST')
-    input(type='submit', value= 'Logout')
+  form(action='/logout', method='POST')
+    input(type='submit', value='Logout')
 footer
   p Made by Douwe, Tim and Maarten.
-  img.footer__image(src='images/uulogotext.png' alt='UU Logo with Text reading Universiteit Utrecht')
+  img.footer__image(
+    src='images/uulogotext.png',
+    alt='UU Logo with Text reading Universiteit Utrecht'
+  )
 script(src='js/selection.js')

@@ -2,9 +2,11 @@ const dbUpdater = require('../../models/dbUpdate');
 const dbFinder = require('../../models/dbFind');
 const dbAdder = require('../../models/dbAdd');
 
-module.exports = (req, res) => {
-  const userStatsArray = req.body;
-
+module.exports = userStatsArray => {
+  // const userStatsArray = req.body;
+  userStatsArray = [
+    { userId: 2, quizId: 1, quizProgress: 1, quizSuccessRate: 1 },
+  ];
   userStatsArray.forEach((stat, index) => {
     const existingUserStats = dbFinder.findStatsByUserId(stat.userId_fk);
 
