@@ -11,6 +11,7 @@ module.exports = {
 
   findTopicById,
   findQuizById,
+  findQuestionAnswerById,
   findQuestionById,
   findUserByUsername,
   findUserById,
@@ -41,6 +42,12 @@ function findTopicById(id) {
 // expects: (number)
 function findQuizById(id) {
   return dbOperationHelpers.finder('quiz', id);
+}
+
+// expects: (number)
+function findQuestionAnswerById(id) {
+  const q = dbOperationHelpers.finder('question', id);
+  return q.answer;
 }
 
 // expects: (number)

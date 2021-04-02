@@ -24,7 +24,7 @@ exports.up = knex => {
         table.text('title', 128).notNullable();
         table.text('image', 128);
         table.text('question', 128).notNullable();
-        table.text('explanation', 128).notNullable();
+        table.text('explanation', 128);
         table.text('answer', 128).notNullable();
         table.text('reference', 128);
         table.text('otherOptions', 128); // is NULL for open questions
@@ -65,8 +65,8 @@ exports.up = knex => {
           .inTable('quiz')
           .onDelete('CASCADE')
           .onUpdate('CASCADE');
-        table.integer('quizProgress', 128).unsigned(); // how many questions answered user has in this quiz
-        table.decimal('quizSuccessRate').unsigned(); // how many correctly answered questions user has in this quiz
+        table.integer('quizProgress', 128).unsigned(); // gwn bij welke vraag van deze quiz de user is (zodat wann hij uitgelogd is, hij verder kan gaan waar hij was... soort van)
+        table.decimal('quizSuccessRate').unsigned(); // percentage. (vragen goed)/(totaal vragen in quiz) * 100%
       })
       .catch(err => {
         console.error(err);

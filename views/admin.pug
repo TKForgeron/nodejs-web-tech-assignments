@@ -29,17 +29,67 @@ block content
     input(type='submit', value='add quiz')
   form(action='/topics/1/quizzes', method='GET')
     input(type='submit', value='get quizzes')
+  h1 add quiz to topicId 2
+  form(action='/topics/1/quizzes', method='POST')
+    input(type='text', name='title', placeholder='title', required='')
+    input(type='submit', value='add quiz')
+  form(action='/topics/1/quizzes', method='GET')
+    input(type='submit', value='get quizzes')
+
   h1 add question to quizId 1
   form(action='/topics/1/quizzes/1/questions', method='POST')
     input(type='text', name='title', placeholder='title', required='')
     input(type='text', name='image', placeholder='image path')
     input(type='text', name='question', placeholder='question', required='')
+    input(type='text', name='explanation', placeholder='explanation')
+    input(type='text', name='answer', placeholder='answer', required='')
     input(
       type='text',
-      name='explanation',
-      placeholder='explanation',
-      required=''
+      name='otherOptions',
+      placeholder='otherOptions: [horse,pferd,paard]'
     )
+    input(type='text', name='reference', placeholder='reference')
+    input(type='submit', value='add question')
+  form(action='/topics/1/quizzes/1/questions', method='GET')
+    input(type='submit', value='get questions')
+  h1 add question to quizId 2
+  form(action='/topics/1/quizzes/1/questions', method='POST')
+    input(type='text', name='title', placeholder='title', required='')
+    input(type='text', name='image', placeholder='image path')
+    input(type='text', name='question', placeholder='question', required='')
+    input(type='text', name='explanation', placeholder='explanation')
+    input(type='text', name='answer', placeholder='answer', required='')
+    input(
+      type='text',
+      name='otherOptions',
+      placeholder='otherOptions: [horse,pferd,paard]'
+    )
+    input(type='text', name='reference', placeholder='reference')
+    input(type='submit', value='add question')
+  form(action='/topics/1/quizzes/1/questions', method='GET')
+    input(type='submit', value='get questions')
+  h1 add question to quizId 3
+  form(action='/topics/1/quizzes/1/questions', method='POST')
+    input(type='text', name='title', placeholder='title', required='')
+    input(type='text', name='image', placeholder='image path')
+    input(type='text', name='question', placeholder='question', required='')
+    input(type='text', name='explanation', placeholder='explanation')
+    input(type='text', name='answer', placeholder='answer', required='')
+    input(
+      type='text',
+      name='otherOptions',
+      placeholder='otherOptions: [horse,pferd,paard]'
+    )
+    input(type='text', name='reference', placeholder='reference')
+    input(type='submit', value='add question')
+  form(action='/topics/1/quizzes/1/questions', method='GET')
+    input(type='submit', value='get questions')
+  h1 add question to quizId 4
+  form(action='/topics/1/quizzes/1/questions', method='POST')
+    input(type='text', name='title', placeholder='title', required='')
+    input(type='text', name='image', placeholder='image path')
+    input(type='text', name='question', placeholder='question', required='')
+    input(type='text', name='explanation', placeholder='explanation')
     input(type='text', name='answer', placeholder='answer', required='')
     input(
       type='text',
