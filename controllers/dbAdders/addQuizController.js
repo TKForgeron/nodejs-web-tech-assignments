@@ -1,11 +1,12 @@
 const dbAdder = require('../../models/dbAdd');
 
 module.exports = (req, res) => {
-  const quiz = { title: req.body.title };
-  const topicId = req.params.topicId;
+  // const quiz = { title: req.body.title };
+  const quiz = JSON.stringify(req.body);
+  const topicId = parseInt(req.params.topicId);
 
   dbAdder
-    .addQuiz(JSON.stringify(quiz), topicId)
+    .addQuiz(quiz, topicId)
     .then(quiz => {
       res.status(200).json(quiz);
     })

@@ -24,48 +24,53 @@ async function addTopic(topic) {
 
 // expects: (JSON string, number)
 async function addQuestion(question, quizId_fk) {
-  console.log(`inside addQuestion: ${question}`);
+  // console.log(`inside addQuestion: ${question}`);
   let quiz = undefined;
 
   // trying to fetch quiz
   await dbFinder
     .findQuizById(quizId_fk)
-    .then(foundQuiz => (quiz = foundQuiz))
+    .then(res => {
+      quiz = res;
+    })
     .catch(err => {
       console.log(`findQuizById not working: ${err}`);
     });
 
-  if (quiz === undefined) {
+  if (quiz === undefined || !quiz) {
     // checking whether quiz exists, knex returns undefined when not exists
     console.log(`trying to add question to quiz, but quizId does not exist`);
   } else {
     question = JSON.parse(question);
+    question.quizId_fk = quiz.id; // add topicId_fk to which the quiz belongs
 
-    const [id] = await db('question')
-      .where({ quizId_fk }) // quizId_fk : quizId_fk
-      .insert(question);
+    const [questionId] = await db('question').insert(question);
 
-    return findQuestionById(id);
+    return questionId;
   }
 }
 
 // expects: (JSON string, number)
 async function addQuiz(quiz, topicId_fk) {
-  console.log(`inside addQuiz: ${quiz}`);
+  // console.log(`inside addQuiz: ${quiz}`);
   let topic = undefined;
 
   // trying to fetch topic
-  await findTopicById(topicId_fk)
-    .then(foundTopic => (topic = foundTopic))
+  await dbFinder
+    .findTopicById(topicId_fk)
+    .then(res => {
+      topic = res;
+    })
     .catch(err => {
       console.log(`findTopicById not working: ${err}`);
     });
 
-  if (topic === undefined) {
+  if (topic === undefined || !topic) {
     // checking whether topic exists, knex returns undefined when not exists
     console.log(`trying to add quiz to topic, but topicId does not exist`);
   } else {
     quiz = JSON.parse(quiz);
+    quiz.topicId_fk = topic.id; // add topicId_fk to which the quiz belongs
 
     const [quizId] = await db('quiz').insert(quiz);
 

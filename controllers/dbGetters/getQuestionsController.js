@@ -1,16 +1,17 @@
 const dbFinder = require('../../models/dbFind');
 
 module.exports = (req, res) => {
-  const id = req.params.id;
+  const quizId_fk = req.params.quizId;
 
   dbFinder
-    .findQuestionsByQuizId(id)
-    .then(quiz => {
-      res.status(200).json(quiz);
+    .findQuestionsByQuizId(quizId_fk)
+    .then(questions => {
+      res.status(200).json(questions);
     })
-    .catch(err =>
+    .catch(err => {
+      console.log(err);
       res.status(500).json({
         message: "Unable to perform 'findQuestionsByQuizId' operation",
-      })
-    );
+      });
+    });
 };

@@ -6,15 +6,18 @@ router.post(
   require('../../../controllers/dbAdders/addQuizController')
 );
 
+// get all quizzes (without their content)
 router.get(
   '/:topicId/quizzes',
   require('../../../controllers/dbGetters/getQuizzesController')
-); // returns all quizzes (without their content)
+);
 
+// get one quiz with its content (i.e. questions)
 router.get(
   '/:topicId/quizzes/:quizId',
-  require('../../../controllers/dbGetters/getQuizController') // public/data/quiz.json ... in dat format een array van alle questions bij de correcte quiz in response teruggeven
-); // returns one quiz with its content (i.e. questions)
+  require('../../../controllers/dbGetters/getQuizController')
+  // public/data/quiz.json ... in dat format een array van alle questions bij de correcte quiz in response teruggeven
+);
 
 router.patch(
   '/:topicId/quizzes/:quizId',

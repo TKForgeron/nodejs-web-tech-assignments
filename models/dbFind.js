@@ -72,39 +72,12 @@ function findQuizzesByTopicId(id) {
 }
 
 // expects: (number)
-function findQuestionsByQuizId(id) {
-  return db('quiz as qz')
-    .join('question as qtn', 'quizId_fk', 'qtn.quizId_fk')
-    .select(
-      'qz.id',
-      'qz.title as quizTitle',
-      'qtn.id',
-      'qtn.title as questionTitle',
-      'qtn.image',
-      'qtn.question',
-      'qtn.explanation',
-      'qtn.answer',
-      'qtn.reference',
-      'qtn.otherOptions'
-    )
-    .where({ id });
+function findQuestionsByQuizId(quizId_fk) {
+  return db('question').where({ quizId_fk }); // array of JS-objects
 }
 
 // expects: (number)
 function findStatsByUserId(userId_fk) {
-  //   return db('user')
-  //     .join('userQuizStats as stats', 'userId_fk', 'user.userId_fk')
-  //     .select(
-  //       'user.id',
-  //       'user.name',
-  //       'user.username',
-  //       'stats.id',
-  //       'stats.quizId_fk',
-  //       'stats.quizProgress', // how many questions answered user has in this quiz
-  //       'stats.quizSuccessRate' // how many correctly answered questions user has in this quiz
-  //     )
-  //     .where({ id });
-  // }
   console.log(`userId_fk in findStatsByUserId: ${userId_fk}`);
   return db('userQuizStats').where({ userId_fk }); // array of JS-objects
 }
