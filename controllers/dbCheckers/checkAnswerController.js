@@ -1,30 +1,34 @@
-const dbAdder = require('../../models/dbAdd');
 const dbFinder = require('../../models/dbFind');
-const dbUpdater = require('../../models/dbUpdate');
-const dbRemover = require('../../models/dbRemove');
 
 module.exports = (req, res) => {
   // const topicId = req.params.topicId; // niet nodig
-  const quizId = req.params.quizId;
-  const questionId = req.params.questionId;
+  const userAnswerObj = req.body; // { quizId: 1, questionId: 2, answer: 'test' }
 
-  const userAnswerObj = req.body; // { quiz: 1, question: 2, answer: 'test' }
+  console.log(req.body);
 
-  userAnswerObj.quiz = parseInt(userAnswerObj.quiz);
-
-  if (userAnswerObj.quiz != quizId) {
-    console.log(
-      `You're posting a question that does not belong to this quiz. \n quizId: ${quizId} quizId_fk: ${binnenkomendJSON.quiz}`
-    );
-  }
+  questionIdFromParams = parseInt(req.params.questionId);
 
   // find answer to question in db, then check answer, and return TRUE/FALSE
   dbFinder
-    .findQuestionAnswerById(userAnswerObj.quiz)
+    .findQuestionAnswerById(questionIdFromParams)
     .then(answer => {
-      res.status(200).json(answer);
+      res.status(200).json(userAnswerObj.answer == answer);
+      console.log(
+        `userAnswerObj.answer: ${userAnswerObj.answer}, answer: ${answer}`
+      );
     })
-    .catch(error => {
-      res.status(500).json({ message: 'cannot find answer to the question' });
+    .catch(err => {
+      res
+        .status(500)
+        .json({ message: `cannot find answer to question ${questionId}` });
+      console.log(err);
     });
+
+  // const questionIdFromBody = parseInt(userAnswerObj.quizId);
+
+  // if (questionIdFromBody != questionIdFromParams) {
+  //   console.log(
+  //     `You're posting a question that does not belong to this quiz. \n questionIdFromBody: ${questionIdFromBody} questionIdFromParams: ${questionIdFromParams}`
+  //   );
+  // }
 };

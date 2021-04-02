@@ -19,14 +19,15 @@
 </nav>
 
 <form>
-    <label>
-        <input name="open" type="text">
-    </label>
-    <button id="submit" onclick="checkAnswer(); return false;">Submit</button>
     <button id="questions_bttn" onclick="loadQuestions(); return false;">Load Questions</button>
     <button id="quizzes" onclick="loadQuizzes(); return false;">Load Quizzes</button>
     <button id="topics" onclick="loadTopics(); return false;">Load Topics</button>
     <!--<button id="submit">Submit</button>-->
+</form>
+
+<form>
+    <input name="answer" type="text" placeholder="topicId: 1, quizId: 1, questionId:1" required=''>
+    <button id="submit" onclick="checkAnswer(); return false;">Check Answer</button>
 </form>
 
 <ul id="topicsList">
@@ -50,9 +51,9 @@
      */
 
     // Change these variables depending on the current question showed to the user
-    var questionId = "0";
+    var questionId = "1";
     var topicId = "1";
-    var quizId = "2";
+    var quizId = "1";
     var questions = [];
 
     function checkAnswer (){

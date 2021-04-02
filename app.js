@@ -36,7 +36,10 @@ app.use('/login', require('./routes/login'));
 app.use('/logout', require('./routes/logout'));
 
 app.use('/topics', require('./routes/topicsQuizzesQuestions'));
-app.use('/quiz', require('./routes/topics/quizzes/answerChecker'));
+app.use(
+  '/topics/:topicId/quizzes/',
+  require('./routes/topics/quizzes/answerChecker')
+);
 // app.use('/api', require('./routes/apiForPublic'));
 
 const server = app.listen(port, () => {

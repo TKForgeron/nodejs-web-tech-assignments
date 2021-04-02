@@ -2,7 +2,7 @@ const express = require('express');
 const server = express();
 
 server.post(
-  '/topics/:topicId/quizzes/:quizId',
+  '/:quizId/questions/:questionId',
   require('../../../controllers/dbCheckers/checkAnswerController')
 );
 
