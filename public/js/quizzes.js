@@ -1,5 +1,4 @@
 function loadTopics (){
-    //alert("FUCKKKKK");
 
     const article = document.getElementsByTagName("article")[0];
     const xmlHttp = new XMLHttpRequest();
