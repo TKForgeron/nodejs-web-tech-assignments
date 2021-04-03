@@ -483,7 +483,7 @@ This function is now commented out, because the content of it is duplicated into
 //     //console.log(questions);
 // } console.log(questions);
 
-loadQuiz();  //commented out for test purposes (in test_everything.html)
+//loadQuiz();  //commented out for test purposes (in quizzes.js)
 //document.addEventListener("DOMContentLoaded", () => {loadQuiz();});
 createNav();
 createInitialElements();
