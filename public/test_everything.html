@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial scale=1">
     <meta name="description" content="5-question quiz about JavaScript">
     <meta name="keywords" content="JavaScript, questions, test yourself">
-    <title>JavaScript - Assessment</title>
+    <title>JavaScript - Test</title>
 </head>
 <body>
 <header class="header">
@@ -19,15 +19,14 @@
 </nav>
 
 <form>
+    <label>
+        <input name="open" type="text">
+    </label>
+    <button id="submit" onclick="checkAnswer(); return false;">Submit</button>
     <button id="questions_bttn" onclick="loadQuestions(); return false;">Load Questions</button>
     <button id="quizzes" onclick="loadQuizzes(); return false;">Load Quizzes</button>
     <button id="topics" onclick="loadTopics(); return false;">Load Topics</button>
     <!--<button id="submit">Submit</button>-->
-</form>
-
-<form>
-    <input name="answer" type="text" placeholder="topicId: 1, quizId: 1, questionId:1" required=''>
-    <button id="submit" onclick="checkAnswer(); return false;">Check Answer</button>
 </form>
 
 <ul id="topicsList">
@@ -45,14 +44,14 @@
     /*
     paths:
         /topics/:topicId/quizzes/:quizId/questions/:questionId (checkAnswer)
-        /topics/:topicId/quizzes/:quizId/questions (loadQuestions)
+        /topics/:topicId/quizzes/:quizId(/questions) (loadQuestions)
         /topics/:topicId/quizzes (loadQuizzes)
         /topics (loadTopics)
      */
 
     // Change these variables depending on the current question showed to the user
     var questionId = "1";
-    var topicId = "1";
+    var topicId = "2";
     var quizId = "1";
     var questions = [];
 
@@ -100,8 +99,8 @@
             }
         };
 
-        let path = `/topics/${topicId}/quizzes/${quizId}/questions`;
-        request.open("get", "../data/quiz.json");         // Put variable path here
+        let path = "/topics/"+topicId+"/quizzes/"+quizId+"/questions";
+        request.open("get", path);         // Put variable path here
         request.send();                                  // Put which quiz you want to load in here (now just everything in the .json file will be send as response)
         return false        // To prevent the default behavior of the button
     }

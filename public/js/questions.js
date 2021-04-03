@@ -458,7 +458,10 @@ function loadQuiz() {
     }
   };
 
-  request.open("get", "../data/quiz.json");        // Put the filepath to Express middleware that handles the request here
+  var topicId = "1";
+  var quizId = "1";
+  let path = "/topics/"+topicId+"/quizzes/"+quizId+"/questions";
+  request.open("get", path);        // Put the filepath to Express middleware that handles the request here
   request.send();                                             // Put which quiz you want to load in here (now just everything in the .json file will be send as response)
 }
 
