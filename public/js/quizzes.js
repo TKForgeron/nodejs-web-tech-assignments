@@ -72,6 +72,7 @@ function loadQuestions(topic, quiz) {
                     questions.push(mq);
                 }
             });
+            createInitialElements();
             questions[currentQuestionIndex].show(questionInputSectionId, questionOutputSectionId);
         }
         // try {

@@ -68,7 +68,7 @@ function createNav() {
   assessmentItem.classList.add(navItemClass + "--right");
   var assessmentAHref = document.createElement("a");
   assessmentAHref.classList.add(navItemAClass + "--active");
-  assessmentAHref.setAttribute("href","assessment.html");
+  assessmentAHref.setAttribute("href","topics.html");
   assessmentAHref.appendChild(document.createTextNode("Assessment"));
   assessmentItem.appendChild(assessmentAHref);
 
@@ -467,7 +467,7 @@ function loadQuiz() {
 //document.addEventListener("DOMContentLoaded", () => {loadQuiz();});
 
 createNav();
-createInitialElements();
+//createInitialElements();
 createFooter();
 
 // We first wipe out all input and output elements and then show the next or previous question.
