@@ -405,7 +405,14 @@ input[type=radio]{margin: 0.5rem 0.5rem 0 0}
     padding: 0.75em 1.5em;
 }
 
+.topics__list li:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .topics__list li:first-child{
+    text-decoration: none;
+    cursor: default;
     background: var(--themeColor);
     color: white;
     border: none;

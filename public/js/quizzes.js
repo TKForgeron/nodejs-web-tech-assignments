@@ -30,11 +30,9 @@ function loadQuizzes (topic){
             const quizzes = JSON.parse(this.responseText);
             quizzes.forEach((object)=>{
                 let li = document.createElement("li");
-                let link = document.createElement("a");
-                link.textContent = object.title;
-                link.addEventListener("click", () => {loadQuestions(topicId, object.id);});
-                li.appendChild(link);
+                li.textContent = object.title;
                 list.appendChild(li);
+                li.addEventListener("click", () => {loadQuestions(topicId, object.id);});
             });
         }
     };
