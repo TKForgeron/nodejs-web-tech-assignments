@@ -146,7 +146,7 @@ function createInitialElements() {
 };
 
 class Question {
-  constructor(id, title, image, question, explanation, answer, reference){
+  constructor(id, title, image, question, explanation, answer, reference, quizId, topicId){
     this.id = id;
     this.type = "open";
     this.formName = this.type + this.id;
@@ -166,7 +166,26 @@ class Question {
     this.reference.title = this.reference[2];
     this.reference.link = this.reference[3];
     this.reference.separator = this.reference[4]; // could come in handy later
+    this.quizId = quizId;
+    this.topicId = topicId;
   };
+  checkAnswer (){
+    var provAnswer = this.userAnswer;
+    const xmlHttp = new XMLHttpRequest();
+    var subObj = JSON.stringify({answer: provAnswer});
+
+    xmlHttp.onreadystatechange = function() {
+        if(xmlHttp.readyState === 4 && xmlHttp.status === 200){
+            let feedback = xmlHttp.responseText;
+            console.log(feedback);
+        }
+    };
+
+    let path = "/topics/"+this.topicId+"/quizzes/"+this.quizId+"/questions/"+this.id;
+    xmlHttp.open("post", path);
+    xmlHttp.send(subObj);
+    return false;       // To prevent te default behavior of the button
+  }; 
   answerFeedback() {
     var formSection = document.forms[this.formName];
     var feedbackMark = document.createElement("p");
@@ -294,8 +313,9 @@ class Question {
   generateForm() { // loose coupling
     var form = document.createElement("form");
     form.setAttribute("name", this.formName);
-    form.addEventListener("submit", (e) => e.preventDefault());
-
+    //form.addEventListener("submit", (e) => e.preventDefault());
+    //form.setAttribute("action",`/${this.quizId}/questions/${this.id}`);
+    //form.setAttribute("method", "post");
     var inputTextBox = document.createElement("input");
     inputTextBox.setAttribute("name", this.type);
     inputTextBox.setAttribute("type", "text");
@@ -311,6 +331,10 @@ class Question {
 
       }
     });
+    questionSubmit.addEventListener("click", () => {
+      this.checkAnswer()
+    });
+    
 
     var questionRetry = document.createElement("button");
     questionRetry.setAttribute("id", questionRetryId);
@@ -326,11 +350,12 @@ class Question {
 
     return form;
   };
+  
 };
 
 class MultipleChoice extends Question {
-  constructor(id, title, image, question, explanation, answer, otherOptions, reference) {
-    super(id, title, image, question, explanation, answer, reference);
+  constructor(id, title, image, question, explanation, answer, otherOptions, reference, quizId, topicId) {
+    super(id, title, image, question, explanation, answer, reference, quizId, topicId);
     this.type = "closed";
     this.options = otherOptions;
   };
@@ -494,11 +519,11 @@ function loadQuestions(topic, quiz) {
         let q;
         let mq;
         if(!row.otherOptions) {
-          q = new Question(row.id, row.title, row.image, row.question, row.explanation, row.answer, row.reference);
+          q = new Question(row.id, row.title, row.image, row.question, row.explanation, row.answer, row.reference,quizId,topicId);
           questions.push(q);
         } else {
           // otherOptions in multiple choice questions are called options (keep this in mind)!!!
-          mq = new MultipleChoice(row.id, row.title, row.image, row.question, row.explanation, row.answer, row.otherOptions, row.reference);
+          mq = new MultipleChoice(row.id, row.title, row.image, row.question, row.explanation, row.answer, row.otherOptions, row.reference, quizId, topicId);
           questions.push(mq);
         }
       });
