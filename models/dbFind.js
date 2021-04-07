@@ -45,9 +45,16 @@ function findQuizById(id) {
 }
 
 // expects: (number)
-function findQuestionAnswerById(id) {
-  const q = dbOperationHelpers.finder('question', id);
-  return q.answer;
+async function findQuestionAnswerById(id) {
+  let question = {};
+  await findQuestionById(id)
+    .then(qstn => {
+      question = qstn;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  return question.answer;
 }
 
 // expects: (number)

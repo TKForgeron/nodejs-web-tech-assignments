@@ -51,15 +51,14 @@
 
     // Change these variables depending on the current question showed to the user
     var questionId = "1";
-    var topicId = "2";
+    var topicId = "1";
     var quizId = "1";
     var questions = [];
 
     function checkAnswer (){
         var provAnswer = document.getElementsByTagName("input")[0].value
         const xmlHttp = new XMLHttpRequest();
-        var subObj = JSON.stringify({answer: provAnswer});
-
+        var subObj = {answer: provAnswer};
         xmlHttp.onreadystatechange = function() {
             if(xmlHttp.readyState === 4 && xmlHttp.status === 200){
                 let feedback = xmlHttp.responseText;
@@ -67,7 +66,7 @@
             }
         };
 
-        let path = "/topics/"+topicId+"/quizzes/"+quizId+"/questions/"+questionId;
+        let path = `/topics/${topicId}/quizzes/${quizId}/questions/${questionId}/${provAnswer}`;
         xmlHttp.open("post", path);
         xmlHttp.send(subObj);
         return false;       // To prevent te default behavior of the button
