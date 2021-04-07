@@ -71,8 +71,8 @@ function findUserIdByUsername(username) {
 }
 
 // expects: (number)
-function findQuizzesByTopicId(topicId) {
-  return db('quiz').where({ topicId }).first();
+function findQuizzesByTopicId(topicId_fk) {
+  return db('quiz').where({ topicId_fk });
 }
 
 // expects: (number)
