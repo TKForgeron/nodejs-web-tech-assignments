@@ -18,7 +18,10 @@ function setSessionVars(req) {
   req.session.loggedin = true;
   req.session.username = req.body.username;
   //Nester array, first array indicated topic, second array (nested) indicates quiz
-  req.session.progressArray = [[[],[]],[[],[]]];
+  req.session.progressArray = [
+    [[], []],
+    [[], []],
+  ];
   req.session.progressArray[0][0] = 37;
   // topic 1, quiz 1
   req.session.quiz1_1Progress = 0;

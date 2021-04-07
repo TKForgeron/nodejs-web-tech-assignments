@@ -39,5 +39,7 @@ module.exports = async (req, res) => {
     console.log(
       `username: ${username}, guessedPwd: ${passwordGuess}, encryptedPwdFromDB: ${passwordCorrect}`
     );
+  } else {
+    res.redirect('/login?unsuccessful');
   }
 };

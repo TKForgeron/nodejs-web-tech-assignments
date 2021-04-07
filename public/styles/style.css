@@ -301,12 +301,16 @@ button:hover {
 
 #question__submitBtn, #question__retryBtn{margin: 1rem 0.5rem 0 0}
 
-input[type=text] {
+input[type=text]{
     border: 2px solid var(--themeColor--l1);
     padding: 0.5em;
     min-width: 50vw;
     max-width: 28rem;
     transition: width 0.25s;
+}
+input[type=password]{
+    border: 2px solid var(--themeColor--l1);
+    padding: 0.5em;
 }
 
 input[type=radio]{margin: 0.5rem 0.5rem 0 0}
