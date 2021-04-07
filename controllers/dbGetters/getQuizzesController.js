@@ -1,8 +1,11 @@
 const dbFinder = require('../../models/dbFind');
 
 module.exports = (req, res) => {
+  const topicId = req.params.topicId;
+  console.log(topicId);
+
   dbFinder
-    .findAllQuizzes()
+    .findQuizzesByTopicId(topicId)
     .then(quizzes => {
       res.status(200).json(quizzes);
     })
