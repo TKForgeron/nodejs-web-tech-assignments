@@ -196,10 +196,10 @@ class Question {
         console.log(feedback);
       }
     };
-
-    let path = `/topics/${this.topicId}/quizzes/${this.quizId}/questions/${this.id}/${this.userAnswer}`;
+    // Disgusting path cause post doesn't work so we need these parameters. topicId is not included in answerChecker.js post handling so we had to add it at the end as well.
+    let path = `/topics/${this.topicId}/quizzes/${this.quizId}/questions/${this.id}/${this.userAnswer}/${this.topicId}`;
     xmlHttp.open('post', path);
-    xmlHttp.send(subObj);
+    xmlHttp.send();
     return false; // To prevent te default behavior of the button
   }
   answerFeedback() {
