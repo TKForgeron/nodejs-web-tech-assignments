@@ -10,6 +10,7 @@ https://www.terlici.com/2014/08/25/best-practices-express-structure.html
 
 - session progress
 - at login, check whether user exists first.
+- user stats wordt niet correct geupdatet als de userstat al bestaat
 
 ## Assignment Description
 
