@@ -42,9 +42,7 @@ function loadQuizzes (topic){
     xmlHttp.send();
 }
 
-function loadQuestions(topic, quiz) {
-    let topicId = topic;
-    let quizId = quiz;
+function loadQuestions(topicId, quizId) {
     const request = new XMLHttpRequest();
 
     request.onreadystatechange = function() {
@@ -62,11 +60,11 @@ function loadQuestions(topic, quiz) {
                 let q;
                 let mq;
                 if(!row.otherOptions) {
-                    q = new Question(row.id, row.title, row.image, row.question, row.explanation, row.answer, row.reference);
+                    q = new Question(row.id, row.title, row.image, row.question, row.explanation, row.answer, row.reference,quizId,topicId);
                     questions.push(q);
                 } else {
                     // otherOptions in multiple choice questions are called options (keep this in mind)!!!
-                    mq = new MultipleChoice(row.id, row.title, row.image, row.question, row.explanation, row.answer, row.otherOptions, row.reference);
+                    mq = new MultipleChoice(row.id, row.title, row.image, row.question, row.explanation, row.answer, row.otherOptions, row.reference,quizId,topicId);
                     questions.push(mq);
                 }
             });
