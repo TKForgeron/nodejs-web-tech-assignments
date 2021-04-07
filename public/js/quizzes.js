@@ -73,12 +73,6 @@ function loadQuestions(topic, quiz) {
             createInitialElements();
             questions[currentQuestionIndex].show(questionInputSectionId, questionOutputSectionId);
         }
-        // try {
-        //     console.log(questions.length);
-        //     questions[currentQuestionIndex].show(questionInputSectionId, questionOutputSectionId);
-        // }catch (e){
-        //     console.warn("Questions are (still) loading...");
-        // }
     };
 
     let path = "/topics/"+topicId+"/quizzes/"+quizId+"/questions";
