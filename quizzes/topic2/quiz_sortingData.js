@@ -31,7 +31,7 @@ var question2 = {
 var question3 = {
     id: 2,
     title: "Reusing structures",
-    image: "", // Put clarifying image here
+    image: "/images/t2_storingData/q3.PNG",
     question: "What do you use when you have to create many instances with the same attributes? (see the blank space in the image for clarification)",
     explanation: "",
     answer: "Classes",
