@@ -7,7 +7,7 @@
 var question1 = {
     id: 0,
     title: "Variables",
-    image: "",
+    image: "", // Not needed
     question: "Which type of variable cant be changed after it is set?",
     explanation: "",
     answer: "const",
@@ -19,7 +19,7 @@ var question1 = {
 var question2 = {
     id: 1,
     title: "Objects",
-    image: "",
+    image: "", // Not needed
     question: "What is the correct syntax to store \"name = John\" in a JavaScript object?",
     explanation: "",
     answer: "var person = {name: \"John\"};",
@@ -30,9 +30,9 @@ var question2 = {
 // Open
 var question3 = {
     id: 2,
-    title: "",
+    title: "Reusing structures",
     image: "", // Put clarifying image here
-    question: "What do you use when you have to create many instances with the same attributes",
+    question: "What do you use when you have to create many instances with the same attributes? (see the blank space in the image for clarification)",
     explanation: "",
     answer: "Classes",
     reference: "/examples.html" // Last example
