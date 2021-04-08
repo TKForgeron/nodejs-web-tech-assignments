@@ -69,3 +69,4 @@ function createNav() {
     unorderedNavList.appendChild(assessmentItem);
     nav.appendChild(unorderedNavList);
 }
+createNav();

@@ -18,3 +18,4 @@ function createFooter() {
     footer.appendChild(footerP);
     footer.appendChild(footerImg);
 }
+createFooter();
