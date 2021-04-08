@@ -100,19 +100,21 @@ class Question {
   }
   checkAnswer() {
     const xmlHttp = new XMLHttpRequest();
+    this.userAnswer = document.forms[this.formName][this.type].value;
     xmlHttp.onreadystatechange = function () {
       if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
         let feedback = xmlHttp.responseText;
         console.log(feedback);
+        //answerFeedback(feedback);
       }
     };
     // Disgusting path cause post doesn't work so we need these parameters. topicId is not included in answerChecker.js post handling so we had to add it at the end as well.
-    let path = `/topics/${this.topicId}/quizzes/${this.quizId}/questions/${this.id}/${this.userAnswer}/${this.topicId}`;
+    let path = `/topics/${this.topicId}/quizzes/${this.quizId}/questions/${this.id}/${this.userAnswer.toLowerCase()}/${this.topicId}`;
     xmlHttp.open('post', path);
     xmlHttp.send();
     return false; // To prevent te default behavior of the button
   }
-  answerFeedback() {
+  answerFeedback(feedback) {
     var formSection = document.forms[this.formName];
     var feedbackMark = document.createElement('p');
 
@@ -120,13 +122,13 @@ class Question {
     // first check whether user had answered
     if (formSection[this.type].value) {
       // then check whether it is correct
-      if (this.answeredCorrectly()) {
+      if (feedback == true) {
         // put check mark behind user's input
         feedbackMark.setAttribute('style', 'color:green;font-size:2em');
         feedbackMark.appendChild(document.createTextNode('\u2713'));
         formSection.appendChild(feedbackMark);
         this.showingFeedback = true;
-      } else {
+      } else if (feedback == false) {
         // put cross mark behind user's input
         feedbackMark.setAttribute('style', 'color:red;font-size:2em');
         feedbackMark.appendChild(document.createTextNode(`\u2717`));
@@ -160,11 +162,11 @@ class Question {
 
     return explanationText;
   }
-  answeredCorrectly() {
-    // get user's answer & set this.userAnswer
-    this.userAnswer = document.forms[this.formName][this.type].value;
-    return this.userAnswer.toLowerCase() == this.answer.toLowerCase();
-  }
+  // answeredCorrectly() {
+  //   // get user's answer & set this.userAnswer
+  //   this.userAnswer = document.forms[this.formName][this.type].value;
+  //   return this.userAnswer.toLowerCase() == this.answer.toLowerCase();
+  // }
   show(inputSectionId, outputSectionId) {
     // determine image source
     var questionImage = document.getElementById(questionImageId);
@@ -259,8 +261,6 @@ class Question {
     var form = document.createElement('form');
     form.setAttribute('name', this.formName);
     form.addEventListener('submit', e => e.preventDefault());
-    //form.setAttribute("action",`/${this.quizId}/questions/${this.id}`);
-    //form.setAttribute("method", "post");
     var inputTextBox = document.createElement('input');
     inputTextBox.setAttribute('name', this.type);
     inputTextBox.setAttribute('type', 'text');
@@ -269,12 +269,12 @@ class Question {
     var questionSubmit = document.createElement('button');
     questionSubmit.setAttribute('id', questionSubmitId);
     questionSubmit.appendChild(document.createTextNode('Submit'));
-    questionSubmit.addEventListener('click', () => {
-      if (this.showingFeedback == false) {
-        this.showingFeedback = true;
-        this.answerFeedback();
-      }
-    });
+    //questionSubmit.addEventListener('click', () => {
+    //   if (this.showingFeedback == false) {
+    //     this.showingFeedback = true;
+    //     this.answerFeedback();
+    //   }
+    // });
     questionSubmit.addEventListener('click', () => {
       this.checkAnswer();
     });
