@@ -393,13 +393,16 @@ input[type=radio]{margin: 0.5rem 0.5rem 0 0}
 
 #question__explanation{color: var(--codeGray);}
 
-/* Controleer BEM/responsiveness vanaf hier!!! */
+/* Controleer BEM vanaf hier!!! */
 .topics__list{
     display: inline-block;
     width:300px;
     padding: 0;
     margin-right: 3em;
 }
+
+/* Not mobile first, but it works... */
+@media (max-width: 750px) {.topics__list{margin-top: 3em;}}
 
 .topics__list li {
     list-style: none;
