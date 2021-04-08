@@ -7,7 +7,7 @@
 var question1 = {
     id: 0,
     title: "Versions",
-    image: "",
+    image: "", // Not needed
     question: "Since what version/when did they stop bringing out versions and start bringing out yearly updates? ",
     explanation: "",
     answer: "ES6/2016",
@@ -18,7 +18,7 @@ var question1 = {
 var question2 = {
     id: 1,
     title: "Usage",
-    image: "",
+    image: "", // Not needed
     question: "Where is JavaScript good for?",
     explanation: "",
     answer: "To create and control dynamic web components",
@@ -30,7 +30,7 @@ var question2 = {
 var question3 = {
     id: 2,
     title: "Frameworks",
-    image: "",
+    image: "/images/t1_versionsAndFrameworks/q3.png",
     question: "What is the idea behind a JavaScript framework?",
     explanation: "",
     answer: "JavaScript frameworks provide developers with pre-written JavaScript code to use for routine programming features and tasks",
