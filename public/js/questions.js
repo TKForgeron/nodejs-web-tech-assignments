@@ -99,8 +99,10 @@ class Question {
     this.topicId = topicId;
   }
   checkAnswer() {
+    console.log("checking answer with useranswer ");
     const xmlHttp = new XMLHttpRequest();
     this.userAnswer = this.answeredCorrectly();
+    
     const sendObj = JSON.stringify({
                 answer: this.userAnswer,
                 questionId: this.id,
@@ -386,8 +388,7 @@ class MultipleChoice extends Question {
     questionSubmit.appendChild(document.createTextNode('Submit'));
     questionSubmit.addEventListener('click', () => {
       if (this.showingFeedback == false) {
-        this.answerFeedback();
-        this.showingFeedback = true;
+        this.checkAnswer();        
       }
     });
 
