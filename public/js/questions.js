@@ -148,6 +148,9 @@ class Question {
         formSection.appendChild(feedbackMark);
         this.showingFeedback = true;
       }
+      else{
+        alert("Log in before attempting a quiz!");
+      }
       // output explanation
       var explanationText = this.generateExplanation();
 
