@@ -425,3 +425,28 @@ input[type=radio]{margin: 0.5rem 0.5rem 0 0}
     border: none;
     border-radius: 0.25em 0.25em 0 0;
 }
+
+.progress {
+    box-sizing: content-box;
+    height: 25px;
+    width: 250px;
+    position: relative;
+    background: #fffded;
+    border: solid 5px #ffde00;
+    /* margin: auto; */
+}
+.progress > span {
+    display: block;
+    height: 100%;
+    background-color: #ffde00;
+    position: relative;
+    overflow: hidden;
+}
+
+.success-rate-pie-chart {
+    border-radius: 50%;
+	position: relative;
+    width: 100px;
+	min-height: 100px;
+	margin: 0;
+}

@@ -2,6 +2,7 @@ module.exports = {
   isJson,
   setSessionVars,
   createProgressObj,
+  renderProfile,
 };
 
 function isJson(str) {
@@ -53,4 +54,30 @@ function createProgressObj(
     quizProgress: quizProgress,
     quizSuccessRate: quizSuccessRate,
   };
+}
+
+function renderProfile(res, req, dataForProfilePage) {
+  return res.render('profile', {
+    title: 'Profile',
+    username: req.session.username,
+    topic1: dataForProfilePage.allTopicsArray[0],
+    topic2: dataForProfilePage.allTopicsArray[1],
+    topic1Quiz1: dataForProfilePage.allQuizzesArray[0],
+    topic1Quiz2: dataForProfilePage.allQuizzesArray[1],
+    topic2Quiz1: dataForProfilePage.allQuizzesArray[2],
+    topic2Quiz2: dataForProfilePage.allQuizzesArray[3],
+    questionsPerQuiz: 3,
+    sessionProgress11: req.session.progressArray[0][0],
+    sessionProgress12: req.session.progressArray[0][1],
+    sessionProgress21: req.session.progressArray[1][0],
+    sessionProgress22: req.session.progressArray[1][1],
+    sessionSuccess11: Math.floor(req.session.successArray[0][0] * 100),
+    sessionSuccess12: Math.floor(req.session.successArray[0][1] * 100),
+    sessionSuccess21: Math.floor(req.session.successArray[1][0] * 100),
+    sessionSuccess22: Math.floor(req.session.successArray[1][1] * 100),
+    overallSuccess11: Math.floor(dataForProfilePage.totalSuccessArray[0]),
+    overallSuccess12: Math.floor(dataForProfilePage.totalSuccessArray[1]),
+    overallSuccess21: Math.floor(dataForProfilePage.totalSuccessArray[2]),
+    overallSuccess22: Math.floor(dataForProfilePage.totalSuccessArray[3]),
+  });
 }
