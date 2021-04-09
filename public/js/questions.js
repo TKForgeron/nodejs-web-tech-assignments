@@ -100,18 +100,25 @@ class Question {
   }
   checkAnswer() {
     const xmlHttp = new XMLHttpRequest();
-    this.userAnswer = document.forms[this.formName][this.type].value;
-    xmlHttp.onreadystatechange = function () {
+    this.userAnswer = this.answeredCorrectly();
+    const sendObj = JSON.stringify({
+                answer: this.userAnswer,
+                questionId: this.id,
+                quizId: this.quizId,
+                topicId: this.topicId
+              });
+    xmlHttp.onreadystatechange = () => {
       if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
         let feedback = xmlHttp.responseText;
         console.log(feedback);
-        //answerFeedback(feedback);
+        this.answerFeedback(feedback);
       }
     };
     // Disgusting path cause post doesn't work so we need these parameters. topicId is not included in answerChecker.js post handling so we had to add it at the end as well.
-    let path = `/topics/${this.topicId}/quizzes/${this.quizId}/questions/${this.id}/${this.userAnswer.toLowerCase()}/${this.topicId}`;
+    let path = `/topics/${this.topicId}/quizzes/${this.quizId}/questions/${this.id}`;    
     xmlHttp.open('post', path);
-    xmlHttp.send();
+    xmlHttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xmlHttp.send(sendObj);
     return false; // To prevent te default behavior of the button
   }
   answerFeedback(feedback) {
@@ -120,15 +127,19 @@ class Question {
 
     // first check whether feedback was already given (by previous run of this function)
     // first check whether user had answered
+    
     if (formSection[this.type].value) {
+      console.log("giving feedback soon");
       // then check whether it is correct
-      if (feedback == true) {
+      if (feedback == "true" || feedback == true) {
+        console.log("feedback true");
         // put check mark behind user's input
         feedbackMark.setAttribute('style', 'color:green;font-size:2em');
         feedbackMark.appendChild(document.createTextNode('\u2713'));
         formSection.appendChild(feedbackMark);
         this.showingFeedback = true;
-      } else if (feedback == false) {
+      } else if(feedback == "false" || feedback == false){
+        console.log("feedback false");
         // put cross mark behind user's input
         feedbackMark.setAttribute('style', 'color:red;font-size:2em');
         feedbackMark.appendChild(document.createTextNode(`\u2717`));
@@ -162,11 +173,11 @@ class Question {
 
     return explanationText;
   }
-  // answeredCorrectly() {
-  //   // get user's answer & set this.userAnswer
-  //   this.userAnswer = document.forms[this.formName][this.type].value;
-  //   return this.userAnswer.toLowerCase() == this.answer.toLowerCase();
-  // }
+  answeredCorrectly() {
+     // get user's answer & set this.userAnswer
+     this.userAnswer = document.forms[this.formName][this.type].value;
+     return this.userAnswer.toLowerCase();
+  }
   show(inputSectionId, outputSectionId) {
     // determine image source
     var questionImage = document.getElementById(questionImageId);
@@ -276,7 +287,9 @@ class Question {
     //   }
     // });
     questionSubmit.addEventListener('click', () => {
-      this.checkAnswer();
+      if(this.showingFeedback == false){
+        this.checkAnswer();
+      }
     });
 
     var questionRetry = document.createElement('button');
@@ -335,14 +348,16 @@ class MultipleChoice extends Question {
   answeredCorrectly() {
     // get radio button options
     var ele = document.getElementsByName(this.formName)[0].elements;
-
+    console.log("yay");
     // get checked radio btn and set this.userAnswer to that value
     for (let i = 0; i < ele.length; i++) {
-      if (ele[i].checked) {
+      if (ele[i].checked) {        
         this.userAnswer = ele[i].value;
+        
       }
     }
-    return this.userAnswer.toLowerCase() == this.answer.toLowerCase();
+    console.log(this.userAnswer);
+    return this.userAnswer.toLowerCase();
   }
   generateOptionRadios() {
     var form = document.createElement('form');
@@ -487,15 +502,15 @@ function loadQuestions(topicId, quizId) {
 
       // Loads the questions asked by the user
       const quiz = JSON.parse(this.responseText);
-      quiz.forEach((row) => {
+      quiz.forEach((question) => {
         let q;
         let mq;
-        if(!row.otherOptions) {
-          q = new Question(row.id, row.title, row.image, row.question, row.explanation, row.answer, row.reference,quizId,topicId);
+        if(!question.otherOptions) {
+          q = new Question(question.id, question.title, question.image, question.question, question.explanation, question.answer, question.reference,quizId,topicId);
           questions.push(q);
         } else {
           // otherOptions in multiple choice questions are called options (keep this in mind)!!!
-          mq = new MultipleChoice(row.id, row.title, row.image, row.question, row.explanation, row.answer, row.otherOptions, row.reference,quizId,topicId);
+          mq = new MultipleChoice(question.id, question.title, question.image, question.question, question.explanation, question.answer, question.otherOptions.split(","), question.reference,quizId,topicId);
           questions.push(mq);
         }
       });

@@ -11,7 +11,14 @@ module.exports = (req, res) => {
       return res.render('profile', {
         title: 'Profile',
         welcomeMessage: 'Welcome ' + username,
-        actualThing: "Yay a thing" + kit
+        sessionProgress11: "You've made this much progress on topic 1 quiz 1 this session: " + req.session.progressArray[0][0],
+        sessionProgress12: "You've made this much progress on topic 1 quiz 2 this session: " + req.session.progressArray[0][1],
+        sessionProgress21: "You've made this much progress on topic 2 quiz 1 this session: " + req.session.progressArray[1][0],
+        sessionProgress22: "You've made this much progress on topic 1 quiz 2 this session: " + req.session.progressArray[1][1],
+        sessionSuccess11: "Your success rate on topic 1 quiz 1 is: " + req.session.successArray[0][0]*100 + "% this session",
+        sessionSuccess12: "Your success rate on topic 1 quiz 2 is: " + req.session.successArray[0][1]*100 + "% this session",
+        sessionSuccess21: "Your success rate on topic 2 quiz 1 is: " + req.session.successArray[1][0]*100 + "% this session",
+        sessionSuccess22: "Your success rate on topic 2 quiz 2 is: " + req.session.successArray[1][1]*100 + "% this session"
       });
     }
   } else {
