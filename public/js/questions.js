@@ -114,12 +114,10 @@ class Question {
         let feedback = xmlHttp.responseText;
         console.log(feedback);
         this.answerFeedback(feedback);
-      } else{
-        if (window.confirm('You have to log in before attempting a quiz! Click \'OK\' to redirect to the login page'))
-        {
-          window.location.href='login';
-        };
       }
+      else if(xmlHttp.readyState === 4 && xmlHttp.status === 401){
+        alert("Log in before attempting a quiz!");
+      } 
     };
     // Disgusting path cause post doesn't work so we need these parameters. topicId is not included in answerChecker.js post handling so we had to add it at the end as well.
     let path = `/topics/${this.topicId}/quizzes/${this.quizId}/questions/${this.id}`;    
