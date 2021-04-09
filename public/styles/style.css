@@ -182,7 +182,7 @@ h1{
 
 .table__caption{caption-side: bottom;}
 
-.list--noBullets {list-style-type: none;}
+.list--no-bullets {list-style-type: none;}
 
 .list--indent{padding-left: 2em;}
 
@@ -205,7 +205,7 @@ h1{
 
 .card:hover{transform: scale(1.01);}
 
-.card--noWidthMagicForQuestion{width: auto}
+.card--no-width-magic-for-question{width: auto}
 
 .card__image{
     display: block;
@@ -221,7 +221,7 @@ h1{
 .card__body{text-align: center}
 
 /* This is to style the codeblocks used on the example page. It allows for a clear difference between regular text and code.*/
-.codeResultCard{
+.code-result-card{
     background-color: var(--themeColor--l5);
     padding: 1.5em;
     box-shadow: 0em 0em 2em -1em rgba(0, 0, 0, 0.25);
@@ -229,7 +229,7 @@ h1{
     margin-bottom: 1em;
 }
 
-.codeCard{
+.code-card{
     font-family: 'Courier New', Courier, monospace;
     background-color: var(--codeCardColor);
     color: var(--codeWhite);
@@ -239,32 +239,32 @@ h1{
     margin-bottom: 1em;
 }
 
-.codeCard p{
+.code-card p{
     display: inline;
     margin: 0;
 }
 
-.codeCard__code--cyan{color: var(--codeCyan);}
+.code-card__code--cyan{color: var(--codeCyan);}
 
-.codeCard__code--gray{color: var(--codeGray);}
+.code-card__code--gray{color: var(--codeGray);}
 
-.codeCard__code--green{color: var(--codeGreen);}
+.code-card__code--green{color: var(--codeGreen);}
 
-.codeCard__code--orange{color: var(--codeOrange);}
+.code-card__code--orange{color: var(--codeOrange);}
 
-.codeCard__code--purple{color: var(--codePurple);}
+.code-card__code--purple{color: var(--codePurple);}
 
-.codeCard__code--blue{color: var(--codeBlue);}
+.code-card__code--blue{color: var(--codeBlue);}
 
-.codeCard__code--yellow{color: var(--codeYellow);}
+.code-card__code--yellow{color: var(--codeYellow);}
 
-.codeCard__code--red{color: var(--codeRed);}
+.code-card__code--red{color: var(--codeRed);}
 
-.codeCard__code--indent{padding-left: 2rem;}
+.code-card__code--indent{padding-left: 2rem;}
 
-.codeCard__code--fog{opacity: .65;}
+.code-card__code--fog{opacity: .65;}
 
-.codeCard__code--bigScreenFix{display: none;}
+.code-card__code--big-screen-fix{display: none;}
 
 .footer__image{max-height: 2em;}
 
@@ -299,7 +299,7 @@ button:hover {
     cursor: pointer;
 }
 
-#question__submitBtn, #question__retryBtn{margin: 1rem 0.5rem 0 0}
+#question__submit-btn, #question__retry-btn{margin: 1rem 0.5rem 0 0}
 
 input[type=text]{
     border: 2px solid var(--themeColor--l1);
@@ -321,8 +321,8 @@ input[type=radio]{margin: 0.5rem 0.5rem 0 0}
 }
 
 @media (min-width: 490px) {
-    .codeCard__code--smallScreenFix{display: none;}
-    .codeCard__code--bigScreenFix{display: inline;}
+    .code-card__code--small-screen-fix{display: none;}
+    .code-card__code--big-screen-fix{display: inline;}
 }
 
 @media(min-width:601px){
@@ -346,7 +346,7 @@ input[type=radio]{margin: 0.5rem 0.5rem 0 0}
     .nav__item--spacer{flex-grow: 10;}
     .nav__item--right{justify-content: flex-end;}
     .container{flex-direction: row}
-    .container--questionBlock{flex-direction: column}
+    .container--question-block{flex-direction: column}
 
     .card{
         margin: 2em;
@@ -377,8 +377,8 @@ input[type=radio]{margin: 0.5rem 0.5rem 0 0}
         margin: auto 0;
     }
 
-    .codeResultCard{margin-left: 1em}
-    .codeCard{margin-right: 1em}
+    .code-result-card{margin-left: 1em}
+    .code-card{margin-right: 1em}
     #question__input, #question__output{max-width: 32rem}
 
     input[type=text]{
