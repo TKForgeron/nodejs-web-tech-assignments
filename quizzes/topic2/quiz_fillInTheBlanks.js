@@ -9,10 +9,9 @@ var question1 = {
     title: "Fill in the blanks",
     image: "/images/t2_fillInTheBlanks/q1.PNG",
     question: "Please fill in the word that belongs on the underscores in the image",
-    explanation: "",
+    explanation: "/examples.html", // First example
     answer: "this",
-    otherOptions: ["these", "that", "Nothing"],
-    reference: "/examples.html" // First example
+    otherOptions: ["these", "that", "Nothing"]
 }
 
 // Open
@@ -21,9 +20,8 @@ var question2 = {
     title: "Fill in the blank",
     image: "/images/t2_fillInTheBlanks/q2.PNG",
     question: "Please fill in the word that belongs on the underscores in the image",
-    explanation: "",
-    answer: "\"demo\"",
-    reference: "/examples.html" // Second example
+    explanation: "/examples.html", // Second example
+    answer: "\"demo\""
 }
 
 // Open
@@ -32,7 +30,6 @@ var question3 = {
     title: "Fill in the blank",
     image: "/images/t2_fillInTheBlanks/q3.PNG",
     question: "Please fill in the word that belongs on the underscores in the image",
-    explanation: "",
-    answer: "constructor",
-    reference: "/examples.html" // Last example
+    explanation: "/examples.html", // Last example
+    answer: "constructor"
 }

@@ -69,8 +69,7 @@ class Question {
     image,
     question,
     explanation,
-    answer,
-    reference,
+    answer,    
     quizId,
     topicId
   ) {
@@ -83,18 +82,7 @@ class Question {
     this.answer = answer;
     this.explanation = explanation;
     this.userAnswer = '';
-    this.showingFeedback = false;
-    // reference is made an object so styling (and other use) can be done per part of the reference
-    this.reference = [];
-    this.reference.separator = '. ';
-    this.reference = reference
-      .split(this.reference.separator)
-      .concat(this.reference.separator);
-    this.reference.author = this.reference[0];
-    this.reference.date = this.reference[1];
-    this.reference.title = this.reference[2];
-    this.reference.link = this.reference[3];
-    this.reference.separator = this.reference[4]; // could come in handy later
+    this.showingFeedback = false;    
     this.quizId = quizId;
     this.topicId = topicId;
   }
@@ -114,12 +102,10 @@ class Question {
         let feedback = xmlHttp.responseText;
         console.log(feedback);
         this.answerFeedback(feedback);
-      } else{
-        if (window.confirm('You have to log in before attempting a quiz! Click \'OK\' to redirect to the login page'))
-        {
-          window.location.href='login';
-        };
       }
+      else if(xmlHttp.readyState === 4 && xmlHttp.status === 401){
+        alert("Log in before attempting a quiz!");
+      } 
     };
     // Disgusting path cause post doesn't work so we need these parameters. topicId is not included in answerChecker.js post handling so we had to add it at the end as well.
     let path = `/topics/${this.topicId}/quizzes/${this.quizId}/questions/${this.id}`;    
@@ -170,8 +156,9 @@ class Question {
     var correctAnswer = document.createElement('strong');
     correctAnswer.appendChild(document.createTextNode(this.answer));
 
-    var explanationText = document.createElement('p');
+    var explanationText = document.createElement('a');
     explanationText.setAttribute('id', 'question__explanation');
+    explanationText.setAttribute('href', this.explanation);
 
     explanationText.appendChild(correctAnswer);
     explanationText.appendChild(
@@ -200,14 +187,10 @@ class Question {
     // create HTML paragraph node containing question
     var question = this.generateQuestion();
 
-    // create HTML details node containing reference
-    var detailsElement = this.generateReference();
-
     // append them to desired HTML node
     var outputSection = document.getElementById(outputSectionId);
     outputSection.appendChild(title);
     outputSection.appendChild(question);
-    outputSection.appendChild(detailsElement);
 
     // create input section (may differ per subclass, e.g. MultipleChoice)
     var formObject = this.generateForm();
@@ -228,52 +211,7 @@ class Question {
     title.appendChild(document.createTextNode(`${this.id}. ${this.title}`));
 
     return title;
-  }
-  generateReference() {
-    // create reference element, just like in the other pages, its contained in a details node
-    var detailsElement = document.createElement('details');
-    detailsElement.classList.add('references');
-    detailsElement.setAttribute(
-      'id',
-      this.reference
-        .slice(0, this.reference.length - 1)
-        .join(this.reference.separator)
-    ); // set whole reference (cleaned) as id
-
-    var summaryElement = document.createElement('summary');
-    var strongElement = document.createElement('strong');
-    strongElement.appendChild(document.createTextNode('Reference'));
-    summaryElement.appendChild(strongElement);
-
-    var referenceParagraph = document.createElement('p');
-    referenceParagraph.classList.add('reference__item');
-
-    var referenceTitle = document.createElement('em');
-    referenceTitle.appendChild(
-      document.createTextNode(this.reference.title + '. ')
-    );
-
-    var referenceLink = document.createElement('a');
-    referenceLink.classList.add('reference__link');
-    referenceLink.setAttribute('href', this.reference.link);
-    referenceLink.setAttribute('target', '_blank');
-    referenceLink.setAttribute('title', 'Go to reference');
-    referenceLink.appendChild(document.createTextNode(this.reference.link));
-
-    referenceParagraph.appendChild(
-      document.createTextNode(this.reference.author + '. ')
-    );
-    referenceParagraph.appendChild(
-      document.createTextNode(this.reference.date + '. ')
-    );
-    referenceParagraph.appendChild(referenceTitle);
-    referenceParagraph.appendChild(referenceLink);
-
-    detailsElement.appendChild(summaryElement);
-    detailsElement.appendChild(referenceParagraph);
-
-    return detailsElement;
-  }
+  }  
   generateForm() {
     // loose coupling
     var form = document.createElement('form');
@@ -327,7 +265,6 @@ class MultipleChoice extends Question {
     explanation,
     answer,
     otherOptions,
-    reference,
     quizId,
     topicId
   ) {
@@ -338,7 +275,6 @@ class MultipleChoice extends Question {
       question,
       explanation,
       answer,
-      reference,
       quizId,
       topicId
     );
@@ -512,11 +448,11 @@ function loadQuestions(topicId, quizId) {
         let q;
         let mq;
         if(!question.otherOptions) {
-          q = new Question(question.id, question.title, question.image, question.question, question.explanation, question.answer, question.reference,quizId,topicId);
+          q = new Question(question.id, question.title, question.image, question.question, question.explanation, question.answer, quizId, topicId);
           questions.push(q);
         } else {
           // otherOptions in multiple choice questions are called options (keep this in mind)!!!
-          mq = new MultipleChoice(question.id, question.title, question.image, question.question, question.explanation, question.answer, question.otherOptions.split(","), question.reference,quizId,topicId);
+          mq = new MultipleChoice(question.id, question.title, question.image, question.question, question.explanation, question.answer, question.otherOptions.split(","), quizId, topicId);
           questions.push(mq);
         }
       });

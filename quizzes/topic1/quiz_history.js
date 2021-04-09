@@ -9,14 +9,13 @@ var question1 = {
   title: 'Founding',
   image: '/images/t1_history/q1.jpg',
   question: 'When and by whom was JavaScript created?',
-  explanation: '',
+  explanation: '/history.html', // First line
   answer: 'By Brendan Eich in 1995',
   otherOptions: [
     'By Rasmus Lerdorf in 1994',
     'By Brendan Eich in 1997',
     'By James Gosling in 1991',
-  ],
-  reference: '/history.html', // First line
+  ]
 };
 
 // Open
@@ -25,9 +24,8 @@ var question2 = {
   title: 'ECMA',
   image: '/images/t1_history/q2.jpg',
   question: 'When did JavaScript become an ECMA standard?',
-  explanation: '',
-  answer: '1997',
-  reference: '/versionsFrameworks.html', // First line
+  explanation: '/versionsFrameworks.html', // First line
+  answer: '1997'
 };
 
 // Open
@@ -36,7 +34,6 @@ var question3 = {
   title: 'Naming',
   image: '/images/t1_history/q3.png',
   question: 'What was the former name of JavaScript?',
-  explanation: '',
-  answer: 'Mocha',
-  reference: '/history.html', // 12th line
+  explanation: '/history.html', // 12th line
+  answer: 'Mocha'
 };
