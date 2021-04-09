@@ -1,6 +1,6 @@
 # WebTech_Assignment_3
 
-# DEADLINE: 15 april
+# DEADLINE: 18 april
 
 ## Folder Structure
 
@@ -20,6 +20,8 @@ https://www.terlici.com/2014/08/25/best-practices-express-structure.html
 - TIM
   - session progress
     - op profile page blijkt dat profileController.js de stats uit db niet goed verwerken (i.e. doorgeven van db naar pagina)
+- IEMAND met tijd (pls neem verantwoordelijkheid)
+  - profile page mooi maken, alle visuals alignen met mooie en logische tekst erbij evt.
 
 ## Assignment Description
 
