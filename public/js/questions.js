@@ -114,6 +114,11 @@ class Question {
         let feedback = xmlHttp.responseText;
         console.log(feedback);
         this.answerFeedback(feedback);
+      } else{
+        if (window.confirm('You have to log in before attempting a quiz! Click \'OK\' to redirect to the login page'))
+        {
+          window.location.href='login';
+        };
       }
     };
     // Disgusting path cause post doesn't work so we need these parameters. topicId is not included in answerChecker.js post handling so we had to add it at the end as well.
@@ -140,16 +145,13 @@ class Question {
         feedbackMark.appendChild(document.createTextNode('\u2713'));
         formSection.appendChild(feedbackMark);
         this.showingFeedback = true;
-      } else if(feedback == "false" || feedback == false){
+      } else if (feedback == "false" || feedback == false) {
         console.log("feedback false");
         // put cross mark behind user's input
         feedbackMark.setAttribute('style', 'color:red;font-size:2em');
         feedbackMark.appendChild(document.createTextNode(`\u2717`));
         formSection.appendChild(feedbackMark);
         this.showingFeedback = true;
-      }
-      else{
-        alert("Log in before attempting a quiz!");
       }
       // output explanation
       var explanationText = this.generateExplanation();
