@@ -13,6 +13,7 @@ module.exports = async (req, res) => {
       let totalSuccessArray = [];
       let allTopicsArray = [];
       let allQuizzesArray = [];
+      let questionsPerQuiz = undefined;
 
       await dbFinder
         .findAllTopics()
@@ -22,6 +23,7 @@ module.exports = async (req, res) => {
         .catch(err => {
           console.log(err);
         });
+
       await dbFinder
         .findAllQuizzes()
         .then(quizzes => {
@@ -30,6 +32,7 @@ module.exports = async (req, res) => {
         .catch(err => {
           console.log(err);
         });
+
       await dbFinder
         .findUserIdByUsername(username)
         .then(async id => {
@@ -49,6 +52,18 @@ module.exports = async (req, res) => {
           console.log(err);
           res.status(500).json({
             message: "Unable to perform 'findUserIdByUsername' operation",
+          });
+        });
+
+      await dbFinder
+        .findAllQuestions()
+        .then(qs => {
+          questionsPerQuiz = qs.filter(q => q.quizId_fk == 1).length; // all quizzes should have the same amount of questions
+        })
+        .catch(err => {
+          console.log(err);
+          res.status(500).json({
+            message: "Unable to perform 'findAllQuestions' operation",
           });
         });
 
@@ -75,6 +90,7 @@ module.exports = async (req, res) => {
         allTopicsArray,
         allQuizzesArray,
         totalSuccessArray,
+        questionsPerQuiz,
       });
     }
   } else {

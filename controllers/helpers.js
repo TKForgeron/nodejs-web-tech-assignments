@@ -66,7 +66,7 @@ function renderProfile(res, req, dataForProfilePage) {
     topic1Quiz2: dataForProfilePage.allQuizzesArray[1],
     topic2Quiz1: dataForProfilePage.allQuizzesArray[2],
     topic2Quiz2: dataForProfilePage.allQuizzesArray[3],
-    questionsPerQuiz: 3,
+    questionsPerQuiz: dataForProfilePage.questionsPerQuiz,
     sessionProgress11: req.session.progressArray[0][0],
     sessionProgress12: req.session.progressArray[0][1],
     sessionProgress21: req.session.progressArray[1][0],

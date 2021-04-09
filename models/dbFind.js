@@ -5,8 +5,9 @@ const db = knex(config.development);
 const dbOperationHelpers = require('./dbOperationHelpers');
 
 module.exports = {
-  findAllTopics,
+  findAllQuestions,
   findAllQuizzes,
+  findAllTopics,
   findAllUsers,
 
   findTopicById,
@@ -22,6 +23,10 @@ module.exports = {
   findStatsByUserId,
   findStatsByUsername,
 };
+
+function findAllQuestions() {
+  return db('question');
+}
 
 function findAllQuizzes() {
   return db('quiz');
