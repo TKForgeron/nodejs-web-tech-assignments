@@ -9,10 +9,9 @@ var question1 = {
     title: "Variables",
     image: "", // Not needed
     question: "Which type of variable cant be changed after it is set?",
-    explanation: "",
+    explanation: "/examples.html", // Nowhere (yet)
     answer: "const",
-    otherOptions: ["var","let","stbl"],
-    reference: "" // Nowhere (yet)
+    otherOptions: ["var","let","stbl"]
 }
 
 // Multiple choice
@@ -21,10 +20,9 @@ var question2 = {
     title: "Objects",
     image: "", // Not needed
     question: "What is the correct syntax to store \"name = John\" in a JavaScript object?",
-    explanation: "",
+    explanation: "/examples.html", // First example
     answer: "var person = {name: \"John\"};",
-    otherOptions: ["var person = {\"name\": \"John\"};","var person = [name: \"John\"];","var person = {name = \"John\"};"],
-    reference: "/examples.html" // First example
+    otherOptions: ["var person = {\"name\": \"John\"};","var person = [name: \"John\"];","var person = {name = \"John\"};"]
 }
 
 // Open
@@ -33,7 +31,6 @@ var question3 = {
     title: "Reusing structures",
     image: "/images/t2_storingData/q3.PNG",
     question: "What do you use when you have to create many instances with the same attributes? (see the blank space in the image for clarification)",
-    explanation: "",
-    answer: "Classes",
-    reference: "/examples.html" // Last example
+    explanation: "/examples.html", // Last example
+    answer: "Classes"
 }
