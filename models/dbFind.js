@@ -20,6 +20,7 @@ module.exports = {
   findQuizzesByTopicId,
   findQuestionsByQuizId,
   findStatsByUserId,
+  findStatsByUsername,
 };
 
 function findAllQuizzes() {
@@ -91,4 +92,10 @@ function findQuestionsByQuizId(quizId_fk) {
 function findStatsByUserId(userId_fk) {
   console.log(`userId_fk in findStatsByUserId: ${userId_fk}`);
   return db('userQuizStats').where({ userId_fk }); // array of JS-objects
+}
+
+// expects: (string)
+function findStatsByUsername(username) {
+  console.log(`username in findStatsByUserId: ${username}`);
+  return db('userQuizStats').where({ username }); // array of JS-objects
 }
