@@ -21,11 +21,11 @@ function createInitialElements() {
 
   var container = document.createElement('div');
   container.classList.add('container');
-  container.classList.add('container--questionBlock');
+  container.classList.add('container--question-block');
 
   var cardQuestion = document.createElement('section');
   cardQuestion.classList.add('card');
-  cardQuestion.classList.add('card--noWidthMagicForQuestion');
+  cardQuestion.classList.add('card--no-width-magic-for-question');
   cardQuestion.classList.add('question');
 
   var questionImage = document.createElement('img');

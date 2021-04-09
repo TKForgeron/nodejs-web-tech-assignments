@@ -6,7 +6,7 @@ function createNav() {
 
     var unorderedNavList = document.createElement('ul');
     unorderedNavList.classList.add('nav__bar');
-    unorderedNavList.classList.add('list--noBullets');
+    unorderedNavList.classList.add('list--no-bullets');
 
     var indexItem = document.createElement('li');
     indexItem.classList.add(navItemClass);
