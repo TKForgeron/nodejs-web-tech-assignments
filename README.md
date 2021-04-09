@@ -1,6 +1,6 @@
 # WebTech_Assignment_3
 
-# DEADLINE: 13 april
+# DEADLINE: 15 april
 
 ## Folder Structure
 
@@ -8,9 +8,18 @@ https://www.terlici.com/2014/08/25/best-practices-express-structure.html
 
 ## To-Do:
 
-- session progress
-  - user stats wordt niet correct geupdatet als de userstat al bestaat
-- at login, check whether user exists first.
+- MAARTEN
+  - navbar afmaken: (logisch) dropdown menu
+  - topic blocks in de stijl van website maken
+    - niet afgeronde hoeken
+    - evt tabel net zoals andere tabel (op versions & frameworks)
+    - std (blauwe) html links weghalen, maak bv heel de row clickable
+  - correcte vragen in db zetten
+- DOUWE
+  - upon page refresh onthoud welke question user was
+- TIM
+  - session progress
+    - op profile page blijkt dat profileController.js de stats uit db niet goed verwerken (i.e. doorgeven van db naar pagina)
 
 ## Assignment Description
 
