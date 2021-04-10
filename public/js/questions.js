@@ -9,6 +9,7 @@ var controlsNextId = 'controls__next';
 var controlsBackId = 'controls__back';
 var currentQuestionIndex = 0;
 var questions = [];
+var sessionProgess = [];
 
 
 // We create an intial framework of html elements which we will manipulate to add or remove questions and check user answers
@@ -384,6 +385,21 @@ function clearQuestionElements() {
   questions[currentQuestionIndex].showingFeedback = false;
 }
 
+function getSessionProgress (){
+
+  const xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function() {
+    if(xmlHttp.readyState === 4 && xmlHttp.status === 200){
+        //serverProgress should be an array of arrays
+        const serverProgress = this.responseText;
+        console.log(serverProgress);
+        sessionProgress = serverProgress;
+    }
+  };
+
+  xmlHttp.open("get", "/placeholder");
+  xmlHttp.send();
+}
 // quizzes.js from here on
 function loadTopics (){
 
@@ -504,3 +520,4 @@ function loadQuestions(topicId, quizId) {
 }
 
 window.addEventListener("DOMContentLoaded", loadTopics);
+window.addEventListener("DOMContentLoaded", getSessionProgress);
