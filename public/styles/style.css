@@ -169,6 +169,21 @@ h1{
 
 .nav__link--active:visited{color: black;}
 
+
+.nav__dropdown__content {
+    display: none;
+    position: absolute;
+    background-color: var(--themeColor--l4);
+    min-width: 10em;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.nav__dropdown__content a {color: black;}
+
+.nav__dropdown:hover .nav__dropdown__content {display: block;}
+
+
+
 .article__section{padding-left: 1em;}
 
 .references__header:hover{cursor: pointer;}
