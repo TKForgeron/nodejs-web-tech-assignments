@@ -169,7 +169,6 @@ h1{
 
 .nav__link--active:visited{color: black;}
 
-
 .nav__dropdown__content {
     display: none;
     position: absolute;
@@ -181,8 +180,6 @@ h1{
 .nav__dropdown__content a {color: black;}
 
 .nav__dropdown:hover .nav__dropdown__content {display: block;}
-
-
 
 .article__section{padding-left: 1em;}
 
