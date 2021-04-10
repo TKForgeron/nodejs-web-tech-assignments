@@ -8,10 +8,10 @@ block content
     if !topic1
       H1 There are no topics in db yet
       form(action='/logout', method='POST')
-        input(type='submit', value='Logout')
+        button(type='submit', value='Logout')
     else
       form(action='/logout', method='POST')
-        input(type='submit', value='Logout')
+        button(type='submit', value='Logout') Logout
       article
         H1 Profile page
         H3= `Hi ${username}, these are your stats:`
