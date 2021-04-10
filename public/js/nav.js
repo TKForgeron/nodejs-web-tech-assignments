@@ -48,29 +48,31 @@ function createNav() {
     guidesAHref.appendChild(document.createTextNode('Helpful guides'));
     guidesItem.appendChild(guidesAHref);
 
-    var loginItem = document.createElement('li');
-    loginItem.classList.add(navItemClass);
-    var loginAHref = document.createElement('a');
-    loginAHref.classList.add(navItemAClass);
-    loginAHref.setAttribute('href', 'login');
-    loginAHref.appendChild(document.createTextNode('Login'));
-    loginItem.appendChild(loginAHref);
+    var dropdown = document.createElement('li');
+    dropdown.classList.add("nav__dropdown");
 
-    var registerItem = document.createElement('li');
-    registerItem.classList.add(navItemClass);
-    var registerAHref = document.createElement('a');
-    registerAHref.classList.add(navItemAClass);
-    registerAHref.setAttribute('href', 'register');
-    registerAHref.appendChild(document.createTextNode('Register'));
-    registerItem.appendChild(registerAHref);
+    var profileItem = document.createElement('a');
+    profileItem.classList.add(navItemAClass);
+    profileItem.setAttribute('href', 'profile');
+    profileItem.appendChild(document.createTextNode('Profile ▼'));
 
-    var profileItem = document.createElement('li');
-    profileItem.classList.add(navItemClass);
-    var profileAHref = document.createElement('a');
-    profileAHref.classList.add(navItemAClass);
-    profileAHref.setAttribute('href', 'profile');
-    profileAHref.appendChild(document.createTextNode('Profile'));
-    profileItem.appendChild(profileAHref);
+    var dropdownContent = document.createElement('div');
+    dropdownContent.classList.add("nav__dropdown__content");
+
+    var loginItem = document.createElement('a');
+    loginItem.classList.add(navItemAClass);
+    loginItem.setAttribute('href', 'login');
+    loginItem.appendChild(document.createTextNode('Login'));
+    dropdownContent.appendChild(loginItem);
+
+    var registerItem = document.createElement('a');
+    registerItem.classList.add(navItemAClass);
+    registerItem.setAttribute('href', 'register');
+    registerItem.appendChild(document.createTextNode('Register'));
+    dropdownContent.appendChild(registerItem);
+
+    dropdown.appendChild(profileItem);
+    dropdown.appendChild(dropdownContent);
 
     var spacerItem = document.createElement('li');
     spacerItem.classList.add(navItemClass + '--spacer');
@@ -89,9 +91,7 @@ function createNav() {
     unorderedNavList.appendChild(versionsItem);
     unorderedNavList.appendChild(examplesItem);
     unorderedNavList.appendChild(guidesItem);
-    unorderedNavList.appendChild(loginItem);
-    unorderedNavList.appendChild(registerItem);
-    unorderedNavList.appendChild(profileItem);
+    unorderedNavList.appendChild(dropdown);
     unorderedNavList.appendChild(spacerItem);
     unorderedNavList.appendChild(assessmentItem);
     nav.appendChild(unorderedNavList);
