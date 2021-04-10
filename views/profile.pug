@@ -6,14 +6,14 @@ extends reusables/layout
 block content
   #topic1
     if !topic1
-      H1 There are no topics in db yet
+      H2 There are no topics in db yet
       form(action='/logout', method='POST')
         button(type='submit', value='Logout')
     else
       form(action='/logout', method='POST')
         button(type='submit', value='Logout') Logout
       article
-        H1 Profile page
+        H2 Profile page
         H3= `Hi ${username}, these are your stats:`
         H4 Progression this session
         label(for='session-progress11')= `You've made this much progress on ${topic1.name} ${topic1Quiz1.title} this session:`

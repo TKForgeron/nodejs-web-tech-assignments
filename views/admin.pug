@@ -2,10 +2,10 @@ extends reusables/layout
 
 block content
   article
-      h1 logout
+      h2 logout
       form(action='/logout', method='POST')
         button(type='submit', value='Logout') Logout
-      h1 check users
+      h2 check users
       form(action='admin/users', method='Get')
         button(type='submit', value='get users') Get users
       form(action='admin/users/data', method='POST')
@@ -17,26 +17,26 @@ block content
           required=''
         )
         button(type='submit', value='get user\'s stats') Get user's stats
-      h1 add topic
+      h2 add topic
       form(action='/topics', method='POST')
         input(type='text', name='name', placeholder='Name', required='')
         button(type='submit', value='add topic') Add topic
       form(action='/topics', method='GET')
         button(type='submit', value='get topics') Get topics
-      h1 add quiz to topicId 1
+      h2 add quiz to topicId 1
       form(action='/topics/1/quizzes', method='POST')
         input(type='text', name='title', placeholder='title', required='')
         button(type='submit', value='add quiz') Add quiz
       form(action='/topics/1/quizzes', method='GET')
         button(type='submit', value='get quizzes (t1)') Get quizzes (t1)
-      h1 add quiz to topicId 2
+      h2 add quiz to topicId 2
       form(action='/topics/2/quizzes', method='POST')
         input(type='text', name='title', placeholder='title', required='')
         button(type='submit', value='add quiz') Add quiz
       form(action='/topics/2/quizzes', method='GET')
         button(type='submit', value='get quizzes (t2)') Get quizzes (t2)
 
-      h1 add question to quizId 1 (topic 1)
+      h2 add question to quizId 1 (topic 1)
       form(action='/topics/1/quizzes/1/questions', method='POST')
         input(type='text', name='title', placeholder='title', required='')
         input(type='text', name='image', placeholder='image path')
@@ -52,7 +52,7 @@ block content
         button(type='submit', value='add question') Add question
       form(action='/topics/1/quizzes/1/questions', method='GET')
         button(type='submit', value='get questions (t1,q1)') Get questions (t1,q1)
-      h1 add question to quizId 2 (topic 1)
+      h2 add question to quizId 2 (topic 1)
       form(action='/topics/1/quizzes/2/questions', method='POST')
         input(type='text', name='title', placeholder='title', required='')
         input(type='text', name='image', placeholder='image path')
@@ -68,7 +68,7 @@ block content
         button(type='submit', value='add question') Add question
       form(action='/topics/1/quizzes/2/questions', method='GET')
         button(type='submit', value='get questions (t1,q2)') Get questions (t1,q2)
-      h1 add question to quizId 3 (topic 2)
+      h2 add question to quizId 3 (topic 2)
       form(action='/topics/2/quizzes/3/questions', method='POST')
         input(type='text', name='title', placeholder='title', required='')
         input(type='text', name='image', placeholder='image path')
@@ -84,7 +84,7 @@ block content
         button(type='submit', value='add question') Add question
       form(action='/topics/2/quizzes/3/questions', method='GET')
         button(type='submit', value='get questions (t2,q3)') Get questions (t2,q3)
-      h1 add question to quizId 4 (topic 2)
+      h2 add question to quizId 4 (topic 2)
       form(action='/topics/2/quizzes/4/questions', method='POST')
         input(type='text', name='title', placeholder='title', required='')
         input(type='text', name='image', placeholder='image path')
