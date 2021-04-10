@@ -28,9 +28,11 @@ nav.nav
       a.nav__link(href='guides.html') Helpful guides
     li.nav__dropdown
         a.nav__link(href='profile') Profile &#9660;
-        div.nav__dropdown__content
-         a.nav__link(href='login') Login
-         a.nav__link(href='register') Register
+        ul.nav__dropdown__content.list--no-bullets
+         li.nav__item
+          a.nav__link(href='login') Login
+         li.nav__item
+            a.nav__link(href='register') Register
     li.nav__item--spacer
     li.nav__item.nav__item--right
       a.nav__link(href='assessment.html') Assessment
