@@ -9,12 +9,12 @@ https://www.terlici.com/2014/08/25/best-practices-express-structure.html
 ## To-Do:
 
 - MAARTEN
-  - navbar afmaken: (logisch) dropdown menu
-  - topic blocks in de stijl van website maken
-    - niet afgeronde hoeken
-    - evt tabel net zoals andere tabel (op versions & frameworks)
-    - std (blauwe) html links weghalen, maak bv heel de row clickable
-  - correcte vragen in db zetten
+  - ~~navbar afmaken: (logisch) dropdown menu~~ -> Werkend maken op mobiel (misschien profile wijzigen in account)
+  - ~~topic blocks in de stijl van website maken~~
+    - ~~niet afgeronde hoeken~~
+    - ~~evt tabel net zoals andere tabel (op versions & frameworks)~~
+    - ~~std (blauwe) html links weghalen, maak bv heel de row clickable~~
+  - correcte vragen in db zetten -> eerst moet de database gereset worden
 - DOUWE
   - upon page refresh onthoud welke question user was
 - TIM
@@ -22,6 +22,7 @@ https://www.terlici.com/2014/08/25/best-practices-express-structure.html
     - op profile page blijkt dat profileController.js de stats uit db niet goed verwerken (i.e. doorgeven van db naar pagina)
 - IEMAND met tijd (pls neem verantwoordelijkheid)
   - profile page mooi maken, alle visuals alignen met mooie en logische tekst erbij evt.
+  - ~~Bij profile/login/register de header tekst ("JavaScript") laten linken naar home~~
 
 ## Assignment Description
 

@@ -169,6 +169,18 @@ h1{
 
 .nav__link--active:visited{color: black;}
 
+.nav__dropdown__content {
+    display: none;
+    position: absolute;
+    background-color: var(--themeColor--l4);
+    min-width: 10em;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.nav__dropdown__content a {color: black;}
+
+.nav__dropdown:hover .nav__dropdown__content {display: block;}
+
 .article__section{padding-left: 1em;}
 
 .references__header:hover{cursor: pointer;}
@@ -399,31 +411,26 @@ input[type=radio]{margin: 0.5rem 0.5rem 0 0}
     width:300px;
     padding: 0;
     margin-right: 3em;
+    margin-bottom: 3em;
 }
-
-/* Not mobile first, but it works... */
-@media (max-width: 750px) {.topics__list{margin-top: 3em;}}
 
 .topics__list li {
     list-style: none;
-    background: #eee;       /* Om in het thema te blijven zou het var(--themeColor--l4) moeten zijn maar dat is echt lelijk */
-    color: blue;
-    border-top: 1px solid #ccc;
+    background: var(--themeColor--l4);
+    border-top: 1px var(--themeColor--l3);
     padding: 0.75em 1.5em;
 }
 
 .topics__list li:hover {
-    text-decoration: underline;
     cursor: pointer;
+    background: var(--themeColor--l3);
 }
 
 .topics__list li:first-child{
-    text-decoration: none;
+    font-weight: bold;
     cursor: default;
     background: var(--themeColor);
     color: white;
-    border: none;
-    border-radius: 0.25em 0.25em 0 0;
 }
 
 .progress {

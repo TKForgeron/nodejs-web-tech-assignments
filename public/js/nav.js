@@ -48,6 +48,39 @@ function createNav() {
     guidesAHref.appendChild(document.createTextNode('Helpful guides'));
     guidesItem.appendChild(guidesAHref);
 
+    var dropdown = document.createElement('li');
+    dropdown.classList.add("nav__dropdown");
+
+    var profileItem = document.createElement('a');
+    profileItem.classList.add(navItemAClass);
+    profileItem.setAttribute('href', 'profile');
+    profileItem.appendChild(document.createTextNode('Profile ▼'));
+
+    var dropdownContent = document.createElement('ul');
+    dropdownContent.classList.add("nav__dropdown__content");
+    dropdownContent.classList.add("list--no-bullets");
+
+    var loginItem = document.createElement('li');
+    loginItem.classList.add(navItemClass);
+    var loginAHref = document.createElement('a');
+    loginAHref.classList.add(navItemAClass);
+    loginAHref.setAttribute('href', 'login');
+    loginAHref.appendChild(document.createTextNode('Login'));
+    loginItem.appendChild(loginAHref);
+    dropdownContent.appendChild(loginItem);
+
+    var registerItem = document.createElement('li');
+    registerItem.classList.add(navItemClass);
+    var registerAHref = document.createElement('a');
+    registerAHref.classList.add(navItemAClass);
+    registerAHref.setAttribute('href', 'register');
+    registerAHref.appendChild(document.createTextNode('Register'));
+    registerItem.appendChild(registerAHref);
+    dropdownContent.appendChild(registerItem);
+
+    dropdown.appendChild(profileItem);
+    dropdown.appendChild(dropdownContent);
+
     var spacerItem = document.createElement('li');
     spacerItem.classList.add(navItemClass + '--spacer');
 
@@ -65,6 +98,7 @@ function createNav() {
     unorderedNavList.appendChild(versionsItem);
     unorderedNavList.appendChild(examplesItem);
     unorderedNavList.appendChild(guidesItem);
+    unorderedNavList.appendChild(dropdown);
     unorderedNavList.appendChild(spacerItem);
     unorderedNavList.appendChild(assessmentItem);
     nav.appendChild(unorderedNavList);

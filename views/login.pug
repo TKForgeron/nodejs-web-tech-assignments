@@ -1,14 +1,15 @@
 extends reusables/layout.pug
 
 block content
-  h1 Login Form
-    form(action='/login/auth', method='POST')
-      input(type='text', name='username', placeholder='Username', required='')
-      input(
-        type='password',
-        name='password',
-        placeholder='Password',
-        required=''
-      )
-      input(type='submit')
+  article
+      h2 Login Form
+        form(action='/login/auth', method='POST')
+          input(type='text', name='username', placeholder='Username', required='')
+          input(
+            type='password',
+            name='password',
+            placeholder='Password',
+            required=''
+          )
+          button(type='submit') Login
   script(src='../js/loginFeedback.js')
