@@ -1,8 +1,5 @@
 extends reusables/layout
 
-//- local global vars
-//- - var questionsPerQuiz = 3;
-
 block content
   #topic1
     if !topic1
@@ -29,7 +26,7 @@ block content
         #session-progress22.progress
           span(style=`width:${(sessionProgress22 / questionsPerQuiz) * 100}%`)
 
-        H4 Success rate this session
+        H4 Success rates this session
         p= `Success rate on ${topic1.name} in ${topic1Quiz1.title} this session:`
         .success-rate-pie-chart(
           style=`background:
@@ -74,7 +71,7 @@ block content
           );`
         )
 
-        H4 Success rate this session
+        H4 Overall success rates
         p= `All time success rate on ${topic1.name} in ${topic1Quiz1.title}:`
         .success-rate-pie-chart(
           style=`background:
