@@ -19,6 +19,7 @@ https://www.terlici.com/2014/08/25/best-practices-express-structure.html
   - upon page refresh onthoud welke question user was
 - TIM
   - session progress
+    - percentage in progress bars
     - op profile page blijkt dat profileController.js de stats uit db niet goed verwerken (i.e. doorgeven van db naar pagina)
 - IEMAND met tijd (pls neem verantwoordelijkheid)
   - profile page mooi maken, alle visuals alignen met mooie en logische tekst erbij evt.

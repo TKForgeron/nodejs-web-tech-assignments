@@ -439,7 +439,7 @@ input[type=radio]{margin: 0.5rem 0.5rem 0 0}
     width: 250px;
     position: relative;
     background: #fffded;
-    border: solid 5px #ffde00;
+    /* border: solid 5px #ffde00; */
     /* margin: auto; */
 }
 .progress > span {

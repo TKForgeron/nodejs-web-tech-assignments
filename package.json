@@ -4,8 +4,8 @@
   "description": "Assignment 3",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon app.js",
-    "start": "node app.js"
+    "server-dynamic": "nodemon app.js",
+    "server-static": "node app.js"
   },
   "repository": {
     "type": "git",
