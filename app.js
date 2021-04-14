@@ -4,6 +4,7 @@ const express = require('express');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const path = require('path');
+const morgan = require('morgan');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -11,6 +12,9 @@ const port = process.env.PORT || 3000;
 // View Engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+// Logger
+app.use(morgan('tiny'));
 
 // Session
 app.use(express.json());
@@ -29,6 +33,7 @@ app.use(
   })
 );
 
+// Routers
 app.use('/admin', require('./routes/admin'));
 app.use('/register', require('./routes/register'));
 app.use('/profile', require('./routes/profile'));
