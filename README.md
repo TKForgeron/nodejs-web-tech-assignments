@@ -18,6 +18,7 @@ https://www.terlici.com/2014/08/25/best-practices-express-structure.html
 - DOUWE
   - upon page refresh onthoud welke question user was
 - TIM
+  - admin security issue
   - session progress
     - percentage in progress bars
     - op profile page blijkt dat profileController.js de stats uit db niet goed verwerken (i.e. doorgeven van db naar pagina)
