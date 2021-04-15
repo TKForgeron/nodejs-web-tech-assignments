@@ -14,13 +14,14 @@ module.exports = (req, res, next) => {
 
     if (userExists) {
       if (username == 'admin') {
-        //authorize for full CRUD on db
-        // but for now allow full...
+        // authorize for full CRUD on db
+        // for now api can only be used by admin:
         next();
       } else {
-        //authorize for partial CRUD on db
+        // authorize for partial CRUD on db
         // but for now allow full...
         // next();
+        // of nee, toch niet.
         console.log('not admin trying to access api');
       }
     } else {
