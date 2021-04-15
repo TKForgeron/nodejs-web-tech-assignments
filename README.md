@@ -18,6 +18,8 @@ https://www.terlici.com/2014/08/25/best-practices-express-structure.html
 - DOUWE
   - upon page refresh onthoud welke question user was
 - TIM
+  - bij tijd over: Log all login failures and alert administrators if an attack has been detected
+  - only allow strong passwords
   - sql injection checken
   - admin security issue
   - session progress

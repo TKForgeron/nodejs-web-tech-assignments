@@ -14,7 +14,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 // Logger
-app.use(morgan('tiny'));
+// app.use(morgan('tiny'));
 
 // Session
 app.use(express.json());
@@ -45,7 +45,7 @@ app.use(
   '/topics/:topicId/quizzes/',
   require('./routes/topics/quizzes/answerChecker')
 );
-// app.use('/api', require('./routes/apiForPublic'));
+app.use('/api', require('./routes/api'));
 
 const server = app.listen(port, () => {
   console.log(`Server Listening on port ${port}`);

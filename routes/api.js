@@ -1,6 +1,7 @@
 const express = require('express');
 const server = express();
 
+server.use(require('../controllers/apiAuthorizationController'));
 server.use(require('./topics/topics'));
 server.use(require('./topics/quizzes/quizzes'));
 server.use(require('./topics/quizzes/questions/questions'));
