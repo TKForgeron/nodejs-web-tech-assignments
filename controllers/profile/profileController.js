@@ -91,12 +91,14 @@ module.exports = async (req, res) => {
       });
 
       // console.log(totalSuccessArray);
-
+      let editProfileError = false;
+      editProfileError = req.session.editProfileError;
       return helpers.renderProfile(res, req, {
         allTopicsArray,
         allQuizzesArray,
         totalSuccessArray,
         questionsPerQuiz,
+        editProfileError,
       });
     }
   } else {

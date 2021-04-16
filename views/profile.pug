@@ -17,23 +17,28 @@ block content
 
       //- regular HTML
       h2 edyit profile, ff onder elkaar.. in een vierkantje
-      p Your password should contain 1 lowercase letter, 1 uppercase letter, 1 numeric character, 1 special character, and must be 8 characters or longer.
+      p Your password should contain 1 lowercase letter, 1 uppercase letter, 1 numeric character, 1 special character, and must be 8 characters or longer. & always fill out old password field when editing profile...
+      p= `editProfileError: ${editProfileError}`
         form(action='/profile/edit', method='POST')
-          input(type='text', name='name', placeholder='New name')
-          input(type='text', name='username', placeholder='New username')
+          input(type='text', name='newName', placeholder='New name')
+          input(type='text', name='newUsername', placeholder='New username')
           input(
             type='password',
             name='oldPassword',
             placeholder='Old password',
             required
           )
-          input(type='password', name='password', placeholder='New password')
+          input(
+            type='password',
+            name='newPassword',
+            placeholder='New password'
+          )
           button(type='submit') Edit
       form(action='/logout', method='POST')
         button(type='submit', value='Logout') Logout
       article
         H2 Profile page
-        H3= `Hi ${username}, these are your stats:`
+        H3= `Hi ${username}, these are your stats.`
 
         H4 Success rates this session
         section

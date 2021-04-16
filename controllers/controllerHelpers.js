@@ -3,6 +3,7 @@ module.exports = {
   createProgressObj,
   shuffle,
   renderProfile,
+  isValidPassword,
 };
 
 function isJson(str) {
@@ -33,8 +34,15 @@ function renderProfile(res, req, dataForProfilePage) {
   if (req.session.loggedin) {
     loginOrLogout = 'logout';
   }
+  if (
+    !dataForProfilePage.editProfileError ||
+    dataForProfilePage.editProfileError == undefined
+  ) {
+    dataForProfilePage.editProfileError = false;
+  }
   return res.render('profile', {
     title: 'Profile',
+    editProfileError: dataForProfilePage.editProfileError,
     loginOrLogout: loginOrLogout,
     username: req.session.username,
     topic1: dataForProfilePage.allTopicsArray[0],
@@ -77,4 +85,13 @@ function shuffle(array) {
   }
 
   return array;
+}
+
+// taken from https://www.thepolyglotdeveloper.com/2015/05/use-regex-to-test-password-strength-in-javascript/
+function isValidPassword(pw) {
+  // regular expression to check for password complexity
+  const re = new RegExp(
+    '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})'
+  );
+  return re.test(pw);
 }

@@ -1,39 +1,62 @@
+const dbUpdater = require('../../models/dbUpdate');
 const dbFinder = require('../../models/dbFind');
 const bcrypt = require('bcrypt');
-const helpers = require('../controllerHelpers');
+const helper = require('../controllerHelpers');
 
 module.exports = async (req, res) => {
-  // regular expression to check for password complexity taken from https://www.thepolyglotdeveloper.com/2015/05/use-regex-to-test-password-strength-in-javascript/
-  let re = new RegExp(
-    '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})'
-  );
-  let valid = re.test(req.body.password);
-  if (valid == false) {
-    console.log('invalid password');
-    res.redirect('/register?unsuccessful');
-  } else {
-    req.body.password = await bcrypt.hash(req.body.password, 10);
-    const user = req.body;
+  let userFromDB = '';
+  req.session.editProfileError = false;
 
-    dbAdder
-      .addUser(JSON.stringify(user))
-      .then(result => {
-        if (result == undefined) {
-          throw new Error('registration failed'); // oops, still going to catch.
+  await dbFinder
+    .findUserByUsername(req.session.username)
+    .then(usr => {
+      userFromDB = usr;
+    })
+    .catch(err => {
+      console.log(err);
+      userFromDB = false;
+    });
+
+  // check whether user exists
+  if (userFromDB) {
+    const passwordCorrect = userFromDB.password;
+
+    // check password
+    if (await bcrypt.compare(req.body.oldPassword, passwordCorrect)) {
+      // check whether new password form was filled out
+      if (req.body.newPassword) {
+        // check whether new password is valid according to RegEx
+        if (!helper.isValidPassword(req.body.newPassword)) {
+          console.log('invalid new password');
         } else {
-          console.log(
-            'catch of registerUser (in POST, addUserController.js): ' + err
-          );
-          req.body.username = user.username;
-          req = sessionVarsSetter(req);
-          res.status(200).redirect('/profile');
+          req.body.newPassword = await bcrypt.hash(req.body.newPassword, 10);
+          userFromDB.password = req.body.newPassword;
         }
-      })
-      .catch(err => {
-        console.log(
-          'catch of registerUser (in POST, addUserController.js): ' + err
-        );
-        res.status(500).redirect('/register');
-      });
+      }
+
+      if (req.body.newUsername) {
+        userFromDB.username = req.body.newUsername;
+      }
+
+      if (req.body.newName) {
+        userFromDB.name = req.body.newName;
+      }
+      console.log(userFromDB);
+      dbUpdater
+        .updateUser(userFromDB.id, userFromDB)
+        .then(result => {
+          console.log(result);
+          req.session.editProfileError = false;
+        })
+        .catch(err => {
+          console.log();
+          console.log(err);
+          req.session.editProfileError = true;
+        });
+    } else {
+      res.redirect('/profile/edit/unsuccessful');
+    }
+  } else {
+    res.redirect('/profile/edit/unsuccessful');
   }
 };

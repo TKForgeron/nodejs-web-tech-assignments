@@ -25,6 +25,7 @@
   - na succesvolle register word ik niet naar profile geredirect, maar gwn op /register
 - TIM
   - user can edit profile
+    - profile.pug moet 'editProfileError' afvangen en gebaseerd daarop melding geven
   - ~~answer niet meesturen naar ajax request~~
   - OPTIONAL:
     - admin page: delete all users except admin
