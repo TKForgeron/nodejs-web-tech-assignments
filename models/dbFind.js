@@ -11,6 +11,7 @@ module.exports = {
   findAllUsers,
 
   findTopicById,
+  findTopicByQuizId,
   findQuizById,
   findQuestionAnswerById,
   findQuestionById,
@@ -43,6 +44,28 @@ function findAllUsers() {
 // expects: (number)
 function findTopicById(id) {
   return dbOperationHelpers.finder('topic', id);
+}
+
+async function findTopicByQuizId(id) {
+  let firstQuizButThenTopicForMemoryEfficiency = {};
+
+  await dbOperationHelpers
+    .finder('quiz', id)
+    .then(resQuiz => {
+      firstQuizButThenTopicForMemoryEfficiency = resQuiz; // quiz
+      findTopicById(firstQuizButThenTopicForMemoryEfficiency.topicId_fk)
+        .then(resTopic => {
+          firstQuizButThenTopicForMemoryEfficiency = resTopic; // topic
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+
+  return firstQuizButThenTopicForMemoryEfficiency;
 }
 
 // expects: (number)
@@ -100,7 +123,18 @@ function findStatsByUserId(userId_fk) {
 }
 
 // expects: (string)
-function findStatsByUsername(username) {
-  console.log(`username in findStatsByUserId: ${username}`);
-  return db('userQuizStats').where({ username }); // array of JS-objects
+async function findStatsByUsername(username) {
+  console.log(`username in findStatsByUsername: ${username}`);
+  let returnVal = undefined;
+  await findUserIdByUsername(username)
+    .then(res => {
+      console.log(res);
+      returnVal = findStatsByUserId(res.id);
+    })
+    .catch(err => {
+      console.log(err);
+      returnVal = err;
+    });
+
+  return returnVal;
 }

@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const dbFinder = require('../../models/dbFind');
-const helpers = require('../helpers');
+const sessionVarsSetter = require('./sessionVariablesController');
 
 module.exports = async (req, res) => {
   const username = req.body.username;
@@ -24,7 +24,7 @@ module.exports = async (req, res) => {
 
     // check password
     if (await bcrypt.compare(passwordGuess, passwordCorrect)) {
-      req = helpers.setSessionVars(req);
+      req = await sessionVarsSetter(req);
 
       // check whether user is admin
       if (username == 'admin') {

@@ -44,7 +44,7 @@ module.exports = async (req, res) => {
             .catch(err => {
               console.log(err);
               res.status(500).json({
-                message: "Unable to perform 'findStatsByUsername' operation",
+                message: 'could not retrieve your stats',
               });
             });
         })
@@ -69,7 +69,11 @@ module.exports = async (req, res) => {
 
       for (let index = 1; index <= 4; index++) {
         overallSuccessArray[index - 1] = statObjectsArray.filter(stat => {
-          return stat.quizId_fk == index; // there are 4 quizzes
+          if (!stat.quizSuccessRate == '') {
+            return stat.quizId_fk == index; // there are 4 quizzes
+          } else {
+            return false;
+          }
         });
       }
 
@@ -85,6 +89,8 @@ module.exports = async (req, res) => {
           (overallSuccess.reduce((a, b) => a + b, 0) / overallSuccess.length) *
           100;
       });
+
+      // console.log(totalSuccessArray);
 
       return helpers.renderProfile(res, req, {
         allTopicsArray,

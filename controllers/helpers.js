@@ -1,6 +1,5 @@
 module.exports = {
   isJson,
-  setSessionVars,
   createProgressObj,
   renderProfile,
 };
@@ -12,35 +11,6 @@ function isJson(str) {
     return false;
   }
   return true;
-}
-
-function setSessionVars(req) {
-  console.log('login successful, session variables set');
-  req.session.loggedin = true;
-  req.session.username = req.body.username;
-  //Nester array, first array indicated topic, second array (nested) indicates quiz
-  req.session.progressArray = [
-    [[], []],
-    [[], []],
-  ];
-
-  req.session.successArray = [
-    [[], []],
-    [[], []],
-  ];
-
-  req.session.progressArray[0][0] = 0;
-  req.session.progressArray[0][1] = 0;
-  req.session.progressArray[1][0] = 0;
-  req.session.progressArray[1][1] = 0;
-
-  // get success from db, if not exists set to 0
-  req.session.successArray[0][0] = 0;
-  req.session.successArray[0][1] = 0;
-  req.session.successArray[1][0] = 0;
-  req.session.successArray[1][1] = 0;
-
-  return req;
 }
 
 function createProgressObj(

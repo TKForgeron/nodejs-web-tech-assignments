@@ -4,10 +4,13 @@
 
 ## Notes:
 
-- admin, ADMINaccountofWTgroup15
-- mikey, HalloIkBenMike123
-- Bert,
--
+- Initial accounts
+  - admin, ADMINaccountofWTgroup15
+  - mikey, HalloIkBenMike123
+  - Bert,
+  - Douwe,
+  - Tim,
+  - Maarten,
 
 ## To-Do:
 

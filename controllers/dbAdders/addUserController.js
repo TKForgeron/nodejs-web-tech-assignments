@@ -1,31 +1,11 @@
 const bcrypt = require('bcrypt');
-const dbFinder = require('../../models/dbFind');
 const dbAdder = require('../../models/dbAdd');
-const helpers = require('../helpers');
+const sessionVarsSetter = require('../login/sessionVariablesController');
 
 module.exports = async function (req, res) {
   req.body.password = await bcrypt.hash(req.body.password, 10);
-  let user = req.body;
-  let sessionUsername = user.username;
+  const user = req.body;
 
-  // // if there is already a user with that username, save in 'userWithSameUsername', else set 'userWithSameUsername' to false for later if statement
-  // let userWithSameUsername = '';
-  // dbFinder
-  //   .findUserByUsername(user.username)
-  //   .then(usr => {
-  //     userWithSameUsername = usr;
-  //     console.log(usr);
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //     userWithSameUsername = false;
-  //   });
-
-  // // make sure username is unique
-  // if (userWithSameUsername) {
-  //   res.status(500).json({ message: 'username already exists' });
-  //   console.log('sameUser: ' + userWithSameUsername);
-  // } else {
   dbAdder
     .addUser(JSON.stringify(user))
     .then(result => {
@@ -35,7 +15,8 @@ module.exports = async function (req, res) {
         console.log(
           `then of registerUser (in POST, addUserController.js): ${result}`
         );
-        req = helpers.setSessionVars(req);
+        req.body.username = user.username;
+        req = sessionVarsSetter(req);
         res.status(200).redirect('/profile');
       }
     })
@@ -45,5 +26,4 @@ module.exports = async function (req, res) {
       );
       res.status(500).redirect('/register');
     });
-  // }
 };
