@@ -41,7 +41,7 @@ exports.up = knex => {
       .createTable('user', table => {
         table.increments();
         table.text('name', 128).notNullable();
-        table.text('username', 128).notNullable();
+        table.text('username', 128).notNullable().unique();
         table.text('password', 128).notNullable();
         // table.decimal('successRate').unsigned(); // is optional, could also be calculated through a function locally querying 'userQuizStats' => more efficient data wise
         table.timestamps(true, true);

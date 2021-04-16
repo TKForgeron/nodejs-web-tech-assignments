@@ -82,11 +82,13 @@ async function addQuiz(quiz, topicId_fk) {
 async function addUser(user) {
   console.log(`inside register user: ${user}`);
   user = JSON.parse(user);
+  let userId = undefined;
 
-  const userId = await db('user')
+  await db('user')
     .insert(user)
     .then(result => {
       console.log(`'addUser' operation inserted userId: ${result}`);
+      userId = result;
     })
     .catch(err => {
       console.log(`registration not working: ${err}`);

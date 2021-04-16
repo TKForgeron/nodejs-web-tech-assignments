@@ -3,9 +3,13 @@ extends reusables/layout
 block content
   #topic1
     if !topic1
-      H2 There are no topics in db yet
-      form(action='/logout', method='POST')
-        button(type='submit', value='Logout')
+      article(
+        style='display: flex; justify-content: center; align-items: center'
+      )
+        section(style='flex-direction: column')
+          H2 Cannot GET Topics
+          form(action='/logout', method='POST')
+            button(type='submit', value='Logout') Logout
     else
       //- function declarations
       - function toPercent(x){return Math.floor((x / questionsPerQuiz) * 100)}
