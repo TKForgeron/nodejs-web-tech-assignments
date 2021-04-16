@@ -10,7 +10,7 @@
 ## To-Do:
 
 - MAARTEN
-  - ~~navbar afmaken: (logisch) dropdown menu~~ -> Werkend maken op mobiel (misschien profile wijzigen in account)
+  - ~~navbar afmaken: (logisch) dropdown menu -> Werkend maken op mobiel (misschien profile wijzigen in account)~~
   - ~~topic blocks in de stijl van website maken~~
     - ~~niet afgeronde hoeken~~
     - ~~evt tabel net zoals andere tabel (op versions & frameworks)~~
