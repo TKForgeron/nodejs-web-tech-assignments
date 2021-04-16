@@ -434,20 +434,25 @@ input[type=radio]{margin: 0.5rem 0.5rem 0 0}
 }
 
 .progress {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
     box-sizing: content-box;
     height: 25px;
     width: 250px;
     position: relative;
     background: #fffded;
-    /* border: solid 5px #ffde00; */
+    border: solid 2px #ffde00;
     /* margin: auto; */
 }
 .progress > span {
-    display: block;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: right;
+    color: grey;
     height: 100%;
     background-color: #ffde00;
-    position: relative;
-    overflow: hidden;
 }
 
 .success-rate-pie-chart {
@@ -457,3 +462,4 @@ input[type=radio]{margin: 0.5rem 0.5rem 0 0}
 	min-height: 100px;
 	margin: 0;
 }
+
