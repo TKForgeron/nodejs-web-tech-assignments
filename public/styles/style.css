@@ -97,7 +97,7 @@ h1{
     article{
         margin-left: auto;
         margin-right: auto;
-        max-width: 1000px;
+        max-width: 1200px; /*deze ff veranderd van 1000 naar 12000 voor profile page */
     }
 }
 
@@ -449,7 +449,7 @@ input[type=radio]{margin: 0.5rem 0.5rem 0 0}
 }
 
 .progress {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: flex-start;
     box-sizing: content-box;
@@ -458,7 +458,7 @@ input[type=radio]{margin: 0.5rem 0.5rem 0 0}
     position: relative;
     background: #fffded;
     border: solid 2px #ffde00;
-    /* margin: auto; */
+    margin: auto;
 }
 .progress > span {
     display: flex;
@@ -476,5 +476,20 @@ input[type=radio]{margin: 0.5rem 0.5rem 0 0}
     width: 100px;
 	min-height: 100px;
 	margin: 0;
+}
+
+.chart{
+    display: inline-block;
+    margin-right: 3em;
+}
+
+label{
+    display: inline-block;
+    min-width: 25em;
+}
+
+h4{
+    margin-top: 3em;
+    margin-bottom: 0;
 }
 

@@ -12,7 +12,7 @@ block content
             button(type='submit', value='Logout') Logout
     else
       //- function declarations
-      - function toPercent(x){return Math.floor((x +0.5 / questionsPerQuiz) * 100)}
+      - function toPercent(x){return Math.floor((x / questionsPerQuiz) * 100)}
       - function toPercentString(x){const y = toPercent(x); if(!y == 0){return y + '%'}}
 
       //- regular HTML
@@ -21,110 +21,122 @@ block content
       article
         H2 Profile page
         H3= `Hi ${username}, these are your stats:`
-        H4 Progression this session
-
-        label(for='session-progress11')= `You've made this much progress on ${topic1.name} ${topic1Quiz1.title} this session:`
-        #session-progress11.progress
-          span(style=`width:${toPercent(sessionProgress11)}%`)= toPercentString(sessionProgress11)
-
-        label(for='session-progress12')= `You've made this much progress on ${topic1.name} ${topic1Quiz2.title} this session:`
-        #session-progress12.progress
-          span(style=`width:${toPercent(sessionProgress12)}%`)= toPercentString(sessionProgress11)
-
-        label(for='session-progress21')= `You've made this much progress on ${topic2.name} ${topic2Quiz1.title} this session:`
-        #session-progress21.progress
-          span(style=`width:${toPercent(sessionProgress21)}%`)= toPercentString(sessionProgress11)
-
-        label(for='session-progress22')= `You've made this much progress on ${topic2.name} ${topic2Quiz2.title} this session:`
-        #session-progress22.progress
-          span(style=`width:${toPercent(sessionProgress22)}%`)= toPercentString(sessionProgress11)
 
         H4 Success rates this session
-        p= `Success rate on ${topic1.name} in ${topic1Quiz1.title} this session:`
-        .success-rate-pie-chart(
-          style=`background:
-          conic-gradient(
-          #f44336
-          ${100-sessionSuccess11}%,
-          #4caf50
-          ${sessionSuccess11}%
-          );`
-        )
+        section
+         label(for='session-progress11')= `Session progress on ${topic1.name} in ${topic1Quiz1.title}:`
+         #session-progress11.progress
+           span(style=`width:${toPercent(sessionProgress11)}%`)= toPercentString(sessionProgress11)
 
-        p= `Success rate on ${topic1.name} in ${topic1Quiz2.title} this session:`
-        .success-rate-pie-chart(
-          style=`background:
-          conic-gradient(
-          #f44336
-          ${100-sessionSuccess12}%,
-          #4caf50
-          ${sessionSuccess12}%
-          );`
-        )
+        section
+         label(for='session-progress12')= `Session progress on ${topic1.name} in ${topic1Quiz2.title}:`
+         #session-progress12.progress
+           span(style=`width:${toPercent(sessionProgress12)}%`)= toPercentString(sessionProgress11)
 
-        p= `Success rate on ${topic2.name} in ${topic2Quiz1.title} this session:`
-        .success-rate-pie-chart(
-          style=`background:
-          conic-gradient(
-          #f44336
-          ${100-sessionSuccess21}%,
-          #4caf50
-          ${sessionSuccess21}%
-          );`
-        )
+        section
+         label(for='session-progress21')= `Session progress on ${topic2.name} in ${topic2Quiz1.title}:`
+         #session-progress21.progress
+           span(style=`width:${toPercent(sessionProgress21)}%`)= toPercentString(sessionProgress11)
 
-        p= `Success rate on ${topic2.name} in ${topic2Quiz2.title} this session:`
-        .success-rate-pie-chart(
-          style=`background:
-          conic-gradient(
-          #f44336
-          ${100-sessionSuccess22}%,
+        section
+         label(for='session-progress22')= `Session progress on ${topic2.name} in ${topic2Quiz2.title}:`
+         #session-progress22.progress
+           span(style=`width:${toPercent(sessionProgress22)}%`)= toPercentString(sessionProgress11)
+
+        H4 Success rates this session
+        section.chart
+         p= `Session success rate ${topic1.name} in ${topic1Quiz1.title}:`
+         .success-rate-pie-chart(
+           style=`background:
+           conic-gradient(
+           #f44336
+           ${100-sessionSuccess11}%,
+           #4caf50
+           ${sessionSuccess11}%
+           );`
+         )
+
+        section.chart
+         p= `Session success rate ${topic1.name} in ${topic1Quiz2.title}:`
+         .success-rate-pie-chart(
+           style=`background:
+           conic-gradient(
+           #f44336
+           ${100-sessionSuccess12}%,
+           #4caf50
+           ${sessionSuccess12}%
+           );`
+         )
+
+        section.chart
+         p= `Session success rate ${topic2.name} in ${topic2Quiz1.title}:`
+         .success-rate-pie-chart(
+           style=`background:
+           conic-gradient(
+           #f44336
+           ${100-sessionSuccess21}%,
+           #4caf50
+           ${sessionSuccess21}%
+           );`
+         )
+
+        section.chart
+         p= `Session success rate ${topic2.name} in ${topic2Quiz2.title}:`
+         .success-rate-pie-chart(
+           style=`background:
+           conic-gradient(
+           #f44336
+           ${100-sessionSuccess22}%,
           #4caf50
           ${sessionSuccess22}%
           );`
-        )
+         )
 
         H4 Overall success rates
-        p= `All time success rate on ${topic1.name} in ${topic1Quiz1.title}:`
-        .success-rate-pie-chart(
-          style=`background:
-          conic-gradient(
-          #f44336
-          ${100-totalSuccess11}%,
-          #4caf50
-          ${totalSuccess11}%
-          );`
-        )
+        section.chart
+         p= `All time success rate on ${topic1.name} in ${topic1Quiz1.title}:`
+         .success-rate-pie-chart(
+           style=`background:
+           conic-gradient(
+           #f44336
+           ${100-totalSuccess11}%,
+           #4caf50
+           ${totalSuccess11}%
+           );`
+         )
 
-        p= `All time success rate on ${topic1.name} in ${topic1Quiz2.title}:`
-        .success-rate-pie-chart(
-          style=`background:
-          conic-gradient(
-          #f44336
-          ${100-totalSuccess12}%,
-          #4caf50
-          ${totalSuccess12}%
-          );`
-        )
+        section.chart
+         p= `All time success rate on ${topic1.name} in ${topic1Quiz2.title}:`
+         .success-rate-pie-chart(
+           style=`background:
+           conic-gradient(
+           #f44336
+           ${100-totalSuccess12}%,
+           #4caf50
+           ${totalSuccess12}%
+           );`
+         )
 
-        p= `All time success rate on ${topic2.name} in ${topic2Quiz1.title}:`
-        .success-rate-pie-chart(
-          style=`background:
-          conic-gradient(
-          #f44336
-          ${100-totalSuccess21}%,
-          #4caf50
-          ${totalSuccess21}%
-          );`
-        )
+        section.chart
+         p= `All time success rate on ${topic2.name} in ${topic2Quiz1.title}:`
+         .success-rate-pie-chart(
+           style=`background:
+           conic-gradient(
+           #f44336
+           ${100-totalSuccess21}%,
+           #4caf50
+           ${totalSuccess21}%
+           );`
+         )
 
-        p= `All time success rate on ${topic2.name} in ${topic2Quiz2.title}:`
-        .success-rate-pie-chart(
-          style=`background:
-          conic-gradient(
-          #f44336
-          ${100-totalSuccess22}%,
-          #4caf50
-          ${totalSuccess22}%
-          );`
-        )
+        section.chart
+         p= `All time success rate on ${topic2.name} in ${topic2Quiz2.title}:`
+         .success-rate-pie-chart(
+           style=`background:
+           conic-gradient(
+           #f44336
+           ${100-totalSuccess22}%,
+           #4caf50
+           ${totalSuccess22}%
+           );`
+         )
