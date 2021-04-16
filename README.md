@@ -5,8 +5,8 @@
 ## Notes:
 
 - Initial accounts
-  - admin, ADMINaccountofWTgroup15
-  - mikey, HalloIkBenMike123
+  - admin, ADMINaccountofWTgroup15!
+  - mike, H@lloIkBenMike123
   - Bert,
   - Douwe,
   - Tim,
@@ -16,15 +16,18 @@
 
 - MAARTEN
   - correcte vragen in db zetten -> eerst moet de database gereset worden
+  - vragen displayen geen options/invulveld meer, kan liggen aan hoe ze in de db gezet zijn
 - DOUWE
+  - vragen displayen geen options/invulveld meer, kan liggen aan hoe ze in de db gezet zijn
   - only allow strong passwords
   - upon page refresh onthoud welke question user was
+  - fix topic array (out of bounds)
+  - na succesvolle register word ik niet naar profile geredirect, maar gwn op /register
 - TIM
-  - bij tijd over: Log all login failures and alert administrators if an attack has been detected
   - user can edit profile
-  - session progress
-    - setSessionVars communicatie met db voor successRate
-    - op profile page blijkt dat profileController.js de stats uit db niet goed verwerken (i.e. doorgeven van db naar pagina)
+  - ~~answer niet meesturen naar ajax request~~
+  - OPTIONAL:
+    - admin page: delete all users except admin
 - IEMAND met tijd (pls neem verantwoordelijkheid)
   - profile page mooi maken, alle visuals alignen met mooie en logische tekst erbij evt.
 

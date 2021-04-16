@@ -9,7 +9,11 @@ var controlsNextId = 'controls__next';
 var controlsBackId = 'controls__back';
 var currentQuestionIndex = 0;
 var questions = [];
-var sessionProgess = [];
+var sessionProgress = [[], []];
+sessionProgress[0][0] = 0;
+sessionProgress[0][1] = 0;
+sessionProgress[1][0] = 0;
+sessionProgress[1][1] = 0;
 
 // We create an intial framework of html elements which we will manipulate to add or remove questions and check user answers
 function createInitialElements() {
@@ -106,7 +110,7 @@ class Question {
         alert('Log in before attempting a quiz!');
       }
     };
-    // Disgusting path cause post doesn't work so we need these parameters. topicId is not included in answerChecker.js post handling so we had to add it at the end as well.
+    // Disgusting path because post doesn't work so we need these parameters. topicId is not included in answerChecker.js post handling so we had to add it at the end as well.
     let path = `/topics/${this.topicId}/quizzes/${this.quizId}/questions/${this.id}`;
     xmlHttp.open('post', path);
     xmlHttp.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
@@ -271,9 +275,6 @@ class MultipleChoice extends Question {
     this.type = 'closed';
     this.options = otherOptions;
   }
-  getAllOptions() {
-    return this.options.concat([this.answer]);
-  }
   generateForm() {
     // loose coupling
     return this.generateOptionRadios();
@@ -296,7 +297,6 @@ class MultipleChoice extends Question {
     form.setAttribute('name', this.formName);
     form.addEventListener('submit', e => e.preventDefault());
 
-    var options = this.getAllOptions();
     shuffle(options).forEach(option => {
       var radioOption = document.createElement('input');
       radioOption.setAttribute('type', 'radio');
@@ -378,14 +378,16 @@ function getSessionProgress() {
   xmlHttp.onreadystatechange = function () {
     if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
       //serverProgress should be an array of arrays
-      const serverProgress = this.responseText;
+      const serverProgress = JSON.parse(this.responseText);
       console.log(serverProgress);
       sessionProgress = serverProgress;
+      console.log(sessionProgress);
     }
   };
-
-  xmlHttp.open('get', '/placeholder');
+  //console.log(sessionProgress);
+  xmlHttp.open('get', '/getProgress');
   xmlHttp.send();
+  //sessionProgress = serverProgress;
 }
 // quizzes.js from here on
 function loadTopics() {
@@ -479,7 +481,16 @@ function loadQuestions(topicId, quizId) {
         }
       });
       createInitialElements();
-      // currentQuestionIndex = sessionProgress[topicId - 1][quizId - 1];
+      console.log(sessionProgress);
+      console.log(topicId);
+      console.log(quizId);
+      // if we make more progress than there are questions we just go to the last questions
+      if (sessionProgress[topicId - 1][quizId - 1] > questions.length - 1) {
+        currentQuestionIndex = questions.length - 1;
+      } else {
+        currentQuestionIndex = sessionProgress[topicId - 1][quizId - 1];
+      }
+      console.log(currentQuestionIndex);
       questions[currentQuestionIndex].show(
         questionInputSectionId,
         questionOutputSectionId

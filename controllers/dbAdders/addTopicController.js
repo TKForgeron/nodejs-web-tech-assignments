@@ -1,5 +1,5 @@
 const dbAdder = require('../../models/dbAdd');
-const helpers = require('../helpers');
+const helpers = require('../controllerHelpers');
 
 module.exports = (req, res) => {
   let topic = req.body;

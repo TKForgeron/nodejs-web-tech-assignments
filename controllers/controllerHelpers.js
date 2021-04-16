@@ -1,6 +1,7 @@
 module.exports = {
   isJson,
   createProgressObj,
+  shuffle,
   renderProfile,
 };
 
@@ -28,8 +29,13 @@ function createProgressObj(
 }
 
 function renderProfile(res, req, dataForProfilePage) {
+  let loginOrLogout = 'login';
+  if (req.session.loggedin) {
+    loginOrLogout = 'logout';
+  }
   return res.render('profile', {
     title: 'Profile',
+    loginOrLogout: loginOrLogout,
     username: req.session.username,
     topic1: dataForProfilePage.allTopicsArray[0],
     topic2: dataForProfilePage.allTopicsArray[1],
@@ -51,4 +57,24 @@ function renderProfile(res, req, dataForProfilePage) {
     overallSuccess21: Math.floor(dataForProfilePage.totalSuccessArray[2]),
     overallSuccess22: Math.floor(dataForProfilePage.totalSuccessArray[3]),
   });
+}
+
+// https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+function shuffle(array) {
+  var currentIndex = array.length,
+    temporaryValue,
+    randomIndex;
+
+  while (0 !== currentIndex) {
+    // While there remain elements to shuffle
+    // Pick a remaining element
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    // And swap it with the current element
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
 }

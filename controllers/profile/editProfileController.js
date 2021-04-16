@@ -1,8 +1,8 @@
+const dbFinder = require('../../models/dbFind');
 const bcrypt = require('bcrypt');
-const dbAdder = require('../../models/dbAdd');
-const sessionVarsSetter = require('../login/sessionVariablesController');
+const helpers = require('../controllerHelpers');
 
-module.exports = async function (req, res) {
+module.exports = async (req, res) => {
   // regular expression to check for password complexity taken from https://www.thepolyglotdeveloper.com/2015/05/use-regex-to-test-password-strength-in-javascript/
   let re = new RegExp(
     '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})'

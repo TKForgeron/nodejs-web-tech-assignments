@@ -39,7 +39,7 @@ app.use('/register', require('./routes/register'));
 app.use('/profile', require('./routes/profile'));
 app.use('/login', require('./routes/login'));
 app.use('/logout', require('./routes/logout'));
-app.use('/placeholder', require('./routes/placeholder'));
+app.use('/getProgress', require('./routes/progressGetter'));
 app.use('/topics', require('./routes/topicsQuizzesQuestions'));
 app.use(
   '/topics/:topicId/quizzes/',
@@ -48,9 +48,9 @@ app.use(
 app.use('/api', require('./routes/api'));
 
 // Minimal error Handler
-app.use((err, req, res, next) => {
-  res.status(500).send('Server error');
-});
+// app.use((err, req, res, next) => {
+//   res.status(500).send('Server error');
+// });
 
 const server = app.listen(port, () => {
   console.log(`Server Listening on port ${port}`);

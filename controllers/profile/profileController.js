@@ -1,5 +1,5 @@
-const dbFinder = require('../models/dbFind');
-const helpers = require('./helpers');
+const dbFinder = require('../../models/dbFind');
+const helpers = require('../controllerHelpers');
 
 module.exports = async (req, res) => {
   if (req.session.loggedin) {

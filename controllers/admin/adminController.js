@@ -3,7 +3,12 @@ module.exports = (req, res) => {
     const username = req.session.username;
 
     if (username == 'admin') {
+      let loginOrLogout = 'login';
+      if (req.session.loggedin) {
+        loginOrLogout = 'logout';
+      }
       return res.render('admin', {
+        loginOrLogout: loginOrLogout,
         title: 'admin page',
         message: username,
         // messageTwo: progress,

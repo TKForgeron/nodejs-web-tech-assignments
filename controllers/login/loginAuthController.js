@@ -33,12 +33,8 @@ module.exports = async (req, res) => {
         res.status(200).redirect('/profile');
       }
     } else {
-      res.json({ message: 'password incorrect' });
+      res.redirect('/login?unsuccessful');
     }
-
-    console.log(
-      `username: ${username}, guessedPwd: ${passwordGuess}, encryptedPwdFromDB: ${passwordCorrect}`
-    );
   } else {
     res.redirect('/login?unsuccessful');
   }

@@ -1,4 +1,4 @@
-const helpers = require('../helpers');
+const helpers = require('../controllerHelpers');
 const dbFinder = require('../../models/dbFind');
 
 module.exports = async (req, res) => {

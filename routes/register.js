@@ -7,7 +7,10 @@ server.get('/', (req, res) => {
     console.log('Logout first before registering again');
     res.redirect('/profile');
   } else {
-    return res.render('register', { title: 'Register' });
+    return res.render('register', {
+      title: 'Register',
+      loginOrLogout: 'login',
+    });
   }
 });
 
