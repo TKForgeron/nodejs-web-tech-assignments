@@ -33,7 +33,8 @@ function setSessionVars(req) {
   req.session.progressArray[0][1] = 0;
   req.session.progressArray[1][0] = 0;
   req.session.progressArray[1][1] = 0;
-  // deze moeten uit de database komen
+
+  // get success from db, if not exists set to 0
   req.session.successArray[0][0] = 0;
   req.session.successArray[0][1] = 0;
   req.session.successArray[1][0] = 0;

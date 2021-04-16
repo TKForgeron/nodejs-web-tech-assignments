@@ -12,7 +12,7 @@ block content
             button(type='submit', value='Logout') Logout
     else
       //- function declarations
-      - function toPercent(x){return Math.floor((x +0.5 / questionsPerQuiz) * 100)}
+      - function toPercent(x){return Math.floor((x / questionsPerQuiz) * 100)}
       - function toPercentString(x){const y = toPercent(x); if(!y == 0){return y + '%'}}
 
       //- regular HTML

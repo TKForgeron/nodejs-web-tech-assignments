@@ -6,31 +6,24 @@
 
 - admin, ADMINaccountofWTgroup15
 - mikey, HalloIkBenMike123
+- Bert,
+-
 
 ## To-Do:
 
 - MAARTEN
-  - ~~navbar afmaken: (logisch) dropdown menu -> Werkend maken op mobiel (misschien profile wijzigen in account)~~
-  - ~~topic blocks in de stijl van website maken~~
-    - ~~niet afgeronde hoeken~~
-    - ~~evt tabel net zoals andere tabel (op versions & frameworks)~~
-    - ~~std (blauwe) html links weghalen, maak bv heel de row clickable~~
   - correcte vragen in db zetten -> eerst moet de database gereset worden
 - DOUWE
+  - only allow strong passwords
   - upon page refresh onthoud welke question user was
 - TIM
   - bij tijd over: Log all login failures and alert administrators if an attack has been detected
-  - only allow strong passwords
   - user can edit profile
-  - sql injection checken
-  - admin security issue
-  - make username unique
   - session progress
-    - ~~percentage in progress bars~~
+    - setSessionVars communicatie met db voor successRate
     - op profile page blijkt dat profileController.js de stats uit db niet goed verwerken (i.e. doorgeven van db naar pagina)
 - IEMAND met tijd (pls neem verantwoordelijkheid)
   - profile page mooi maken, alle visuals alignen met mooie en logische tekst erbij evt.
-  - ~~Bij profile/login/register de header tekst ("JavaScript") laten linken naar home~~
 
 ## Assignment Description
 
