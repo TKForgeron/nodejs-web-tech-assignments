@@ -402,7 +402,7 @@ function getSessionProgress (){
     }
   };
   //console.log(sessionProgress);
-  xmlHttp.open("get", "/placeholder");
+  xmlHttp.open("get", "/getProgress");
   xmlHttp.send();
   sessionProgress = serverProgress;
 }
