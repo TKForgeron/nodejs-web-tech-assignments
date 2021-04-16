@@ -7,24 +7,33 @@ block content
       form(action='/logout', method='POST')
         button(type='submit', value='Logout')
     else
+      //- function declarations
+      - function toPercent(x){return Math.floor((x / questionsPerQuiz) * 100)}
+      - function toPercentString(x){const y = toPercent(x); if(!y == 0){return y + '%'}}
+
+      //- regular HTML
       form(action='/logout', method='POST')
         button(type='submit', value='Logout') Logout
       article
         H2 Profile page
         H3= `Hi ${username}, these are your stats:`
         H4 Progression this session
+
         label(for='session-progress11')= `You've made this much progress on ${topic1.name} ${topic1Quiz1.title} this session:`
         #session-progress11.progress
-          span(style=`width:${(sessionProgress11 / questionsPerQuiz) * 100}%`)
+          span(style=`width:${toPercent(sessionProgress11)}%`)= toPercentString(sessionProgress11)
+
         label(for='session-progress12')= `You've made this much progress on ${topic1.name} ${topic1Quiz2.title} this session:`
         #session-progress12.progress
-          span(style=`width:${(sessionProgress12 / questionsPerQuiz) * 100}%`)
+          span(style=`width:${toPercent(sessionProgress12)}%`)= toPercentString(sessionProgress11)
+
         label(for='session-progress21')= `You've made this much progress on ${topic2.name} ${topic2Quiz1.title} this session:`
         #session-progress21.progress
-          span(style=`width:${(sessionProgress21 / questionsPerQuiz) * 100}%`)
+          span(style=`width:${toPercent(sessionProgress21)}%`)= toPercentString(sessionProgress11)
+
         label(for='session-progress22')= `You've made this much progress on ${topic2.name} ${topic2Quiz2.title} this session:`
         #session-progress22.progress
-          span(style=`width:${(sessionProgress22 / questionsPerQuiz) * 100}%`)
+          span(style=`width:${toPercent(sessionProgress22)}%`)= toPercentString(sessionProgress11)
 
         H4 Success rates this session
         p= `Success rate on ${topic1.name} in ${topic1Quiz1.title} this session:`
