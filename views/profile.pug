@@ -24,28 +24,28 @@ block content
 
         H4 Success rates this session
         section
-         label(for='session-progress11')= `Session progress on ${topic1.name} in ${topic1Quiz1.title}:`
+         label(for='session-progress11')= `Session progress of ${topic1Quiz1.title} at ${topic1.name}:`
          #session-progress11.progress
            span(style=`width:${toPercent(sessionProgress11)}%`)= toPercentString(sessionProgress11)
 
         section
-         label(for='session-progress12')= `Session progress on ${topic1.name} in ${topic1Quiz2.title}:`
+         label(for='session-progress12')= `Session progress of ${topic1Quiz2.title} at ${topic1.name}:`
          #session-progress12.progress
            span(style=`width:${toPercent(sessionProgress12)}%`)= toPercentString(sessionProgress11)
 
         section
-         label(for='session-progress21')= `Session progress on ${topic2.name} in ${topic2Quiz1.title}:`
+         label(for='session-progress21')= `Session progress of ${topic2Quiz1.title} at ${topic2.name}:`
          #session-progress21.progress
            span(style=`width:${toPercent(sessionProgress21)}%`)= toPercentString(sessionProgress11)
 
         section
-         label(for='session-progress22')= `Session progress on ${topic2.name} in ${topic2Quiz2.title}:`
+         label(for='session-progress22')= `Session progress of ${topic2Quiz2.title} at ${topic2.name}:`
          #session-progress22.progress
            span(style=`width:${toPercent(sessionProgress22)}%`)= toPercentString(sessionProgress11)
 
         H4 Success rates this session
         section.chart
-         p= `Session success rate ${topic1.name} in ${topic1Quiz1.title}:`
+         p= `Session success rate of ${topic1Quiz1.title} at ${topic1.name}:`
          .success-rate-pie-chart(
            style=`background:
            conic-gradient(
@@ -57,7 +57,7 @@ block content
          )
 
         section.chart
-         p= `Session success rate ${topic1.name} in ${topic1Quiz2.title}:`
+         p= `Session success rate of ${topic1Quiz2.title} at ${topic1.name}:`
          .success-rate-pie-chart(
            style=`background:
            conic-gradient(
@@ -69,7 +69,7 @@ block content
          )
 
         section.chart
-         p= `Session success rate ${topic2.name} in ${topic2Quiz1.title}:`
+         p= `Session success rate of ${topic2Quiz1.title} at ${topic2.name}:`
          .success-rate-pie-chart(
            style=`background:
            conic-gradient(
@@ -81,7 +81,7 @@ block content
          )
 
         section.chart
-         p= `Session success rate ${topic2.name} in ${topic2Quiz2.title}:`
+         p= `Session success rate of ${topic2Quiz2.title} at ${topic2.name}:`
          .success-rate-pie-chart(
            style=`background:
            conic-gradient(
@@ -94,49 +94,49 @@ block content
 
         H4 Overall success rates
         section.chart
-         p= `All time success rate on ${topic1.name} in ${topic1Quiz1.title}:`
+         p= `All time success rate of ${topic1Quiz1.title} at ${topic1.name}:`
          .success-rate-pie-chart(
            style=`background:
            conic-gradient(
            #f44336
            ${100-totalSuccess11}%,
            #4caf50
-           ${totalSuccess11}%
+           ${overallSuccess11}%
            );`
          )
 
         section.chart
-         p= `All time success rate on ${topic1.name} in ${topic1Quiz2.title}:`
+         p= `All time success rate of ${topic1Quiz2.title} at ${topic1.name}:`
          .success-rate-pie-chart(
            style=`background:
            conic-gradient(
            #f44336
            ${100-totalSuccess12}%,
            #4caf50
-           ${totalSuccess12}%
+           ${overallSuccess12}%
            );`
          )
 
         section.chart
-         p= `All time success rate on ${topic2.name} in ${topic2Quiz1.title}:`
+         p= `All time success rate of ${topic2Quiz1.title} at ${topic2.name}:`
          .success-rate-pie-chart(
            style=`background:
            conic-gradient(
            #f44336
            ${100-totalSuccess21}%,
            #4caf50
-           ${totalSuccess21}%
+           ${overallSuccess21}%
            );`
          )
 
         section.chart
-         p= `All time success rate on ${topic2.name} in ${topic2Quiz2.title}:`
+         p= `All time success rate of ${topic2Quiz2.title} at ${topic2.name}:`
          .success-rate-pie-chart(
            style=`background:
            conic-gradient(
            #f44336
            ${100-totalSuccess22}%,
            #4caf50
-           ${totalSuccess22}%
+           ${overllSuccess22}%
            );`
          )
