@@ -2,11 +2,8 @@ const helpers = require('../controllerHelpers');
 const dbFinder = require('../../models/dbFind');
 
 module.exports = async (req, res) => {
-  const username = req.session.username;
-
   // send session progress to database
-  let userId = await dbFinder.findUserIdByUsername(username);
-  userId = userId.id;
+  const userId = req.session.userId;
 
   const progressObj1 = helpers.createProgressObj(
     userId,

@@ -44,6 +44,7 @@ function renderProfile(res, req, dataForProfilePage) {
     title: 'Profile',
     editProfileError: dataForProfilePage.editProfileError,
     loginOrLogout: loginOrLogout,
+    name: req.session.name,
     username: req.session.username,
     topic1: dataForProfilePage.allTopicsArray[0],
     topic2: dataForProfilePage.allTopicsArray[1],

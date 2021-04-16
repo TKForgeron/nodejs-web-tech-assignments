@@ -16,7 +16,7 @@ function finder(table, id) {
 
 // expects: (string, number, JSON string)
 function updater(table, id, changes) {
-  changes = JSON.parse(changes);
+  // changes = JSON.parse(changes);
   return db(table)
     .where({ id })
     .update(changes)

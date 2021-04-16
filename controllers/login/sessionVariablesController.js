@@ -5,6 +5,17 @@ module.exports = async req => {
   req.session.loggedin = true;
   const username = req.body.username;
   req.session.username = username;
+  req.session.name = req.body.name;
+
+  await dbFinder
+    .findUserIdByUsername(username)
+    .then(id => {
+      req.session.userId = id;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+
   // Nester array, first array indicated topic, second array (nested) indicates quiz
   req.session.progressArray = [
     [[], []],

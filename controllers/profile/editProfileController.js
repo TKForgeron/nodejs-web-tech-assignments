@@ -20,38 +20,45 @@ module.exports = async (req, res) => {
   // check whether user exists
   if (userFromDB) {
     const passwordCorrect = userFromDB.password;
+    const oldPw = req.body.oldPassword;
 
     // check password
-    if (await bcrypt.compare(req.body.oldPassword, passwordCorrect)) {
+    if (await bcrypt.compare(oldPw, passwordCorrect)) {
+      let newPw = req.body.newPassword;
+      const newUsername = req.body.newUsername;
+      const newName = req.body.newName;
       // check whether new password form was filled out
-      if (req.body.newPassword) {
+      if (newPw) {
         // check whether new password is valid according to RegEx
-        if (!helper.isValidPassword(req.body.newPassword)) {
-          console.log('invalid new password');
+        if (helper.isValidPassword(newPw)) {
+          newPw = await bcrypt.hash(newPw, 10);
+          userFromDB.password = newPw;
         } else {
-          req.body.newPassword = await bcrypt.hash(req.body.newPassword, 10);
-          userFromDB.password = req.body.newPassword;
+          console.log('invalid new password');
         }
       }
 
-      if (req.body.newUsername) {
-        userFromDB.username = req.body.newUsername;
+      if (newUsername) {
+        userFromDB.username = newUsername;
       }
 
-      if (req.body.newName) {
-        userFromDB.name = req.body.newName;
+      if (newName) {
+        userFromDB.name = newName;
       }
+      delete userFromDB.created_at;
+      delete userFromDB.updated_at;
       console.log(userFromDB);
       dbUpdater
         .updateUser(userFromDB.id, userFromDB)
         .then(result => {
           console.log(result);
           req.session.editProfileError = false;
+          res.status(200).redirect('/profile');
         })
         .catch(err => {
-          console.log();
           console.log(err);
           req.session.editProfileError = true;
+          res.redirect('/profile/edit/unsuccessful');
         });
     } else {
       res.redirect('/profile/edit/unsuccessful');

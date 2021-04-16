@@ -21,6 +21,7 @@ module.exports = async (req, res) => {
             'catch of registerUser (in POST, addUserController.js): ' + err
           );
           req.body.username = user.username;
+          req.body.name = user.name;
           req = sessionVarsSetter(req);
           res.status(200).redirect('/profile');
         }

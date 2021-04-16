@@ -34,24 +34,14 @@ module.exports = async (req, res) => {
         });
 
       await dbFinder
-        .findUserIdByUsername(username)
-        .then(async id => {
-          await dbFinder
-            .findStatsByUserId(id.id)
-            .then(stats => {
-              statObjectsArray = stats;
-            })
-            .catch(err => {
-              console.log(err);
-              res.status(500).json({
-                message: 'could not retrieve your stats',
-              });
-            });
+        .findStatsByUserId(req.session.userId)
+        .then(stats => {
+          statObjectsArray = stats;
         })
         .catch(err => {
           console.log(err);
           res.status(500).json({
-            message: "Unable to perform 'findUserIdByUsername' operation",
+            message: 'could not retrieve your stats',
           });
         });
 

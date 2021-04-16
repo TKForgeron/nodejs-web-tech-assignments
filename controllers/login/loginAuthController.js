@@ -24,6 +24,7 @@ module.exports = async (req, res) => {
 
     // check password
     if (await bcrypt.compare(passwordGuess, passwordCorrect)) {
+      req.body.name = userFromDB.name;
       req = await sessionVarsSetter(req);
 
       // check whether user is admin
