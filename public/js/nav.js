@@ -54,7 +54,7 @@ function createNav() {
     var profileItem = document.createElement('a');
     profileItem.classList.add(navItemAClass);
     profileItem.setAttribute('href', 'profile');
-    profileItem.appendChild(document.createTextNode('Profile ▼'));
+    profileItem.appendChild(document.createTextNode('Account ▼'));
 
     var dropdownContent = document.createElement('ul');
     dropdownContent.classList.add("nav__dropdown__content");
@@ -87,7 +87,7 @@ function createNav() {
     var profileAHrefMobile = document.createElement('a');
     profileAHrefMobile.classList.add(navItemAClass);
     profileAHrefMobile.setAttribute('href', 'profile');
-    profileAHrefMobile.appendChild(document.createTextNode('Profile ▼'));
+    profileAHrefMobile.appendChild(document.createTextNode('Account ▼'));
     profileItemMobile.appendChild(profileAHrefMobile);
 
     var loginItemMobile = document.createElement('li');
