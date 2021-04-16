@@ -404,7 +404,7 @@ function getSessionProgress (){
   //console.log(sessionProgress);
   xmlHttp.open("get", "/getProgress");
   xmlHttp.send();
-  sessionProgress = serverProgress;
+  //sessionProgress = serverProgress;
 }
 // quizzes.js from here on
 function loadTopics (){
