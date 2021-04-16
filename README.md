@@ -4,7 +4,8 @@
 
 ## Notes:
 
-- admin password: ADMINaccountofWTgroup15
+- admin, ADMINaccountofWTgroup15
+- mikey, HalloIkBenMike123
 
 ## To-Do:
 
@@ -20,6 +21,7 @@
 - TIM
   - bij tijd over: Log all login failures and alert administrators if an attack has been detected
   - only allow strong passwords
+  - user can edit profile
   - sql injection checken
   - admin security issue
   - make username unique

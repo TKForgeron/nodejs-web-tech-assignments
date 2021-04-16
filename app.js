@@ -47,6 +47,11 @@ app.use(
 );
 app.use('/api', require('./routes/api'));
 
+// Minimal error Handler
+app.use((err, req, res, next) => {
+  res.status(500).send('Server error');
+});
+
 const server = app.listen(port, () => {
   console.log(`Server Listening on port ${port}`);
 });

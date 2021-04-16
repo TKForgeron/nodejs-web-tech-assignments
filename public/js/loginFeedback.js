@@ -1,13 +1,14 @@
 const queryString = window.location.search;
-console.log(queryString);
-
 const urlParams = new URLSearchParams(queryString);
+const unsuccessful = urlParams.has('unsuccessful');
 
-const success = urlParams.has('unsuccessful');
-console.log(success);
+if (unsuccessful) {
+  const passwordInput = document.getElementsByTagName('input').password;
+  const usernameInput = document.getElementsByTagName('input').username;
+  let inputFields = [passwordInput, usernameInput];
 
-if (success) {
-  let usernameInput = document.getElementsByTagName('input')[0];
-  usernameInput.style.borderColor = '#f44336';
-  usernameInput.placeholder = 'Username does not exist';
+  inputFields.forEach(elm => {
+    elm.style.borderColor = '#f44336';
+    elm.placeholder = 'Credentials wrong';
+  });
 }
