@@ -169,6 +169,21 @@ h1{
 
 .nav__link--active:visited{color: black;}
 
+.nav__dropdown{display: none;}
+
+@media (min-width: 1000px) {
+    .nav__dropdown{display: block;}
+    .nav__item--mobile{display: none;}
+    #mobile{display: none;}
+}
+
+.nav__item--mobile{
+    background: var(--themeColor--l4);
+    color: black;
+}
+
+.nav__item--mobile .nav__link{color: black;}
+
 .nav__dropdown__content {
     display: none;
     position: absolute;

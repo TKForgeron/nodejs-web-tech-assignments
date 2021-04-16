@@ -81,6 +81,33 @@ function createNav() {
     dropdown.appendChild(profileItem);
     dropdown.appendChild(dropdownContent);
 
+    var profileItemMobile = document.createElement('li');
+    profileItemMobile.classList.add(navItemClass);
+    profileItemMobile.id = "mobile";
+    var profileAHrefMobile = document.createElement('a');
+    profileAHrefMobile.classList.add(navItemAClass);
+    profileAHrefMobile.setAttribute('href', 'profile');
+    profileAHrefMobile.appendChild(document.createTextNode('Profile ▼'));
+    profileItemMobile.appendChild(profileAHrefMobile);
+
+    var loginItemMobile = document.createElement('li');
+    loginItemMobile.classList.add(navItemClass);
+    loginItemMobile.classList.add(navItemClass + '--mobile');
+    var loginAHrefMobile = document.createElement('a');
+    loginAHrefMobile.classList.add(navItemAClass);
+    loginAHrefMobile.setAttribute('href', 'login');
+    loginAHrefMobile.appendChild(document.createTextNode('Login'));
+    loginItemMobile.appendChild(loginAHrefMobile);
+
+    var registerItemMobile = document.createElement('li');
+    registerItemMobile.classList.add(navItemClass);
+    registerItemMobile.classList.add(navItemClass + '--mobile');
+    var registerAHrefMobile = document.createElement('a');
+    registerAHrefMobile.classList.add(navItemAClass);
+    registerAHrefMobile.setAttribute('href', 'register');
+    registerAHrefMobile.appendChild(document.createTextNode('Register'));
+    registerItemMobile.appendChild(registerAHrefMobile);
+
     var spacerItem = document.createElement('li');
     spacerItem.classList.add(navItemClass + '--spacer');
 
@@ -99,6 +126,9 @@ function createNav() {
     unorderedNavList.appendChild(examplesItem);
     unorderedNavList.appendChild(guidesItem);
     unorderedNavList.appendChild(dropdown);
+    unorderedNavList.appendChild(profileItemMobile);
+    unorderedNavList.appendChild(loginItemMobile);
+    unorderedNavList.appendChild(registerItemMobile);
     unorderedNavList.appendChild(spacerItem);
     unorderedNavList.appendChild(assessmentItem);
     nav.appendChild(unorderedNavList);
