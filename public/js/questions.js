@@ -165,7 +165,7 @@ class Question {
 
     explanationText.appendChild(correctAnswer);
     explanationText.appendChild(
-      document.createTextNode('. ' + this.explanation)
+      document.createTextNode('Click here to visit the page with the answer')
     );
 
     return explanationText;
