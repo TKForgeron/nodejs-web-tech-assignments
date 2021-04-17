@@ -483,12 +483,27 @@ function loadQuestions(topicId, quizId) {
       createInitialElements();
       console.log(sessionProgress);
       console.log(topicId);
-      console.log(quizId);
-      // if we make more progress than there are questions we just go to the last questions
-      if (sessionProgress[topicId - 1][quizId - 1] > questions.length - 1) {
-        currentQuestionIndex = questions.length - 1;
-      } else {
-        currentQuestionIndex = sessionProgress[topicId - 1][quizId - 1];
+      console.log(quizId);      
+      if(quizId == 1 || quizId == 2){
+        // This is topic 1 quizzes one and two
+        if (sessionProgress[topicId - 1][quizId - 1] > questions.length - 1) {
+          currentQuestionIndex = questions.length - 1;
+        } 
+        else 
+        {
+          currentQuestionIndex = sessionProgress[topicId - 1][quizId - 1];
+        }
+      }
+      if(quizId == 3 || quizId == 4){
+        // This is topic 2 quizzes one and two
+        if (sessionProgress[topicId - 1][quizId - 3] > questions.length - 1) {
+          currentQuestionIndex = questions.length - 1;
+        } 
+        else 
+        {
+          currentQuestionIndex = sessionProgress[topicId - 1][quizId - 3];
+        }
+        
       }
       console.log(currentQuestionIndex);
       questions[currentQuestionIndex].show(
