@@ -22,29 +22,29 @@ block content
 
         H4 Progress this session
         section
-          label(for='session-progress11')= `Quiz: ${topic1Quiz1.title}, at topic: ${topic1.name}:`
-          #session-progress11.progress
+          label.progress__label(for='session-progress11')= `Quiz: ${topic1Quiz1.title}, at topic: ${topic1.name}:`
+          #session-progress11.progress__bar
             span(style=`width:${toPercent(sessionProgress11)}%`)= toPercentString(sessionProgress11)
 
         section
-          label(for='session-progress12')= `Quiz: ${topic1Quiz2.title}, at topic: ${topic1.name}:`
-          #session-progress12.progress
+          label.progress__label(for='session-progress12')= `Quiz: ${topic1Quiz2.title}, at topic: ${topic1.name}:`
+          #session-progress12.progress__bar
             span(style=`width:${toPercent(sessionProgress12)}%`)= toPercentString(sessionProgress12)
 
         section
-          label(for='session-progress21')= `Quiz: ${topic2Quiz1.title}, at topic: ${topic2.name}:`
-          #session-progress21.progress
+          label.progress__label(for='session-progress21')= `Quiz: ${topic2Quiz1.title}, at topic: ${topic2.name}:`
+          #session-progress21.progress__bar
             span(style=`width:${toPercent(sessionProgress21)}%`)= toPercentString(sessionProgress21)
 
         section
-          label(for='session-progress22')= `Quiz: ${topic2Quiz2.title}, at topic: ${topic2.name}:`
-          #session-progress22.progress
+          label.progress__label(for='session-progress22')= `Quiz: ${topic2Quiz2.title}, at topic: ${topic2.name}:`
+          #session-progress22.progress__bar
             span(style=`width:${toPercent(sessionProgress22)}%`)= toPercentString(sessionProgress22)
 
         H4 Success rates this session
-        section.chart
+        section.success-rate-section
           p= `Quiz: ${topic1Quiz1.title}, at topic ${topic1.name}:`
-          .success-rate-pie-chart(
+          .success-rate-section__chart(
             style=`background:
            conic-gradient(
            #f44336
@@ -54,9 +54,9 @@ block content
            );`
           )
 
-        section.chart
+        section.success-rate-section
           p= `Quiz: ${topic1Quiz2.title}, at topic: ${topic1.name}:`
-          .success-rate-pie-chart(
+          .success-rate-section__chart(
             style=`background:
            conic-gradient(
            #f44336
@@ -66,9 +66,9 @@ block content
            );`
           )
 
-        section.chart
+        section.success-rate-section
           p= `Quiz: ${topic2Quiz1.title}, at topic: ${topic2.name}:`
-          .success-rate-pie-chart(
+          .success-rate-section__chart(
             style=`background:
            conic-gradient(
            #f44336
@@ -78,9 +78,9 @@ block content
            );`
           )
 
-        section.chart
+        section.success-rate-section
           p= `Quiz: ${topic2Quiz2.title}, at topic ${topic2.name}:`
-          .success-rate-pie-chart(
+          .success-rate-section__chart(
             style=`background:
            conic-gradient(
            #f44336
@@ -91,9 +91,9 @@ block content
           )
 
         H4 Overall success rates
-        section.chart
+        section.success-rate-section
           p= `Quiz: ${topic1Quiz1.title}, at topic: ${topic1.name}:`
-          .success-rate-pie-chart(
+          .success-rate-section__chart(
             style=`background:
            conic-gradient(
            #f44336
@@ -103,9 +103,9 @@ block content
            );`
           )
 
-        section.chart
+        section.success-rate-section
           p= `Quiz: ${topic1Quiz2.title}, at topic: ${topic1.name}:`
-          .success-rate-pie-chart(
+          .success-rate-section__chart(
             style=`background:
            conic-gradient(
            #f44336
@@ -115,9 +115,9 @@ block content
            );`
           )
 
-        section.chart
+        section.success-rate-section
           p= `Quiz: ${topic2Quiz1.title}, at topic ${topic2.name}:`
-          .success-rate-pie-chart(
+          .success-rate-section__chart(
             style=`background:
            conic-gradient(
            #f44336
@@ -127,9 +127,9 @@ block content
            );`
           )
 
-        section.chart
+        section.success-rate-section
           p= `Quiz: ${topic2Quiz2.title}, at topic: ${topic2.name}:`
-          .success-rate-pie-chart(
+          .success-rate-section__chart(
             style=`background:
            conic-gradient(
            #f44336

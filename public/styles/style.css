@@ -99,6 +99,10 @@ h1{
         margin-right: auto;
         max-width: 1500px; /*deze ff veranderd van 1000 naar 15000 voor profile page */
     }
+    .progress__label{
+        display: inline-block;
+        min-width: 50em;
+    }
 }
 
 /* CLASSES */
@@ -445,7 +449,7 @@ input[type=radio]{margin: 0.5rem 0.5rem 0 0}
     color: white;
 }
 
-.progress {
+.progress__bar {
     display: inline-flex;
     align-items: center;
     justify-content: flex-start;
@@ -457,7 +461,7 @@ input[type=radio]{margin: 0.5rem 0.5rem 0 0}
     border: solid 2px #ffde00;
     margin: auto;
 }
-.progress > span {
+.progress__bar > span {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -467,7 +471,7 @@ input[type=radio]{margin: 0.5rem 0.5rem 0 0}
     background-color: #ffde00;
 }
 
-.success-rate-pie-chart {
+.success-rate-section__chart {
     border-radius: 50%;
 	position: relative;
     width: 100px;
@@ -475,15 +479,10 @@ input[type=radio]{margin: 0.5rem 0.5rem 0 0}
 	margin: 0;
 }
 
-.chart{
+.success-rate-section{
     display: inline-block;
     margin-right: 3em;
     min-width: 40em;
-}
-
-label{
-    display: inline-block;
-    min-width: 50em;
 }
 
 h4{
