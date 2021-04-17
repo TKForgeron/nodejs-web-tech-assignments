@@ -48,47 +48,13 @@ function createNav() {
     guidesAHref.appendChild(document.createTextNode('Helpful guides'));
     guidesItem.appendChild(guidesAHref);
 
-    var dropdown = document.createElement('li');
-    dropdown.classList.add("nav__dropdown");
-
-    var profileItem = document.createElement('a');
-    profileItem.classList.add(navItemAClass);
-    profileItem.setAttribute('href', 'profile');
-    profileItem.appendChild(document.createTextNode('Account ▼'));
-
-    var dropdownContent = document.createElement('ul');
-    dropdownContent.classList.add("nav__dropdown__content");
-    dropdownContent.classList.add("list--no-bullets");
-
-    var loginItem = document.createElement('li');
-    loginItem.classList.add(navItemClass);
-    var loginAHref = document.createElement('a');
-    loginAHref.classList.add(navItemAClass);
-    loginAHref.setAttribute('href', 'login');
-    loginAHref.appendChild(document.createTextNode('Login'));
-    loginItem.appendChild(loginAHref);
-    dropdownContent.appendChild(loginItem);
-
-    dropdown.appendChild(profileItem);
-    dropdown.appendChild(dropdownContent);
-
-    var profileItemMobile = document.createElement('li');
-    profileItemMobile.classList.add(navItemClass);
-    profileItemMobile.id = "mobile";
-    var profileAHrefMobile = document.createElement('a');
-    profileAHrefMobile.classList.add(navItemAClass);
-    profileAHrefMobile.setAttribute('href', 'profile');
-    profileAHrefMobile.appendChild(document.createTextNode('Account ▼'));
-    profileItemMobile.appendChild(profileAHrefMobile);
-
-    var loginItemMobile = document.createElement('li');
-    loginItemMobile.classList.add(navItemClass);
-    loginItemMobile.classList.add(navItemClass + '--mobile');
-    var loginAHrefMobile = document.createElement('a');
-    loginAHrefMobile.classList.add(navItemAClass);
-    loginAHrefMobile.setAttribute('href', 'login');
-    loginAHrefMobile.appendChild(document.createTextNode('Login'));
-    loginItemMobile.appendChild(loginAHrefMobile);
+    var profileItem = document.createElement('li');
+    profileItem.classList.add(navItemClass);
+    var profileAHref = document.createElement('a');
+    profileAHref.classList.add(navItemAClass);
+    profileAHref.setAttribute('href', 'profile');
+    profileAHref.appendChild(document.createTextNode('Account'));
+    profileItem.appendChild(profileAHref);
 
     var spacerItem = document.createElement('li');
     spacerItem.classList.add(navItemClass + '--spacer');
@@ -107,9 +73,7 @@ function createNav() {
     unorderedNavList.appendChild(versionsItem);
     unorderedNavList.appendChild(examplesItem);
     unorderedNavList.appendChild(guidesItem);
-    unorderedNavList.appendChild(dropdown);
-    unorderedNavList.appendChild(profileItemMobile);
-    unorderedNavList.appendChild(loginItemMobile);
+    unorderedNavList.appendChild(profileItem);
     unorderedNavList.appendChild(spacerItem);
     unorderedNavList.appendChild(assessmentItem);
     nav.appendChild(unorderedNavList);
