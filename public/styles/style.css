@@ -97,11 +97,7 @@ h1{
     article{
         margin-left: auto;
         margin-right: auto;
-        max-width: 1500px;
-    }
-    .progress__label{
-        display: inline-block;
-        min-width: 50em;
+        max-width: 1000px;
     }
 }
 
@@ -214,7 +210,6 @@ h1{
 /* Flexblocks are elements which in this case hold images and text. They are there to highlight important information, giving it some extra "pop" via the shading and scaling effect. */
 .container{
     margin: auto;
-    max-width: 1280px;
     display: flex;
     flex-direction: column;
 }
@@ -245,6 +240,9 @@ h1{
 
 .card__body{text-align: center}
 
+.container > .progress.card{box-shadow: none}
+.container > .progress.card:hover{transform: scale(1)}
+.progress.card.card--left{display: flex;flex-direction: column;}
 /* This is to style the codeblocks used on the example page. It allows for a clear difference between regular text and code.*/
 .code-result-card{
     background-color: var(--themeColor--l5);
@@ -394,7 +392,11 @@ input[type=radio]{margin: 0.5rem 0.5rem 0 0}
         box-shadow: 1em 1em 2em -1em rgba(0, 0, 0, 0.1);
         margin-left: 0;
     }
-
+    .container > .progress.card{margin:0;}
+    .container > .progress.card:hover{transition: 0.25s;}
+    .container > .progress.card--right{margin-left: 1rem;box-shadow: 0em 1em 2em -1em rgba(0, 0, 0, 0.1)}
+    .container > .progress.card--left{margin-right: 1rem;box-shadow: 0em 1em 2em -1em rgba(0, 0, 0, 0.1)}
+    .progress__item{margin:0.5em}
     .question{flex-direction:row;}
     #question__output{flex-grow:2;}
     #question__input{flex-grow:1;}
@@ -449,7 +451,6 @@ input[type=radio]{margin: 0.5rem 0.5rem 0 0}
 }
 
 .progress__bar {
-    display: inline-flex;
     align-items: center;
     justify-content: flex-start;
     box-sizing: content-box;
@@ -458,7 +459,7 @@ input[type=radio]{margin: 0.5rem 0.5rem 0 0}
     position: relative;
     background: #fffded;
     border: solid 2px #ffde00;
-    margin: auto;
+    margin: 0.25rem auto 0.5rem 0;
 }
 .progress__bar > span {
     display: flex;
@@ -470,12 +471,16 @@ input[type=radio]{margin: 0.5rem 0.5rem 0 0}
     background-color: #ffde00;
 }
 
+.progress__item{justify-content: center;display: flex;align-items: center;flex-direction: column;}
+.progress__item.session{align-items: flex-start;}
+
 .success-rate-section__chart {
     border-radius: 50%;
 	position: relative;
     width: 100px;
 	min-height: 100px;
 	margin: 0;
+    display: inline-flex;
 }
 
 .success-rate-section{
@@ -483,9 +488,3 @@ input[type=radio]{margin: 0.5rem 0.5rem 0 0}
     margin-right: 3em;
     min-width: 40em;
 }
-
-h4,h5{
-    margin-top: 3em;
-    margin-bottom: 0;
-}
-

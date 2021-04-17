@@ -18,142 +18,149 @@ block content
       //- regular HTML
       article
         H2 Profile page
-        H3= `Hi ${name}, these are your stats.`
+        p= `Hi ${name}, this is how you are doing.`
 
-        H4 Progress this session
-        section
-          label.progress__label(for='session-progress11')= `Quiz: ${topic1Quiz1.title}, at topic: ${topic1.name}:`
-          #session-progress11.progress__bar
-            span(style=`width:${toPercent(sessionProgress11)}%`)= toPercentString(sessionProgress11)
+        H3 Progress this session
+        .container
+          section.progress.card.card--left
+            h4= `${topic1.name}`
+            section.progress__item.session
+              label.progress__label(for='session-progress11')= topic1Quiz1.title
+              #session-progress11.progress__bar
+                span(style=`width:${toPercent(sessionProgress11)}%`)= toPercentString(sessionProgress11)
 
-        section
-          label.progress__label(for='session-progress12')= `Quiz: ${topic1Quiz2.title}, at topic: ${topic1.name}:`
-          #session-progress12.progress__bar
-            span(style=`width:${toPercent(sessionProgress12)}%`)= toPercentString(sessionProgress12)
+            section.progress__item.session
+              label.progress__label(for='session-progress12')= topic1Quiz2.title
+              #session-progress12.progress__bar
+                span(style=`width:${toPercent(sessionProgress12)}%`)= toPercentString(sessionProgress12)
 
-        section
-          label.progress__label(for='session-progress21')= `Quiz: ${topic2Quiz1.title}, at topic: ${topic2.name}:`
-          #session-progress21.progress__bar
-            span(style=`width:${toPercent(sessionProgress21)}%`)= toPercentString(sessionProgress21)
+          section.progress.card.card--right
+            h4= `${topic2.name}`
+            section.progress__item.session
+              label.progress__label(for='session-progress21')= topic2Quiz1.title
+              #session-progress21.progress__bar
+                span(style=`width:${toPercent(sessionProgress21)}%`)= toPercentString(sessionProgress21)
 
-        section
-          label.progress__label(for='session-progress22')= `Quiz: ${topic2Quiz2.title}, at topic: ${topic2.name}:`
-          #session-progress22.progress__bar
-            span(style=`width:${toPercent(sessionProgress22)}%`)= toPercentString(sessionProgress22)
+            section.progress__item.session
+              label.progress__label(for='session-progress22')= topic2Quiz2.title
+              #session-progress22.progress__bar
+                span(style=`width:${toPercent(sessionProgress22)}%`)= toPercentString(sessionProgress22)
 
-        H4 Success rates this session
-        H5= `Topic: ${topic1.name}`
-        section.success-rate-section
-          H6= `Quiz: ${topic1Quiz1.title}:`
-          .success-rate-section__chart(
-            style=`background:
-           conic-gradient(
-           #f44336
-           ${100-sessionSuccess11}%,
-           #4caf50
-           ${sessionSuccess11}%
-           );`
-          )
+        H3 Success rates this session
+        .container
+          section.progress.card.card--left
+            h4= topic1.name
+            section.progress__item
+              p= topic1Quiz1.title
+              .success-rate-section__chart(
+                style=`background:
+              conic-gradient(
+              #f44336
+              ${100-sessionSuccess11}%,
+              #4caf50
+              ${sessionSuccess11}%
+              );`
+              )
+            section.progress__item
+              p= topic1Quiz2.title
+              .success-rate-section__chart(
+                style=`background:
+              conic-gradient(
+              #f44336
+              ${100-sessionSuccess21}%,
+              #4caf50
+              ${sessionSuccess21}%
+              );`
+              )
 
-        section.success-rate-section
-          H6= `Quiz: ${topic1Quiz2.title}:`
-          .success-rate-section__chart(
-            style=`background:
-           conic-gradient(
-           #f44336
-           ${100-sessionSuccess12}%,
-           #4caf50
-           ${sessionSuccess12}%
-           );`
-          )
+          section.progress.card.card--right
+            h4= topic2.name
+            section.progress__item
+              p= topic2Quiz1.title
+              .success-rate-section__chart(
+                style=`background:
+              conic-gradient(
+              #f44336
+              ${100-sessionSuccess21}%,
+              #4caf50
+              ${sessionSuccess21}%
+              );`
+              )
+            section.progress__item
+              p= topic2Quiz2.title
+              .success-rate-section__chart(
+                style=`background:
+              conic-gradient(
+              #f44336
+              ${100-sessionSuccess22}%,
+              #4caf50
+              ${sessionSuccess22}%
+              );`
+              )
 
-        H5=`Topic: ${topic2.name}`
-        section.success-rate-section
-          H6= `Quiz: ${topic2Quiz1.title}:`
-          .success-rate-section__chart(
-            style=`background:
-           conic-gradient(
-           #f44336
-           ${100-sessionSuccess21}%,
-           #4caf50
-           ${sessionSuccess21}%
-           );`
-          )
-
-        section.success-rate-section
-          H6= `Quiz: ${topic2Quiz2.title}:`
-          .success-rate-section__chart(
-            style=`background:
-           conic-gradient(
-           #f44336
-           ${100-sessionSuccess22}%,
-          #4caf50
-          ${sessionSuccess22}%
-          );`
-          )
-
-        H4 Overall success rates
-        H5= `Topic: ${topic1.name}`
-        section.success-rate-section
-          H6= `Quiz: ${topic1Quiz1.title}:`
-          if (overallSuccess11)
-            .success-rate-section__chart(
-              style=`background:
-            conic-gradient(
-            #f44336
-            ${100-overallSuccess11}%,
-            #4caf50
-            ${overallSuccess11}%
-            );`
-            )
-          else
-            .success-rate-section__chart(style=`background-color:#F3F0E7;`)
-
-        section.success-rate-section
-          H6= `Quiz: ${topic1Quiz2.title}:`
-          if (overallSuccess12)
-            .success-rate-section__chart(
-              style=`background:
-            conic-gradient(
-            #f44336
-            ${100-overallSuccess12}%,
-            #4caf50
-            ${overallSuccess12}%
-            );`
-            )
-          else
-            .success-rate-section__chart(style=`background-color:#F3F0E7;`)
-
-        H5=`Topic: ${topic2.name}`
-        section.success-rate-section
-          H6= `Quiz: ${topic2Quiz1.title}:`
-          if (overallSuccess21)
-            .success-rate-section__chart(
-              style=`background:
-            conic-gradient(
-            #f44336
-            ${100-overallSuccess21}%,
-            #4caf50
-            ${overallSuccess21}%
-            );`
-            )
-          else
-            .success-rate-section__chart(style=`background-color:#F3F0E7;`)
-
-        section.success-rate-section
-          H6= `Quiz: ${topic2Quiz2.title}:`
-          if (overallSuccess22)
-            .success-rate-section__chart(
-              style=`background:
-            conic-gradient(
-            #f44336
-            ${100-overallSuccess22}%,
-            #4caf50
-            ${overallSuccess22}%
-            );`
-            )
-          else
-            .success-rate-section__chart(style=`background-color:#F3F0E7;`)
+        h3 Overall success rates
+        .container
+          section.progress.card.card--left
+            h4= topic1.name
+            section.progress__item
+              p= topic1Quiz1.title
+              if (overallSuccess11)
+                .success-rate-section__chart(
+                  style=`background:
+                conic-gradient(
+                #f44336
+                ${100-overallSuccess11}%,
+                #4caf50
+                ${overallSuccess11}%
+                );`
+                )
+              else
+                .success-rate-section__chart(style=`background-color:#F3F0E7;`)
+            section.progress__item 
+              p= topic1Quiz2.title
+              if (overallSuccess12)
+                .success-rate-section__chart(
+                  style=`background:
+                conic-gradient(
+                #f44336
+                ${100-overallSuccess12}%,
+                #4caf50
+                ${overallSuccess12}%
+                );`
+                )
+              else
+                .success-rate-section__chart(style=`background-color:#F3F0E7;`)
+          
+          section.progress.card.card--right
+            h4= topic2.name
+            section.progress__item
+              p= topic2Quiz1.title
+              if (overallSuccess21)
+                .success-rate-section__chart(
+                  style=`background:
+                conic-gradient(
+                #f44336
+                ${100-overallSuccess21}%,
+                #4caf50
+                ${overallSuccess21}%
+                );`
+                )
+              else
+                .success-rate-section__chart(style=`background-color:#F3F0E7;`)
+            section.progress__item 
+              p= topic2Quiz2.title
+              if (overallSuccess22)
+                .success-rate-section__chart(
+                  style=`background:
+                conic-gradient(
+                #f44336
+                ${100-overallSuccess22}%,
+                #4caf50
+                ${overallSuccess22}%
+                );`
+                )
+              else
+                .success-rate-section__chart(style=`background-color:#F3F0E7;`)
 
       article
        H3 Edit profile
@@ -173,11 +180,10 @@ block content
              placeholder='New password'
            )
            button(type='submit') Edit
-       details
+       details.references
         summary
-         strong Password requirements
-        P Your password should contain 1 lowercase letter, 1 uppercase letter, 1 numeric character, 1 special character, and must be 8 characters or longer.
+          strong Password requirements
+        p.references__item Your password should contain 1 lowercase letter, 1 uppercase letter, 1 numeric character, 1 special character, and must be 8 characters or longer.
 
       if editProfileError
         script(src='../js/editProfileFeedback.js')
-        //- p= `editProfileError: ${editProfileError}`
