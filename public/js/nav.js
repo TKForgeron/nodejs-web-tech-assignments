@@ -69,15 +69,6 @@ function createNav() {
     loginItem.appendChild(loginAHref);
     dropdownContent.appendChild(loginItem);
 
-    var registerItem = document.createElement('li');
-    registerItem.classList.add(navItemClass);
-    var registerAHref = document.createElement('a');
-    registerAHref.classList.add(navItemAClass);
-    registerAHref.setAttribute('href', 'register');
-    registerAHref.appendChild(document.createTextNode('Register'));
-    registerItem.appendChild(registerAHref);
-    dropdownContent.appendChild(registerItem);
-
     dropdown.appendChild(profileItem);
     dropdown.appendChild(dropdownContent);
 
@@ -99,15 +90,6 @@ function createNav() {
     loginAHrefMobile.appendChild(document.createTextNode('Login'));
     loginItemMobile.appendChild(loginAHrefMobile);
 
-    var registerItemMobile = document.createElement('li');
-    registerItemMobile.classList.add(navItemClass);
-    registerItemMobile.classList.add(navItemClass + '--mobile');
-    var registerAHrefMobile = document.createElement('a');
-    registerAHrefMobile.classList.add(navItemAClass);
-    registerAHrefMobile.setAttribute('href', 'register');
-    registerAHrefMobile.appendChild(document.createTextNode('Register'));
-    registerItemMobile.appendChild(registerAHrefMobile);
-
     var spacerItem = document.createElement('li');
     spacerItem.classList.add(navItemClass + '--spacer');
 
@@ -128,7 +110,6 @@ function createNav() {
     unorderedNavList.appendChild(dropdown);
     unorderedNavList.appendChild(profileItemMobile);
     unorderedNavList.appendChild(loginItemMobile);
-    unorderedNavList.appendChild(registerItemMobile);
     unorderedNavList.appendChild(spacerItem);
     unorderedNavList.appendChild(assessmentItem);
     nav.appendChild(unorderedNavList);
