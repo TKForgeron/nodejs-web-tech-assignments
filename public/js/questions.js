@@ -223,12 +223,6 @@ class Question {
     var questionSubmit = document.createElement('button');
     questionSubmit.setAttribute('id', questionSubmitId);
     questionSubmit.appendChild(document.createTextNode('Submit'));
-    //questionSubmit.addEventListener('click', () => {
-    //   if (this.showingFeedback == false) {
-    //     this.showingFeedback = true;
-    //     this.answerFeedback();
-    //   }
-    // });
     questionSubmit.addEventListener('click', () => {
       if (this.showingFeedback == false) {
         this.checkAnswer();
@@ -377,9 +371,8 @@ function getSessionProgress() {
   };
   xmlHttp.open('get', '/getProgress');
   xmlHttp.send();
-  //sessionProgress = serverProgress;
 }
-// quizzes.js from here on
+
 function loadTopics() {
   const article = document.getElementsByTagName('article')[0];
   const xmlHttp = new XMLHttpRequest();
@@ -454,7 +447,6 @@ function loadQuestions(topicId, quizId) {
           );
           questions.push(q);
         } else {
-          // otherOptions in multiple choice questions are called options (keep this in mind)!!!
           mq = new MultipleChoice(
             question.id,
             question.title,
@@ -536,7 +528,7 @@ function loadQuestions(topicId, quizId) {
   let path = '/topics/' + topicId + '/quizzes/' + quizId + '/questions';
   request.open('get', path);
   request.send();
-  return false; // To prevent the default behavior of the button?
+  return false; // To prevent the default behavior of the button
 }
 
 window.addEventListener('DOMContentLoaded', loadTopics);
