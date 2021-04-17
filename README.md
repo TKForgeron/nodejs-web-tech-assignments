@@ -7,14 +7,15 @@
 - Initial accounts
   - admin, ADMINaccountofWTgroup15!
   - mike, H@lloIkBenMike123
-  - Bert, BertIsAwsome!321
-  - Douwe, Derrar202!
-  - Tim, T.K.Sm!t2018
-  - Maarten, H&Maarten1999
+  - bert, BertIsAwsome!321
+  - douwe, Derrar202!
+  - tim, T.K.Sm!t2018
+  - maarten, H&Maarten1999
 
 ## To-Do:
 
 - MAARTEN
+    - Done
 - DOUWE
   - ~~vragen displayen geen options/invulveld meer, kan liggen aan hoe ze in de db gezet zijn~~
   - only allow strong passwords
@@ -24,8 +25,14 @@
 - TIM
   - OPTIONAL:
     - admin page: delete all users except admin
-- IEMAND met tijd (pls neem verantwoordelijkheid)
-  - profile page mooi maken, alle visuals alignen met mooie en logische tekst erbij evt.
+    - Profile page mooi maken
+- IEMAND
+  - Back-end opschonen
+  - Pie-charts op profile page fixen (ze verdwijnen nu wanneer je meer dan 1 vraag doet)
+  - De 5 users some progress geven
+  - Comment toevoegen (zie assignment requirements)
+  - Project op server zetten en inleveren
+  
 
 ## Assignment Description
 
