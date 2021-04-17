@@ -7,7 +7,7 @@
 var question1 = {
     id: 0,
     title: "Variables",
-    image: "", // Not needed
+    image: "/images/t2_storingData/q1.jpg", // Not needed
     question: "Which type of variable cant be changed after it is set?",
     explanation: "/examples.html", // Nowhere (yet)
     answer: "const",
@@ -18,7 +18,7 @@ var question1 = {
 var question2 = {
     id: 1,
     title: "Objects",
-    image: "", // Not needed
+    image: "/images/t2_storingData/q2.jpg", // Not needed
     question: "What is the correct syntax to store \"name = John\" in a JavaScript object?",
     explanation: "/examples.html", // First example
     answer: "var person = {name: \"John\"};",
