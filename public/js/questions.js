@@ -449,6 +449,7 @@ function loadQuestions(topicId, quizId) {
 
       // Loads the questions asked by the user
       const quiz = JSON.parse(this.responseText);
+      console.log(quiz);
       quiz.forEach(question => {
         let q;
         let mq;
@@ -480,10 +481,11 @@ function loadQuestions(topicId, quizId) {
           questions.push(mq);
         }
       });
+      console.log(questions);
       createInitialElements();
-      console.log(sessionProgress);
-      console.log(topicId);
-      console.log(quizId);
+      //console.log(sessionProgress);
+      //console.log(topicId);
+      //console.log(quizId);
       // if we make more progress than there are questions we just go to the last questions
       if (sessionProgress[topicId - 1][quizId - 1] > questions.length - 1) {
         currentQuestionIndex = questions.length - 1;

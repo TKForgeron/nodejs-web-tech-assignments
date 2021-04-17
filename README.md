@@ -7,10 +7,10 @@
 - Initial accounts
   - admin, ADMINaccountofWTgroup15!
   - mike, H@lloIkBenMike123
-  - Bert,
-  - Douwe,
-  - Tim,
-  - Maarten,
+  - Bert, BertIsAwsome!321
+  - Douwe, Derrar202!
+  - Tim, T.K.Sm!t2018
+  - Maarten, H&Maarten1999
 
 ## To-Do:
 
