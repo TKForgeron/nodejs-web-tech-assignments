@@ -28,6 +28,7 @@
     - Profile page mooi maken
 - IEMAND
   - Back-end opschonen
+  - Pie-charts op profile page fixen (ze verdwijnen nu wanneer je meer dan 1 vraag doet)
   - De 5 users some progress geven
   - Comment toevoegen (zie assignment requirements)
   - Project op server zetten en inleveren
