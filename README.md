@@ -16,9 +16,9 @@
 
 - MAARTEN
   - correcte vragen in db zetten -> eerst moet de database gereset worden
-  - vragen displayen geen options/invulveld meer, kan liggen aan hoe ze in de db gezet zijn
+  - ~~vragen displayen geen options/invulveld meer, kan liggen aan hoe ze in de db gezet zijn~~
 - DOUWE
-  - vragen displayen geen options/invulveld meer, kan liggen aan hoe ze in de db gezet zijn
+  - ~~vragen displayen geen options/invulveld meer, kan liggen aan hoe ze in de db gezet zijn~~
   - only allow strong passwords
   - upon page refresh onthoud welke question user was
   - fix topic array (out of bounds)

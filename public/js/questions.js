@@ -297,7 +297,7 @@ class MultipleChoice extends Question {
     form.setAttribute('name', this.formName);
     form.addEventListener('submit', e => e.preventDefault());
 
-    shuffle(options).forEach(option => {
+    shuffle(this.options).forEach(option => {
       var radioOption = document.createElement('input');
       radioOption.setAttribute('type', 'radio');
       radioOption.setAttribute('value', option);
