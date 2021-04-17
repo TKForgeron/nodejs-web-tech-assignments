@@ -93,53 +93,66 @@ block content
         H4 Overall success rates
         section.success-rate-section
           p= `Quiz: ${topic1Quiz1.title}, at topic: ${topic1.name}:`
-          .success-rate-section__chart(
-            style=`background:
-           conic-gradient(
-           #f44336
-           ${100-overallSuccess11}%,
-           #4caf50
-           ${overallSuccess11}%
-           );`
-          )
+          if (overallSuccess11)
+            .success-rate-section__chart(
+              style=`background:
+            conic-gradient(
+            #f44336
+            ${100-overallSuccess11}%,
+            #4caf50
+            ${overallSuccess11}%
+            );`
+            )
+          else
+            .success-rate-section__chart(style=`background-color:#F3F0E7;`)
 
         section.success-rate-section
           p= `Quiz: ${topic1Quiz2.title}, at topic: ${topic1.name}:`
-          .success-rate-section__chart(
-            style=`background:
-           conic-gradient(
-           #f44336
-           ${100-overallSuccess12}%,
-           #4caf50
-           ${overallSuccess12}%
-           );`
-          )
+          if (overallSuccess12)
+            .success-rate-section__chart(
+              style=`background:
+            conic-gradient(
+            #f44336
+            ${100-overallSuccess12}%,
+            #4caf50
+            ${overallSuccess12}%
+            );`
+            )
+          else
+            .success-rate-section__chart(style=`background-color:#F3F0E7;`)
 
         section.success-rate-section
           p= `Quiz: ${topic2Quiz1.title}, at topic ${topic2.name}:`
-          .success-rate-section__chart(
-            style=`background:
-           conic-gradient(
-           #f44336
-           ${100-overallSuccess21}%,
-           #4caf50
-           ${overallSuccess21}%
-           );`
-          )
+          if (overallSuccess21)
+            .success-rate-section__chart(
+              style=`background:
+            conic-gradient(
+            #f44336
+            ${100-overallSuccess21}%,
+            #4caf50
+            ${overallSuccess21}%
+            );`
+            )
+          else
+            .success-rate-section__chart(style=`background-color:#F3F0E7;`)
 
         section.success-rate-section
           p= `Quiz: ${topic2Quiz2.title}, at topic: ${topic2.name}:`
-          .success-rate-section__chart(
-            style=`background:
-           conic-gradient(
-           #f44336
-           ${100-overallSuccess22}%,
-           #4caf50
-           ${overallSuccess22}%
-           );`
-          )
+          if (overallSuccess22)
+            .success-rate-section__chart(
+              style=`background:
+            conic-gradient(
+            #f44336
+            ${100-overallSuccess22}%,
+            #4caf50
+            ${overallSuccess22}%
+            );`
+            )
+          else
+            .success-rate-section__chart(style=`background-color:#F3F0E7;`)
+
       article
-       H3 Edit profile:
+       H3 Edit profile
        P Please always fill in your old password to confirm the changes
          form(action='/profile/edit', method='POST')
            input(type='text', name='newName', placeholder='New name')

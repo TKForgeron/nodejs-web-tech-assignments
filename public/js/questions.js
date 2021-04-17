@@ -206,7 +206,7 @@ class Question {
   generateTitle() {
     var title = document.createElement('h2');
     title.setAttribute('id', 'question' + this.id);
-    title.appendChild(document.createTextNode(`${this.id}. ${this.title}`));
+    title.appendChild(document.createTextNode(`${this.title}.`));
 
     return title;
   }
@@ -462,26 +462,21 @@ function loadQuestions(topicId, quizId) {
         }
       });
       createInitialElements();
-      if(quizId == 1 || quizId == 2){
+      if (quizId == 1 || quizId == 2) {
         // This is topic 1 quizzes one and two
         if (sessionProgress[topicId - 1][quizId - 1] > questions.length - 1) {
           currentQuestionIndex = questions.length - 1;
-        } 
-        else 
-        {
+        } else {
           currentQuestionIndex = sessionProgress[topicId - 1][quizId - 1];
         }
       }
-      if(quizId == 3 || quizId == 4){
+      if (quizId == 3 || quizId == 4) {
         // This is topic 2 quizzes one and two
         if (sessionProgress[topicId - 1][quizId - 3] > questions.length - 1) {
           currentQuestionIndex = questions.length - 1;
-        } 
-        else 
-        {
+        } else {
           currentQuestionIndex = sessionProgress[topicId - 1][quizId - 3];
         }
-        
       }
       questions[currentQuestionIndex].show(
         questionInputSectionId,
@@ -510,18 +505,6 @@ function loadQuestions(topicId, quizId) {
           );
         }
       });
-
-      // Causes a very nice dropshadow effect on the inputsection,
-      // pressing retry or next will remove it because of event propagation. If this were to use the bubbling phase
-      // it would still be applied after pressing the retry button and thus the retry button would not remove the effect
-      document.getElementById(questionInputSectionId).addEventListener(
-        'click',
-        () => {
-          var inputSection = document.getElementById(questionInputSectionId);
-          inputSection.style.boxShadow = '10px 10px 10px 10px grey';
-        },
-        true
-      );
     }
   };
 
