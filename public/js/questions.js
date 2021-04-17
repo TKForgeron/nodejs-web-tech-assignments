@@ -91,7 +91,6 @@ class Question {
     this.topicId = topicId;
   }
   checkAnswer() {
-    console.log('checking answer with useranswer ');
     const xmlHttp = new XMLHttpRequest();
     this.userAnswer = this.answeredCorrectly();
 
@@ -104,7 +103,6 @@ class Question {
     xmlHttp.onreadystatechange = () => {
       if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
         let feedback = xmlHttp.responseText;
-        console.log(feedback);
         this.answerFeedback(feedback);
       } else if (xmlHttp.readyState === 4 && xmlHttp.status === 401) {
         alert('Log in before attempting a quiz!');
@@ -125,17 +123,14 @@ class Question {
     // first check whether user had answered
 
     if (formSection[this.type].value) {
-      console.log('giving feedback soon');
       // then check whether it is correct
       if (feedback == 'true' || feedback == true) {
-        console.log('feedback true');
         // put check mark behind user's input
         feedbackMark.setAttribute('style', 'color:green;font-size:2em');
         feedbackMark.appendChild(document.createTextNode('\u2713'));
         formSection.appendChild(feedbackMark);
         this.showingFeedback = true;
       } else if (feedback == 'false' || feedback == false) {
-        console.log('feedback false');
         // put cross mark behind user's input
         feedbackMark.setAttribute('style', 'color:red;font-size:2em');
         feedbackMark.appendChild(document.createTextNode(`\u2717`));
@@ -282,14 +277,12 @@ class MultipleChoice extends Question {
   answeredCorrectly() {
     // get radio button options
     var ele = document.getElementsByName(this.formName)[0].elements;
-    console.log('yay');
     // get checked radio btn and set this.userAnswer to that value
     for (let i = 0; i < ele.length; i++) {
       if (ele[i].checked) {
         this.userAnswer = ele[i].value;
       }
     }
-    console.log(this.userAnswer);
     return this.userAnswer.toLowerCase();
   }
   generateOptionRadios() {
@@ -379,12 +372,9 @@ function getSessionProgress() {
     if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
       //serverProgress should be an array of arrays
       const serverProgress = JSON.parse(this.responseText);
-      console.log(serverProgress);
       sessionProgress = serverProgress;
-      console.log(sessionProgress);
     }
   };
-  //console.log(sessionProgress);
   xmlHttp.open('get', '/getProgress');
   xmlHttp.send();
   //sessionProgress = serverProgress;
@@ -423,7 +413,6 @@ function loadQuizzes(topic) {
         let li = document.createElement('li');
         li.textContent = object.title;
         list.appendChild(li);
-        console.log('works');
         li.addEventListener('click', () => {
           loadQuestions(topicId, object.id);
         });
@@ -481,9 +470,6 @@ function loadQuestions(topicId, quizId) {
         }
       });
       createInitialElements();
-      console.log(sessionProgress);
-      console.log(topicId);
-      console.log(quizId);      
       if(quizId == 1 || quizId == 2){
         // This is topic 1 quizzes one and two
         if (sessionProgress[topicId - 1][quizId - 1] > questions.length - 1) {
@@ -505,12 +491,10 @@ function loadQuestions(topicId, quizId) {
         }
         
       }
-      console.log(currentQuestionIndex);
       questions[currentQuestionIndex].show(
         questionInputSectionId,
         questionOutputSectionId
       );
-      console.log('works too');
 
       // We first wipe out all input and output elements and then show the next or previous question.
       document.getElementById(controlsBackId).addEventListener('click', () => {

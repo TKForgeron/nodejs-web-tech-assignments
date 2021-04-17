@@ -15,7 +15,7 @@
 ## To-Do:
 
 - MAARTEN
-  - correcte vragen in db zetten -> eerst moet de database gereset worden
+  - ~~correcte vragen in db zetten -> eerst moet de database gereset worden~~
   - cards maken op de profile page
 - DOUWE
   - ~~vragen displayen geen options/invulveld meer, kan liggen aan hoe ze in de db gezet zijn~~
