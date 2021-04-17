@@ -484,7 +484,7 @@ input[type=radio]{margin: 0.5rem 0.5rem 0 0}
     min-width: 40em;
 }
 
-h4{
+h4,h5{
     margin-top: 3em;
     margin-bottom: 0;
 }
