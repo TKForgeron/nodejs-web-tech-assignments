@@ -165,7 +165,7 @@ class Question {
 
     explanationText.appendChild(correctAnswer);
     explanationText.appendChild(
-      document.createTextNode('Click here to visit the page with the answer')
+      document.createTextNode('. ' + this.explanation)
     );
 
     return explanationText;
@@ -449,7 +449,6 @@ function loadQuestions(topicId, quizId) {
 
       // Loads the questions asked by the user
       const quiz = JSON.parse(this.responseText);
-      console.log(quiz);
       quiz.forEach(question => {
         let q;
         let mq;
@@ -481,16 +480,30 @@ function loadQuestions(topicId, quizId) {
           questions.push(mq);
         }
       });
-      console.log(questions);
       createInitialElements();
-      //console.log(sessionProgress);
-      //console.log(topicId);
-      //console.log(quizId);
-      // if we make more progress than there are questions we just go to the last questions
-      if (sessionProgress[topicId - 1][quizId - 1] > questions.length - 1) {
-        currentQuestionIndex = questions.length - 1;
-      } else {
-        currentQuestionIndex = sessionProgress[topicId - 1][quizId - 1];
+      console.log(sessionProgress);
+      console.log(topicId);
+      console.log(quizId);      
+      if(quizId == 1 || quizId == 2){
+        // This is topic 1 quizzes one and two
+        if (sessionProgress[topicId - 1][quizId - 1] > questions.length - 1) {
+          currentQuestionIndex = questions.length - 1;
+        } 
+        else 
+        {
+          currentQuestionIndex = sessionProgress[topicId - 1][quizId - 1];
+        }
+      }
+      if(quizId == 3 || quizId == 4){
+        // This is topic 2 quizzes one and two
+        if (sessionProgress[topicId - 1][quizId - 3] > questions.length - 1) {
+          currentQuestionIndex = questions.length - 1;
+        } 
+        else 
+        {
+          currentQuestionIndex = sessionProgress[topicId - 1][quizId - 3];
+        }
+        
       }
       console.log(currentQuestionIndex);
       questions[currentQuestionIndex].show(

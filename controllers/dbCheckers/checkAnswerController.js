@@ -21,33 +21,39 @@ module.exports = (req, res) => {
       .then(answer => {
         console.log("TopicId: " + topicId);
         console.log("QuizId: " + quizId);
-        if(userAnswer == answer){
+        if(userAnswer.toLowerCase() == answer.toLowerCase())
+        {
           console.log("in the if");
-          for (let i = 1; i < 3; i++) 
+          if(quizId == 1 || quizId == 2)
           {
-            if(topicId == i)
-            {            
-              for(let j = 1; j < 3; j++)
-              {
-                if(quizId == j){
-                  // if we've exceeded the amount of questions per quiz we don't update the progress anymore
-                  // yes we know that a person can technically answer the same question over and over to get maximum progress but we don't wanna keep track of a boolean for every single question for something so minor
-                  if(req.session.progressArray[i-1][j-1] < totalQuestionsPerQuiz){                 
-                    req.session.progressArray[i-1][j-1]++;
-                  }
-                  // if we're at 100% don't bother incrementing the progress any further
-                  
-                  if(req.session.successArray[i-1][j-1] < 1){                                                       
-                    req.session.successArray[i-1][j-1] += 1/totalQuestionsPerQuiz;
-                  }
-                }
-              }
+            // This is topic 1 quizzes one and two
+            // if we've exceeded the amount of questions per quiz we don't update the progress anymore
+            // yes we know that a person can technically answer the same question over and over to get maximum progress but we don't wanna keep track of a boolean for every single question for something so minor
+            if(req.session.progressArray[topicId-1][quizId-1] < totalQuestionsPerQuiz)
+            {                 
+              req.session.progressArray[topicId-1][quizId-1]++;
             }
-          } 
+            
+            // if we're at 100% don't bother incrementing the progress any further                  
+            if(req.session.successArray[topicId-1][quizId-1] < 1){                                                       
+              req.session.successArray[topicId-1][quizId-1] += 1/totalQuestionsPerQuiz;
+            }
+          }
+          if(quizId == 3 || quizId == 4){
+            // This is topic 2 quizzes one and two          
+            if(req.session.progressArray[topicId-1][quizId-3] < totalQuestionsPerQuiz)
+            {                 
+              req.session.progressArray[topicId-1][quizId-3]++;
+            }           
+                              
+            if(req.session.successArray[topicId-1][quizId-3] < 1){                                                       
+              req.session.successArray[topicId-1][quizId-3] += 1/totalQuestionsPerQuiz;
+            }
+          }          
 
         }
-        res.status(200).json(userAnswer == answer);
-        console.log(`userAnswer: ${userAnswer}, answer: ${answer}`);
+        res.status(200).json(userAnswer.toLowerCase() == answer.toLowerCase());
+        console.log(`userAnswer: ${userAnswer}, answer: ${answer.toLowerCase()}`);
 
       })
       .catch(err => {
