@@ -48,17 +48,17 @@ block content
         section
           label(for='session-progress12')= `Quiz: ${topic1Quiz2.title}, at topic: ${topic1.name}:`
           #session-progress12.progress
-            span(style=`width:${toPercent(sessionProgress12)}%`)= toPercentString(sessionProgress11)
+            span(style=`width:${toPercent(sessionProgress12)}%`)= toPercentString(sessionProgress12)
 
         section
           label(for='session-progress21')= `Quiz: ${topic2Quiz1.title}, at topic: ${topic2.name}:`
           #session-progress21.progress
-            span(style=`width:${toPercent(sessionProgress21)}%`)= toPercentString(sessionProgress11)
+            span(style=`width:${toPercent(sessionProgress21)}%`)= toPercentString(sessionProgress21)
 
         section
           label(for='session-progress22')= `Quiz: ${topic2Quiz2.title}, at topic: ${topic2.name}:`
           #session-progress22.progress
-            span(style=`width:${toPercent(sessionProgress22)}%`)= toPercentString(sessionProgress11)
+            span(style=`width:${toPercent(sessionProgress22)}%`)= toPercentString(sessionProgress22)
 
         H4 Success rates this session
         section.chart
