@@ -97,7 +97,7 @@ h1{
     article{
         margin-left: auto;
         margin-right: auto;
-        max-width: 1200px; /*deze ff veranderd van 1000 naar 12000 voor profile page */
+        max-width: 1500px; /*deze ff veranderd van 1000 naar 15000 voor profile page */
     }
 }
 
@@ -410,6 +410,7 @@ input[type=radio]{margin: 0.5rem 0.5rem 0 0}
         margin-right: 0.5rem;
         text-align: left;
     }
+    input[type=password]{margin-right: 0.5rem;}
 }
 
 @media (min-width: 1100px) {.card__image{height:16em;}}
@@ -477,11 +478,12 @@ input[type=radio]{margin: 0.5rem 0.5rem 0 0}
 .chart{
     display: inline-block;
     margin-right: 3em;
+    min-width: 40em;
 }
 
 label{
     display: inline-block;
-    min-width: 25em;
+    min-width: 50em;
 }
 
 h4{
