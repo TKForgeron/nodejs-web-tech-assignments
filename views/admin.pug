@@ -1,10 +1,7 @@
 extends reusables/layout
 
 block content
-  article
-      h2 logout
-      form(action='/logout', method='POST')
-        button(type='submit', value='Logout') Logout
+  article      
       h2 check users
       form(action='admin/users', method='Get')
         button(type='submit', value='get users') Get users
