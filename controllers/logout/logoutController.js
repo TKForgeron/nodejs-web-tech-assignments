@@ -3,28 +3,27 @@ const dbFinder = require('../../models/dbFind');
 
 module.exports = async (req, res) => {
   // send session progress to database
-  const userId = req.session.userId;
-
+    const userId = req.session.userId;  
   const progressObj1 = helpers.createProgressObj(
-    userId,
+    userId.id,
     1,
     req.session.progressArray[0][0],
     req.session.successArray[0][0]
   );
   const progressObj2 = helpers.createProgressObj(
-    userId,
+    userId.id,
     2,
     req.session.progressArray[0][1],
     req.session.successArray[0][1]
   );
   const progressObj3 = helpers.createProgressObj(
-    userId,
+    userId.id,
     3,
     req.session.progressArray[1][0],
     req.session.successArray[1][0]
   );
   const progressObj4 = helpers.createProgressObj(
-    userId,
+    userId.id,
     4,
     req.session.progressArray[1][1],
     req.session.successArray[1][1]
