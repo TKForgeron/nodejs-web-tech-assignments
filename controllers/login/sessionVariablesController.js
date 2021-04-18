@@ -32,5 +32,10 @@ module.exports = async req => {
   req.session.progressArray[1][0] = 0;
   req.session.progressArray[1][1] = 0;
 
+  req.session.successArray[0][0] = 0;
+  req.session.successArray[0][1] = 0;
+  req.session.successArray[1][0] = 0;
+  req.session.successArray[1][1] = 0;
+
   return req;
 };

@@ -33,10 +33,10 @@ module.exports = (req, res) => {
             {                 
               req.session.progressArray[topicId-1][quizId-1]++;
             }
-            
+            // We have to parse to float for success because javascript thinks everything is always a string   
             // if we're at 100% don't bother incrementing the progress any further                  
-            if(req.session.successArray[topicId-1][quizId-1] < 1){                                                       
-              req.session.successArray[topicId-1][quizId-1] += 1/totalQuestionsPerQuiz;
+            if(req.session.successArray[topicId-1][quizId-1] < 100){                                                       
+              req.session.successArray[topicId-1][quizId-1] = parseFloat(req.session.successArray[topicId-1][quizId-1]) + parseFloat(1/totalQuestionsPerQuiz);
             }
           }
           if(quizId == 3 || quizId == 4){
@@ -45,15 +45,15 @@ module.exports = (req, res) => {
             {                 
               req.session.progressArray[topicId-1][quizId-3]++;
             }           
-                              
-            if(req.session.successArray[topicId-1][quizId-3] < 1){                                                       
-              req.session.successArray[topicId-1][quizId-3] += 1/totalQuestionsPerQuiz;
+                  
+            if(req.session.successArray[topicId-1][quizId-3] < 100){                                                       
+              req.session.successArray[topicId-1][quizId-3] = parseFloat(req.session.successArray[topicId-1][quizId-3]) + parseFloat(1/totalQuestionsPerQuiz);
             }
           }          
 
         }
         res.status(200).json(userAnswer.toLowerCase() == answer.toLowerCase());
-        console.log(`userAnswer: ${userAnswer}, answer: ${answer.toLowerCase()}`);
+        console.log(`userAnswer: ${userAnswer}, answer: ${answer.toLowerCase()}`);       
 
       })
       .catch(err => {
