@@ -1,3 +1,4 @@
+// This file contains all the code concerned with the displaying of the topics, quizzes and questions at the assessment.html page. It is not structured in a particular way.
 // GLOBALS
 var controlSectionId = 'controls';
 var questionImageId = 'question__image';

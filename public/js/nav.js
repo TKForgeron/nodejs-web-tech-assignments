@@ -1,4 +1,4 @@
-// This just creates the navbar.
+// This file just creates the navbar, once called. It is not structured in a particular way.
 function createNav() {
     var nav = document.getElementsByTagName('nav')[0];
     var navItemClass = 'nav__item';

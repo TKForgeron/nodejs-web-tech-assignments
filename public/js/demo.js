@@ -1,3 +1,4 @@
+// This is just a demo piece of code, used at example.html. It is not structured in a particular way.
 class Car {
     constructor(name, year) {
         this.name = name;

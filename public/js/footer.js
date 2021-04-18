@@ -1,4 +1,4 @@
-// This just creates the footer
+// This file just creates the footer, once called. It is not structured in a particular way.
 function createFooter() {
     var footer = document.getElementsByTagName('footer')[0];
 
