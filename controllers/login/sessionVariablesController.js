@@ -1,3 +1,4 @@
+// Session variables get set here
 const dbFinder = require('../../models/dbFind');
 
 module.exports = async req => {

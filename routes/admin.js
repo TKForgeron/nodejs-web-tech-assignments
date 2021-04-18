@@ -1,3 +1,5 @@
+// This is the admin page router, the admin can edit and things in the database from the website
+// This page is only accessible if you are logged in as the admin
 var express = require('express');
 var router = express.Router();
 

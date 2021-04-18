@@ -1,3 +1,4 @@
+// Editing of profile logic can be found here
 const dbUpdater = require('../../models/dbUpdate');
 const dbFinder = require('../../models/dbFind');
 const bcrypt = require('bcrypt');

@@ -1,3 +1,4 @@
+// This router contains the routers for assessment related things
 const express = require('express');
 const router = express();
 

@@ -1,3 +1,4 @@
+// Profile viewing logic can be found here
 const dbFinder = require('../../models/dbFind');
 const helpers = require('../controllerHelpers');
 

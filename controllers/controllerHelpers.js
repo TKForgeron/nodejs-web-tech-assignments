@@ -1,3 +1,4 @@
+// Contains various helper functions including password strength REGEX
 module.exports = {
   isJson,
   createProgressObj,

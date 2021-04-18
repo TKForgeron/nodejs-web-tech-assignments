@@ -1,3 +1,4 @@
+// Adds a question to the database
 const dbFinder = require('../../models/dbFind');
 const dbAdder = require('../../models/dbAdd');
 

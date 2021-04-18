@@ -1,3 +1,4 @@
+// This router handles the login functions
 var express = require('express');
 var router = express.Router();
 

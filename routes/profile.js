@@ -1,3 +1,4 @@
+// This router handles the profile page, including the editing of your password
 var express = require('express');
 var router = express.Router();
 

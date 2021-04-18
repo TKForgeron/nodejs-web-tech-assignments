@@ -1,6 +1,7 @@
+// This router handles the checking of answers for the assessment
+// The entire checking of answers and returning a response is thus done through the server
 const express = require('express');
 const server = express();
-//Yes this technically posts to /topicId already but that was not accessible for some reason
 server.post(
   '/:quizId/questions/:questionId',
   require('../../../controllers/dbCheckers/checkAnswerController')

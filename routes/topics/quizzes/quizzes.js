@@ -1,3 +1,5 @@
+// This router handles in-site editing of quizzes on the admin page
+// It also handles getting quizzes from the database
 const express = require('express');
 const router = express();
 

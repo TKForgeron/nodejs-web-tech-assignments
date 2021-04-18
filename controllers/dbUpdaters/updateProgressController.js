@@ -1,3 +1,4 @@
+// Updating of progress information logic happens here
 const dbUpdater = require('../../models/dbUpdate');
 const dbFinder = require('../../models/dbFind');
 const dbAdder = require('../../models/dbAdd');

@@ -30,26 +30,13 @@ function removeTopics() {
 }
 
 // expects: (number)
-function removeTopic(id) {
-  // const quizzesToRemove = db('quiz').where({ topicId_fk: id }).select('id');
-
-  // quizzesToRemove.forEach(quizId => {
-  //   removeQuiz(quizId);
-  // });
+function removeTopic(id) { 
 
   return dbOperationHelpers.remover('topic', id);
 }
 
 // expects: (number)
-function removeQuiz(id) {
-  // const questionsToRemove = db('question')
-  //   .where({ quizId_fk: id })
-  //   .select('id');
-
-  // questionsToRemove.forEach(questionId => {
-  //   removeQuestion(questionId);
-  // });
-
+function removeQuiz(id) {  
   return dbOperationHelpers.remover('quiz', id);
 }
 

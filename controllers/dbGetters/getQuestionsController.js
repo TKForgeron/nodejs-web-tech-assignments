@@ -1,3 +1,4 @@
+// Getting of question data happens here
 const dbFinder = require('../../models/dbFind');
 const helper = require('../controllerHelpers');
 

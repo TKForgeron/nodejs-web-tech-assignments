@@ -1,3 +1,6 @@
+// Required by the respective router
+// If the user has progress, it sends the progress array
+// If the user has no progress (aka no logged in), it sends an array with 0 progress to prevent undefined errors
 module.exports = (req, res) => {  
     if(req.session.loggedin){
         res.status(200).send(req.session.progressArray);

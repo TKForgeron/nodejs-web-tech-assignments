@@ -23,8 +23,7 @@ async function addTopic(topic) {
 }
 
 // expects: (JSON string, number)
-async function addQuestion(question, quizId_fk) {
-  // console.log(`inside addQuestion: ${question}`);
+async function addQuestion(question, quizId_fk) { 
   let quiz = undefined;
 
   // trying to fetch quiz
@@ -51,8 +50,7 @@ async function addQuestion(question, quizId_fk) {
 }
 
 // expects: (JSON string, number)
-async function addQuiz(quiz, topicId_fk) {
-  // console.log(`inside addQuiz: ${quiz}`);
+async function addQuiz(quiz, topicId_fk) {  
   let topic = undefined;
 
   // trying to fetch topic

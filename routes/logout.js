@@ -1,3 +1,4 @@
+// This router handles the logout functions
 const express = require('express');
 const router = express.Router();
 

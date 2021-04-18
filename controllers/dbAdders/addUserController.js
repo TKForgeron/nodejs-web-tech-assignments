@@ -1,3 +1,4 @@
+// Adds a user to the database
 const bcrypt = require('bcrypt');
 const dbAdder = require('../../models/dbAdd');
 const sessionVarsSetter = require('../login/sessionVariablesController');

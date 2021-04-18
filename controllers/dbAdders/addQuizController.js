@@ -1,3 +1,4 @@
+// Adds a quiz to the database
 const dbAdder = require('../../models/dbAdd');
 
 module.exports = (req, res) => {

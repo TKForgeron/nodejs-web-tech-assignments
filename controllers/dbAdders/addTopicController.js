@@ -1,3 +1,4 @@
+// Adds a topic to the database
 const dbAdder = require('../../models/dbAdd');
 const helpers = require('../controllerHelpers');
 

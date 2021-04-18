@@ -1,3 +1,4 @@
+// Removing of quiz logic happens here
 const dbRemover = require('../../models/dbRemove');
 
 module.exports = (req, res) => {

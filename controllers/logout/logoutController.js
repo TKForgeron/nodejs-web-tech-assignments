@@ -1,3 +1,6 @@
+// Logout logic can be found here
+// This is where progress gets updated to the database
+// If you don't logout your progress won't be tracked
 const helpers = require('../controllerHelpers');
 const dbFinder = require('../../models/dbFind');
 

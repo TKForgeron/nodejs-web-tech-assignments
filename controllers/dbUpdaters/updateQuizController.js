@@ -1,3 +1,4 @@
+// Updating of quiz information logic happens here
 const dbUpdater = require('../../models/dbUpdate');
 
 module.exports = (req, res) => {

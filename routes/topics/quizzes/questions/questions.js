@@ -1,3 +1,5 @@
+// This router handles in-site editing of questions on the admin page
+// It also handles getting questions from the database
 const express = require('express');
 const router = express();
 

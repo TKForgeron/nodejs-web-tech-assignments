@@ -1,3 +1,4 @@
+// Removing of question logic happens here
 const dbRemover = require('../../models/dbRemove');
 
 module.exports = (req, res) => {

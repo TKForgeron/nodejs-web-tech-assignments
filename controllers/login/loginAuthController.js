@@ -1,3 +1,4 @@
+// Login authorisation logic happens here
 const bcrypt = require('bcrypt');
 const dbFinder = require('../../models/dbFind');
 const sessionVarsSetter = require('./sessionVariablesController');

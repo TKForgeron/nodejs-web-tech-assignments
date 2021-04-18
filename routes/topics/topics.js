@@ -1,3 +1,5 @@
+// This router handles in-site editing of topics on the admin page
+// It also handles getting topics from the database
 const express = require('express');
 const router = express();
 

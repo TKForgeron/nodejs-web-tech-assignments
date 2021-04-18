@@ -1,3 +1,4 @@
+// Getting of quiz data happens here
 const dbFinder = require('../../models/dbFind');
 
 module.exports = (req, res) => {

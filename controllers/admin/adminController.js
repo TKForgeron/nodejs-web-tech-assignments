@@ -1,3 +1,4 @@
+// Controller for the admin page
 module.exports = (req, res) => {
   if (req.session.loggedin) {
     const username = req.session.username;

@@ -1,3 +1,4 @@
+// This is where user answers to the assessment are verified and progress is incremented
 const dbFinder = require('../../models/dbFind');
 
 module.exports = (req, res) => {

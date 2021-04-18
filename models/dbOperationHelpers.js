@@ -16,7 +16,6 @@ function finder(table, id) {
 
 // expects: (string, number, JSON string)
 function updater(table, id, changes) {
-  // changes = JSON.parse(changes);
   return db(table)
     .where({ id })
     .update(changes)
@@ -28,10 +27,4 @@ function updater(table, id, changes) {
 // expects: (string, number)
 function remover(table, id) {
   return db(table).where({ id }).del();
-  // .then(res => {
-  //   console.log('remover successfull');
-  // })
-  // .catch(err => {
-  //   console.log('remover unsuccessfull: ' + err);
-  // });
 }

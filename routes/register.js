@@ -1,3 +1,4 @@
+// This router handles registration and re-routing of the register page if a person is already logged in
 const express = require('express');
 const server = express();
 
