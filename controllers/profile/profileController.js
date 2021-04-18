@@ -97,6 +97,6 @@ module.exports = async (req, res) => {
     }
   } else {
     
-    res.redirect('/group15/login');
+    res.redirect('/login');
   }
 };
