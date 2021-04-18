@@ -22,14 +22,14 @@ module.exports = (req, res, next) => {
         // but for now allow full...
         // next();
         // of nee, toch niet.
-        console.log('not admin trying to access api');
+        
       }
     } else {
-      console.log('cannot find user');
+      
       res.redirect('/register');
     }
   } else {
-    console.log('not logged in');
+    
     res.redirect('/login');
   }
 };

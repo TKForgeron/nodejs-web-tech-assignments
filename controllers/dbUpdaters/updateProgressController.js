@@ -14,7 +14,7 @@ module.exports = userStatsArray => {
       .catch(err => {
         console.log(`in catch... ${err}`);
       });
-    console.log(existingUserStats);
+    
     // if obj is not empty then userStatsArray[index] exists in the database and then we can freely update, if not we have to add it
     let foundDatabaseItem = existingUserStats.find(
       o => o.quizId_fk == stat.quizId_fk

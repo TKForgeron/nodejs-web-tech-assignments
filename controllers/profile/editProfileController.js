@@ -48,11 +48,11 @@ module.exports = async (req, res) => {
       }
       delete userFromDB.created_at;
       delete userFromDB.updated_at;
-      console.log(userFromDB);
+      
       dbUpdater
         .updateUser(userFromDB.id, userFromDB)
         .then(result => {
-          console.log(result);
+          
           req.session.editProfileError = false;
           res.status(200).redirect('/profile');
         })

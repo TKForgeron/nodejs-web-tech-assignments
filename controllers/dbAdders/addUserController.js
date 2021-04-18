@@ -6,7 +6,7 @@ const helper = require('../controllerHelpers');
 
 module.exports = async (req, res) => {
   if (!helper.isValidPassword(req.body.password)) {
-    console.log('invalid password');
+    
     res.redirect('/register?unsuccessful');
   } else {
     req.body.password = await bcrypt.hash(req.body.password, 10);

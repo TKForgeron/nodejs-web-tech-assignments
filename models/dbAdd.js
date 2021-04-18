@@ -13,8 +13,7 @@ module.exports = {
 };
 
 // expects: (JSON string)
-async function addTopic(topic) {
-  console.log(`inside addTopic, adding: ${topic}`);
+async function addTopic(topic) {  
   topic = JSON.parse(topic);
 
   const [id] = await db('topic').insert(topic);
@@ -78,14 +77,14 @@ async function addQuiz(quiz, topicId_fk) {
 
 // expects: (JSON string)
 async function addUser(user) {
-  console.log(`inside register user: ${user}`);
+  
   user = JSON.parse(user);
   let userId = undefined;
 
   await db('user')
     .insert(user)
     .then(result => {
-      console.log(`'addUser' operation inserted userId: ${result}`);
+      
       userId = result;
     })
     .catch(err => {
@@ -134,7 +133,7 @@ async function addUserStat(
       quizSuccessRate: quizSuccessRate,
     };
 
-    console.log(`trying to add user stat: ${userStat}`);
+    
 
     const statId = await db('userQuizStats')
       .insert(userStat)

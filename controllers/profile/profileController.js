@@ -5,7 +5,7 @@ const helpers = require('../controllerHelpers');
 module.exports = async (req, res) => {
   if (req.session.loggedin) {
     const username = req.session.username;
-    console.log(req.session.userId);
+    
 
     if (username == 'admin') {
       res.redirect('/admin');
@@ -38,8 +38,7 @@ module.exports = async (req, res) => {
       await dbFinder
         .findStatsByUserId(req.session.userId.id)
         .then(stats => {
-          console.log("stats");
-          console.log(stats);
+          
           statObjectsArray = stats;
         })
         .catch(err => {
@@ -84,7 +83,7 @@ module.exports = async (req, res) => {
           (overallSuccess.reduce((a, b) => a + b, 0) / overallSuccess.length) *
           100;
       });
-      console.log(totalSuccessArray);
+      
       
       let editProfileError = false;
       editProfileError = req.session.editProfileError;
@@ -97,7 +96,7 @@ module.exports = async (req, res) => {
       });
     }
   } else {
-    console.log('You should login first');
-    res.redirect('/login');
+    
+    res.redirect('/group15/login');
   }
 };

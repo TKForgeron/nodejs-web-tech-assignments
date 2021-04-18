@@ -9,7 +9,7 @@ module.exports = (req, res) => {
   const quizId = req.body.quizId;
   const totalQuestionsPerQuiz = 3;
   if(!req.session.loggedin){
-    console.log("not logged in during assessment");
+
     res.status(401).json({message:"You're not authorized to do this"});
   }
   else{
@@ -20,11 +20,10 @@ module.exports = (req, res) => {
     dbFinder
       .findQuestionAnswerById(questionIdFromUrl)
       .then(answer => {
-        console.log("TopicId: " + topicId);
-        console.log("QuizId: " + quizId);
+
         if(userAnswer.toLowerCase() == answer.toLowerCase())
         {
-          console.log("in the if");
+
           if(quizId == 1 || quizId == 2)
           {
             // This is topic 1 quizzes one and two
@@ -54,7 +53,7 @@ module.exports = (req, res) => {
 
         }
         res.status(200).json(userAnswer.toLowerCase() == answer.toLowerCase());
-        console.log(`userAnswer: ${userAnswer}, answer: ${answer.toLowerCase()}`);       
+               
 
       })
       .catch(err => {
@@ -64,11 +63,5 @@ module.exports = (req, res) => {
         console.log(err);
       });
   }
-  // const questionIdFromBody = parseInt(userAnswerObj.quizId);
 
-  // if (questionIdFromBody != questionIdFromUrl) {
-  //   console.log(
-  //     `You're posting a question that does not belong to this quiz. \n questionIdFromBody: ${questionIdFromBody} questionIdFromUrl: ${questionIdFromUrl}`
-  //   );
-  // }
 };

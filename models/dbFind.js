@@ -118,13 +118,13 @@ function findQuestionsByQuizId(quizId_fk) {
 
 // expects: (number)
 function findStatsByUserId(userId_fk) {
-  console.log(`userId_fk in findStatsByUserId: ${userId_fk}`);
+  
   return db('userQuizStats').where({ userId_fk }); // array of JS-objects
 }
 
 // expects: (string)
 async function findStatsByUsername(username) {
-  console.log(`username in findStatsByUsername: ${username}`);
+  
   let returnVal = undefined;
   await findUserIdByUsername(username)
     .then(res => {

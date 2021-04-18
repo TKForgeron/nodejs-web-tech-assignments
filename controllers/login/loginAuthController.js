@@ -12,13 +12,13 @@ module.exports = async (req, res) => {
     .findUserByUsername(username)
     .then(usr => {
       userFromDB = usr;
-      console.log('usr: ' + usr);
+      
     })
     .catch(err => {
       console.log(err);
       userFromDB = false;
     });
-  console.log(`username: ${username}, userFromDB: ${userFromDB}`);
+  
   // check if user exists
   if (userFromDB) {
     const passwordCorrect = userFromDB.password;

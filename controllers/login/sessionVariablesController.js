@@ -2,7 +2,7 @@
 const dbFinder = require('../../models/dbFind');
 
 module.exports = async req => {
-  console.log('login successful, setting session variables');
+  
   req.session.loggedin = true;
   const username = req.body.username;
   req.session.username = username;

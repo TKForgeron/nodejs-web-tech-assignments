@@ -3,7 +3,7 @@ const dbFinder = require('../../models/dbFind');
 
 module.exports = (req, res) => {
   const topicId = req.params.topicId;
-  console.log(topicId);
+  
 
   dbFinder
     .findQuizzesByTopicId(topicId)

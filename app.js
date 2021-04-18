@@ -7,14 +7,14 @@ const path = require('path');
 const morgan = require('morgan');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8015;
 
 // View Engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 // Logger
-// app.use(morgan('tiny'));
+app.use(morgan('tiny'));
 
 // Session
 app.use(express.json());
@@ -48,10 +48,9 @@ app.use(
 app.use('/api', require('./routes/api'));
 
 // Minimal error Handler
-// app.use((err, req, res, next) => {
-//   res.status(500).send('Server error');
-// });
-
+app.use((err, req, res, next) => {
+  res.status(500).send('Server error');
+});
 const server = app.listen(port, () => {
   console.log(`Server Listening on port ${port}`);
 });

@@ -15,11 +15,11 @@ module.exports = (req, res) => {
         // messageTwo: progress,
       });
     } else {
-      console.log('You are not authorized, login with admin account');
+      
       res.status(401).redirect('/login');
     }
   } else {
-    console.log('You should login first');
+    
     res.redirect('/login');
   }
 };
